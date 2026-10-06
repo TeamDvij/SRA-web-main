@@ -1,0 +1,85 @@
+﻿.mobile-navbar {
+    /*position: fixed;
+    top: 0;*/
+    left: 20px;
+    width: 100%;
+    /*background-color: #333;*/
+    background: linear-gradient(90deg, rgba(121, 9, 19, 1) 0%, rgba(3, 7, 69, 1) 51%, rgba(27, 81, 92, 1) 100%);
+    z-index: 999;
+    padding: 10px;
+    
+}
+
+.menu-toggle {
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    /*background-color: #444;*/
+    background: linear-gradient(90deg, rgba(105, 9, 19, 1) 0%, rgba(3, 7, 69, 1) 51%, rgba(27, 81, 92, 1) 100%);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+
+}
+
+.mobile-menu li {
+    border-bottom: 1px solid #555;
+}
+
+.mobile-menu li a,
+.has-submenu {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.submenu {
+    display: none;
+    /*background-color: #555;*/
+    background: linear-gradient(90deg, rgba(100, 9, 10, 1) 0%, rgba(3, 7, 69, 1) 51%, rgba(27, 81, 92, 1) 100%);
+    list-style: none;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.submenu li a {
+    padding: 10px;
+    color: #ddd;
+    border-bottom: 1px solid #666;
+    display: block;
+    text-decoration: none;
+}
+
+.submenu li a:hover {
+    background-color: #666;
+    color: white;
+}
+
+/* Hide entire mobile navbar on larger screens */
+/*@media (min-width: 768px) {
+    .mobile-navbar {
+        display: none;
+    }
+}*/
+    /* Hide entire mobile navbar on larger screens */
+    @media (min-width: 1137px) {
+        .mobile-navbar {
+            display: none;
+        }
+    }
+
+/*show toogle*/
+@media screen and (max-width: 1137px) {
+    .menu-toggle .mobile-menu {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+}

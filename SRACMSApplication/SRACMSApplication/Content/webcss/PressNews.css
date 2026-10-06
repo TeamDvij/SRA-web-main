@@ -1,0 +1,313 @@
+﻿
+
+
+.press-news-container {
+    width: 70%;
+    padding: 10px;
+}
+.press-news-wrapper {
+    /*    width: 70%;*/
+    padding: 20px ;
+    height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.press-news-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.press-news-card {
+    background: #fff;
+    justify-content: flex-start;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    /*    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);*/
+    transition: all 0.3s ease;
+    border: 1px solid #c2048a;
+    
+}
+
+    .press-news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.14);
+    }
+
+.press-news-image {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+    /* Target the image inside this container */
+    .press-news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image fills the 210px height without distorting */
+        object-position: left top; /* Forces the image content to align to the top-left (start) */
+        display: block; /* Removes inline gaps */
+        margin: 0; /* Resets any default centering margins */
+    }
+
+    .press-news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+.press-news-card:hover .press-news-image img {
+    transform: scale(1.06);
+}
+
+.press-news-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.press-news-card:hover .press-news-overlay {
+    opacity: 1;
+}
+
+.press-news-overlay span {
+    background: #fff;
+    color: #222;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.press-news-content {
+    padding: 18px;
+}
+
+    .press-news-content h4 {
+        font-size: 18px;
+        line-height: 1.4;
+        margin: 0 0 10px;
+        color: #222;
+    }
+
+    .press-news-content p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #666;
+        margin: 0 0 15px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+.press-news-read-more {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: #0066cc;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .press-news-read-more:hover {
+        text-decoration: underline;
+    }
+
+
+/* MODAL */
+
+.press-news-modal {
+    /*    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;*/
+
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.press-news-modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: grab;
+}
+
+    .press-news-modal-content > img {
+        /*        max-width: 100%;
+        max-height: 85vh;
+        border-radius: 6px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        object-fit: contain;*/
+
+
+        transition: transform 0.2s ease;
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+    }
+
+.press-news-modal-body {
+    padding: 25px;
+}
+
+    .press-news-modal-body h3 {
+        margin: 0 0 12px;
+        font-size: 24px;
+        color: #222;
+    }
+
+    .press-news-modal-body p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.7;
+        color: #555;
+    }
+
+.press-news-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+    .press-news-modal-close:hover {
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+
+/* TABLET */
+
+@media (max-width: 992px) {
+
+
+    .press-news-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 576px) {
+
+    .press-news-row {
+        grid-template-columns: 1fr;
+    }
+
+    .press-news-image {
+        height: 220px;
+    }
+
+    .press-news-modal-content {
+        width: 95%;
+    }
+
+    .press-news-modal-body {
+        padding: 18px;
+    }
+
+        .press-news-modal-body h3 {
+            font-size: 20px;
+        }
+}
+
+
+/* --- Modal Controls Container --- */
+.press-news-modal-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 1002;
+}
+
+/* --- Common Style for Zoom & Close Buttons --- */
+.modal-ctrl-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+    .modal-ctrl-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-ctrl-btn:active {
+        transform: scale(0.95);
+    }
+
+/* --- Previous & Next Navigation Arrows --- */
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    font-size: 32px;
+    padding: 12px 18px;
+    cursor: pointer;
+    z-index: 1002;
+    border-radius: 50%;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    .modal-nav-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+.modal-nav-prev {
+    left: 20px;
+}
+
+.modal-nav-next {
+    right: 20px;
+}

@@ -1,0 +1,121 @@
+﻿@model SRACMSApplication.Models.societyModel
+
+@{
+    ViewBag.Title = "cp_other_society_addedit";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+@if (@ViewBag.Message != null)
+{
+    <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+    </script>
+}
+
+@if (@ViewBag.error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.error");
+        };
+    </script>
+}
+
+@using (Html.BeginForm("cp_other_society_addedit", "Society", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Add/Edit गृहनिर्माण संस्थांची यादी</h1>
+            <a href="@Url.Content("~/society/cp_other_society")">
+                Back to List
+            </a>
+        </div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h4 style="font-size:medium; color:green">@ViewBag.Message</h4>
+            <a href="@Url.Content("~/society/cp_other_society_addedit")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                Add New
+            </a>
+        </div>
+
+        <!-- Content Row -->
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="form-group row">
+
+                    <div class="col-sm-6">
+                        @Html.Label("संस्थेचे नाव")
+                        @Html.TextBox("soc_name", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.soc_name)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Society Name")
+                        @Html.TextBox("soc_name_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.soc_name_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                    <div class="col-sm-6">
+                        @Html.Label("संस्थेचा पत्ता")
+                        @Html.TextBox("soc_address", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.soc_address)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Address")
+                        @Html.TextBox("soc_address_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.soc_address_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("संस्थेचा नोंदणी क्रमांक")
+                        @Html.TextBox("soc_registration_no", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.soc_registration_no)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Registration Number")
+                        @Html.TextBox("soc_registration_no_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.soc_registration_no_eng)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("नोंदणी तारीख/Registration Date")
+                        @Html.TextBox("soc_registration_dt1", null, new { @id="dt",@class = "date-picker form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.soc_registration_dt1)
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block"  />
+                    </div>
+                </div>
+
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+    })
+</script>

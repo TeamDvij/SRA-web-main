@@ -1,0 +1,140 @@
+﻿/* Pulse animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 99, 71, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 99, 71, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 99, 71, 0);
+  }
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  font-size: 16px;
+  border-radius: 12px;
+  background-color: tomato;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: transform 0.2s;
+  animation: pulse 2s infinite;
+}
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        animation: none; /* stop pulsing on hover */
+        background-color: #e5533d;
+        color: #fff;
+    }
+@media (min-width: 780px) {
+    .cta-button {
+        display: inline-block;
+        padding: 0.55rem 1rem;
+        font-size: 1.2rem;
+        border-radius: 12px;
+        background-color: tomato;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: transform 0.2s;
+        animation: pulse 2s infinite;
+    }
+        .cta-button:hover {
+            transform: scale(1.05);
+            animation: none; /* stop pulsing on hover */
+            background-color: #e5533d;
+            color: #fff;
+        }
+}
+@media (min-width: 780px) {
+     .cta-button {
+        display: none;
+        padding: 0.55rem 1rem;
+        font-size: 1.2rem;
+        border-radius: 2rem;
+        background-color: tomato;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: transform 0.2s;
+        animation: pulse 2s infinite;
+    }
+        .cta-button:hover {
+            transform: scale(1.05);
+            animation: none; /* stop pulsing on hover */
+            background-color: #e5533d;
+            color: #fff;
+        }
+}
+
+/*rts button*/
+
+
+.rts-button {
+    margin-top: 18px;
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    font-size: 16px;
+    border-radius: 12px;
+    background-color: tomato;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: transform 0.2s;
+    animation: pulse 2s infinite;
+}
+
+    .rts-button:hover {
+        transform: scale(1.05);
+        animation: none; /* stop pulsing on hover */
+        background-color: #e5533d;
+        color: white;
+    }
+
+@media (min-width: 780px) {
+    .rts-button {
+        display: none;
+        padding: 0.55rem 1rem;
+        font-size: 1.2rem;
+        border-radius: 2rem;
+        background-color: tomato;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: transform 0.2s;
+        animation: pulse 2s infinite;
+    }
+
+        .rts-button:hover {
+            transform: scale(1.05);
+            animation: none; /* stop pulsing on hover */
+            background-color: #e5533d;
+            color: white;
+        }
+
+    @media (max-width: 780px) {
+        .rts-button {
+            margin-top: 18px;
+            display: inline-block;
+            padding: 0.55rem 1rem;
+            font-size: 1.2rem;
+            border-radius: 2rem;
+            background-color: tomato;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: transform 0.2s;
+            animation: pulse 2s infinite;
+        }
+            .rts-button:hover {
+                transform: scale(1.05);
+                animation: none; /* stop pulsing on hover */
+                background-color: #e5533d;
+                color: white;
+            }
+    }
+}

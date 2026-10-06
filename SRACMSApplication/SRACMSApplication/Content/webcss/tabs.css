@@ -1,0 +1,94 @@
+
+/* Basic tab styling */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: antiquewhite;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: .5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.dataTables_wrapper .dataTables_paginate:hover .paginate_button:hover {
+    color: white;
+    background: #004274;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: inherit !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: antiquewhite;
+}
+/* Change background color of buttons on hover */
+.tab button:hover {
+    /*background-color: lightgray;*/
+    background-color: #006dba;
+    color: white;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #004274;
+    color: white;
+}
+
+/* Style the tab content */
+
+
+/* Fade in animation */
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+
+/* Mobile optimization */
+@media(max-width:768px) {
+    .lightbox-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 28px;
+    }
+
+    .lightbox-close {
+        font-size: 28px;
+    }
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-style: italic;
+    width: 100%;
+}

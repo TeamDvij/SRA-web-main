@@ -1,0 +1,48 @@
+﻿@model SRACMSApplication.Models.about_amache_netrutvaModel
+
+@{
+    ViewBag.Title = "cp_netrutva";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+<div class="container containerStyle">
+
+    <div class="row">
+        <div>
+            <div class="multimedia">
+                <h3>आमचे नेतृत्व </h3>
+            </div>
+            <div>
+                <table width="864" class="table table-bordered table-responsive">
+                    <tbody>
+                        @foreach (var item in Model.AmacheNetrutvaList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <tr>
+                                <td style="width: 20%;">
+                                    <img src="@Url.Content(item.Data.sadasya_photo_location)" class="img-responsive" style="width:90%;height:170px;" />
+                                </td>
+                                <td width="300">
+                                    <p class="pStyle">
+                                        <strong>@item.Data.sadasya_name,</strong><br>
+                                        @item.Data.designation,<br /> @item.Data.department
+                                    </p>
+                                </td>
+                                <td width="300" class="pStyle">
+                                    <p>@item.Data.address_line1</p>
+                                    <p>@item.Data.address_line2</p>
+                                    <p>@item.Data.address_line3</p>
+                                    <p>@item.Data.address_line4</p>
+                                    <p>दूरध्वनी क्रमांक – @item.Data.contact</p>
+                                    <p>ई मेल -&nbsp; <a href="mailto:@item.Data.email">@item.Data.email</a></p>
+                                </td>
+                                <td width="50">
+                                    <a href="@Url.Content("~/CPAbout/cp_netrutva_edit?id="+@item.Data.id)" class="dropdown-item edit" data-id="@item.Data.id">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

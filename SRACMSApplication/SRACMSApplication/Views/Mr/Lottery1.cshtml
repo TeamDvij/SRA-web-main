@@ -1,0 +1,123 @@
+﻿@model SRACMSApplication.Models.other_lotteryModel
+@{
+    ViewBag.Title = "Lottery";
+    Layout = @Session["Layout"].ToString();
+    //Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "लॉटरी पद्धतीने सदनिका वाटप करण्यात आलेल्या योजनांची यादी" : "Lottery List")
+            </h3>
+        </div>
+        <div class="col-md-12 table-container">
+            @{
+                int srno = 1;  // Initialize serial number for groups
+            }
+            <table id="datatable" style="padding:10px">
+                <thead>
+                    <tr>
+                        <th style="text-align:center; width:2%;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                        <th style="text-align:center; width:5%;" title="मास्टर क्रमांक">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                        <th style="text-align:center; width:12%;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                        <th style="text-align:left; width:30%;">@(Session["Lang"].ToString() == "mr" ? "योजनाचे नाव" : "Project Name") </th>
+                        <th style="text-align:center; width:25%;">@(Session["Lang"].ToString() == "mr" ? "तपशील" : "Details")</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var group in Model.other_lotteryList
+                        .OrderByDescending(x => x.flat_allotment_date)
+                        .GroupBy(x => new
+                        {
+                            x.project_new.project_name,
+                            x.project_new.Master_no,
+                            x.sys_config.sys_name_mar
+                        }))
+                    {
+                        <tr>
+                            <td>@srno</td>
+                            <td>@(group.Key.Master_no == 0 ? "" : group.Key.Master_no.ToString())</td>
+                            <td>@group.Key.sys_name_mar</td>
+                            <td>@group.Key.project_name</td>
+
+                            <!-- DETAILS CELL -->
+                            <td>
+                                <table style="width:100%; border-collapse:collapse;" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:center; width:55%;">@(Session["Lang"].ToString() == "mr" ? "सदनिका वाटप दिनांक" : "Flat allotment date")</th>
+                                            <th style="text-align:center; width:8%;">@(Session["Lang"].ToString() == "mr" ? "एकूण सदनिका" : "Total Flats")</th>
+                                            <th style="text-align:center; width:8%;">@(Session["Lang"].ToString() == "mr" ? "वाटप सदनिका" : "Alloted Flats")</th>
+                                            <th style="text-align:center; width:5%;">@(Session["Lang"].ToString() == "mr" ? "पहा" : "View")</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in group.OrderByDescending(x => x.flat_allotment_date))
+                                        {
+                                            <tr>
+                                                <td style="text-align:center; width:55%;">@item.flat_allotment_date.ToString("dd-MM-yyyy")</td>
+                                                <td style="text-align:center; width:8%;">@item.total_flats</td>
+                                                <td style="text-align:center; width:8%;">@item.allotted_flats</td>
+                                                <td style="text-align:center; width:5%;">
+                                                    <a href="@Url.Content(item.doc_location + item.doc_name)" target="_blank">
+                                                        <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                        srno++;
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add DataTables CSS -->
+
+<script>
+    $(document).ready(function() {
+        var lang = '@Session["Lang"].ToString()';
+
+        // Initialize DataTable
+        var table = $('#datatable').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthMenu": [5, 10, 25, 50, 100],
+            "language": {
+                "url": lang === 'mr' ?
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": [4] }, // Disable sorting for View column
+                { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+            ]
+        });
+
+        // Add search input functionality
+        $('#searchInput').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+
+    });
+</script>
+
+

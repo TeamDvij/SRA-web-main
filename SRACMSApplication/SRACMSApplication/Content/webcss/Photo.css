@@ -1,0 +1,159 @@
+
+
+
+
+.event {
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+
+    .event h2 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+/* Event 1 Scrollbar */
+.photo-row {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+}
+
+    .photo-row::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .photo-row::-webkit-scrollbar-track {
+        background: rgba(200, 200, 200, 0.4);
+        border-radius: 3px;
+    }
+
+    .photo-row::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+    }
+
+    .photo-row img {
+        height: 200px;
+        width: auto;
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+/* Event 2 Carousel */
+.event2-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event2-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease-in-out;
+    flex-wrap: nowrap;
+}
+
+    .event2-track img {
+        height: 200px;
+        width: auto;
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+.event2-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    height: 50px;
+}
+
+.event2-btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+    .event2-btn:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+/* Event 3 Carousel */
+.photo-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.photo-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease-in-out;
+    flex-wrap: nowrap;
+}
+
+.photo-carousel img {
+    height: 200px;
+    width: auto;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.zoomable {
+    transition: transform 0.3s ease;
+}
+
+.zoom-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+    .zoom-controls button {
+        padding: 10px 15px;
+        font-size: 20px;
+        margin: 5px;
+    }

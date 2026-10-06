@@ -1,0 +1,206 @@
+﻿@model SRACMSApplication.Models.about_amache_netrutvaModel
+@{
+    ViewBag.Title = "cp_netrutva_edit";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+<script src="@Url.Content("~/Content/Web/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Content/Web/js/jquery-3.5.1.min.js")"></script>
+
+@if (@ViewBag.Message != null)
+{
+    <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+    </script>
+}
+
+@if (@ViewBag.error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.error");
+        };
+    </script>
+}
+
+@using (Html.BeginForm("cp_netrutva_edit", "CPAbout", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Edit आमचे नेतृत्व</h1>
+            <a href="@Url.Content("~/CPAbout/cp_netrutva")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                Back to List
+            </a>
+        </div>
+        <!-- Content Row -->
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("नाव")
+                        @Html.TextBox("sadasya_name", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.sadasya_name)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Name")
+                        @Html.TextBox("sadasya_name_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.sadasya_name_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("पद")
+                        @Html.TextBox("designation", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.designation)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Designation")
+                        @Html.TextBox("designation_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.designation_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("विभाग")
+                        @Html.TextBox("department", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.department)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Department")
+                        @Html.TextBox("department_eng", null, new { @class = "form-control form-control-user"})
+                        @Html.ValidationMessageFor(a => a.department_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("पत्ता - लाइन१")
+                        @Html.TextBox("address_line1", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.address_line1)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Address - Line1")
+                        @Html.TextBox("address_line1_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.address_line1_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("पत्ता - लाइन२")
+                        @Html.TextBox("address_line2", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.address_line2)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Address - Line2")
+                        @Html.TextBox("address_line2_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.address_line2_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("पत्ता - लाइन३")
+                        @Html.TextBox("address_line3", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.address_line3)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Address - Line3")
+                        @Html.TextBox("address_line3_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.address_line3_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("पत्ता - लाइन४")
+                        @Html.TextBox("address_line4", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.address_line4)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Address - Line4")
+                        @Html.TextBox("address_line4_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.address_line4_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("दूरध्वनी")
+                        @Html.TextBox("contact", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.contact)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Telephone")
+                        @Html.TextBox("contact_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.contact_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("eMail")
+                        @Html.TextBox("email", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.email)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("Upload File")
+                        @if (Model.sadasya_photo_location != null)
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".jpg,.jpeg" />
+                        }
+                        else
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".pdf" required />
+                        }
+                    </div>
+                    <div class="col-sm-6">
+                        @if (Model.sadasya_photo_location != null)
+                        {
+                            @Html.Label("Current File")
+                            <a href="@Url.Content(Model.sadasya_photo_location)" class="marathi_font" target="_blank">
+                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block" />
+                    </div>
+                </div>
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+}
+@if (@ViewBag.fileExtensionMessage != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.fileExtensionMessage");
+        };
+    </script>
+}
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+    })
+    $('#file').on('change', function () {
+        var val = $(this).val().toLowerCase();
+        var regex = new RegExp("(.*?)\.(jpg|jpeg|pdf)$");
+        if (!(regex.test(val))) {
+            $(this).val('');
+            alert('Select valid file!');
+        }
+    });
+</script>

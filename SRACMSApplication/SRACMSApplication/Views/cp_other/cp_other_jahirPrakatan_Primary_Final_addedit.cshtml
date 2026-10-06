@@ -1,0 +1,162 @@
+﻿@model SRACMSApplication.Models.other_jahirPrakatanModel
+
+@{
+    ViewBag.Title = "cp_other_jahirPrakatan_Primary_Final_addedit";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+@if (@ViewBag.Message != null)
+{
+    <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+    </script>
+}
+
+@if (@ViewBag.error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.error");
+        };
+    </script>
+}
+
+@using (Html.BeginForm("cp_other_jahirPrakatan_Primary_Final_addedit", "cp_other", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Add/Edit जाहीर प्रकटन : प्राथमिक आणि अंतिम </h1>
+            <a href="@Url.Content("~/cp_other/cp_other_jahirPrakatan")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                Back to List
+            </a>
+        </div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h4 style="font-size:medium; color:green">@ViewBag.Message</h4>
+            <a href="@Url.Content("~/cp_other/cp_other_jahirPrakatan_Primary_Final_addedit")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                Add New
+            </a>
+        </div>
+
+        <!-- Content Row -->
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("प्राथमिक/अंतिम")
+                        @Html.DropDownListFor(a => a.type, new SelectList(Model.typeList,"value", "text"), "Select", new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.type)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("नोटीस/यादी")
+                        @Html.DropDownListFor(a => a.is_notice_list, new SelectList(Model.notice_yadi_List, "value", "text"), "Select", new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.is_notice_list)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        @Html.Label("मास्टर क्रमांक - योजना")
+                        @Html.DropDownListFor(a => a.master_no_id,
+                            new SelectList(Model.yojna_List.Select(x => new
+                            {
+                                id = x.id,
+                                display = x.Master_no + " - " + x.project_name
+                            }), "id", "display"),
+                            "Select",
+                            new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.master_no_id)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("CA1 / CA2 / CA3")
+                        @Html.TextBox("ca_dept", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.ca_dept)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("CA1 / CA2 / CA3")
+                        @Html.DropDownListFor(a => a.ca_dept_id, new SelectList(Model.sys_configList, "id", "sys_name_mar"), "Select", new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.ca_dept_id)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("योजनेचे नाव")
+                        @Html.TextBox("plan_name", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.plan_name)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("योजनेचे नाव")
+                        @Html.TextBox("plan_name_eng", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.plan_name_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @*<div class="col-sm-6">
+                        @Html.Label("तारीख")
+                        @Html.TextBox("plan_date", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.plan_date)
+                    </div>*@
+                    <div class="col-sm-6">
+                        @Html.Label("Date")
+                        @Html.TextBox("plan_date_New1", null, new { @class = "date-picker form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.plan_date_New1)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Remark")
+                        @Html.TextBox("remark_yojna", null, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(a => a.remark_yojna)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("Upload File")
+                        @if (Model.doc_name != null)
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".pdf" />
+                        }
+                        else
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".pdf" required />
+                        }
+                    </div>
+                    <div class="col-sm-6">
+                        @if (Model.doc_name != null)
+                        {
+                            @Html.Label("Current File")
+                            <a href="@Url.Content(Model.doc_location+Model.doc_name)" class="marathi_font" target="_blank">
+                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block" />
+                    </div>
+                </div>
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+    })
+</script>

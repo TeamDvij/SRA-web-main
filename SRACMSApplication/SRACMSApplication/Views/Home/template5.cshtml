@@ -1,0 +1,122 @@
+﻿@model SRACMSApplication.Models.homeModel
+
+
+@{
+
+    ViewBag.Title = "template5";
+    Layout = "~/Views/Shared/newMasternew.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/webcss/New.css" rel="stylesheet" />
+    <link href="~/Content/webcss/template3.css" rel="stylesheet" />
+</head>
+ 
+<body>
+    <div class="grid-container">
+        <div class="item3">
+            <div>
+                <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="~/Content/images/02.jpg" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/Content/images/02.png" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/Content/images/07.png" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/Content/images/08.png" class="d-block w-100">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                </div>
+            </div>
+            <div>
+                <div class="team teamback">
+                    <div class="team-main">
+                        <div class="team-row d-flex flex-row justify-content-center align-items-center flex-nowrap" style="column-gap:25px;">
+                            <!-- Minister 1 -->
+                            <div class="team text-center mx-3">
+                                <div class="ih-item">
+                                    <div class="img">
+                                        <img src="@Url.Content(@Model.minister1_Photo)" alt="img" class="minister-img">
+                                    </div>
+                                </div>
+                                <div class="team-bottom">
+                                    <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister1_Name : @Model.minister1_Name_eng)</h6>
+                                    <p class="fw-bold text-danger">
+                                        @(Session["Lang"].ToString() == "mr" ? "माननीय मुख्यमंत्री" : "Hon. Chief Minister")
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Minister 2 -->
+                            <div class="team text-center mx-3">
+                                <div class="ih-item">
+                                    <div class="img">
+                                        <img src="@Url.Content(@Model.minister2_Photo)" alt="img" class="minister-img">
+                                    </div>
+                                </div>
+                                <div class="team-bottom">
+                                    <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister2_Name : @Model.minister2_Name_eng)</h6>
+                                    <p class="fw-bold text-danger">
+                                        @(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री तथा माननीय गृहनिर्माण मंत्री" : "Hon. Deputy Chief Minister and Hon. Housing Minister")
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Minister 3 -->
+                            <div class="team text-center mx-3">
+                                <div class="ih-item">
+                                    <div class="img">
+                                        <img src="@Url.Content(@Model.minister3_Photo)" alt="img" class="minister-img">
+                                    </div>
+                                </div>
+                                <div class="team-bottom">
+                                    <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister3_Name : @Model.minister3_Name_eng)</h6>
+                                    <p class="fw-bold text-danger">
+                                        @(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री" : "Hon. Deputy Chief Minister")
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Minister 4 -->
+                            <div class="team text-center mx-3">
+                                <div class="ih-item">
+                                    <div class="img">
+                                        <img src="@Url.Content(@Model.minister4_Photo)" alt="img" class="minister-img">
+                                    </div>
+                                </div>
+                                <div class="team-bottom">
+                                    <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister4_Name : @Model.minister4_Name_eng)</h6>
+                                    <p class="fw-bold text-danger">
+                                        @(Session["Lang"].ToString() == "mr" ? "मा. राज्यमंत्री गृहनिर्माण" : "Hon. Minister of State, Housing")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

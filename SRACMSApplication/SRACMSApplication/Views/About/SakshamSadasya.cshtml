@@ -1,0 +1,42 @@
+﻿@model SRACMSApplication.Models.abount_saksham_sadasyaModel
+@{
+    ViewBag.Title = "SakshamSadasya";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+<div class="container containerStyle">
+    
+         <div class="row">
+             <div>
+                 <div class="multimedia">
+                     <h3>@(Session["Lang"].ToString() == "mr" ? "प्राधिकरण समिती" : "Authority Committee")</h3>
+                 </div>
+                 
+                 <p class="pStyle">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.line1 : @Model.line1_eng)
+                 </p>
+                 <br />
+                 <p class="pStyle">
+                     @(Session["Lang"].ToString() == "mr" ? @Model.line2 : @Model.line2_eng)
+
+                 </p><br />
+                 <p class="pStyle">
+                     @(Session["Lang"].ToString() == "mr" ? "झोपडपट्टी पुनर्वसन प्राधिकरणाचे सध्याचे सदस्य:" : "Current Members of Slum Rehabilation Authority")
+                 </p>
+                 <br />
+                 <table class="table table-bordered tableSet">
+<tbody>
+    @foreach (var item in Model.abount_saksham_sadasyaList.Select((x, i) => new { Data = x, Index = i + 1 }))
+    {
+        <tr>
+            <td class="tCenter">@item.Index</td>
+            <td>@(Session["Lang"].ToString() == "mr" ? @item.Data.name : item.Data.name_eng)</td>
+            <td class="tCenter">@(Session["Lang"].ToString() == "mr" ? @item.Data.designation : item.Data.designation_eng)</td>
+        </tr>
+    }
+
+</tbody>
+</table>
+         </div>
+             
+      </div>
+        </div>

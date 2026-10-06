@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Prakalpa";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+@*<%--tab container css starts--%>*@
+    <script src="Web/TabContainer/JavaScript1.js"></script>
+    <link href="Web/TabContainer/StyleSheet1.css" rel="stylesheet" />
+    <style>
+        .tabStyle
+        {
+            /*padding:15px;*/
+        }
+        .nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+        .ul {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+   
+}
+        .nav-tabs 
+        {
+    border-bottom: 0px solid #ddd;
+    background: #efefef;
+}
+        .gallery_box
+        {
+            width: 100%;
+            float: left;
+            border: 1px solid rgba(0, 142, 255, 0.3803921568627451);
+            position: relative;
+            border-top: transparent;
+            padding: 13px;
+        }
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus
+        {
+                color: #fff;
+    cursor: default;
+    background-color: #008eff;
+    border: 0px solid #ddd;
+    border-bottom-color: transparent;
+    border-radius: 0;
+        }
+        .nav-tabs {
+    border-bottom: 0px solid #ddd;
+    background: #efefef;
+}
+        .nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    font-size: 120%;
+    font-weight: 600;
+}
+        .multimedia h3 {
+    text-transform: uppercase;
+    color: #008eff;
+    font-size: 130%;
+    text-align: center;
+    /* font-family: 'NexaBold'; */
+    border-bottom: 2px solid #008eff;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+    background: url('images/up_arrow.png') no-repeat 50% 100%;
+    margin-top: 0;
+    font-weight: 600;
+        padding: 15px;
+}
+        .gallery_box img {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    min-height: 233px;
+}
+    </style>
+ @*<%--tab container starts--%>*@
+         <br /><br /><br />
+         <div class="container">
+         <div class="row">
+             <div class="col-md-8">
+                 <div class="multimedia">
+                     <h3>मल्टीमीडिया गॅलरी</h3>
+                 </div>
+                 <div class="gallery_box">
+
+    <div class="tab-group rates-page-tabs tabStyle galley_box">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs responsive nav-tabs" role="tablist">
+            <%--<li role="presentation" class="active"><a href="#loan-rates" aria-controls="loan-rates" role="tab" data-toggle="tab">Loan Rates</a></li>--%>
+            <li role="presentation" class="active"><a href="#loan-rates" aria-controls="mortgage-rates" role="tab" data-toggle="tab">झालेले</a></li>
+            <li role="presentation"><a href="#mortgage-rates" aria-controls="mortgage-rates" role="tab" data-toggle="tab">चालू असलेले </a></li>
+            <li role="presentation"><a href="#checking-savings-rates" aria-controls="checking-savings-rates" role="tab" data-toggle="tab">दाखल असलेले </a></li>
+
+        </ul>
+
+        <!-- Tab panes -->
+         <div class="tab-content responsive">
+            <div role="tabpanel" class="tab-pane active" id="#">
+                <div class="panel-group" id="accordion">
+
+             
+                </div><!-- /.panel-group -->
+            </div>
+             <div role="tabpanel" class="tab-pane active gallery_box" id="loan-rates">
+                 <img src="images/building_image.jpg" />
+                 <img src="images/building_image_2.jpg" />
+             </div>
+            <div role="tabpanel" class="tab-pane gallery_box" id="mortgage-rates">
+                <img src="images/Slide-3.jpg" />
+                <img src="images/Slide-5.png" />
+            </div>
+            <div role="tabpanel" class="tab-pane gallery_box" id="checking-savings-rates">
+                <img src="images/Slide-3.jpg" />
+                <img src="images/Slide-5.png" />
+            </div>
+        </div>
+
+</div>
+             </div>
+         </div>
+             <div class="col-md-3 col-md-offset-1">
+                 <!--features strat here-->
+<div class="features">
+	<div class="container">
+		<div class="features-main">
+			
+			<div class="features-bottom wow slideInRight" data-wow-delay="0.3s">
+				
+				<div class="col-md-4 featur-grid">
+					<h4>Quik Links</h4>
+					<ul>
+						<li><a href="#">But I must explain office you</a></li>
+						<li><a href="#">Temporibus autem quibusdam</a></li>
+						<li><a href="#">The other denounce with right</a></li>
+						<li><a href="#">denouncing pleasure  praising</a></li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--features end here-->
+             </div>
+      </div>
+         </div>

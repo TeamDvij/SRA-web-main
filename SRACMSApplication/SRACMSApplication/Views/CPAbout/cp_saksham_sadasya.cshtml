@@ -1,0 +1,29 @@
+﻿@model SRACMSApplication.Models.abount_saksham_sadasyaModel
+@{
+    ViewBag.Title = "cp_saksham_sadasya";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+<div class="container containerStyle">
+
+    <div class="row">
+        <div class="multimedia">
+            <h3>सक्षम सदस्य </h3>
+        </div>
+        <table class="table table-bordered tableSet">
+            <tbody>
+                @foreach (var item in Model.abount_saksham_sadasyaList.Select((x, i) => new { Data = x, Index = i + 1 }))
+            {
+                    <tr>
+                        <td class="tCenter">@item.Index</td>
+                        <td>@item.Data.name</td>
+                        <td class="tCenter">@item.Data.designation</td>
+                        <td width="50">
+                            <a href="@Url.Content("~/CPAbout/cp_saksham_sadasya_edit?id="+@item.Data.id)" class="dropdown-item edit" data-id="@item.Data.id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

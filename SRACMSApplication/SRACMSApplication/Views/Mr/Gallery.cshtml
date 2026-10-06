@@ -1,0 +1,300 @@
+﻿@model SRACMSApplication.Models.galaryModel
+@{
+    ViewBag.Title = "Photo Gallery";
+    Layout = (Session["Layout"] != null) ? Session["Layout"].ToString() : "~/Views/Shared/_Layout.cshtml";
+
+    int totalcount = 0;
+    if (Model != null && Model.PhotoGalleryList != null)
+    {
+        totalcount = Model.PhotoGalleryList.Count();
+        //if (totalcount > 8)
+        //{
+        //    totalcount = 8;
+        //}
+    }
+}
+
+<link href="~/Content/webcss/PhotoGallery.css" rel="stylesheet" />
+
+<div class="sramain " id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                फोटो गॅलरी
+            </h3>
+
+            <div class="scrollable-div">
+                @if (Model != null && Model.DistinctPhotoAlbum != null && Model.DistinctPhotoAlbum.Any())
+                {
+                    foreach (var item in Model.DistinctPhotoAlbum.Select((x, i) => new { Data = x, Index = i + 1 }))
+                    {
+                        <a class="mb-3 fs-7 text-start" style="text-align: left; border-radius:10px; background-color:aliceblue; padding: 10px;  color: #004d99" href="@Url.Content("~/Mr/Gallery?desc=" + item.Data.Text)"><b>@item.Data.Text</b></a><span class="mx-1">|</span>
+                    }
+                }
+                else
+                {
+                    <span>No photo albums available</span>
+                }
+            </div>
+
+            <div class="photo-gallery-wrapper">
+                <div class="photo-gallery-col">
+                    @if (Model != null && Model.PhotoGalleryList != null && Model.PhotoGalleryList.Any())
+                    {
+                        for (int j = 0; j < totalcount; j++)
+                        {
+                            var photo = Model.PhotoGalleryList[j];
+                            var imagePath = Url.Content(photo.doc_location + photo.doc_name);
+
+                            <div class="photo-card" onclick="openPhotoModal('@imagePath', @j)">
+                                <div class="photo-thumbnail">
+                                    <img src="@imagePath" alt="Gallery Image" class="gallery-thumb-img" loading="lazy" />
+                                    <div class="photo-overlay">
+                                        <span class="photo-view-icon">पहा</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-message">
+                            No images found
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- PHOTO MODAL -->
+            <div id="photoModal" class="photo-modal">
+
+                <!-- Toolbar Controls (Zoom In, Zoom Out, Close) -->
+                <div class="photo-modal-controls">
+                    <button type="button" class="modal-ctrl-btn" onclick="zoomIn()" title="Zoom In">+</button>
+                    <button type="button" class="modal-ctrl-btn" onclick="zoomOut()" title="Zoom Out">-</button>
+                    <button type="button" class="photo-modal-close modal-ctrl-btn" onclick="closePhotoModal()" title="Close">&times;</button>
+                </div>
+
+                <!-- Previous Button -->
+                <button type="button" class="modal-nav-btn modal-nav-prev" onclick="prevPhoto()">&#10094;</button>
+
+                <!-- Modal Content Container with Gesture Support -->
+                <div class="photo-modal-content-wrapper" id="contentWrapper">
+                    <img id="modalPhoto" src="" alt="Gallery Photo" />
+                </div>
+
+                <!-- Next Button -->
+                <button type="button" class="modal-nav-btn modal-nav-next" onclick="nextPhoto()">&#10095;</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let galleryImages = [];
+    let currentIndex = 0;
+    let currentZoom = 1;
+
+    // Pan & Drag state variables
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let translateX = 0, translateY = 0;
+
+    // Mobile Pinch state variable
+    let initialPinchDistance = null;
+
+    // Automatically load all rendered thumbnail paths into array on page load
+    document.addEventListener("DOMContentLoaded", function () {
+        const thumbImages = document.querySelectorAll('.gallery-thumb-img');
+        galleryImages = Array.from(thumbImages).map(img => img.src);
+    });
+
+    function openPhotoModal(photoUrl, index) {
+        currentIndex = index;
+        resetTransformState();
+
+        var modal = document.getElementById("photoModal");
+        var photo = document.getElementById("modalPhoto");
+
+        photo.src = galleryImages.length > 0 ? galleryImages[currentIndex] : photoUrl;
+        updateTransform();
+
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closePhotoModal() {
+        var modal = document.getElementById("photoModal");
+        var photo = document.getElementById("modalPhoto");
+
+        photo.src = "";
+        resetTransformState();
+
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+    }
+
+    function nextPhoto() {
+        if (galleryImages.length === 0) return;
+        currentIndex = (currentIndex + 1) % galleryImages.length; // Loop to start
+        resetTransformAndLoad();
+    }
+
+    function prevPhoto() {
+        if (galleryImages.length === 0) return;
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length; // Loop to end
+        resetTransformAndLoad();
+    }
+
+    function zoomIn() {
+        if (currentZoom < 4) {
+            currentZoom += 0.3;
+            updateTransform();
+        }
+    }
+
+    function zoomOut() {
+        if (currentZoom > 1) {
+            currentZoom -= 0.3;
+            if (currentZoom <= 1) {
+                resetTransformState();
+            } else {
+                updateTransform();
+            }
+        } else {
+            resetTransformState();
+        }
+    }
+
+    function resetTransformState() {
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        updateTransform();
+    }
+
+    function updateTransform() {
+        var photo = document.getElementById("modalPhoto");
+        if (photo) {
+            photo.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        }
+    }
+
+    function resetTransformAndLoad() {
+        resetTransformState();
+        var photo = document.getElementById("modalPhoto");
+        photo.src = galleryImages[currentIndex];
+    }
+
+    /* --- GESTURE LISTENERS (Mouse Wheel Zoom & Drag-to-Pan) --- */
+    const contentWrapper = document.getElementById("contentWrapper");
+
+    if (contentWrapper) {
+        // Mouse Wheel Zoom
+        contentWrapper.addEventListener('wheel', function (e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }, { passive: false });
+
+        // Mouse Drag Start
+        contentWrapper.addEventListener('mousedown', function (e) {
+            if (currentZoom > 1) {
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                contentWrapper.style.cursor = 'grabbing';
+            }
+        });
+
+        // Mouse Drag Move
+        window.addEventListener('mousemove', function (e) {
+            if (!isDragging) return;
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            updateTransform();
+        });
+
+        // Mouse Drag End
+        window.addEventListener('mouseup', function () {
+            isDragging = false;
+            if (contentWrapper) contentWrapper.style.cursor = 'default';
+        });
+    }
+
+    /* --- MOBILE TOUCH GESTURES (Pinch-to-Zoom & One-Finger Drag) --- */
+    if (contentWrapper) {
+        contentWrapper.addEventListener('touchstart', function (e) {
+            if (e.touches.length === 1 && currentZoom > 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX - translateX;
+                startY = e.touches[0].clientY - translateY;
+            } else if (e.touches.length === 2) {
+                isDragging = false;
+                initialPinchDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+            }
+        }, { passive: true });
+
+        contentWrapper.addEventListener('touchmove', function (e) {
+            if (e.touches.length === 1 && isDragging) {
+                translateX = e.touches[0].clientX - startX;
+                translateY = e.touches[0].clientY - startY;
+                updateTransform();
+            } else if (e.touches.length === 2 && initialPinchDistance) {
+                let currentPinchDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                let factor = currentPinchDistance / initialPinchDistance;
+                if (factor > 1.05) {
+                    zoomIn();
+                    initialPinchDistance = currentPinchDistance;
+                } else if (factor < 0.95) {
+                    zoomOut();
+                    initialPinchDistance = currentPinchDistance;
+                }
+            }
+        }, { passive: true });
+
+        contentWrapper.addEventListener('touchend', function (e) {
+            if (e.touches.length < 2) {
+                initialPinchDistance = null;
+            }
+            if (e.touches.length === 0) {
+                isDragging = false;
+            }
+        });
+    }
+
+    /* Close when clicking outside modal content */
+    document.getElementById("photoModal").addEventListener("click", function (event) {
+        if (event.target === this) {
+            closePhotoModal();
+        }
+    });
+
+    /* Keyboard navigation */
+    document.addEventListener("keydown", function (event) {
+        var modal = document.getElementById("photoModal");
+        if (modal && modal.style.display === "flex") {
+            if (event.key === "Escape") {
+                closePhotoModal();
+            } else if (event.key === "ArrowRight") {
+                nextPhoto();
+            } else if (event.key === "ArrowLeft") {
+                prevPhoto();
+            } else if (event.key === "+" || event.key === "=") {
+                zoomIn();
+            } else if (event.key === "-" || event.key === "_") {
+                zoomOut();
+            }
+        }
+    });
+</script>

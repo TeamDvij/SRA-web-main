@@ -1,0 +1,93 @@
+﻿/* ---------------- DO NOT implement ------------------- */
+/* Used to only mimic ancestor behavior on client's site */
+/* ----------------------------------------------------- */
+body {
+    /*font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.42857143;*/
+}
+
+/* ------------------------------- */
+/* Implement only the styles below */
+/* ------------------------------- */
+
+.rates-page-tabs .nav-tabs>li>a {
+  border: none;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+
+.rates-page-tabs .nav-tabs>li>a:hover,
+.rates-page-tabs .nav-tabs>li>a:focus {
+  /*color: red;
+  /*background-color: white;
+  box-shadow: 0px -2px 0px red inset;*/
+}
+
+.rates-page-tabs .nav-tabs>li.active>a,
+.rates-page-tabs .nav-tabs>li.active>a:focus,
+.rates-page-tabs .nav-tabs>li.active>a:hover {
+  /*border: none;
+  box-shadow: 0px -2px 0px red inset;
+  color: red;*/
+}
+
+.panel-group .panel-heading + .panel-collapse > .panel-body {
+  border: 1px solid #ddd;
+}
+.rates-page-tabs .panel-group,
+.rates-page-tabs .panel-group .panel,
+.rates-page-tabs .panel-group .panel-heading,
+.rates-page-tabs .panel-group .panel-heading a,
+.rates-page-tabs .panel-group .panel-title,
+.rates-page-tabs .panel-group .panel-title a,
+.rates-page-tabs .panel-group .panel-body,
+.rates-page-tabs .panel-group .panel-group .panel-heading + .panel-collapse > .panel-body {
+  border-radius: 2px;
+  border: 0;
+}
+.rates-page-tabs .panel-group .panel-heading {
+  padding: 0;
+  background-color: white;
+}
+.rates-page-tabs .panel-group .panel-heading a {
+  display: block;
+  color: #303030;
+  font-size: 18px;
+  padding: 15px 15px 15px 45px;
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+}
+.rates-page-tabs .panel-group .panel-heading a.collapsed {
+  
+}
+.rates-page-tabs .panel-group .panel-heading a:before {
+  content: '-';
+  position: absolute;
+  left: 14px;
+  top: 8px;
+  font-size:26px;
+}
+.rates-page-tabs .panel-group .panel-heading a.collapsed:before {
+  content: '+';
+  left: 10px;
+  top: 10px;
+}
+
+
+.rates-page-tabs .panel-group .panel-collapse {
+  margin-top: 5px !important;
+}
+.rates-page-tabs .panel-group .panel-body {
+  background: #ffffff;
+  padding: 15px;
+}
+.rates-page-tabs .panel-group .panel {
+  background-color: transparent;
+}
+.rates-page-tabs .panel-group .panel-body p:last-child,
+.rates-page-tabs .panel-group .panel-body ul:last-child,
+.rates-page-tabs .panel-group .panel-body ol:last-child {
+  margin-bottom: 0;
+}

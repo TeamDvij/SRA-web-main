@@ -1,0 +1,212 @@
+﻿@model SRACMSApplication.Models.other_srModel
+@{
+    ViewBag.Title = "SR4";
+    Layout = @Session["Layout"].ToString();
+    //Layout = "~/Views/Shared/Master7.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                योजना मंजुरी 14.6.12 (1)
+            </h3>
+        </div>
+        <div class="col-md-12">
+            @*Tab List*@
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">@(Session["Lang"].ToString() == "mr" ? "प्रारूप योजना मंजुरी ४(३)" : "Preliminary Scheme Approval")</button>
+                <button class="tablinks" onclick="openTab(event, 'Tab2')">@(Session["Lang"].ToString() == "mr" ? "अंतिम योजना मंजुरी ४(५)" : "Final Scheme Approval")</button>
+            </div>
+            @*प्रारूप योजना मंजुरी ४(३)*@
+            <div id="Tab1" class="tabcontent" style="padding:10px;">
+                <div class="table-container">
+                    @{
+                        int srno = 1;  // Initialize serial number for groups
+                    }
+                    <table id="datatable1" style="padding:10px">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center; width:2%;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center; width:5%;" title="मास्टर क्रमांक">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center; width:12%;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center; width:40%;">@(Session["Lang"].ToString() == "mr" ? "योजनाचे नाव" : "Project Name") </th>
+                                @*<th style="text-align:center; width:15%;">@(Session["Lang"].ToString() == "mr" ? "दिनांक / पहा" : "Date / View ")</th>*@
+                                <th style="text-align:center;width:15%; ">@(Session["Lang"].ToString() == "mr" ? "तपशील" : "Details")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var group in Model.other_srList.OrderByDescending(x => x.subject_date).GroupBy(x => new { x.project_new.project_name, x.project_new.Master_no, x.sys_config.sys_name_mar }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;">@srno</td>
+                                    <td style="text-align:center;">@(group.Key.Master_no.ToString() == "0" ? "" : group.Key.Master_no.ToString())</td>
+                                    <td style="text-align:center;">@group.Key.sys_name_mar</td>
+                                    <td style="text-align:left;">@group.Key.project_name</td>
+                                    <td style="text-align:center;">
+                                        @foreach (var item in group.OrderByDescending(x => x.subject_date))
+                                        {
+                                            <div style="margin-top:1%;margin-bottom:1%;">
+                                                @item.subject_date.ToString("dd-MM-yyyy")
+                                                <a style="background-color:white; border:none;" href="@Url.Content(@item.doc_location + @item.doc_name)" target="_blank" class="btn btn-primary btn-sm">
+                                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                                </a>
+                                            </div>
+                                        }
+                                    </td>
+                                </tr>
+                                { srno = srno + 1; }
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Add DataTables CSS -->
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+                            // Initialize DataTable
+                            var table = $('#datatable1').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [4] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            @*अंतिम योजना मंजुरी ४(५)*@
+            <div id="Tab2" class="tabcontent" style="padding:10px">
+                @{
+                    int srno2 = 1;  // Initialize serial number for groups
+                }
+                <table id="datatable2" style="padding:10px">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                            <th style="text-align:center;" title="मास्टर क्रमांक">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                            <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                            <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनाचे नाव" : "Project Name") </th>
+                            <th style="text-align:center; ">@(Session["Lang"].ToString() == "mr" ? "तपशील" : "Details")</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var group in Model.other_srList2.OrderByDescending(x => x.subject_date).GroupBy(x => new { x.project_new.project_name, x.project_new.Master_no, x.sys_config.sys_name_mar }))
+                        {
+                            <tr>
+                                <td style="text-align:center; width:2%;">@srno2</td>
+                                <td style="text-align:center; width:5%;">@(group.Key.Master_no.ToString() == "0" ? "" : group.Key.Master_no.ToString())</td>
+                                <td style="text-align:center; width:12%;">@group.Key.sys_name_mar</td>
+                                <td style="text-align:left; width:40%;">@group.Key.project_name</td>
+                                <td style="text-align:center;width:15%;">
+                                    @*<table style="border:none">*@
+                                    @*<thead>
+                                            <tr>
+                                                <td>दिनांक</td>
+                                                <td>पहा</td>
+                                            </tr>
+                                        </thead>*@
+                                    @foreach (var item in group.OrderByDescending(x => x.subject_date))
+                                    {
+                                        @*<tbody>
+                                                <tr>
+                                                    <td>
+                                                        @item.subject_date.ToString("dd-MM-yyyy")
+                                                    </td>
+                                                    <td>
+                                                        <a style="background-color:white; border:none;" href="@Url.Content(@item.doc_location + @item.doc_name)" target="_blank" class="btn btn-primary btn-sm">
+                                                            <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>*@
+                                        <div style="margin-top:1%;margin-bottom:1%;">
+                                            @item.subject_date.ToString("dd-MM-yyyy")
+                                            <a style="background-color:white; border:none;" href="@Url.Content(@item.doc_location + @item.doc_name)" target="_blank" class="btn btn-primary btn-sm">
+                                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                            </a>
+                                        </div>
+                                    }
+                                    @*</table>*@
+                                </td>
+                            </tr>
+                            { srno2 = srno2 + 1; }
+                        }
+                    </tbody>
+                </table>
+
+
+
+                <!-- Add DataTables CSS -->
+                <script>
+                    $(document).ready(function () {
+                        var lang = '@Session["Lang"].ToString()';
+
+                        // Initialize DataTable
+                        var table = $('#datatable2').DataTable({
+                            "paging": true,
+                            "pageLength": 5,
+                            "lengthMenu": [5, 10, 25, 50, 100],
+                            "language": {
+                                "url": lang === 'mr' ?
+                                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                            },
+                            "columnDefs": [
+                                { "orderable": false, "targets": [4] }, // Disable sorting for View column
+                                { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+                            ]
+                        });
+
+                        // Add search input functionality
+                        $('#searchInput').on('keyup', function () {
+                            table.search(this.value).draw();
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Tab Script*@        
+<script>
+            function openTab(evt, tabName) {
+                // Hide all tab content
+                let tabcontent = document.getElementsByClassName("tabcontent");
+                for (let i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Remove active class from all buttons
+                let tablinks = document.getElementsByClassName("tablinks");
+                for (let i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the selected tab content and mark button as active
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Open the default tab on page load
+            document.getElementById("defaultOpen").click();
+        </script>

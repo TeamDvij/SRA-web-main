@@ -1,0 +1,2408 @@
+﻿@{
+    ViewBag.Title = "Master7";
+}
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Website description">
+<head>
+    <link rel="icon" type="image/png" href="@Url.Content("~/Content/Images/srapunelogo1.png")" />
+    <title>@(Session["Lang"].ToString() == "mr" ? "झोपडपट्टी पुनर्वसन प्राधिकरण,पुणे व पिंपरी चिंचवड" : "Slum Rehabilitation Authority Pune, Pimpri Chinchwad Region") </title>
+    <link href="~/Content/webcss/Template7.css" rel="stylesheet" />
+    <link href="~/Content/webcss/special.css" rel="stylesheet" />
+    <link href="~/Content/webcss/mobileNavBar.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:wght@400;600&display=swap" rel="stylesheet">
+    @*<link href="~/Content/webcss/Gallary.css" rel="stylesheet" />*@
+    <link href="~/Content/webcss/Photo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Trio+Devnagari&display=swap" rel="stylesheet">
+    <link href="~/Content/webcss/Navbar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/css/lightbox.min.css" />
+
+
+</head>
+<body>
+
+
+    @*Topnav Start*@
+    <div class="topnav position-relative d-flex flex-wrap justify-content-between align-items-center p-2 bg-dark text-white">
+
+        <!-- Left -->
+        <div class="d-flex align-items-center gap-3">
+
+            <!-- Menu -->
+            <div class="fs-4 menu-toggle" id="mobileMenuToggle" style="cursor:pointer;">
+                &#9776;
+            </div>
+
+            <!-- Social Icons -->
+            <div class="social-icons d-flex align-items-center gap-3">
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/919270765087?text=Hi" target="_blank" rel="noopener" aria-label="WhatsApp" class="whatsapp">
+                    <i class="fab fa-whatsapp fs-4 text-white"></i>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/slumrehabilitationauthoritypune/" target="_blank" rel="noopener" aria-label="Facebook" class="facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z" />
+                    </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/srapune30june2005/" target="_blank" rel="noopener" aria-label="instagram" class="instagram">
+                    <i class="fab fa-instagram text-white fs-4"></i>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/channel/UCX2S496zLTUs9kYJgOZsE8g" target="_blank" rel="noopener" aria-label="YouTube" class="youtube">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    </svg>
+                </a>
+            </div>
+            <i class="fas fa-phone text-primary"></i>
+
+            <span>
+                दूरध्वनी क्रमांक:
+                @Session["officeContactNumber"]
+
+            </span>
+        </div>
+
+        <!-- Center Search (Desktop) -->
+        <!-- Right -->
+
+        <div class="d-flex  align-items-center flex-grow-1 flex-md-grow-0 justify-content-center mt-2 mt-md-0">
+            <form class="d-flex input2" role="search" id="openSearch">
+
+                <button type="button" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-search"
+                         viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85z" />
+                    </svg>
+                </button>
+
+                <input class="form-control ms-2"
+                       id="autoSearch"
+                       placeholder="Search"
+                       aria-label="Search">
+
+            </form>
+            <a id="accessibilityBtn"
+               title="Accessibility"
+               style="cursor:pointer;">
+                <i class="fas fa-universal-access fs-4 mt-1 text-white"></i>
+            </a>
+        </div>
+    </div>
+    @*Topnav end*@
+
+    <!-- Mobile Navbar -->
+    <nav class="mobile-navbar ">
+
+        <ul class="mobile-menu" id="mobileMenu">
+            <li><a class="link-3" href="@Url.Content("~/Mr")#targetSection"><i class="fa fa-home" style="color: #dc3545;"></i>@(Session["Lang"].ToString() == "mr" ? " मुख्यपृष्ठ" : " Home")</a></li>
+            <li>
+                <a href="javascript:void(0);" class="has-submenu">@(Session["Lang"].ToString() == "mr" ? "आमच्या विषयी" : "About") &#x25BC;</a>
+                <ul class="submenu">
+                    <a href="@Url.Content("~/Mr/PradhikarnachiMahiti")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची माहिती" : "SRA Information") </a>
+                    <a href="@Url.Content("~/Mr/PradhikaranachaAarakhada")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची संरचना" : "SRA Structure") </a>
+                    <a href="@Url.Content(@Session["mahiti_pustika"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "योजनेची माहिती पुस्तिका" : "Booklet & Scheme") </a>
+                    <a href="@Url.Content("~/Mr/AmcheNetrutva")#targetSection">@(Session["Lang"].ToString() == "mr" ? "आपले नेतृत्व" : "Our Leadership") </a>
+                    <a href="@Url.Content("~/Mr/SakshamSadasya")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरण समिती" : "Authority Committee") </a>
+                    <a href="@Url.Content("#")#targetSection">@(Session["Lang"].ToString() == "mr" ? "वार्षिक लेखा अहवाल" : "Annual Audit Report") </a>
+                    <a href="@Url.Content(@Session["listed_institutions"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "सूचिबध्द संस्था" : "Listed Institutions") </a>
+                </ul>
+            </li>
+            <li><a class="link-3" href="@Url.Content("~/Mr/Paripatrak")#targetSection">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा परिपत्रके" : "SRA Circulars")</a></li>
+            <li><a href="@Url.Content("~/Mr/ShasanNirnay")#targetSection">@(Session["Lang"].ToString() == "mr" ? "शासन निर्णय" : "Government Resolution") </a></li>
+
+            <li>
+                <a href="javascript:void(0);" class="has-submenu">@(Session["Lang"].ToString() == "mr" ? "नागरी सेवा" : "Civil Service/Law") &#x25BC;</a>
+                <ul class="submenu">
+                    <a href="@Url.Content(@Session["RTI2005"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "माहितीचा अधिकार कायदा २००५" : "RTI Act 2005") </a>
+                    <a href="@Url.Content("~/Mr/RTI_4C")#targetSection" class="marathi_font aText">@(Session["Lang"].ToString() == "mr" ? "माहितीचा अधिकार कायदा ४ ख" : "Right to Information Act 4C")</a>
+                    <a href="@Url.Content(@Session["nagarikachi_sanad"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "नागरिकांची सनद" : "Citizens' Charter")</a>
+                    <a href="@Url.Content(@Session["loksevaHakka"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "लोकसेवा हक्क अधिनियम अंतर्गत सेवा" : "Services under Public Service Rights Act")</a>
+                    <a href="@Url.Content(@Session["slum_act"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा अधिनियम" : "SRA Act") </a>
+                    <a href="@Url.Content("~/Mr/FAQ")#targetSection">@(Session["Lang"].ToString() == "mr" ? "शंका समाधान (FAQ)" : "FAQ") </a>
+                </ul>
+            </li>
+            @*<li><a class="link-3" href="@Url.Content("~/Mr/Gallery")#targetSection">@(Session["Lang"].ToString() == "mr" ? "गॅलरी" : "Gallery")</a></li>*@
+
+            <li>
+                @*<a class="link-3" href="#">@(Session["Lang"].ToString() == "mr" ? "गॅलरी" : "Gallery")</a>*@
+                <a href="javascript:void(0);" class="has-submenu">@(Session["Lang"].ToString() == "mr" ? "गॅलरी" : "Gallery") &#x25BC;</a>
+
+                <ul class="submenu">
+                    <a href="@Url.Content("~/Mr/Gallery")#targetSection">@(Session["Lang"].ToString() == "mr" ? "फोटो" : "Photo")</a>
+                    <a href="@Url.Content("~/Mr/GalleryVideo")#targetSection">@(Session["Lang"].ToString() == "mr" ? "व्हिडिओ" : "Video")</a>
+                    <a href="@Url.Content("~/Mr/GalleryNews")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्रसिद्धी पत्रक" : "News")</a>
+                </ul>
+            </li>
+
+            <li><a class="link-3" href="@Url.Content("~/Mr/Contact")#targetSection">@(Session["Lang"].ToString() == "mr" ? "संपर्क" : "Contact") </a></li>
+            <li>
+                @*<a href="https://rts.srapune.gov.in/" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Online RTS Services")</a>*@
+                <a href="https://aaplesarkar.mahaonline.gov.in/en" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Online RTS Services")</a>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- 🔍 Search Overlay Box -->
+    <div id="searchBoxWrapper" class="p-4 rounded-2xl max-w-lg mx-auto">
+        <div class="search-box relative p-4 bg-white shadow-xl rounded-2xl border border-gray-100 w-full">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-semibold text-gray-800 p-3 mt-4 fs-3 text-center">दस्तऐवज व परिपत्रके शोधा</h3>
+                <span class="close-btn cursor-pointer text-red-400 hover:text-red-600 font-bold" id="closeSearch">&times;</span>
+            </div>
+            <input type="text" id="docSearch" class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700" placeholder="तुमचा शोध येथे टाका..." autocomplete="off" />
+            <ul id="docResults" class="list-group dropdown-result absolute left-0 w-full bg-white shadow-xl rounded-xl z-50 border border-gray-100 divide-y divide-gray-100 max-h-60 overflow-y-auto mt-2" style="display: block;">
+                <li class="list-group-item" style="padding: 10px; color: #6c757d; text-align: center;">Start typing to search...</li>
+            </ul>
+        </div>
+    </div>
+    <header class="header">
+        <div class="header-container">
+            <a href="@Url.Content("~/Mr")">
+                <img src="~/Content/images/SRA-Logo.jpg" alt="Left Logo" class="logo1">
+            </a>
+            <div>
+                <a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn cta-button">
+                    झोपुप्रा योजना
+                </a>
+            </div>
+            <div>
+                <a href="https://rts.srapune.gov.in/" class="btn rts-button">
+                    Online RTS सेवा
+                </a>
+            </div>
+            <div class="brand-name">
+                <h4 class="fs-3" style="color: #dc3545; font-weight: bold;">झोपडपट्टी पुनर्वसन प्राधिकरण, पुणे व पिंपरी चिंचवड क्षेत्र, पुणे</h4>
+                <h6 style="color: #004274;">(गृहनिर्माण विभाग, महाराष्ट्र शासन)</h6>
+                <nav class="navbar" id="myTopnav" style="justify-content: center; height: 45px; font-size:medium">
+                    <div class="menu-toggle" id="menu-toggle">
+                        <span>&#9776;</span> <!-- Hamburger Icon -->
+                    </div>
+                    <ul id="nav-list">
+                        @*<li><a class="link-3" href="@Url.Content("~/Mr")#targetSection"><i class="fa fa-home" style="color: #dc3545;"></i>@(Session["Lang"].ToString() == "mr" ? " मुख्यपृष्ठ" : " Home")</a></li>*@
+                        <li><a class="link-3" href="@Url.Content("~/Mr")"><i class="fa fa-home" style="font-size:20px; color: #dc3545;"></i></a></li>
+                        <li style="background-color: tomato; border-radius: 12px; ">
+                            <a style="color:white;" href="@Url.Content("~/Mr/Yojana")#targetSection"><b>@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा योजना" : "SRA Schemes")</b></a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="@Url.Content("#")#targetSection">
+                                @(Session["Lang"].ToString() == "mr" ? "आमच्या विषयी" : "About")
+                                <span>▼</span>
+                            </a>
+                            <div class="dropdown-menu ">
+                                <a href="@Url.Content("~/Mr/PradhikarnachiMahiti")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची माहिती" : "SRA Information") </a>
+                                <a href="@Url.Content(@Session["Sudharit_Akrutibandh"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "सुधारित आकृतिबंध" : "Improved Contours") </a>
+                                <a href="@Url.Content("~/Mr/PradhikaranachaAarakhada")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची संरचना" : "SRA Structure") </a>
+                                <a href="@Url.Content(@Session["mahiti_pustika"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "योजनेची माहिती पुस्तिका" : "Booklet & Scheme") </a>
+                                <a href="@Url.Content("~/Mr/AmcheNetrutva")#targetSection">@(Session["Lang"].ToString() == "mr" ? "आपले नेतृत्व" : "Our Leadership") </a>
+                                <a href="@Url.Content("~/Mr/SakshamSadasya")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरण समिती" : "Authority Committee") </a>
+                                <a href="@Url.Content("#")#targetSection">@(Session["Lang"].ToString() == "mr" ? "वार्षिक लेखा अहवाल" : "Annual Audit Report") </a>
+                                <a href="@Url.Content(@Session["listed_institutions"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "सूचिबध्द संस्था" : "Listed Institutions") </a>
+                            </div>
+                        </li>
+
+                        @*<li><a class="link-3" href="@Url.Content("~/Mr/Yojana")">@(Session["Lang"].ToString() == "mr" ? "योजना" : "Project")</a></li>*@
+                        <li><a class="link-3" href="@Url.Content("~/Mr/Paripatrak")#targetSection">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा परिपत्रके" : "SRA Circulars")</a></li>
+                        <li><a href="@Url.Content("~/Mr/ShasanNirnay")">@(Session["Lang"].ToString() == "mr" ? "शासन निर्णय" : "Government Resolution") </a></li>
+
+                        <li class="dropdown">
+                            <a class="link-3" href="@Url.Content("#")#targetSection">
+                                @(Session["Lang"].ToString() == "mr" ? "नागरी सेवा" : "Civil Service/Law")
+                                <span>▼</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="@Url.Content(@Session["RTI2005"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "माहितीचा अधिकार कायदा २००५" : "RTI Act 2005") </a>
+                                <a href="@Url.Content("~/Mr/RTI_4C")#targetSection" class="marathi_font aText">@(Session["Lang"].ToString() == "mr" ? "माहितीचा अधिकार कायदा ४ ख" : "Right to Information Act 4C")</a>
+                                <a href="@Url.Content(@Session["nagarikachi_sanad"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "नागरिकांची सनद" : "Citizens' Charter")</a>
+                                <a href="@Url.Content(@Session["loksevaHakka"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "लोकसेवा हक्क अधिनियम अंतर्गत सेवा" : "Services under Public Service Rights Act")</a>
+                                <a href="@Url.Content(@Session["slum_act"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा अधिनियम" : "SRA Act") </a>
+                                <a href="@Url.Content("~/Mr/FAQ")#targetSection">@(Session["Lang"].ToString() == "mr" ? "शंका समाधान (FAQ)" : "FAQ") </a>
+                            </div>
+                        </li>
+
+                        @*<li><a class="link-3" href="@Url.Content("~/Mr/Gallery")#targetSection">@(Session["Lang"].ToString() == "mr" ? "गॅलरी" : "Gallery")</a></li>*@
+                        <li class="dropdown">
+                            <a class="link-3" href="@Url.Content("#")#targetSection">@(Session["Lang"].ToString() == "mr" ? "गॅलरी" : "Gallery") <span>▼</span></a>
+                            <div class="dropdown-menu">
+                                <a class="link-3" href="@Url.Content("~/Mr/Gallery")#targetSection">@(Session["Lang"].ToString() == "mr" ? "फोटो" : "Photo")</a>
+                                <a class="link-3" href="@Url.Content("~/Mr/GalleryVideo")#targetSection">@(Session["Lang"].ToString() == "mr" ? "व्हिडिओ" : "Video")</a>
+                                <a class="link-3" href="@Url.Content("~/Mr/GalleryNews")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्रसिद्धी पत्रक" : "News")</a>
+                            </div>
+                        </li>
+                        <li><a class="link-3" href="@Url.Content("~/Mr/Contact")#targetSection">@(Session["Lang"].ToString() == "mr" ? "संपर्क" : "Contact") </a></li>
+                        <li style="background-color: tomato; border-radius: 12px; ">
+                            @*<a style="color:white;" href="https://rts.srapune.gov.in/" target="_blank"><b>@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Services under Public Service Rights Act")</b></a>*@
+                            <a style="color:white;" href="https://aaplesarkar.mahaonline.gov.in/en" target="_blank"><b>@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Services under Public Service Rights Act")</b></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <img src="~/Content/images/Satyamev-Logo.png" alt="Right Logo" class=" logo2">
+        </div>
+    </header>
+
+    @*  <%--Marquee Tag ends here--%>*@
+    <div class="flex-container">
+        <div class="flex-item-left">
+            @*<button class="Masterbutton" onclick="window.location.href='@Url.Action("Home", "Mr")'" style="vertical-align:middle">@(Session["Lang"].ToString() == "mr" ? "मुख्यपृष्ठ" : "Home") </button>*@
+            <form action='@Url.Action("Niyamavali", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" class="Masterbutton">
+                    @(Session["Lang"].ToString() == "mr" ? "झो.पु.प्रा. नियमावली" : "SRA Rules")
+                </button>
+            </form>
+            <form action='@Url.Action("WorkAreaMap", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("WorkAreaMap", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "कार्यक्षेत्राचा नकाशा" : "MAP of Work Area")</button>
+            </form>
+            <button class="Masterbutton" onclick="window.open('@Url.Content(Session["yojanecheTappe"].ToString())', '_blank')">
+                @(Session["Lang"].ToString() == "mr" ? "झो.पु.प्रा.योजनेचे टप्पे" : "SRA Stages of Plan")
+            </button>
+
+            <form action='@Url.Action("VividhNamune", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("VividhNamune", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "विहित निकष / नमुने / कार्यपद्धती" : "Download Forms")</button>
+            </form>
+            <form action='@Url.Action("SlumList", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SlumList", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "झोपडपट्ट्यांची यादी" : "Slum List")</button>
+            </form>
+            @*<form action='@Url.Action("Yojana", "Mr")#targetSection' method="get" style="display:inline;">
+                    <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Yojana", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा योजना" : "SRA Schemes") </button>
+                </form>*@
+            @*<button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("JahirPrakatan", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "जाहीर प्रकटने" : "Public Disclosures")</button>*@
+            <form action='@Url.Action("VikasakList", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("VikasakList", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "नोंदणीकृत विकसकांची यादी" : "Registered Developer List")</button>
+            </form>
+            <form action='@Url.Action("Darpatrak", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Darpatrak", "Mr")'">
+                    @(Session["Lang"].ToString() == "mr" ? "दरपत्रके / ई-निविदा" : "Quotations / e-Tenders")
+                    <img src="~/Content/webcss/new_gif.gif" style="height: 35px; " />
+                </button>
+            </form>
+            <form action='@Url.Content("https://rts.srapune.gov.in/CP/Login")' target="_blank" method="get" style="display:inline;">
+                <button class="Masterbutton">@(Session["Lang"].ToString() == "mr" ? "RTS झोपूप्रा लॉगिन" : "RTS SRA Login")</button>
+            </form>
+        </div>
+        @RenderBody()
+        <div class="flex-item-right ">
+            <form action='@Url.Action("SRA3C", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SRA3C", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "पुनर्वसन क्षेत्र आदेश (३क)" : "Rehabilitation (3C) Orders")</button>
+            </form>
+            <form action='@Url.Action("PatrataYadi", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("PatrataYadi", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची पात्रता यादी" : "Eligibility List of Slum Holders (Appendix II)")</button>
+            </form>
+            <form action='@Url.Action("SR4", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SR4", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "योजना मंजुरी 14.6.12 (1)" : "Project Approval")</button>
+            </form>
+            <form action='@Url.Action("SRA3D", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SRA3D", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "निर्मूलन आदेश (३ड)" : "Eradication (3D) Orders")</button>
+            </form>
+            <form action='@Url.Action("BuildingPermission", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("BuildingPermission", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "बांधकाम परवानगी प्रमाणपत्रे" : "Building Permission Certificates")</button>
+            </form>
+            <form action='@Url.Action("Society", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Society", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "गृहनिर्माण संस्थांची यादी" : "List Of Housing Societies")</button>
+            </form>
+            <form action='@Url.Action("Occupancy", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Occupancy", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "भोगवटा प्रमाणपत्रे" : "Occupancy Certificates")</button>
+            </form>
+            <form action='@Url.Action("Lottery", "Mr")#targetSection' method="get" style="display:inline;">
+                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Lottery", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "लॉटरी पद्धतीने सदनिका वितरण" : "Allotment of Flats by Lottery")</button>
+            </form>
+        </div>
+    </div>
+    <!-- 🔼 गोल Top बटण -->
+    <button onclick="topFunction()" id="topBtn" title="वर जा">↑</button>
+    @*<div>
+            @RenderBody()
+        </div>*@
+    @*<%--Marquee Tag starts here--%>*@
+    <div class="row">
+        <marquee class="marqueText p-2" id="myMarquee" direction="left" scrollamount="15" behavior="scroll" loop="infinite">
+            <b>
+                @*<img src="~/Content/webcss/new_gif.gif" style="height: 35px; " />१) झोपडपट्टी पुनर्वसन प्राधिकरण पिंपरी चिंचवड क्षेत्र, पुणे मुथ्था चेंबर्स येथील शाखांचे स्थलांतर काकडे बीझ आयकॉन, पहिला मजला, गणेशखिंड रोड, शिवाजीनगर, पुणे येथे स्थलांतरीत करण्यात आले आहे, याची कृपया नोंद घ्यावी.*@
+            </b>
+            @*<img src="~/Content/webcss/new_gif.gif" style="height: 35px; " />
+                <a style="color:black;" href="~/Content/Documents/TABA PRAKATAN_00156544289756.pdf" target="_blank">
+                    जाहीर प्रकटन : विकसक मे. टारगेट इन्फ्रा डेव्हलपर्स, घोरपडे पेठ, पुणे, फायनल प्लॉट क्र.१६०, (स.नं.५३८), लोहियानगर, पुणे या योजनेतील प्रथम निष्कासन केलेल्या कात्रज लेकटाऊन येथील स्थलांतरीत केलेल्या पात्र झोपडीधारकांची यादी योजनेमध्ये बांधण्यात आलेल्या इमारत H, I, J, K मधील सदनिका वाटपाबाबत.
+                 </a>*@
+            @*<img src="~/Content/webcss/new_gif.gif" style="height: 35px; " />*@
+            @*<a style="color:black;" href="~/Content/Documents/लोहियानगर जाहीर प्रकटन (2).pdf" target="_blank">
+                    <b> जाहीर प्रकटन : १६० लोहिया नगर पुणे येथील झोपुप्रा योजनेतील एच ,आय ,जे,के इमारती मधील निवासी सदनिकांचे सोडतीचे जाहीर प्रकटन प्रसिद्ध करणेबाबत.</b>
+                </a>*@
+            <b> झो.पू.प्रा. पुणेचा एकच ध्यास... अल्पायुषी प्राधिकरण, आणि पुनर्विकास चिरंतर.</b>
+        </marquee>
+    </div>
+
+    <!-- नवीनतम start -->
+
+    <div class="flex row" style="border-bottom: 2px solid #c2048a; ">
+        @if (ViewBag.NavintamList.Count != 0)
+        {
+            <div class="news-card col">
+                <div class="news-header">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="#d97706" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 12h3v3H6v-3Z" />
+                        </svg>
+                    </div>
+                    <h3>नवीनतम (@ViewBag.NavintamList.Count)</h3>
+                    <div class="live-badge">
+                        <span class="live-dot"></span>
+                        LIVE
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="v-ticker-container">
+                        <div class="v-ticker">
+                            @if (ViewBag.NavintamList != null)
+                            {
+                                for (int j = 0; j < ViewBag.NavintamList.Count; j++)
+                                {
+                                    <div class="v-news-item">
+                                        <span class="news-tag">@ViewBag.NavintamList[j].new_tag</span>
+                                        <span class="news-title">
+                                            <a style="color:black;" href=@Url.Content(ViewBag.NavintamList[j].doc_location + ViewBag.NavintamList[j].doc_name) target="_blank">
+                                                <b>@ViewBag.NavintamList[j].new_title</b>
+                                            </a>
+                                        </span>
+                                        <span class="news-date">@ViewBag.NavintamList[j].new_date.ToString("dd-MM-yyyy")</span>
+                                    </div>
+                                }
+                            }
+
+                            @*<div class="v-news-item">
+                                    <span class="news-tag">जाहीर प्रकटन</span>
+                                    <span class="news-title">
+                                        <a style="color:black;" href="~/Content/Documents/आचारसंहिता पत्र.pdf" target="_blank">
+                                            <b>विधानपरिषदेची द्वीवार्षिक निवडणूकीची आचारसंहिता पुणे जिल्ह्याकरिता लागू झाल्याने झोपुप्राच्या ताबा विभागामार्फत करावयाच्या सोडतीस तात्पुरती स्थगिती देणेबाबत.</b>
+                                        </a>
+                                    </span>
+                                    <span class="news-date">20-05-2026</span>
+                                </div>
+                                <div class="v-news-item">
+                                    <span class="news-tag">जाहीरात</span>
+                                    <span class="news-title">
+                                        <a style="color:black;" href="~/Content/Documents/Advocate Panel Advertisement_001.pdf" target="_blank">
+                                            <b>
+                                                ॲडव्होकेट पॅनलवर विधी तज्ञांची करार पद्धतीने मानधन तत्वावर सेवा उपलब्ध करून घेणेबाबत.
+                                            </b>
+                                        </a>
+                                    </span>
+                                    <span class="news-date">29-04-2026</span>
+                                </div>*@
+
+                            @*<div class="v-news-item">
+                                    <span class="news-tag">जाहीर प्रकटन</span>
+                                    <span class="news-title">
+                                        <a style="color:black;" href="~/Content/Documents/लोहियानगर जाहीर प्रकटन (2).pdf" target="_blank">
+                                            <b>१६० लोहिया नगर पुणे येथील झोपुप्रा योजनेतील एच ,आय ,जे,के इमारती मधील निवासी सदनिकांचे सोडतीचे जाहीर प्रकटन प्रसिद्ध करणेबाबत.</b>
+                                        </a>
+                                    </span>
+                                    <span class="news-date">08-04-2026</span>
+                                </div>*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+        else if (ViewBag.navin_yojanaList.Count != 0)
+        {
+            <div class="news-card col">
+                <div class="news-header">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="#d97706" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 12h3v3H6v-3Z" />
+                        </svg>
+                    </div>
+                    <h3>नव्याने दाखल होणाऱ्या योजना (@ViewBag.navin_yojanaList.Count)</h3>
+                    <div class="live-badge">
+                        <span class="live-dot"></span>
+                        LIVE
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="v-ticker-container">
+                        <div class="v-ticker2">
+                            @if (ViewBag.navin_yojanaList != null)
+                            {
+                                for (int j = 0; j < ViewBag.navin_yojanaList.Count; j++)
+                                {
+                                    <div class="v-news-item">
+                                        <span class="news-tag">@ViewBag.navin_yojanaList[j].developer_name</span>
+                                        <span class="news-title">
+                                            <b>@ViewBag.navin_yojanaList[j].project_name</b>
+                                        </span>
+                                        <span class="news-date">@ViewBag.navin_yojanaList[j].submission_date.ToString("dd-MM-yyyy")</span>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="news-card col">
+                <div class="news-header">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="#d97706" width="32" height="32">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 12h3v3H6v-3Z" />
+                        </svg>
+                    </div>
+                    <h3>नवीनतम</h3>
+                    <div class="live-badge">
+                        <span class="live-dot"></span>
+                        LIVE
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="v-ticker-container">
+                        <div class="v-ticker">
+                            <div class="v-news-item">
+                                <span class="news-tag">Updates</span>
+                                <span class="news-title">
+                                    <a style="color:black;" href="~/Content/Documents/आचारसंहिता पत्र.pdf" target="_blank">
+                                        <b>नवीन अपडेट लवकरच...</b>
+                                    </a>
+                                </span>
+                                @*<span class="news-date">20-05-2026</span>*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+        <div class="col">
+            <div class="news-header">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="#d97706" width="32" height="32">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 12h3v3H6v-3Z" />
+                    </svg>
+                </div>
+                <h3>झोपुप्रा योजना - डॅशबोर्ड</h3>
+                <div class="live-badge"><span class="live-dot"></span> LIVE</div>
+            </div>
+
+            <div class="sra-dashboard-row">
+                <div class="news-card-half">
+                    <div class="v-ticker-container">
+                        <div class="v-ticker1">
+
+                            <div class="v-news-item1">
+                                <table class="fixed-ticker-table">
+                                    <tr><td colspan="3" class="news-tag1"><a class="news-tag1" href="@Url.Content("~/Mr/Yojana")#targetSection">झोपुप्राकडे सादर केलेल्या योजना</a></td></tr>
+                                    <tr>
+                                        <td class="title-cell fw-bold text-sm-center">योजना संख्या</td>
+                                        <td class="count-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes</b></td>
+                                        @*<td rowspan="2"><a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn-blue">अधिक माहिती</a></td>*@
+                                    </tr>
+                                    <tr>
+                                        <td class="label-cell fw-bold text-sm-center">झोपडीधारक संख्या</td>
+                                        <td class="val-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_huts</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="v-news-item1">
+                                <table class="fixed-ticker-table">
+                                    <tr><td colspan="3" class="news-tag1"><a class="news-tag1" href="@Url.Content("~/Mr/Yojana")#targetSection">मंजूर केलेल्या योजना</a></td></tr>
+                                    <tr>
+                                        <td class="title-cell fw-bold text-sm-center">योजना संख्या</td>
+                                        <td class="count-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_approved</b></td>
+                                        @*<td rowspan="2"><a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn-blue">अधिक माहिती</a></td>*@
+                                    </tr>
+                                    <tr>
+                                        <td class="label-cell fw-bold text-sm-center">झोपडीधारक संख्या</td>
+                                        <td class="val-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_approved_huts</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="v-news-item1">
+                                <table class="fixed-ticker-table">
+                                    <tr><td colspan="3" class="news-tag1"><a class="news-tag1" href="@Url.Content("~/Mr/Yojana")#targetSection">दप्तरी दाखल केलेल्या योजना</a></td></tr>
+                                    <tr>
+                                        <td class="title-cell fw-bold text-sm-center">योजना संख्या</td>
+                                        <td class="count-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_archieved</b></td>
+                                        @*<td rowspan="2"><a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn-blue">अधिक माहिती</a></td>*@
+                                    </tr>
+                                    <tr>
+                                        <td class="label-cell fw-bold text-sm-center">झोपडीधारक संख्या</td>
+                                        <td class="val-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_archieved_huts</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="v-news-item1">
+                                <table class="fixed-ticker-table">
+                                    <tr><td colspan="3" class="news-tag1"><a class="news-tag1" href="@Url.Content("~/Mr/Yojana")#targetSection">प्रस्ताव दाखल करणेवर योजना</a></td></tr>
+                                    <tr>
+                                        <td class="title-cell fw-bold text-sm-center">योजना संख्या</td>
+                                        <td class="count-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_new</b></td>
+                                        @*<td rowspan="2"><a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn-blue">अधिक माहिती</a></td>*@
+                                    </tr>
+                                    <tr>
+                                        <td class="label-cell fw-bold text-sm-center">झोपडीधारक संख्या</td>
+                                        <td class="val-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_new_huts</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="v-news-item1">
+                                <table class="fixed-ticker-table">
+                                    <tr><td colspan="3" class="news-tag1"><a class="news-tag1" href="@Url.Content("~/Mr/Yojana")#targetSection">पूर्ण केलेल्या योजना</a></td></tr>
+                                    <tr>
+                                        <td class="title-cell fw-bold text-sm-center">योजना संख्या</td>
+                                        <td class="count-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_completed</b></td>
+                                        @*<td rowspan="2"><a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn-blue">अधिक माहिती</a></td>*@
+                                    </tr>
+                                    <tr>
+                                        <td class="label-cell fw-bold text-sm-center">झोपडीधारक संख्या</td>
+                                        <td class="val-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_completed_huts</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="v-news-item1">
+                                <table class="fixed-ticker-table">
+                                    <tr><td colspan="3" class="news-tag1"><a class="news-tag1" href="@Url.Content("~/Mr/Yojana")#targetSection">सध्या कार्यान्वीत असलेल्या योजना</a></td></tr>
+                                    <tr>
+                                        <td class="title-cell fw-bold  text-sm-center">योजना संख्या</td>
+                                        <td class="count-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_running</b></td>
+                                        @*<td rowspan="2"><a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn-blue">अधिक माहिती</a></td>*@
+                                    </tr>
+                                    <tr>
+                                        <td class="label-cell fw-bold text-sm-center">झोपडीधारक संख्या</td>
+                                        <td class="val-cell fw-bold text-sm-center"><b>@ViewBag.TotalSchemes_running_huts</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- नवीनतम end-->
+    @*आमची गॅलरी start *@
+    <div class="flex" style="border-bottom:2px solid #c2048a;background-color:aliceblue;">
+        <div class="container w-100 my-4">
+            <div class="bg-white p-4 rounded">
+
+                <h3 class="fs-4 pt-2">आमची गॅलरी</h3>
+
+                <div class="flex">
+
+                    <!-- PHOTO CARD -->
+                    <div class="col-md-4 ">
+                        <div class="card h-100" style="border:2px solid #c2048a;">
+                            <div class="card-body d-flex flex-column">
+
+                                <div class="photo-grid">
+                                    @if (ViewBag.PhotoGalleryList_mr != null)
+                                    {
+                                        for (int j = 0; j < ViewBag.PhotoGalleryList_mr.Count; j++)
+                                        {
+                                            <div class="img-wrap">
+                                                <a class="lightbox-item" href="@Url.Content(ViewBag.PhotoGalleryList_mr[j].doc_location + ViewBag.PhotoGalleryList_mr[j].doc_name)" data-title="Image @(j + 1)">
+                                                    <img src="@Url.Content(ViewBag.PhotoGalleryList_mr[j].doc_location + ViewBag.PhotoGalleryList_mr[j].doc_name)"
+                                                         class="gallery-img img-fluid"
+                                                         alt="Image @(j + 1)">
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+                                <button class="btn-gallery mt-auto align-self-center" onclick="location.href='@Url.Action("Gallery", "Mr")#targetSection'">
+                                    छायाचित्र दालन
+                                    <span class="material-icons">arrow_forward</span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO CARD -->
+                    <div class=" col-md-4 md-4 ">
+                        <div class="card h-100" style="border:2px solid #c2048a;">
+                            <div class="card-body flex-column">
+                                <div class="photo-grid">
+                                    @if (ViewBag.VideoGalleryList_mr != null)
+                                    {
+                                        for (int j = 0; j < ViewBag.VideoGalleryList_mr.Count; j++)
+                                        {
+                                            <div class="lightbox-item img-wrap text-decoration-none">
+                                             <video class="gallery-img img-fluid "
+                                                       data-video="@Url.Content(ViewBag.VideoGalleryList_mr[j].doc_location + ViewBag.VideoGalleryList_mr[j].doc_name)"
+                                                       preload="metadata"
+                                                       controlsList="nodownload"
+                                                       disablePictureInPicture
+                                                       oncontextmenu="return false;"
+                                                       muted>
+                                                    <source src="@Url.Content(ViewBag.VideoGalleryList_mr[j].doc_location + ViewBag.VideoGalleryList_mr[j].doc_name)" type="video/mp4">
+                                                </video>
+                                                <!-- Optional play icon -->
+                                                <span class="play-icon">
+                                                    <i class="fa fa-play-circle fs-1"></i>
+                                                </span>
+                                            </div>
+                                        }
+                                    }
+
+                                </div>
+                                <button class="btn-gallery mt-auto align-self-center" onclick="location.href='@Url.Action("GalleryVideo", "Mr")#targetSection'">
+                                    व्हिडिओ
+                                    <span class="material-icons">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="videoLightbox" class="video-lightbox">
+                        <span class="close-btn fs-1" id="closeVideo">&times;</span>
+
+                        <video id="popupVideo"
+                               controls
+                               controlsList="nodownload"
+                               disablePictureInPicture
+                               oncontextmenu="return false"
+                               autoplay></video>
+                    </div>
+
+
+                    <!-- NEWS PRESS CARD -->
+                    <div class="col-md-4">
+                        <div class="card h-100" style="border:2px solid #c2048a;">
+                            <div class="card-body flex-column">
+                                <div class="photo-grid">
+                                    @if (ViewBag.NewsGalleryList_mr != null)
+                                    {
+                                        for (int j = 0; j < ViewBag.NewsGalleryList_mr.Count; j++)
+                                        {
+                                            <div class="img-wrap">
+                                                <a class="lightbox-item" href="@Url.Content(ViewBag.NewsGalleryList_mr[j].doc_location + ViewBag.NewsGalleryList_mr[j].doc_name)" data-title="Press @(j + 1)">
+                                                    <img src="@Url.Content(ViewBag.NewsGalleryList_mr[j].doc_location + ViewBag.NewsGalleryList_mr[j].doc_name)"
+                                                         class="gallery-img img-fluid"
+                                                         alt="Press Article">
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                <button class="btn-gallery mt-auto align-self-center" onclick="location.href='@Url.Action("GalleryNews", "Mr")#targetSection'">
+                                    प्रसिद्धी पत्रक
+                                    <span class="material-icons">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Custom Zoom/Pan Lightbox Modal Overlay -->
+    <div id="customImageModal" class="custom-zoom-modal">
+        <div class="zoom-modal-toolbar">
+            <span id="zoomInBtn" title="Zoom In"><i class="fa fa-search-plus"></i></span>
+            <span id="zoomOutBtn" title="Zoom Out"><i class="fa fa-search-minus"></i></span>
+            <span id="resetZoomBtn" title="Reset"><i class="fa fa-refresh"></i></span>
+            <span id="closeZoomModal" title="Close">&times;</span>
+        </div>
+        <div class="zoom-modal-content-wrapper" id="zoomWrapper">
+            <img id="zoomableImage" src="" alt="Zoomable preview" />
+        </div>
+    </div>
+
+    @*SOCIAL MEDIA LINKS आमच्याशी संपर्क साधा START  *@
+    <div style=" border-bottom:2px solid #c2048a;">
+        <div class="custom-follow-container" style="border-bottom:solid 2px aliceblue; ">
+            <div class="custom-follow-box">
+                <h6 class="custom-follow-title fs-4" tabindex="0">सोशल मीडिया</h6>
+                <div class="custom-social-stack">
+
+                    <!-- WhatsApp -->
+                    <a class="custom-social-link" aria-label="Whatsapp" href="https://wa.me/919270765087?text=Hi" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.15-.173.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.887 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.383z" />
+                        </svg>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a class="custom-social-link" aria-label="Facebook" href="https://www.facebook.com/slumrehabilitationauthoritypune/" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z" />
+                        </svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a class="custom-social-link" aria-label="Instagram" href="https://www.instagram.com/srapune30june2005/" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                        </svg>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a class="custom-social-link" aria-label="Youtube" href="https://www.youtube.com/channel/UCX2S496zLTUs9kYJgOZsE8g" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z" />
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*SOCIAL MEDIA LINKS आमच्याशी संपर्क साधा END  *@
+
+    @*Govt Logos Start from here*@
+    <div class="slider-container">
+        <!-- Slider Wrapper -->
+        <div class="slider-wrapper" id="sliderWrapper">
+            <a href="https://www.maharashtra.gov.in" target="_blank" onclick="return sitevisit();">
+                <img src="@Url.Content("~/Content/Web/images/logo_MH.png")" class="img-responsive hvr-push" alt="Maharashtra Govt." title="Maharashtra Govt. : External website that opens in a new window" style="width: 80px; height: auto;" />
+            </a>
+            <a href="https://pmc.gov.in" target="_blank" onclick="return sitevisit();">
+                <img src="@Url.Content("~/Content/Web/images/Pune_Municpal_Corporation_logo.png")" class="img-responsive hvr-push" alt="Pune Municipal Corporation" title="Pune Municipal Corporation: External website that opens in a new window" style="width: 90px; height: auto;" />
+            </a>
+            <a href="https://grievances.maharashtra.gov.in/admin/mr/users/login" target="_blank" onclick="return sitevisit();">
+                <img src="@Url.Content("~/Content/images/aaple-sarkar.png")" class="img-responsive hvr-push" alt="Aaple Sarker" title="Aaple Sarker : External website that opens in a new window" style="width: auto; height: auto;" />
+            </a>
+            <a href="http://www.igrmaharashtra.gov.in/eASR/eASRCommon.aspx?hDistName=Pune" target="_blank" onclick="return sitevisit();">
+                <img src="@Url.Content("~/Content/Web/images/igr.png")" class="img-responsive hvr-push" alt="IGR" title="IGR : External website that opens in a new window" style="width: 90px; height: auto;" />
+            </a>
+            <a href="https://www.pcmcindia.gov.in" target="_blank" onclick="return sitevisit();">
+                <img src="@Url.Content("~/Content/Web/images/logo-pcmc.png")" class="img-responsive hvr-push" alt="Pimpri Chinchwad Municipal Corporation" title="Pimpri Chinchwad Municipal Corporation: External website that opens in a new window" style="width: 110px; height: auto;" />
+            </a>
+            <a href="https://www.mhada.gov.in/en" target="_blank" onclick="return sitevisit();">
+                <img src="@Url.Content("~/Content/Web/images/MHADA.jpg")" class="img-responsive hvr-push" alt="Maharashtra Housing and Area Development Authority" title="Maharashtra Housing and Area Development Authority: External website that opens in a new window" style="width: auto; height: auto;" />
+            </a>
+        </div>
+    </div>
+
+
+    @* social-menu  Start*@
+    <div class="social-menu">
+
+        <div class="social-links">
+            <a href="https://www.youtube.com/channel/UCX2S496zLTUs9kYJgOZsE8g" target="_blank" class="youtube"><i class="fab fa-youtube fs-3"></i></a>
+            <a href="https://www.instagram.com/srapune30june2005/" target="_blank" class="instagram"><i class="fab fa-instagram fs-3"></i></a>
+            <a href="https://www.facebook.com/slumrehabilitationauthoritypune/" target="_blank" class="facebook "><i class="fab fa-facebook-f fs-3"></i></a>
+            <a href="https://wa.me/919270765087?text=Hi" target="_blank" class="whatsapp"><i class="fab fa-whatsapp fs-2"></i></a>
+        </div>
+
+        <div class="main-btn">
+            <i class="fas fa-share-alt fs-3"></i>
+        </div>
+
+    </div>
+
+    @* social-menu  end*@
+
+    @* accessibility Start*@
+
+    <div class="accessibility-popup" id="accessibilityPopup" style="max-height: 350px; overflow-y: auto; /* Shows scrollbar only when needed */ overflow-x: hidden;">
+        <div class="popup-header">
+            <span>Accessibility</span>
+            <a class="popup-close" id="closeAccessibility">
+                &times;
+            </a>
+        </div>
+
+        <button onclick="change('increase')">A+ Increase Text</button>
+        <button onclick="change('reset')">A Reset Text</button>
+        <button onclick="change('decrease')">A- Decrease Text</button>
+
+        <button id="voiceToggle">Voice Reader Assistance</button>
+
+        <button onclick="increaseLetterSpacing()">Letter Space +</button>
+        <button onclick="decreaseLetterSpacing()">Letter Space -</button>
+        <button onclick="increaseLineHeight()">Line Height +</button>
+        <button onclick="decreaseLineHeight()">Line Height -</button>
+        <button onclick="toggleInvert()">Reverse Colors</button>
+        <button onclick="toggleGrayscale()">Colorless</button>
+        <button onclick="resetAccessibility()">↺ Reset</button>
+    </div>
+
+
+    @*Start Chatbox from here*@
+
+
+    <!-- Chatbot Toggle Button -->
+    <button id="chatToggle"
+            type="button"
+            class="btn-light rounded-pill  position-fixed d-flex align-items-center px-3 py-2"
+            style="bottom: 90px; right: 20px; z-index: 1050; transition: 0.3s; animation: float 2s ease-in-out infinite; ">
+
+        <img src="~/Content/images/google-chat-hero.jpg"
+             alt="AI Assistant"
+             class="rounded-circle me-2"
+             width="42"
+             height="42">
+
+        <div class="text-start">
+            <div class="fw-bold" style="font-size:14px;">SRA Pune Assistant</div>
+            <small class="text-success">● Online</small>
+        </div>
+    </button>
+    <!-- Chat Body  end-->
+    <!-- Modern Chatbot Box -->
+    <div id="chatbotBox" class="modern-chatbot" style="display: none;">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="header-content">
+                <div class="chat-logo">
+                    <img src="~/Content/images/SRA-Logo.jpg" alt="SRA Logo">
+                    <div class="chat-title">
+                        <h3>SRA Pune Website Chatbot</h3>
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            <small>Online</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    @*<button class="icon-btn" id="chatMinimize">
+                            <i class="fas fa-minus"></i>
+                        </button>*@
+                    <button class="icon-btn" id="chatClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="chat-body">
+            <div id="chatWindow" class="messages-container">
+                <!-- Messages will appear here -->
+            </div>
+
+            <!-- Typing Indicator -->
+            <div id="typingIndicator" class="typing-indicator" style="display: none;">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span>Assistant is typing...</span>
+            </div>
+        </div>
+
+        <!-- Chat Footer -->
+        <div class="chat-footer">
+            @*<div class="input-container">
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" onclick="showLanguageSelection()">
+                            <i class="fas fa-language"></i>
+                        </button>
+                        <button class="quick-action-btn" onclick="loadMenu(faqList[selectedLang], 'root')">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="message-input">
+                        <input id="chatInput" type="text" placeholder="Type your message here..." autocomplete="off">
+                        <div class="input-actions">
+                            <button id="chatSend" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="footer-info">
+                <small>Powered by <a href="https://priyatech.in/" target="_blank" style="color: #94a3b8; font-size: 11px;">PSPPL</a> v1.2.0.0</small>
+            </div>
+        </div>
+    </div>
+
+    @*End Chatbox from here*@
+
+
+
+
+</body>
+<footer class="footer " style="background: linear-gradient(90deg, rgba(121, 9, 19, 1) 0%, rgba(3, 7, 69, 1) 51%, rgba(27, 81, 92, 1) 100%); color: white;">
+    <div class="row">
+        <div class="col-sm" style="margin-top: -60px;">
+            <ul class="list-unstyled " style="color:white; margin-top:50px">
+                <li class="mb-2"><h5><b>@(Session["Lang"].ToString() == "mr" ? "मुख्य कार्यालयीन पत्ता" : "Main Office Address")</b></h5></li>
+                <li class="mb-2"><h6>@Session["address1"]</h6></li>
+                @*<li class="mb-2"><h6><b><i class="fas fa-phone"></i>@(Session["Lang"].ToString() == "mr" ? " दूरध्वनी क्र." : " Telephone No.") : @Session["officeContactNumber"]</b></h6></li>*@
+                <li class="mb-2"><h6><b><i class="fas fa-phone"></i>@(Session["Lang"].ToString() == "mr" ? " नवीन दूरध्वनी क्र." : " Telephone No.") : @Session["officeContactNumber"]</b></h6></li>
+                <li class="mb-2" style="color:black">.</li>
+            </ul>
+            @*<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3782.804059062149!2d73.8339615!3d18.5377546!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18238bfc7c8c4a7f!2z4KSd4KWL4KSq4KSh4KSq4KSf4KWN4KSf4KWAIOCkquClgeCkqOCksOCljeCkteCkuOCkqCDgpKrgpY3gpLDgpL7gpKfgpL_gpJXgpLDgpKMsIOCkquClgeCko-Clhw!5e0!3m2!1sen!2sin!4v1636458963899!5m2!1sen!2sin"></iframe>*@
+            @*<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3782.804059062149!2d73.8339615!3d18.5377546!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18238bfc7c8c4a7f!2z4KSd4KWL4KSq4KSh4KSq4KSf4KWN4KSf4KWAIOCkquClgeCkqOCksOCljeCkteCkuOCkqCDgpKrgpY3gpLDgpL7gpKfgpL_gpJXgpLDgpKMsIOCkquClgeCko-Clhw!5e0!3m2!1sen!2sin!4v1636458963899!5m2!1sen!2sin"
+                width="80%"
+                height="300"
+                style="border:0; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>*@
+        </div>
+
+        <div class="col-sm" style="margin-top: -60px;">
+            <ul class="list-unstyled " style="color:white; margin-top:50px">
+                <li class="mb-2">
+                    <h5>
+                        <b>@(Session["Lang"].ToString() == "mr" ? "शाखा कार्यालयीन पत्ता" : "Branch Office Address")</b>
+                    </h5>
+                </li>
+                <li class="mb-2"><h6>@Session["address2"]</h6></li>
+                <li class="mb-2"><h6><b><i class="fas fa-phone"></i>@(Session["Lang"].ToString() == "mr" ? " दूरध्वनी क्र." : " Telephone No.") : @Session["branchContactNumber"]</b></h6></li>
+                <li class="mb-2"><h6><b><i class="fas fa-envelope"></i>@(Session["Lang"].ToString() == "mr" ? " ईमेल" : " eMail") : @Session["eMail"]</b></h6></li>
+            </ul>
+            @*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7565.64975205859!2d73.82456733494254!3d18.53681429921249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf8dc90b8ad3%3A0x8e2566aadc5d1336!2z4KSd4KWL4KSq4KSh4KSq4KSf4KWN4KSf4KWAIOCkquClgeCkqOCksOCljeCkteCkuOCkqCDgpKrgpY3gpLDgpL7gpKfgpL_gpJXgpLDgpKMsIOCkquClgeCko-ClhyDgpLUg4KSq4KS_4KSC4KSq4KSw4KWAIOCkmuCkv-CkguCkmuCkteCkoSDgpJXgpY3gpLfgpYfgpKTgpY3gpLAsIOCkquClgeCko-Clhw!5e0!3m2!1sen!2sin!4v1636504831794!5m2!1sen!2sin"></iframe>*@
+            @*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7565.64975205859!2d73.82456733494254!3d18.53681429921249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf8dc90b8ad3%3A0x8e2566aadc5d1336!2z4KSd4KWL4KSq4KSh4KSq4KSf4KWN4KSf4KWAIOCkquClgeCkqOCksOCljeCkteCkuOCkqCDgpKrgpY3gpLDgpL7gpKfgpL_gpJXgpLDgpKMsIOCkquClgeCko-ClhyDgpLUg4KSq4KS_4KSC4KSq4KSw4KWAIOCkmuCkv-CkguCkmuCkteCkoSDgpJXgpY3gpLfgpYfgpKTgpY3gpLAsIOCkquClgeCko-Clhw!5e0!3m2!1sen!2sin!4v1636504831794!5m2!1sen!2sin"
+                width="80%"
+                height="300"
+                style="border:0; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>*@
+            @*<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3782.804059062149!2d73.8339615!3d18.5377546!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18238bfc7c8c4a7f!2z4KSd4KWL4KSq4KSh4KSq4KSf4KWN4KSf4KWAIOCkquClgeCkqOCksOCljeCkteCkuOCkqCDgpKrgpY3gpLDgpL7gpKfgpL_gpJXgpLDgpKMsIOCkquClgeCko-Clhw!5e0!3m2!1sen!2sin!4v1636458963899!5m2!1sen!2sin"
+                width="80%"
+                height="300"
+                style="border:0; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>*@
+        </div>
+
+    </div>
+    <div class="visitor-counter d-flex flex-wrap align-items-center justify-content-center text-center gap-2">
+
+        <a href="~/Content/Documents/CERTIFICATE OF SECURITY AUDIT SRA Pune Website VAPT.pdf"
+           target="_blank">
+            <img src="~/Content/images/vapt.svg" class="" alt="VAPT Certificate" />
+        </a>
+
+        <span class="label">वेबसाईट भेटी:</span>
+
+        <span class="count">
+            @((ViewBag.visitorCount ?? 0) + 25 + DateTime.Now.Day)
+        </span>
+
+        <span class="copyright">
+            @(Session["Lang"].ToString() == "mr"
+            ? "© ही झोपडपट्टी पुनर्वसन प्राधिकरण, पुणे अधिकृत संकेतस्थळ आहे. सर्व हक्क राखीव."
+            : "Copyright © Slum Rehabilitation Authority, Pune. All Rights Reserved.")
+            <br class="d-block d-md-none" />
+            शेवटचे अद्यतनित दि. 21-07-2026
+        </span>
+
+        <span>|</span>
+
+        <a href="@Url.Content("~/Mr/sitemap")#targetSection">
+            <span>साईटमॅप</span>
+        </a>
+
+    </div>
+    @*<div class="visitor-counter">
+            <a href="~/Content/Documents/CERTIFICATE OF SECURITY AUDIT SRA Pune Website VAPT.pdf" target="_blank"> <img src="~/Content/images/vapt.svg" class="h-25 w-25" /></a>
+
+            <span class="label">वेबसाईट भेटी:</span>
+
+            <span class="count">@((ViewBag.visitorCount ?? 0) + 25 + DateTime.Now.Day)</span>
+
+            <span class="copyright">
+                @(Session["Lang"].ToString() == "mr" ? "© ही झोपडपट्टी पुनर्वसन प्राधिकरण,पुणे अधिकृत संकेतस्थळ आहे. सर्व हक्क राखीव." : "Copyright © Slum Rehabilitation Authority, Pune. All Rights Reserved.")
+                शेवटचे अद्यतनित दि. 21-07-2026
+            </span>
+            | <a href="@Url.Content("~/Mr/sitemap")#targetSection"><span>साईटमॅप</span></a>
+        </div>*@
+    @*<div style="margin-top:20px; background-color:black; color: white; text-align:center;">
+            <h6 style="background: linear-gradient(90deg, rgba(121, 9, 19, 1) 0%, rgba(3, 7, 69, 1) 51%, rgba(27, 81, 92, 1) 100%);">@(Session["Lang"].ToString() == "mr" ? "© ही झोपडपट्टी पुनर्वसन प्राधिकरण-पुणे अधिकृत संकेतस्थळ आहे. सर्व हक्क राखीव." : "Copyright © Slum Rehabilitation Authority, Pune. All Rights Reserved.")</h6>
+        </div>*@
+</footer>
+
+<style>
+    body {
+        font-family: 'Trio Devnagari', sans-serif;
+    }
+
+    /* You can also apply the font to specific elements */
+    h3, p, .table th, .table td {
+        font-family: 'Trio Devnagari', sans-serif;
+    }
+</style>
+
+
+@*logo auto scroll script*@
+<script>
+    // JavaScript for infinite continuous scroll
+    const sliderWrapper = document.getElementById('sliderWrapper');
+    const originalSlides = Array.from(sliderWrapper.children);
+    const slideCount = originalSlides.length;
+
+    // Clone slides for seamless transition
+    originalSlides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        sliderWrapper.appendChild(clone);
+    });
+
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    function moveSlide() {
+        if (isAnimating) return;
+
+        isAnimating = true;
+        currentIndex++;
+
+        const slideWidth = originalSlides[0].offsetWidth;
+        const totalWidth = slideWidth * slideCount;
+
+        sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
+        sliderWrapper.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+        // Reset position when reaching cloned slides
+        setTimeout(() => {
+            if (currentIndex >= slideCount) {
+                sliderWrapper.style.transition = 'none';
+                currentIndex = 0;
+                sliderWrapper.style.transform = `translateX(0)`;
+                // Force reflow to apply reset
+                void sliderWrapper.offsetWidth;
+            }
+            isAnimating = false;
+        }, 500);
+    }
+
+    // Auto-scroll every 3 seconds
+    setInterval(moveSlide, 3000);
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        sliderWrapper.style.transition = 'none';
+        currentIndex = 0;
+        sliderWrapper.style.transform = `translateX(0)`;
+        void sliderWrapper.offsetWidth;
+    });
+</script>
+
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+        });
+
+        // Dropdown toggle for mobile
+        document.querySelector(".dropbtn").addEventListener("click", (event) => {
+            event.preventDefault();
+            event.target.nextElementSibling.classList.toggle("show");
+        });
+    });
+</script>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        menuToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+        });
+    });
+
+</script>
+
+
+
+
+<script>
+    function toggleMenu() {
+        document.querySelector('.navbar').classList.toggle('active');
+    }
+</script>
+<script>
+    // Get the elements
+    const menuToggle = document.getElementById('menu-toggle');
+    const navList = document.getElementById('nav-list');
+
+    // Add event listener for toggling
+    menuToggle.addEventListener('click', () => {
+        navList.classList.toggle('show'); // Toggle the 'show' class to display/hide the menu
+    });
+
+</script>
+
+
+<script>
+    var marquee = document.getElementById("myMarquee");
+
+    // Stop scrolling when mouse hovers over the marquee
+    marquee.addEventListener("mouseover", function () {
+        marquee.stop();
+    });
+
+    // Start scrolling again when mouse leaves the marquee
+    marquee.addEventListener("mouseout", function () {
+        marquee.start();
+    });
+</script>
+
+<script>
+    // स्क्रोलवर बटण दाखवा
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        const btn = document.getElementById("topBtn");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    }
+
+    // वर नेणारी फंक्शन
+    function topFunction() {
+        document.body.scrollTop = 0; // Safari
+        document.documentElement.scrollTop = 0; // Chrome, Firefox, IE
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Toggle entire mobile menu
+        $('#mobileMenuToggle').click(function () {
+            $('#mobileMenu').slideToggle();
+        });
+
+        // Toggle submenu
+        $('.has-submenu').click(function () {
+            $(this).next('.submenu').slideToggle();
+        });
+    });
+</script>
+<script>
+    window.onload = function () {
+        if (window.location.hash) {
+            const element = document.querySelector(window.location.hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        const $searchWrapper = $("#searchBoxWrapper");
+        const $searchInput = $("#docSearch");
+        // const $searchResults = $("#docResults");
+        const $searchResults = $("#docResults");
+
+        // Show search overlay
+        $("#openSearch").on("click", function () {
+            $searchWrapper.fadeIn();
+            $searchInput.val("").focus();
+            $("#openSearch").on("click", function () {
+                $searchWrapper.fadeIn();
+                $searchInput.val("").focus();
+                $searchResults.html('<li class="list-group-item" style="padding: 10px; color: #6c757d; text-align: center;">Start typing to search...</li>').show();
+            });
+
+            // Add this to your input keyup or input event handler when user starts typing
+            $searchInput.on("input", function () {
+                if ($(this).val().trim() !== "") {
+                    $searchResults.html('<li class="list-group-item" style="padding: 10px; color: #6c757d; text-align: center;">Loading...</li>').show();
+                } else {
+                    $searchResults.html('<li class="list-group-item" style="padding: 10px; color: #6c757d; text-align: center;">Start typing to search...</li>').show();
+                }
+            });
+        });
+
+        // Hide search overlay
+        $("#closeSearch").on("click", function () {
+            $searchWrapper.fadeOut();
+        });
+
+
+        // Fetch data when typing
+        $searchInput.on("input", function () {
+            const query = $(this).val().trim();
+
+            if (query.length > 1) {
+                $.ajax({
+                    url: '@Url.Action("SearchDocuments", "Mr")',
+                    data: { term: query },
+                    success: function (data) {
+                        $searchResults.empty();
+
+                        if (data.length === 0) {
+    $searchResults.append('<li class="list-group-item" style="padding: 10px; color: #6c757d; text-align: center;">No documents found</li>');
+} else {
+    $.each(data, function (i, item) {
+        const docPath = '@Url.Content("~")' + item.DocumentLink.replace(/^~\//, '');
+        const listItem = `
+            <li class="list-group-item" style="padding: 0; border-bottom: 1px solid #eaeaea;">
+                <a href="${docPath}" target="_blank" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; font-weight: 500;">
+                    <div style="font-size: 14px; margin-bottom: 2px;">${item.TableName}</div>
+                    <div style="font-size: 12px; color: #888;">${item.Source}</div>
+                </a>
+            </li>`;
+        $searchResults.append(listItem);
+    });
+}
+                    }
+                });
+            } else {
+                $searchResults.empty();
+            }
+        });
+
+        // Optional: Close when clicking outside the search box
+        $(document).on("click", function (e) {
+            if (!$(e.target).closest(".search-box, #openSearch").length) {
+                $searchWrapper.fadeOut();
+            }
+        });
+    });
+</script>
+
+<script>
+    const demoTexts = [
+        "शोधा झोपुप्रा परिपत्रके...",
+        "शोधा शासन निर्णय...",
+        "शोधा झोपुप्रा नियमावली...",
+        "शोधा दरपत्रके / ई निविदा...",
+        "शोधा ३क आदेश...",
+        "शोधा पात्रता यादी...",
+        "शोधा योजना मंजुरी...",
+        "शोधा ३ड आदेश...",
+        "शोधा बांधकाम परवानगी प्रमाणपत्रे...",
+        "शोधा भोगवटा प्रमाणपत्रे...",
+        "शोधा लॉटरी...",
+        "शोधा झोपुप्रा योजनचे टप्पे...",
+        "शोधा विहित निकष/नमुने/कार्यपद्धती...",
+        "शोधा योजनचे माहिती पुस्तिका...",
+        "शोधा वार्षिक लेखा अहवाल...",
+        "शोधा सूचिबध्द संस्था...",
+        "शोधा माहितीचा अधिकार कायदा २००५ ...",
+        "शोधा माहितीचा अधिकार कायदा ४ ख...",
+        "शोधा नागरिकांची सनद...",
+        "शोधा लोकसेवा हक्क अधिनियम अंतर्गत सेवा...",
+        "शोधा झोपुप्रा अधिनियम ..."
+    ];
+
+    let currentText = 0;
+    let charIndex = 0;
+    let typing = true;
+
+    function typeEffect() {
+        const input = document.getElementById("autoSearch");
+
+        if (typing) {
+            if (charIndex < demoTexts[currentText].length) {
+                input.setAttribute("placeholder", demoTexts[currentText].substring(0, charIndex + 1));
+                charIndex++;
+                setTimeout(typeEffect, 20);
+            } else {
+                typing = false;
+                setTimeout(typeEffect, 500); // pause after full text
+            }
+        } else {
+            if (charIndex > 0) {
+                input.setAttribute("placeholder", demoTexts[currentText].substring(0, charIndex - 1));
+                charIndex--;
+                setTimeout(typeEffect, 50);
+            } else {
+                typing = true;
+                currentText = (currentText + 1) % demoTexts.length;
+                setTimeout(typeEffect, 500);
+            }
+        }
+    }
+
+    // Start typing effect
+    typeEffect();
+</script>
+
+
+<script>
+    let currentZoom = 100;
+
+    function change(action) {
+
+        if (action === "increase") {
+            currentZoom = Math.min(currentZoom + 10, 120); // Max 120%
+        }
+        else if (action === "decrease") {
+            currentZoom = Math.max(currentZoom - 10, 80); // Min 80%
+        }
+        else {
+            currentZoom = 100;
+        }
+
+        document.body.style.zoom = currentZoom + "%";
+    }
+
+
+    // Voice Reader Toggle
+    let voiceEnabled = false;
+    const voiceToggle = document.getElementById("voiceToggle");
+
+    //voiceToggle.addEventListener("change", () => {
+    //    voiceEnabled = voiceToggle.click;
+    //    window.speechSynthesis.cancel(); // stop any ongoing speech when toggled off
+    //});
+
+    voiceToggle.addEventListener("click", () => {
+        voiceEnabled = !voiceEnabled;
+
+        if (voiceEnabled) {
+            voiceToggle.textContent = " Voice Reader Assistance ON";
+            // voiceToggle.classList.add("active");
+        } else {
+            voiceToggle.textContent = "Voice Reader Assistance OFF";
+            // voiceToggle.classList.remove("active");
+            speechSynthesis.cancel(); // Stop speaking
+        }
+
+        console.log("Voice Enabled:", voiceEnabled);
+    });
+    // Voice Reader Function
+    function speak(text) {
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = "hi-IN"; // change to "hi-IN" or "mr-IN" for Hindi/Marathi
+        window.speechSynthesis.speak(speech);
+    }
+
+    // Apply hover events to all text elements (no need for class="speak-text")
+    document.querySelectorAll("p,h1,h2,h3,h4,h5,h6,li,span,ul,a,button,form,th,td", "alt").forEach(el => {
+        el.addEventListener("mouseenter", () => {
+            if (voiceEnabled) {
+                window.speechSynthesis.cancel();
+                speak(el.innerText);
+            }
+        });
+        el.addEventListener("mouseleave", () => {
+            if (voiceEnabled) {
+                window.speechSynthesis.cancel();
+            }
+        });
+    });
+</script>
+
+@*ChatBot Script*@
+
+<script>
+    // ================================
+    //   ENHANCED CHATBOT LOGIC
+    // ================================
+
+    // FAQ Data remains the same
+    const faqList = {
+        mr: {
+            "झोपूप्रा पुणे बद्दल": {
+                //icon: "🏛️",
+                children: {
+                    "प्राधिकरणाची माहिती": { link: "@Url.Content("~/Mr/PradhikarnachiMahiti")" },
+                    "प्राधिकरणाची संरचना": { link: "@Url.Content("~/Mr/PradhikaranachaAarakhada")#targetSection" },
+                    "योजनेची माहिती पुस्तिका": { link: "@Url.Content(@Session["mahiti_pustika"].ToString())" },
+                    "आपले नेतृत्व": { link: "@Url.Content("~/Mr/AmcheNetrutva")#targetSection" },
+                    "प्राधिकरण समिती": { link: "@Url.Content("~/Mr/SakshamSadasya")#targetSection" },
+                    "वार्षिक लेखा अहवाल": { link: "@Url.Content("/Mr/VarshikAhaval")" },
+                    "सूचिबध्द संस्था": { link: "@Url.Content(@Session["listed_institutions"].ToString())" },
+                    "संपर्क": { link: "@Url.Content("~/Mr/Contact")#targetSection" },
+                }
+            },
+
+            "परिपत्रके व शासन निर्णय": {
+                //icon: "📄",
+                children: {
+                    "झोपुप्रा परिपत्रके": { link: "@Url.Content("/Mr/Paripatrak")#targetSection" },
+                    "शासन निर्णय": { link: "@Url.Content("/Mr/ShasanNirnay")#targetSection" },
+                    "नियमावली": { link: "@Url.Content("/Mr/Niyamavali")#targetSection" }
+                }
+            },
+
+            "झोपूप्रा योजना": {
+                //icon: "🎰",
+                link:  "@Url.Content("~/Mr/Yojana")#targetSection"
+
+            },
+
+
+            "नागरी सेवा": {
+                //icon: "📘",
+                children: {
+                    " माहितीचा अधिकार कायदा २००५": { link: "@Url.Content(@Session["RTI2005"].ToString())#targetSection" },
+                    " माहितीचा अधिकार कायदा ४ ख": { link: "@Url.Content("~/Mr/RTI_4C")#targetSection" },
+                    " नागरिकांची सनद": { link: "@Url.Content(@Session["nagarikachi_sanad"].ToString())#targetSection" },
+                    " लोकसेवा हक्क अधिनियम अंतर्गत सेवा": { link: "@Url.Content(@Session["loksevaHakka"].ToString())#targetSection" },
+                    " झोपुप्रा अधिनियम": { link: "@Url.Content(@Session["slum_act"].ToString())#targetSection" },
+                    " शंका समाधान (FAQ)": { link: "@Url.Content("~/Mr/FAQ")#targetSection" }
+                }
+            },
+
+
+            "झोपडपट्ट्यांची यादी": {
+                //icon: "📘",
+                children: {
+                    "पुणे महानगरपालिका": { link: "@Url.Content("~/Mr/SlumList")" },
+                    "पिंपरी चिंचवड महानगरपालिका": { link: "@Url.Content("~/Mr/SlumList")" }
+                }
+            },
+
+            "पुनर्वसन क्षेत्र आदेश,पात्रता यादी व योजना मंजुरी ": {
+                //icon: "📘",
+                children: {
+                    "पुनर्वसन क्षेत्र आदेश - पूर्व सूचना व अंतिम सूचना": { link: "@Url.Action("SRA3C", "Mr")" },
+                    "पात्रता यादी - प्राथमिक पात्रता व अंतिम पात्रता": { link: "@Url.Action("PatrataYadi", "Mr")" },
+                    "योजना मंजुरी - प्रारूप योजना व अंतिम योजना": { link: "@Url.Action("SR4", "Mr")" },
+
+                }
+            },
+
+
+            "बांधकाम परवानगी व भोगवटा": {
+                //icon: "📋",
+                children: {
+                    "बांधकाम परवानगी": { link: "@Url.Action("BuildingPermission", "Mr")#targetSection" },
+                    "भोगवटा": { link: "@Url.Action("Occupancy", "Mr")#targetSection" }
+                }
+            },
+
+            "लॉटरी": {
+                //icon: "🎰",
+                link: "@Url.Action("Lottery","Mr")"
+            },
+
+            "दरपत्रके / ई-निविदा": {
+                //icon: "🎰",
+                link: "@Url.Action("Darpatrak", "Mr")#targetSection"
+            },
+
+            "गृहनिर्माण संस्थांची यादी": {
+                //icon: "🎰",
+                link: "@Url.Action("Society", "Mr")#targetSection"
+            }
+        },
+        en: {
+            "About the SRA Pune": {
+                children: {
+                    "Authority Information": { link: "@Url.Content("~/Mr/PradhikarnachiMahiti")" },
+                    "Authority Structure": { link: "@Url.Content("~/Mr/PradhikaranachaAarakhada")#targetSection" },
+                    "Scheme Information Booklet": { link: "@Url.Content(@Session["mahiti_pustika"].ToString())" },
+                    "Our Leadership": { link: "@Url.Content("~/Mr/AmcheNetrutva")#targetSection" },
+                    "Authority Committee": { link: "@Url.Content("~/Mr/SakshamSadasya")#targetSection" },
+                    "Annual Audit Report": { link: "@Url.Content("~/Mr/VarshikAhaval")" },
+                    "Listed Institutions": { link: "@Url.Content(@Session["listed_institutions"].ToString())" },
+                    "Contact": { link: "@Url.Content("~/Mr/Contact")#targetSection" },
+                }
+            },
+
+            "Circulars & Government Resolutions": {
+                children: {
+                    "SRA Circulars": { link: "@Url.Content("~/Mr/Paripatrak")#targetSection" },
+                    "Government Resolutions": { link: "@Url.Content("~/Mr/ShasanNirnay")#targetSection" },
+                    "Rules": { link: "@Url.Content("~/Mr/Niyamavali")#targetSection" }
+                }
+            },
+
+            "SRA Schemes": {
+                link:  "@Url.Content("~/Mr/Yojana")#targetSection"
+            },
+
+            "Citizen Services": {
+                children: {
+                    "RTI Act 2005": { link: "@Url.Content(@Session["RTI2005"].ToString())#targetSection" },
+                    "RTI Act Section 4C": { link: "@Url.Content("~/Mr/RTI_4C")#targetSection" },
+                    "Citizen Charter": { link: "@Url.Content(@Session["nagarikachi_sanad"].ToString())#targetSection" },
+                    "Services under Right to Services Act": { link: "@Url.Content(@Session["loksevaHakka"].ToString())#targetSection" },
+                    "SRA Act": { link: "@Url.Content(@Session["slum_act"].ToString())#targetSection" },
+                    "FAQ": { link: "@Url.Content("~/Mr/FAQ")#targetSection" }
+                }
+            },
+
+            "List of Slums": {
+                children: {
+                    "Pune Municipal Corporation": { link: "@Url.Content("~/Mr/SlumList")" },
+                    "Pimpri Chinchwad Municipal Corporation": { link: "@Url.Content("~/Mr/SlumList")" }
+                }
+            },
+
+            "Orders, Eligibility List & Approvals": {
+                children: {
+                    "Orders – Preliminary & Final Notices": { link: "@Url.Action("SRA3C", "Mr")" },
+                    "Eligibility List – Provisional & Final": { link: "@Url.Action("PatrataYadi", "Mr")" },
+                    "Approvals – Draft & Final Scheme": { link: "@Url.Action("SR4", "Mr")" }
+                }
+            },
+
+            "Building Permission & Occupancy": {
+                children: {
+                    "Building Permission": { link: "@Url.Action("BuildingPermission", "Mr")#targetSection" },
+                    "Occupancy Certificates": { link: "@Url.Action("Occupancy", "Mr")#targetSection" }
+                }
+            },
+
+            "Lottery": {
+                link: "@Url.Action("Lottery", "Mr")"
+            },
+
+            "Quotation / E-Tender": {
+                link: "@Url.Action("Darpatrak", "Mr")#targetSection"
+            },
+
+            "Housing Societies": {
+                link: "@Url.Action("Society", "Mr")#targetSection"
+            }
+        }
+    };
+
+
+    // State Management
+    let selectedLang = null;
+    let chatHistory = [];
+    let isMinimized = false;
+
+    // DOM Elements
+    const chatToggle = document.getElementById("chatToggle");
+    const chatBox = document.getElementById("chatbotBox");
+    const chatClose = document.getElementById("chatClose"); // Minimize removed
+    const chatWindow = document.getElementById("chatWindow");
+    const chatInput = document.getElementById("chatInput");
+    const chatSend = document.getElementById("chatSend");
+    const typingIndicator = document.getElementById("typingIndicator");
+
+    // Enhanced Message Function
+    function addMessage(sender, text, isHtml = false, options = {}) {
+        const messageId = Date.now();
+        const wrapper = document.createElement("div");
+        wrapper.className = `message-wrapper ${sender}`;
+        wrapper.id = `msg-${messageId}`;
+
+        const bubble = document.createElement("div");
+        bubble.className = `message-bubble ${sender}`;
+
+        const header = document.createElement("div");
+        header.classList.add("small-text");
+        header.textContent = sender === "bot" ? "SRA Pune Assistant" : "You";
+
+        const content = document.createElement("div");
+        content.className = "message-content";
+
+        if (isHtml) {
+            content.innerHTML = text;
+        } else {
+            content.textContent = text;
+        }
+
+        bubble.appendChild(header);
+        bubble.appendChild(content);
+        wrapper.appendChild(bubble);
+        chatWindow.appendChild(wrapper);
+
+        // Store in history
+        chatHistory.push({
+            id: messageId,
+            sender,
+            text,
+            timestamp: new Date().toISOString()
+        });
+
+        // Auto-scroll
+        wrapper.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+        return messageId;
+    }
+
+    // Show Typing Indicator
+    function showTyping() {
+        typingIndicator.style.display = 'flex';
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function hideTyping() {
+        typingIndicator.style.display = 'none';
+    }
+
+    // Welcome Message with Animation
+    function showWelcome() {
+        const welcomeText = `
+            <div style="text-align: center; padding: 10px 0;">
+                <div style="font-size: 18px; font-weight: 600; color: #790913; margin-bottom: 8px;">
+                    झो.पु.प्रा. पुणे मध्ये आपले स्वागत!
+                </div>
+                <div style="color: #64748b; font-size: 13px; margin-bottom: 16px;">
+                     मी आपला ऑनलाईन सहाय्यक आहे. आज मी आपली कशी मदत करू शकतो?
+                </div>
+                <button class="start-btn" onclick="showLanguageSelection()"
+                        style="background: linear-gradient(135deg, #790913 0%, #030745 100%);
+                               color: white; border: none; padding: 12px 24px;
+                               border-radius: 12px; cursor: pointer; font-weight: 500;">
+                    Start Conversation
+                </button>
+            </div>
+        `;
+        addMessage("bot", welcomeText, true);
+    }
+
+    // Modern Language Selection
+    function showLanguageSelection() {
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            const languageText = `
+                <div style="margin-bottom: 12px;">
+                    <strong>Select your preferred language:</strong>
+                </div>
+                <div class="btn-grid">
+                    <button onclick="selectLanguage('mr')" style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 18px;">🇮🇳</span>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 600;">मराठी</div>
+                            <div style="font-size: 11px; opacity: 0.7;">Marathi</div>
+                        </div>
+                    </button>
+                    <button onclick="selectLanguage('en')" style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 18px;">🇮🇳</span>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 600;">English</div>
+                            <div style="font-size: 11px; opacity: 0.7;">English</div>
+                        </div>
+                    </button>
+                </div>
+            `;
+            addMessage("bot", languageText, true);
+        }, 800);
+    }
+
+    function selectLanguage(lang) {
+        selectedLang = lang;
+        const langText = lang === "mr" ? "मराठी" : "English";
+        addMessage("user", `🌐 Selected: ${langText}`);
+
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            loadMenu(faqList[lang], "root");
+        }, 600);
+    }
+
+    // Modern Menu Loader
+    function loadMenu(menu, level) {
+        let titleText = "";
+        if (selectedLang === "mr") {
+            titleText = level === "root" ? "मुख्य मेनू" : "पर्याय निवडा";
+        } else {
+            titleText = level === "root" ? "Main Menu" : "Select an option";
+        }
+
+        let html = `
+            <div style="margin-bottom: 12px;">
+                <strong>${titleText}:</strong>
+            </div>
+            <div class="btn-grid">
+        `;
+
+        for (const key in menu) {
+            const item = menu[key];
+            const icon = item.icon || "📌";
+
+            if (item.children) {
+                html += `
+                    <button data-key="${escapeHtml(key)}" onclick="openSubMenuFromButton(this)">
+                        <span>${icon} ${key}</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                `;
+            } else {
+                html += `
+                    <button class="link-btn" data-link="${escapeHtml(item.link)}"
+                            data-label="${escapeHtml(key)}" onclick="showLinkFromButton(this)">
+                        <span>${icon} ${key}</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </button>
+                `;
+            }
+        }
+
+        html += `</div>`;
+
+        if (level !== "root") {
+            const backText = selectedLang === "mr" ? "⬅️ मागे जा" : "⬅️ Go Back";
+            html += `
+                <div style="margin-top: 16px;">
+                    <button onclick="loadMenu(faqList[selectedLang],'root')"
+                            style="background: transparent; color: #64748b; border: 1px dashed #e2e8f0;">
+                        ${backText}
+                    </button>
+                </div>
+            `;
+        }
+
+        addMessage("bot", html, true);
+    }
+
+    // Helper Functions
+    function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function openSubMenuFromButton(btn) {
+        const key = btn.getAttribute("data-key");
+        if (!key) return;
+        addMessage("user", key);
+        const submenu = faqList[selectedLang][key]?.children;
+        if (submenu) {
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                loadMenu(submenu, "sub");
+            }, 500);
+        }
+    }
+
+    function showLinkFromButton(btn) {
+        const url = btn.getAttribute("data-link");
+        const label = btn.getAttribute("data-label") || "Link";
+        showLink(url, label);
+    }
+
+    function showLink(url, label) {
+        addMessage("user", label);
+
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            const linkText = `
+                <div style="background: #f0f9ff; padding: 16px; border-radius: 12px; border-left: 4px solid #790913;">
+                    <div style="font-weight: 600; margin-bottom: 8px;">🔗 ${label}</div>
+                    <div style="font-size: 12px; color: #64748b; margin-bottom: 12px;">
+                        Click the button below to view this document:
+                    </div>
+                    <a href="${url}" target="_blank"
+                       style="display: inline-block; background: #790913; color: white;
+                              padding: 10px 20px; border-radius: 8px; text-decoration: none;
+                              font-weight: 500; font-size: 13px;">
+                        <i class="fas fa-external-link-alt" style="margin-right: 6px;"></i>
+                        Open
+                    </a>
+                </div>
+            `;
+            addMessage("bot", linkText, true);
+        }, 600);
+    }
+
+    // Enhanced Send Function
+    function sendMessage() {
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+
+        addMessage("user", msg);
+        chatInput.value = "";
+
+        // Show typing indicator
+        showTyping();
+
+        // Simulate AI processing
+        setTimeout(() => {
+            hideTyping();
+
+            // For now, use the existing backend or show fallback
+            $.ajax({
+                url: '@Url.Action("GetResponse", "Mr")',
+                type: "POST",
+                data: { message: msg },
+                success: function (data) {
+                    addMessage("bot", data.response);
+                },
+                error: function () {
+                    const fallbackMsg = `
+                        <div style="color: #64748b;">
+                            <div style="font-weight: 600; color: #790913; margin-bottom: 8px;">
+                                <i class="fas fa-info-circle"></i> Quick Access
+                            </div>
+                            <div style="margin-bottom: 12px;">
+                                For detailed queries, you might want to:
+                            </div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button onclick="loadMenu(faqList[selectedLang || 'en'], 'root')"
+                                        style="padding: 8px 12px; font-size: 12px;">
+                                    Browse Menu
+                                </button>
+                                <button onclick="showLanguageSelection()"
+                                        style="padding: 8px 12px; font-size: 12px;">
+                                    Change Language
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    addMessage("bot", fallbackMsg, true);
+                }
+            });
+        }, 1000);
+    }
+
+    // Event Listeners
+    chatToggle.addEventListener("click", () => {
+        chatBox.style.display = "flex";
+        chatToggle.style.display = "none";
+        showWelcome();
+    });
+
+    // Minimize functionality removed
+    chatClose.addEventListener("click", () => {
+        chatBox.style.display = "none";
+        chatToggle.style.display = "flex";
+        chatWindow.innerHTML = ``;
+        selectedLang = null;
+        chatHistory = [];
+    });
+
+    chatSend.addEventListener("click", sendMessage);
+
+    chatInput.addEventListener("keyup", e => {
+        if (e.key === "Enter") sendMessage();
+    });
+
+    // Auto-focus on input when chat opens
+    chatToggle.addEventListener("click", () => {
+        setTimeout(() => chatInput.focus(), 300);
+    });
+</script>
+
+
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Automatically set href from img src
+        document.querySelectorAll(".lightbox-item").forEach(function (item) {
+            var img = item.querySelector("img");
+            if (img) {
+                item.href = img.currentSrc || img.src;
+            }
+        });
+
+        lightbox.option({
+            resizeDuration: 200,
+            wrapAround: true,
+            fadeDuration: 300,
+            imageFadeDuration: 300,
+            disableScrolling: true,
+            albumLabel: "Image %1 of %2"
+        });
+
+    });
+</script>*@
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var lightbox = document.getElementById("videoLightbox");
+        var popupVideo = document.getElementById("popupVideo");
+        var closeBtn = document.getElementById("closeVideo");
+
+        document.querySelectorAll(".video-thumb").forEach(function (video) {
+
+            video.addEventListener("click", function () {
+
+                popupVideo.src = this.getAttribute("data-video");
+                lightbox.style.display = "flex";
+                popupVideo.play();
+
+            });
+
+        });
+
+        function closePopup() {
+            popupVideo.pause();
+            popupVideo.currentTime = 0;
+            popupVideo.removeAttribute("src");
+            popupVideo.load();
+            lightbox.style.display = "none";
+        }
+
+        // Close button
+        closeBtn.onclick = closePopup;
+
+        // Click outside video
+        lightbox.onclick = function (e) {
+            if (e.target === lightbox) {
+                closePopup();
+            }
+        };
+
+        // ESC key
+        document.onkeydown = function (e) {
+            if (e.key === "Escape") {
+                closePopup();
+            }
+        };
+
+    });
+</script>
+
+<script>
+    let inverted = false;
+    let grayscale = false;
+
+    let letterSpacing = 0;
+    let lineHeight = 1.6;
+
+    function toggleInvert() {
+        inverted = !inverted;
+
+        document.documentElement.style.filter =
+            inverted
+                ? "invert(1) hue-rotate(180deg)"
+                : "";
+    }
+
+    function toggleGrayscale() {
+        grayscale = !grayscale;
+
+        document.documentElement.style.filter =
+            grayscale
+                ? "grayscale(100%)"
+                : "";
+    }
+
+    function increaseLetterSpacing() {
+        letterSpacing += 1;
+        document.body.style.letterSpacing = letterSpacing + "px";
+    }
+
+    function decreaseLetterSpacing() {
+        letterSpacing = Math.max(0, letterSpacing - 1);
+        document.body.style.letterSpacing = letterSpacing + "px";
+    }
+
+    function increaseLineHeight() {
+        lineHeight += 0.2;
+        document.body.style.lineHeight = lineHeight;
+    }
+
+    function decreaseLineHeight() {
+        lineHeight = Math.max(1, lineHeight - 0.2);
+        document.body.style.lineHeight = lineHeight;
+    }
+
+    function resetAccessibility() {
+
+        inverted = false;
+        grayscale = false;
+        letterSpacing = 0;
+        lineHeight = 1.6;
+
+        document.documentElement.style.filter = "";
+        document.body.style.letterSpacing = "";
+        document.body.style.lineHeight = "";
+    }
+</script>
+<script>
+    const accessibilityBtn = document.getElementById("accessibilityBtn");
+    const accessibilityPopup = document.getElementById("accessibilityPopup");
+    const closeAccessibility = document.getElementById("closeAccessibility");
+
+    accessibilityBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        accessibilityPopup.classList.toggle("show");
+    });
+
+    closeAccessibility.addEventListener("click", function () {
+        accessibilityPopup.classList.remove("show");
+    });
+
+    document.addEventListener("click", function (e) {
+        if (
+            !accessibilityPopup.contains(e.target) &&
+            !accessibilityBtn.contains(e.target)
+        ) {
+            accessibilityPopup.classList.remove("show");
+        }
+    });
+</script>
+
+
+
+@*Gallery Script start*@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("customImageModal");
+        const zoomImg = document.getElementById("zoomableImage");
+        const wrapper = document.getElementById("zoomWrapper");
+
+        // Create or locate a container for media (supports switching between img and video)
+        let mediaContainer = document.getElementById("zoomMediaContainer");
+        if (wrapper && !mediaContainer) {
+            mediaContainer = document.createElement("div");
+            mediaContainer.id = "zoomMediaContainer";
+            mediaContainer.style.cssText = "width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative;";
+            // Move zoomImg inside mediaContainer
+            if (zoomImg) {
+                mediaContainer.appendChild(zoomImg);
+            }
+            wrapper.insertBefore(mediaContainer, wrapper.firstChild);
+        }
+
+        // Create a dedicated video element inside the media container if it doesn't exist
+        let zoomVideo = document.getElementById("zoomableVideo");
+        if (mediaContainer && !zoomVideo) {
+            zoomVideo = document.createElement("video");
+            zoomVideo.id = "zoomableVideo";
+            zoomVideo.controls = true;
+            zoomVideo.autoplay = true;
+            zoomVideo.disablePictureInPicture = true;
+            zoomVideo.controls = true;
+            zoomVideo.controlsList = "nodownload";
+            zoomVideo.style.cssText = "max-width:90%; max-height:90%; display:none; object-fit:contain; transform-origin: center center; transition: transform 0.05s ease-out;";
+            mediaContainer.appendChild(zoomVideo);
+        }
+
+        let scale = 1;
+        let posX = 0;
+        let posY = 0;
+        let isDragging = false;
+        let hasMoved = false;
+        let startX, startY;
+        let clickStartX, clickStartY;
+        let lastTapTime = 0;
+
+        // Current active subset of items and index tracking
+        let galleryItems = [];
+        let currentIndex = 0;
+
+        // Dynamically inject Next / Previous buttons into the modal wrapper if they don't exist
+        if (wrapper && !document.getElementById("prevBtn")) {
+            const prevButton = document.createElement("button");
+            prevButton.id = "prevBtn";
+            prevButton.innerHTML = "&#10094;"; // Left Arrow
+            prevButton.style.cssText = "position:absolute; left:20px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; border:none; padding:10px 15px; cursor:pointer; font-size:24px; z-index:1000; border-radius:50%;";
+
+            const nextButton = document.createElement("button");
+            nextButton.id = "nextBtn";
+            nextButton.innerHTML = "&#10095;"; // Right Arrow
+            nextButton.style.cssText = "position:absolute; right:20px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; border:none; padding:10px 15px; cursor:pointer; font-size:24px; z-index:1000; border-radius:50%;";
+
+            wrapper.style.position = "relative";
+            wrapper.appendChild(prevButton);
+            wrapper.appendChild(nextButton);
+
+            prevButton.addEventListener("click", function (e) {
+                e.stopPropagation();
+                navigate(-1);
+            });
+
+            nextButton.addEventListener("click", function (e) {
+                e.stopPropagation();
+                navigate(1);
+            });
+        }
+
+        function showItemAtIndex(index) {
+            if (galleryItems.length === 0) return;
+            currentIndex = (index + galleryItems.length) % galleryItems.length; // Loop around
+            const activeItem = galleryItems[currentIndex];
+
+            // Check if item contains an image or a video
+            const img = activeItem.querySelector("img");
+            const video = activeItem.querySelector("video");
+            const source = activeItem.querySelector("source");
+
+            // Pause and hide video if switching away
+            if (zoomVideo) {
+                zoomVideo.pause();
+                zoomVideo.style.display = "none";
+            }
+            if (zoomImg) {
+                zoomImg.style.display = "none";
+            }
+
+            if (img) {
+                zoomImg.src = img.currentSrc || img.src;
+                zoomImg.style.display = "block";
+                resetTransform();
+            } else if (video) {
+                zoomVideo.src = video.currentSrc || video.src;
+                zoomVideo.style.display = "block";
+                zoomVideo.load();
+                zoomVideo.play().catch(() => { });
+                resetTransform();
+            } else if (source) {
+                zoomVideo.src = source.src;
+                zoomVideo.style.display = "block";
+                zoomVideo.load();
+                zoomVideo.play().catch(() => { });
+                resetTransform();
+            }
+        }
+
+        function navigate(direction) {
+            showItemAtIndex(currentIndex + direction);
+        }
+
+        // Open custom modal on lightbox-item click (Scoped by closest container card/grid)
+        document.querySelectorAll(".lightbox-item").forEach(function (item) {
+            item.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                // Find the parent card body or photo-grid so we ONLY loop items within this specific section
+                const scopeContainer = item.closest(".card-body") || document;
+                galleryItems = Array.from(scopeContainer.querySelectorAll(".lightbox-item"));
+                currentIndex = galleryItems.indexOf(item);
+
+                const img = item.querySelector("img");
+                const video = item.querySelector("video");
+                const source = item.querySelector("source");
+
+                if (zoomVideo) {
+                    zoomVideo.pause();
+                    zoomVideo.style.display = "none";
+                }
+                if (zoomImg) {
+                    zoomImg.style.display = "none";
+                }
+
+                if (img) {
+                    zoomImg.src = img.currentSrc || img.src;
+                    zoomImg.style.display = "block";
+                    resetTransform();
+                    modal.style.display = "block";
+                    document.body.style.overflow = "hidden";
+                } else if (video || source) {
+                    zoomVideo.src = video ? (video.currentSrc || video.src) : source.src;
+                    zoomVideo.style.display = "block";
+                    zoomVideo.load();
+                    zoomVideo.play().catch(() => { });
+                    resetTransform();
+                    modal.style.display = "block";
+                    document.body.style.overflow = "hidden";
+                }
+            });
+        });
+
+        // Close modal triggers
+        document.getElementById("closeZoomModal").addEventListener("click", closeModal);
+
+        modal.addEventListener("mousedown", function (e) {
+            if (e.target === modal || e.target === wrapper || e.target === mediaContainer) {
+                clickStartX = e.clientX;
+                clickStartY = e.clientY;
+                hasMoved = false;
+            }
+        });
+
+        modal.addEventListener("mousemove", function (e) {
+            if (e.target === modal || e.target === wrapper || e.target === mediaContainer) {
+                if (clickStartX !== undefined && (Math.abs(e.clientX - clickStartX) > 5 || Math.abs(e.clientY - clickStartY) > 5)) {
+                    hasMoved = true;
+                }
+            }
+        });
+
+        modal.addEventListener("mouseup", function (e) {
+            if ((e.target === modal || e.target === wrapper || e.target === mediaContainer) && !hasMoved) {
+                closeModal();
+            }
+            clickStartX = undefined;
+            hasMoved = false;
+        });
+
+        function closeModal() {
+            if (zoomVideo) zoomVideo.pause();
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        function getActiveActiveElement() {
+            return (zoomImg && zoomImg.style.display !== "none") ? zoomImg : zoomVideo;
+        }
+
+        function updateTransform() {
+            const activeEl = getActiveActiveElement();
+            if (activeEl) {
+                activeEl.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        }
+
+        function resetTransform() {
+            scale = 1;
+            posX = 0;
+            posY = 0;
+            updateTransform();
+        }
+
+        // Double-Tap to Zoom In / Reset
+        wrapper.addEventListener("click", function (e) {
+            if (e.target.id === 'prevBtn' || e.target.id === 'nextBtn' || e.target.tagName === 'VIDEO' || e.target.tagName === 'SOURCE' || e.target.controls) return;
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTapTime;
+
+            if (tapLength < 300 && tapLength > 0) {
+                e.preventDefault();
+                if (scale > 1) {
+                    resetTransform();
+                } else {
+                    scale = 2.5;
+                    updateTransform();
+                }
+            }
+            lastTapTime = currentTime;
+        });
+
+        // Keyboard arrow keys support for navigation
+        document.addEventListener("keydown", function (e) {
+            if (modal.style.display === "block") {
+                if (e.key === "ArrowLeft") navigate(-1);
+                if (e.key === "ArrowRight") navigate(1);
+                if (e.key === "Escape") closeModal();
+            }
+        });
+
+        const zoomInBtn = document.getElementById("zoomInBtn");
+        if (zoomInBtn) {
+            zoomInBtn.addEventListener("click", () => {
+                scale = Math.min(scale * 1.25, 10);
+                updateTransform();
+            });
+        }
+
+        const zoomOutBtn = document.getElementById("zoomOutBtn");
+        if (zoomOutBtn) {
+            zoomOutBtn.addEventListener("click", () => {
+                scale = Math.max(scale / 1.25, 0.5);
+                if (scale <= 1) { resetTransform(); }
+                updateTransform();
+            });
+        }
+
+        const resetZoomBtn = document.getElementById("resetZoomBtn");
+        if (resetZoomBtn) {
+            resetZoomBtn.addEventListener("click", resetTransform);
+        }
+
+        wrapper.addEventListener("wheel", function (e) {
+            e.preventDefault();
+            const zoomIntensity = 0.1;
+            if (e.deltaY < 0) {
+                scale = Math.min(scale * (1 + zoomIntensity), 10);
+            } else {
+                scale = Math.max(scale / (1 + zoomIntensity), 0.5);
+                if (scale <= 1) { resetTransform(); }
+            }
+            updateTransform();
+        }, { passive: false });
+
+        wrapper.addEventListener("mousedown", function (e) {
+            if (e.target.id === 'prevBtn' || e.target.id === 'nextBtn' || e.target.tagName === 'VIDEO') return;
+            if (scale > 1) {
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+            }
+        });
+
+        window.addEventListener("mousemove", function (e) {
+            if (!isDragging) return;
+            posX = e.clientX - startX;
+            posY = e.clientY - startY;
+            updateTransform();
+        });
+
+        window.addEventListener("mouseup", function () {
+            isDragging = false;
+        });
+
+        let initialDist = null;
+        wrapper.addEventListener("touchstart", function (e) {
+            if (e.target.id === 'prevBtn' || e.target.id === 'nextBtn' || e.target.tagName === 'VIDEO') return;
+            if (e.touches.length === 1) {
+                if (scale > 1) {
+                    isDragging = true;
+                    startX = e.touches[0].clientX - posX;
+                    startY = e.touches[0].clientY - posY;
+                }
+            } else if (e.touches.length === 2) {
+                initialDist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+            }
+        });
+
+        wrapper.addEventListener("touchmove", function (e) {
+            if (e.touches.length === 1 && isDragging) {
+                posX = e.touches[0].clientX - startX;
+                posY = e.touches[0].clientY - startY;
+                updateTransform();
+            } else if (e.touches.length === 2 && initialDist) {
+                const currentDist = Math.hypot(
+                    e.touches.length > 1 ? e.touches[0].clientX - e.touches[1].clientX : 0,
+                    e.touches.length > 1 ? e.touches[0].clientY - e.touches[1].clientY : 0
+                );
+                let factor = currentDist / initialDist;
+                scale = Math.min(Math.max(scale * factor, 0.5), 10);
+                if (scale <= 1) { resetTransform(); }
+                initialDist = currentDist;
+                updateTransform();
+            }
+        });
+
+        wrapper.addEventListener("touchend", function () {
+            isDragging = false;
+            initialDist = null;
+        });
+    });
+</script>
+
+@*Gallery Script end*@

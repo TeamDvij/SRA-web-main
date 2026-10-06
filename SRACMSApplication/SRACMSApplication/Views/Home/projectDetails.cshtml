@@ -1,0 +1,408 @@
+﻿@model SRACMSApplication.Models.homeModel
+@{
+    ViewBag.Title = "projectDetails";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+
+<style>
+    a:hover {
+        color:black;
+    }
+    .title_class {
+        background-color: #008eff; /* Green header */
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+
+     .container_new {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+    .column {
+        width: 45%;
+        margin-bottom: 10px;
+        background-color: #ffffff; /* White background for sections */
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+        margin-bottom: 10px;
+        background-color: #f9f9f9; /* Light background for each section */
+        border-left: 5px solid orange; /* Green border for emphasis */
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .section h1 {
+           background-color: #008eff; /* Green header */
+            color: white;
+            font-size: 1.5em;
+            padding: 10px;
+        }
+        .section h2 {
+            color: #333; /* Dark text color for section titles */
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+        .section h3 {
+            color: #333; /* Dark text color for section titles */
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+
+    ul {
+        list-style-type: square;
+        margin-left: 20px;
+        color: #555; /* Darker text color for bullet points */
+    }
+
+        ul li {
+            font-size: 1.2em;
+            padding: 5px 0;
+        }
+
+  
+    /* Hover effect on sections */
+    .section:hover {
+        background-color: #bbdaf2; /* Light blue hover effect */
+       color: white;
+    }
+
+    .search-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .search-container input[type="search"] {
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: 250px;
+                transition: all 0.3s;
+            }
+
+                .search-container input[type="search"]:focus {
+                    outline: none;
+                    border-color: #007bff;
+                    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+                }
+
+            .search-container button {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+                .search-container button:hover {
+                    background-color: #0056b3;
+                }
+
+                .search-container button:active {
+                    background-color: #00408a;
+                }
+                 .search-container h3{
+                     color:black;
+                 }
+
+</style>
+<div class="container containerStyle">
+    <div class="row">
+         <div class="title_class">
+             @*<div class="search-container">
+                 <input type="search" id="search" name="query" placeholder="मास्टर क्रमांक..." />
+                 <button type="submit">शोधा</button>
+                 <h3>मास्टर क्रमांक : @Model.master_no </h3>
+                 <h3>योजना : @Model.yojana </h3>
+             </div>*@
+             <h3>मास्टर क्रमांक : <b>@Model.master_no</b>  योजना : @Model.yojana </h3>
+             <h3>@Model.developer_name /  @Model.architect_name </h3>
+
+             <h3></h3>
+         </div>
+    </div>
+    <div class="container_new">
+
+        <div class="column">
+            @*//3C*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "पुनर्वसन क्षेत्र आदेश (३क)" : "3C Orders")</h1>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "पूर्व सूचना" : "Advance notice")</h2>
+                <ul>
+                    @if (Model.other_order_3c_primaryList == null || Model.other_order_3c_primaryList.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_order_3c_primaryList != null)
+                    {
+                        foreach (var item in Model.other_order_3c_primaryList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                        <li>@(item.Data.project_date.ToString("dd-MM-yyyy") =="01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.project_date.ToString("dd-MM-yyyy") )
+                            <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                            </a>
+                        </li>
+                        }
+                    }   
+                </ul>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "अंतिम सूचना" : "Final notice")</h2>
+                <ul>
+                    @if (Model.other_order_3c_FinalList == null || Model.other_order_3c_FinalList.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_order_3c_FinalList != null)
+                    {
+                        foreach (var item in Model.other_order_3c_FinalList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                        <li>
+                            @(item.Data.project_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.project_date.ToString("dd-MM-yyyy") )
+                        <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                            <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                        </a>
+                    </li>
+                        }
+                    }
+                </ul>
+            </div>
+            @*//Yadi*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांच्या पात्रता यादी (परिशिष्ट २)" : "Eligibility List of Slum Holders (Appendix II)")</h1>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "प्राथमिक पात्रता" : "Primary Eligibility")</h2>
+                <ul>
+                    @if (Model.primary_List_List == null || Model.primary_List_List.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.primary_List_List != null)
+                    {
+                        foreach (var item in Model.primary_List_List.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.plan_date_New.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.plan_date_New.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "अंतिम पात्रता" : "Final Eligibility")</h2>
+                <ul>
+                    @if (Model.final_List_List == null || Model.final_List_List.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.final_List_List != null)
+                    {
+                        foreach (var item in Model.final_List_List.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.plan_date_New.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.plan_date_New.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            @*//योजना मंजुरी*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "योजना मंजुरी  14.6.12 (1)" : "Scheme Approval  14.6.12 (1)")</h1>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "प्रारूप योजना मंजुरी" : "Preliminary Scheme Approval")</h2>
+                <ul>
+                    @if (Model.other_srList == null || Model.other_srList.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_srList != null)
+                    {
+                        foreach (var item in Model.other_srList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.subject_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.subject_date.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "अंतिम योजना मंजुरी" : "Final Scheme Approval")</h2>
+                <ul>
+                    @if (Model.other_srList2 == null || Model.other_srList2.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_srList2 != null)
+                    {
+                        foreach (var item in Model.other_srList2.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.subject_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.subject_date.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            @*//3D*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "निर्मूलन आदेश (३ड)" : "3D Orders")</h1>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "पूर्व सूचना" : "Advance notice")</h2>
+                <ul>
+                    @if (Model.other_order_3d_primaryList == null || Model.other_order_3d_primaryList.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_order_3d_primaryList != null)
+                    {
+                        foreach (var item in Model.other_order_3d_primaryList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                               @(item.Data.project_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.project_date.ToString("dd-MM-yyyy") )
+                            <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                            </a>
+                        </li>
+                        }
+                    }
+
+                </ul>
+                <h2>@(Session["Lang"].ToString() == "mr" ? "अंतिम सूचना" : "Final notice")</h2>
+                <ul>
+                    @if (Model.other_order_3d_FinalList == null || Model.other_order_3d_FinalList.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if(Model.other_order_3d_FinalList != null)
+                    {
+                        foreach (var item in Model.other_order_3d_FinalList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.project_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.project_date.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="column">
+            @*/बांधकाम परवानगी*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "बांधकाम परवानगी प्रमाणपत्रे" : "Building Permission Certificates")</h1>
+                <ul>
+                    @if (Model.other_building_permission_list == null || Model.other_building_permission_list.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_building_permission_list != null)
+                    {
+                        foreach (var item in Model.other_building_permission_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.proj_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.proj_date.ToString("dd-MM-yyyy") )
+                            <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                            </a>
+                        </li>
+                        }
+                    }
+                </ul>
+            </div>
+            @*/गृहनिर्माण संस्थां*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "गृहनिर्माण संस्थांची यादी" : "List of housing societies")</h1>
+                <ul>
+                    <li>Document Upload केलेले नाही.</li>
+
+                    @*@if (Model.other_order_3c_primaryList == null || Model.other_order_3c_primaryList.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_order_3c_primaryList != null)
+                    {
+                        foreach (var item in Model.other_order_3c_primaryList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.project_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.project_date.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }*@
+                </ul>
+            </div>
+            @*/भोगवटा*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "भोगवटा प्रमाणपत्रे" : "Occupancy Certificates")</h1>
+                <ul>
+                    @if (Model.other_bhogvata_list == null || Model.other_bhogvata_list.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_bhogvata_list != null)
+                    {
+                        foreach (var item in Model.other_bhogvata_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.proj_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.proj_date.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            @*/लॉटरी*@
+            <div class="section">
+                <h1>@(Session["Lang"].ToString() == "mr" ? "लॉटरी (ताबा विभाग)" : "Lottery List")</h1>
+                <ul>
+                    <li>Document Upload केलेले नाही.</li>
+
+                    @*@if (Model.other_order_3c_primaryList == null || Model.other_order_3c_primaryList.Count == 0)
+                    {
+                        <li>Document Upload केलेले नाही.</li>
+                    }
+                    @if (Model.other_order_3c_primaryList != null)
+                    {
+                        foreach (var item in Model.other_order_3c_primaryList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <li>
+                                @(item.Data.project_date.ToString("dd-MM-yyyy") == "01-01-1900" ? "दिनांक उपलब्ध नाही" : item.Data.project_date.ToString("dd-MM-yyyy") )
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </li>
+                        }
+                    }*@
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+

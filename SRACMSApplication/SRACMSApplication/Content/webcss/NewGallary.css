@@ -1,0 +1,129 @@
+.event {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+    .event h2 {
+        color: #333;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+.photo-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.photo-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease-in-out;
+    flex-wrap: nowrap;
+}
+
+.photo-carousel img {
+    height: 200px;
+    width: auto;
+    border-radius: 8px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Popup Styles */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    display: none;
+}
+
+    .lightbox img {
+        max-height: 80%;
+        max-width: 90%;
+        transition: transform 0.3s ease;
+    }
+
+.lightbox-controls {
+    margin-top: 20px;
+}
+
+    .lightbox-controls button {
+        padding: 10px 15px;
+        font-size: 20px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.lightbox-prev {
+    left: 20px;
+    position: absolute;
+}
+
+.lightbox-next {
+    right: 20px;
+    position: absolute;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

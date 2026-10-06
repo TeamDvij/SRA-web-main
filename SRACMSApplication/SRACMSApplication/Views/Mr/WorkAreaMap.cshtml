@@ -1,0 +1,151 @@
+﻿@model SRACMSApplication.Models.homeModel
+@{
+    ViewBag.Title = "WorkAreaMap";
+    Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+<link href="~/Content/webcss/Gallary.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#datatable').dataTable(),
+            $("[data-toggle=tooltip]").tooltip();
+    });
+
+</script>
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "कार्यक्षेत्राचा नकाशा" : "Workspace Map")
+            </h3>
+        </div>
+        <div class="col-md-12">
+
+            <img src="@Url.Content(@Model.sra_map)" alt="Image 1" class="gallery-item">
+
+            <div id="modal" class="modal">
+                <span class="close" id="close">&times;</span>
+                <img class="modal-content" id="modal-img">
+                <div id="caption"></div>
+                <div class="zoom-controls">
+                    <button id="zoom-in">+</button>
+                    <button id="zoom-out">-</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.getElementById("close");
+    const zoomInBtn = document.getElementById("zoom-in");
+    const zoomOutBtn = document.getElementById("zoom-out");
+
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    let scale = 1;
+    let isZoomedIn = false;
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+    let pinchStartDistance = 0;
+
+    galleryItems.forEach(item => {
+        item.addEventListener("click", function () {
+            modal.style.display = "flex";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+            scale = 1; // Reset scale when a new image is opened
+            modalImg.style.transform = `scale(${scale})`;
+            modalImg.style.left = "0px";
+            modalImg.style.top = "0px";
+            isZoomedIn = false;
+        });
+    });
+
+    closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    zoomInBtn.addEventListener("click", function () {
+        scale += 0.1; // Increase scale
+        modalImg.style.transform = `scale(${scale})`;
+    });
+
+    zoomOutBtn.addEventListener("click", function () {
+        if (scale > 0.1) {
+            scale -= 0.1; // Decrease scale
+            modalImg.style.transform = `scale(${scale})`;
+        }
+    });
+
+    // Double-click to toggle zoom
+    modalImg.addEventListener("dblclick", function () {
+        if (!isZoomedIn) {
+            scale = 2; // Zoom in to 2x
+        } else {
+            scale = 1; // Reset to normal size
+        }
+        modalImg.style.transform = `scale(${scale})`;
+        isZoomedIn = !isZoomedIn;
+    });
+
+    // Drag to move image when zoomed in
+    modalImg.addEventListener("mousedown", function (event) {
+        if (scale > 1) {
+            isDragging = true;
+            startX = event.clientX - modalImg.offsetLeft;
+            startY = event.clientY - modalImg.offsetTop;
+        }
+    });
+
+    window.addEventListener("mousemove", function (event) {
+        if (isDragging) {
+            modalImg.style.position = "absolute";
+            modalImg.style.left = `${event.clientX - startX}px`;
+            modalImg.style.top = `${event.clientY - startY}px`;
+        }
+    });
+
+    window.addEventListener("mouseup", function () {
+        isDragging = false;
+    });
+
+    // Pinch to zoom for touch devices
+    modalImg.addEventListener("touchstart", function (event) {
+        if (event.touches.length === 2) {
+            pinchStartDistance = Math.hypot(
+                event.touches[0].clientX - event.touches[1].clientX,
+                event.touches[0].clientY - event.touches[1].clientY
+            );
+        }
+    }, { passive: false });
+
+    modalImg.addEventListener("touchmove", function (event) {
+        if (event.touches.length === 2) {
+            const pinchEndDistance = Math.hypot(
+                event.touches[0].clientX - event.touches[1].clientX,
+                event.touches[0].clientY - event.touches[1].clientY
+            );
+
+            if (pinchEndDistance > pinchStartDistance) {
+                scale += 0.05;
+            } else if (pinchEndDistance < pinchStartDistance && scale > 0.5) {
+                scale -= 0.05;
+            }
+            modalImg.style.transform = `scale(${scale})`;
+            pinchStartDistance = pinchEndDistance;
+        }
+    }, { passive: false });
+</script>
+

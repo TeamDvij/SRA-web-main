@@ -1,0 +1,124 @@
+﻿@model SRACMSApplication.Models.other_lotteryModel
+@{
+    ViewBag.Title = "Lottery";
+    Layout = Session["Layout"].ToString();
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.3.1/css/rowGroup.dataTables.min.css" />
+<script src="https://cdn.datatables.net/rowgroup/1.3.1/js/dataTables.rowGroup.min.js"></script>
+
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color:antiquewhite;padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ?
+                "लॉटरी पद्धतीने सदनिका वाटप करण्यात आलेल्या योजनांची यादी" :
+                "Lottery List")
+            </h3>
+        </div>
+
+        <div class="col-md-12 table-container">
+            <table id="datatable" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th rowspan="2">@(Session["Lang"].ToString()=="mr"?"अ.क्र.":"Sr.No.")</th>
+                        <th rowspan="2">@(Session["Lang"].ToString()=="mr"?"मा.क्र.":"Master No.")</th>
+                        @*<th rowspan="2">@(Session["Lang"].ToString()=="mr"?"विभाग":"Department")</th>*@
+                        <th rowspan="2">@(Session["Lang"].ToString()=="mr"?"योजनाचे नाव":"Project Name")</th>
+                        <th colspan="4" style="text-align:center;">
+                            @(Session["Lang"].ToString()=="mr"?"तपशील":"Details")
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>@(Session["Lang"].ToString()=="mr"?"सदनिका वाटप दिनांक":"Flat allotment date")</th>
+                        <th>@(Session["Lang"].ToString()=="mr"?"एकूण सदनिका":"Total Flats")</th>
+                        <th>@(Session["Lang"].ToString()=="mr"?"वाटप सदनिका":"Allotted Flats")</th>
+                        <th>@(Session["Lang"].ToString()=="mr"?"पहा":"View")</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int srno = 1;
+                    }
+
+                    @foreach (var item in Model.other_lotteryList
+                        .OrderBy(x => x.project_new.project_name)
+                        .ThenByDescending(x => x.flat_allotment_date))
+                    {
+                        <tr>
+                            <td>@srno</td>
+                            <td>@item.project_new.Master_no</td>
+                            @*<td>@item.sys_config.sys_name_mar</td>*@
+                            <td>@item.project_new.project_name</td>
+
+                            <td>@item.flat_allotment_date.ToString("dd-MM-yyyy")</td>
+                            <td>@item.total_flats</td>
+                            <td>@item.allotted_flats</td>
+                            <td style="text-align:center;">
+                                <a href="@Url.Content(item.doc_location + item.doc_name)" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="22" />
+                                </a>
+                            </td>
+                        </tr>
+
+                        srno++;
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function () {
+
+    var lang = '@Session["Lang"].ToString()';
+
+    if ($.fn.dataTable.isDataTable('#datatable')) {
+        $('#datatable').DataTable().destroy();
+    }
+
+    $('#datatable').DataTable({
+        paging: true,
+        pageLength: 5,
+        lengthMenu: [5, 10, 25, 50],
+
+        order: [[2, 'asc']],   // ✅ Project Name column
+
+        orderCellsTop: true,
+        fixedHeader: true,
+        autoWidth: false,
+
+        rowGroup: {
+            dataSrc: 2,   // ✅ Project Name index
+            startRender: function (rows, group) {
+                return $('<tr/>')
+                    .append(
+                        '<td colspan="7" style="background:#f3f3f3;font-weight:600;">' +
+                        '📁 योजना  : ' + group + ' (Records: ' + rows.count() + ')' +
+                        '</td>'
+                    );
+            }
+        },
+
+        language: {
+            url: lang === 'mr'
+                ? '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json'
+                : '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+        },
+
+        columnDefs: [
+            { orderable: false, targets: [6] },     // View
+            { searchable: false, targets: [0, 6] }  // SrNo + View
+        ]
+    });
+
+});
+</script>

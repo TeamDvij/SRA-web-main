@@ -1,0 +1,73 @@
+﻿@model SRACMSApplication.Models.homeModel
+
+@{
+    ViewBag.Title = "PradhikaranachaAarakhada";
+    Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची संरचना" : "SRA Structure")
+            </h3>
+        </div>
+        <div class="col-md-12">
+            <img src="@Url.Content(@Model.aarakhada)" alt="Image 1" class="gallery-item">
+
+            <div id="modal" class="modal">
+                <span class="close" id="close">&times;</span>
+                <img class="modal-content" id="modal-img">
+                <div id="caption"></div>
+                <div class="zoom-controls">
+                    <button id="zoom-in">+</button>
+                    <button id="zoom-out">-</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const captionText = document.getElementById("caption");
+const closeBtn = document.getElementById("close");
+const zoomInBtn = document.getElementById("zoom-in");
+const zoomOutBtn = document.getElementById("zoom-out");
+
+const galleryItems = document.querySelectorAll(".gallery-item");
+let scale = 1;
+
+galleryItems.forEach(item => {
+    item.addEventListener("click", function() {
+        modal.style.display = "flex";
+        modalImg.src = this.src;
+        captionText.innerHTML = this .alt;
+        scale = 1; // Reset scale when a new image is opened
+        modalImg.style.transform = `scale(${scale})`;
+    });
+});
+
+closeBtn.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
+window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+zoomInBtn.addEventListener("click", function() {
+    scale += 0.1; // Increase scale
+    modalImg.style.transform = `scale(${scale})`;
+});
+
+zoomOutBtn.addEventListener("click", function() {
+    if (scale > 0.1) {
+        scale -= 0.1; // Decrease scale
+        modalImg.style.transform = `scale(${scale})`;
+    }
+});
+</script>

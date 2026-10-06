@@ -1,0 +1,327 @@
+﻿@model SRACMSApplication.Models.other_jahirPrakatanModel
+@{
+    ViewBag.Title = "PatrataYadi";
+    Layout = @Session["Layout"].ToString();
+    //Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांच्या पात्रता यादी" : "Eligibility List of Slum Holders (Appendix II)")
+            </h3>
+        </div>
+        <div class="col-md-12">
+            @*Tab List*@
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">@(Session["Lang"].ToString() == "mr" ? "प्राथमिक पात्रता" : "Primary Eligibility")</button>
+                <button class="tablinks" onclick="openTab(event, 'Tab2')">@(Session["Lang"].ToString() == "mr" ? "अंतिम पात्रता" : "Final Eligibility")</button>
+                <button class="tablinks" onclick="openTab(event, 'Tab3')">@(Session["Lang"].ToString() == "mr" ? "पुरवणी पात्रता" : "Supplementary Eligibility")</button>
+                <button class="tablinks" onclick="openTab(event, 'Tab4')">@(Session["Lang"].ToString() == "mr" ? "आपिलात पात्र" : "Apeal Eligibility")</button>
+            </div>
+            @*प्राथमिक पात्रता*@
+            <div id="Tab1" class="tabcontent" style="padding:10px;">
+                <div class="table-container">
+                    <table id="datatable1" cellspacing="0" style="padding:10px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center;" title="मास्टर क्रमांक">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनेचे नाव" : "Project Name") </th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "दिनांक" : "Date")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "पहा" : "View")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.primary_List_List.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width: 5%;">@item.Index</td>
+                                    <td style="text-align:center;width: 10%;">@(item.Data.project_new.Master_no.ToString() == "0" ? "" : item.Data.project_new.Master_no.ToString())</td>
+                                    <td style="text-align:center;width: 15%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.sys_config.sys_name_mar : @item.Data.sys_config.sys_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.sys_config.sys_name_mar : @item.Data.project_new.sys_config.sys_name_eng) ) </td>
+                                    <td style="text-align:left;width: 50%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.plan_name : @item.Data.plan_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.project_name : @item.Data.project_new.project_name_eng)) @(item.Data.remark_yojna == null ? "" : " - " + item.Data.remark_yojna.ToString())</td>
+                                    @*<td style="text-align:center;width: 12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>*@
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") != "01-01-1900")
+                                    {
+                                        <td style="text-align:center;width:12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>
+                                    }
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") == "01-01-1900")
+                                    {
+                                        <td></td>
+                                    }
+                                    <td style="text-align:center;width: 5%;">
+                                        <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                            <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Add DataTables CSS -->
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+                            // Initialize DataTable
+                            var table = $('#datatable1').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [4, 5] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            @*अंतिम पात्रता*@
+            <div id="Tab2" class="tabcontent" style="padding:10px;">
+                <div class="table-container">
+                    <table id="datatable2" cellspacing="0" style="padding:10px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center;" title="मास्टर क्रमांक">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनेचे नाव" : "Project Name") </th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "दिनांक" : "Date")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "पहा" : "View")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.final_List_List.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width: 5%;">@item.Index</td>
+                                    <td style="text-align:center;width: 10%;">@(item.Data.project_new.Master_no.ToString() == "0" ? "" : item.Data.project_new.Master_no.ToString())</td>
+                                    <td style="text-align:center;width: 15%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.sys_config.sys_name_mar : @item.Data.sys_config.sys_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.sys_config.sys_name_mar : @item.Data.project_new.sys_config.sys_name_eng) ) </td>
+                                    <td style="text-align:left;width: 50%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.plan_name : @item.Data.plan_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.project_name : @item.Data.project_new.project_name_eng)) @(item.Data.remark_yojna == null ? "" : " - " + item.Data.remark_yojna.ToString())</td>
+                                    @*<td style="text-align:center;width: 12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>*@
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") != "01-01-1900")
+                                    {
+                                        <td style="text-align:center;width:12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>
+                                    }
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") == "01-01-1900")
+                                    {
+                                        <td></td>
+                                    }
+
+                                    <td style="text-align:center;width: 5%;">
+                                        <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                            <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Add DataTables CSS -->
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+                            // Initialize DataTable
+                            var table = $('#datatable2').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [4, 5] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            @*पुरवणी पात्रता*@
+            <div id="Tab3" class="tabcontent" style="padding:10px;">
+                <div class="table-container">
+                    <table id="datatable3" cellspacing="0" style="padding:10px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center;" title="मास्टर क्रमांक">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनेचे नाव" : "Project Name") </th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "दिनांक" : "Date")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "पहा" : "View")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.supplementary_List.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width: 5%;">@item.Index</td>
+                                    <td style="text-align:center;width: 10%;">@(item.Data.project_new.Master_no.ToString() == "0" ? "" : item.Data.project_new.Master_no.ToString())</td>
+                                    <td style="text-align:center;width: 15%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.sys_config.sys_name_mar : @item.Data.sys_config.sys_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.sys_config.sys_name_mar : @item.Data.project_new.sys_config.sys_name_eng) ) </td>
+                                    <td style="text-align:left;width: 50%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.plan_name : @item.Data.plan_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.project_name : @item.Data.project_new.project_name_eng)) @(item.Data.remark_yojna == null ? "" : " - " + item.Data.remark_yojna.ToString())</td>
+                                    @*<td style="text-align:center;width: 12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>*@
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") != "01-01-1900")
+                                    {
+                                        <td style="text-align:center;width:12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>
+                                    }
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") == "01-01-1900")
+                                    {
+                                        <td></td>
+                                    }
+
+                                    <td style="text-align:center;width: 5%;">
+                                        <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                            <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Add DataTables CSS -->
+                    <script>
+    $(document).ready(function () {
+        var lang = '@Session["Lang"].ToString()';
+        // Initialize DataTable
+        var table = $('#datatable3').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthMenu": [5, 10, 25, 50, 100],
+            "language": {
+                "url": lang === 'mr' ?
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": [4, 5] }, // Disable sorting for View column
+                { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+            ]
+        });
+        // Add search input functionality
+        $('#searchInput').on('keyup', function () {
+            table.search(this.value).draw();
+        });
+    });
+                    </script>
+                </div>
+            </div>
+            @*अपील पात्रता*@
+            <div id="Tab4" class="tabcontent" style="padding:10px;">
+                <div class="table-container">
+                    <table id="datatable4" cellspacing="0" style="padding:10px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center;" title="मास्टर क्रमांक">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनेचे नाव" : "Project Name") </th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "दिनांक" : "Date")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "पहा" : "View")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.appeal_List.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width: 5%;">@item.Index</td>
+                                    <td style="text-align:center;width: 10%;">@(item.Data.project_new.Master_no.ToString() == "0" ? "" : item.Data.project_new.Master_no.ToString())</td>
+                                    <td style="text-align:center;width: 15%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.sys_config.sys_name_mar : @item.Data.sys_config.sys_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.sys_config.sys_name_mar : @item.Data.project_new.sys_config.sys_name_eng) ) </td>
+                                    <td style="text-align:left;width: 50%;">@(item.Data.project_new.Master_no.ToString() == "0" ? (Session["Lang"].ToString() == "mr" ? @item.Data.plan_name : @item.Data.plan_name_eng) : (Session["Lang"].ToString() == "mr" ? @item.Data.project_new.project_name : @item.Data.project_new.project_name_eng)) @(item.Data.remark_yojna == null ? "" : " - " + item.Data.remark_yojna.ToString())</td>
+                                    @*<td style="text-align:center;width: 12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>*@
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") != "01-01-1900")
+                                    {
+                                        <td style="text-align:center;width:12%;">@item.Data.plan_date_New.ToString("dd-MM-yyyy")</td>
+                                    }
+                                    @if (@item.Data.plan_date_New.ToString("dd-MM-yyyy") == "01-01-1900")
+                                    {
+                                        <td></td>
+                                    }
+
+                                    <td style="text-align:center;width: 5%;">
+                                        <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                            <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Add DataTables CSS -->
+                    <script>
+            $(document).ready(function () {
+                var lang = '@Session["Lang"].ToString()';
+                // Initialize DataTable
+                var table = $('#datatable4').DataTable({
+                    "paging": true,
+                    "pageLength": 5,
+                    "lengthMenu": [5, 10, 25, 50, 100],
+                    "language": {
+                        "url": lang === 'mr' ?
+                            '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                            '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                    },
+                    "columnDefs": [
+                        { "orderable": false, "targets": [4, 5] }, // Disable sorting for View column
+                        { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+                    ]
+                });
+                // Add search input functionality
+                $('#searchInput').on('keyup', function () {
+                    table.search(this.value).draw();
+                });
+            });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Tab Script*@
+<script>
+            function openTab(evt, tabName) {
+                // Hide all tab content
+                let tabcontent = document.getElementsByClassName("tabcontent");
+                for (let i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Remove active class from all buttons
+                let tablinks = document.getElementsByClassName("tablinks");
+                for (let i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the selected tab content and mark button as active
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Open the default tab on page load
+            document.getElementById("defaultOpen").click();
+</script>

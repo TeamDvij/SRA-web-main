@@ -1,0 +1,552 @@
+﻿@model SRACMSApplication.Models.projectModel
+@{
+    ViewBag.Title = "Yojana";
+    //Layout = "~/Views/Shared/Master7.cshtml";
+    Layout = @Session["Layout"].ToString();
+}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+<style>
+    /* Style the close button */
+    .topright {
+        float: right;
+        cursor: pointer;
+        font-size: 28px;
+    }
+
+        .topright:hover {
+            color: red;
+        }
+
+    .multimedia {
+        margin-left: 0px;
+    }
+
+    .subheader {
+        /*background-color: #f7ecb5;*/
+        background-color: antiquewhite;
+        color: #333333;
+        font-weight: bold;
+        padding: 5px;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: medium;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+    }
+
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+    }
+</style>
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "झोपुप्रा योजना" : "SRA Schems")
+                <span style="font-size:medium;">
+                    @(Session["Lang"].ToString() == "mr" ? "अद्ययावत माहिती दि. 21-07-2026" : "Updated Data : Date - 21-07-2026")
+                </span>
+            </h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @*Tab List*@
+                <div class="tab" style="margin-top:-20px;margin-left:10px;margin-right:10px;">
+                    <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">@(Session["Lang"].ToString() == "mr" ? "योजना - डॅशबोर्ड" : "Dashboard")</button>
+                    <button class="tablinks" onclick="openTab(event, 'Tab2')">@(Session["Lang"].ToString() == "mr" ? "पूर्ण झालेल्या योजना" : "Completed Projects")</button>
+                    <button class="tablinks" onclick="openTab(event, 'Tab3')">@(Session["Lang"].ToString() == "mr" ? "चालू असलेल्या योजना" : "Running Projects")</button>
+                    <button class="tablinks" onclick="openTab(event, 'Tab4')">@(Session["Lang"].ToString() == "mr" ? "नव्याने दाखल होणाऱ्या योजना" : "New Projects to be filed")</button>
+                    <button class="tablinks" onclick="openTab(event, 'Tab5')">@(Session["Lang"].ToString() == "mr" ? "दप्तरी दाखल योजना" : "Archieved Projects")</button>
+                    @*<button class="tablinks" onclick="openTab(event, 'Tab2')">@(Session["Lang"].ToString() == "mr" ? "पूर्ण झालेल्या योजना" + " (" + @Model.completed_projectList1.Count + ")" : "Completed Projects" + "(" + @Model.completed_projectList1.Count + ")")</button>
+                        <button class="tablinks" onclick="openTab(event, 'Tab3')">@(Session["Lang"].ToString() == "mr" ? "चालू असलेल्या योजना" + " (" + @Model.running_projectList1.Count + ")" : "Running Projects " + "(" + @Model.running_projectList1.Count + ")")</button>
+                        <button class="tablinks" onclick="openTab(event, 'Tab4')">@(Session["Lang"].ToString() == "mr" ? "नव्याने दाखल होणाऱ्या योजना" + " (" + @Model.new_projectList1.Count + ")" : "New Projects to be filed " + "(" + @Model.new_projectList1.Count + ")")</button>
+                        <button class="tablinks" onclick="openTab(event, 'Tab5')">@(Session["Lang"].ToString() == "mr" ? "दप्तरी दाखल योजना" + " (" + @Model.archieved_projectList.Count + ")" : "Archieved Projects" + "(" + @Model.archieved_projectList.Count + ")")</button>*@
+                </div>
+                @*योजनांचा गोषवारा*@
+                <div id="Tab1" class="tabcontent table-container" style="padding:10px;">
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="subheader" style="text-align:center;">झोपुप्राकडे सादर केलेल्या योजना</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <td>योजना संख्या</td>
+                                        <td style="font-size:larger;">@ViewBag.schems[39]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>झोपडीधारक संख्या</td>
+                                        <td>@ViewBag.schems[40]</td>
+
+                                    </tr>
+                                </table>
+                                <div class="subheader" style="text-align:center;">प्रस्ताव दाखल करणेवर योजना</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <td>प्रस्ताव दाखल करणेवर</td>
+                                        <td>@ViewBag.schems[2]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>झोपडीधारक संख्या</td>
+                                        <td>@ViewBag.schems[3]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="subheader" style="text-align:center;">मंजूर केलेल्या योजना</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <td>योजना संख्या</td>
+                                        <td>@ViewBag.schems[43]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>झोपडीधारक संख्या</td>
+                                        <td>@ViewBag.schems[44]</td>
+                                    </tr>
+                                </table>
+                                <div class="subheader" style="text-align:center;">पूर्ण केलेल्या योजना</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <td>योजना संख्या</td>
+                                        <td>@ViewBag.schems[30]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>झोपडीधारक संख्या</td>
+                                        <td>@ViewBag.schems[31]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="subheader" style="text-align:center;">दप्तरी दाखल केलेल्या योजना</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <td>योजना संख्या</td>
+                                        <td>@ViewBag.schems[38]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>झोपडीधारक संख्या</td>
+                                        <td>@ViewBag.schems[45]</td>
+                                    </tr>
+                                </table>
+                                <div class="subheader" style="text-align:center;">सध्या कार्यान्वीत असलेल्या योजना</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <td>योजना संख्या</td>
+                                        <td>@ViewBag.schems[41]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>झोपडीधारक संख्या</td>
+                                        <td>@ViewBag.schems[42]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:10px; margin-bottom:-15px;">
+                            <h4 style="margin-left:30px; color:#133146; font-weight:bold;">सध्या कार्यान्वित असलेल्या योजनांची सद्दस्थिती</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="margin-top:20px;">
+                                <div class="subheader" style="text-align:center;">सक्षम प्राधिकारी विभाग</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <th style="width:50%">कार्य</th>
+                                        <th style="width:20%">योजना संख्या</th>
+                                        <th style="width:25%">झोपडीधारक संख्या</th>
+                                    </tr>
+                                    <tr>
+                                        <td>प्राथमिक यादी करणेवर</td>
+                                        <td>@ViewBag.schems[10]</td>
+                                        <td>@ViewBag.schems[11]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>अंतिम पात्रता यादी करणेवर</td>
+                                        <td>@ViewBag.schems[12]</td>
+                                        <td>@ViewBag.schems[13]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3(क) करणेवर</td>
+                                        <td>@ViewBag.schems[14]</td>
+                                        <td>@ViewBag.schems[15]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3(ड) करणेवर</td>
+                                        <td>@ViewBag.schems[16]</td>
+                                        <td>@ViewBag.schems[17]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>निष्कासन करणेवर</td>
+                                        <td>@ViewBag.schems[18]</td>
+                                        <td>@ViewBag.schems[19]</td>
+                                    </tr>
+                                    <tr style="font-weight:bold">
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">एकूण योजना</td>
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">@ViewBag.schems[46]</td>
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">@ViewBag.schems[47]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-sm-4" style="margin-top:20px;">
+                                <div class="subheader" style="text-align:center;">नगर रचना विभाग</div>
+                                <table style="font-size:medium; width:100%;">
+                                    <tr>
+                                        <th style="width:50%">कार्य</th>
+                                        <th style="width:20%">योजना संख्या</th>
+                                        <th style="width:25%">झोपडीधारक संख्या</th>
+                                    </tr>
+                                    <tr>
+                                        <td>SR4(3) करणेवर</td>
+                                        <td>@ViewBag.schems[20]</td>
+                                        <td>@ViewBag.schems[21]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SR4(5) करणेवर</td>
+                                        <td>@ViewBag.schems[22]</td>
+                                        <td>@ViewBag.schems[23]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>प्रारंभ प्रमाणपत्र देणेवर</td>
+                                        <td>@ViewBag.schems[24]</td>
+                                        <td>@ViewBag.schems[25]</td>
+                                    </tr>
+                                    <tr style="font-weight:bold">
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">एकूण योजना</td>
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">@ViewBag.schems[48]</td>
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">@ViewBag.schems[49]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-sm-4" style="margin-top:20px;">
+                                <div class="subheader" style="text-align:center;">बांधकाम विभाग</div>
+                                <table style="font-size:medium;  width:100%;">
+                                    <tr>
+                                        <th style="width:40%">कार्य</th>
+                                        <th style="width:20%">योजना संख्या</th>
+                                        <th style="width:25%">झोपडीधारक संख्या</th>
+                                    </tr>
+                                    <tr>
+                                        <td>बांधकाम करणेवर</td>
+                                        <td>@ViewBag.schems[26]</td>
+                                        <td>@ViewBag.schems[27]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>अंशतः पूर्ण</td>
+                                        <td>@ViewBag.schems[28]</td>
+                                        <td>@ViewBag.schems[29]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>पुनर्वसन घटक पूर्ण</td>
+                                        <td>@ViewBag.schems[50]</td>
+                                        <td>@ViewBag.schems[51]</td>
+                                    </tr>
+                                    <tr style="font-weight:bold">
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">एकूण योजना</td>
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">@ViewBag.schems[52]</td>
+                                        <td style="background-color:#66BFFF; font-size:large; color:#333333;">@ViewBag.schems[53]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Add DataTables CSS -->
+
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+
+                            // Initialize DataTable
+                            var table = $('#datatable1').DataTable({
+                                "paging": true,
+                                "pageLength": 11,
+                                "lengthMenu": [11, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [3] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [0, 4] } // Disable search for Sr.No and View columns
+                                ]
+                            });
+
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+
+                            // Add year filter functionality
+                            $('#yearFilter1').on('change', function () {
+                                var year = this.value;
+                                table.column(3).search(year).draw();
+                            });
+                        });
+                    </script>
+
+                </div>
+                @*पूर्ण झालेले योजना*@
+                <div id="Tab2" class="tabcontent table-container" style="padding:10px">
+                    <table id="datatable2" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.N.")</th>
+                                @*<th class="tCenter">@(Session["Lang"].ToString() == "mr" ? "स.नं./सि.स.नं./फा.नं." : "Survey No.")</th>*@
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनाचे नाव व ठिकाण" : "Project")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची संख्या" : "Total huts")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विकसक / वास्तुविशारद" : "Developer/Architect")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.completed_projectList1.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width:6%">@item.Index</td>
+                                    @*<td style="text-align:center">@item.Data.project_no</td>*@
+                                    <td style="text-align:center;width:6%">@item.Data.Master_no</td>
+                                    <td style="text-align:center;width:10%">@item.Data.sys_config.sys_name_mar</td>
+                                    <td style="text-align:left;width:50%">@(Session["Lang"].ToString() == "mr" ? @item.Data.project_name + ' ' + @item.Data.survey_no : @item.Data.project_name_eng + ' ' + @item.Data.survey_no_eng)</td>
+                                    <td style="text-align:center;width:10%">@item.Data.total_huts</td>
+                                    <td style="text-align:left;width:50%">@(Session["Lang"].ToString() == "mr" ? @item.Data.developer_name + " / " + @item.Data.architect_name : @item.Data.developer_name_eng + " / " + @item.Data.architect_name_eng)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+
+                            // Initialize DataTable
+                            var table = $('#datatable2').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No column
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+                @*चालू असलेले योजना*@
+                <div id="Tab3" class="tabcontent table-container" style="padding:10px">
+                    <table id="datatable3" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.N.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनाचे नाव व ठिकाण" : "Project")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची संख्या" : "Total huts")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विकसक / वास्तुविशारद" : "Developer/Architect")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनांची सद्यस्थिती" : "Status")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.running_projectList1.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width:6%">@item.Index</td>
+                                    <td style="text-align:center;width:6%">@item.Data.Master_no</td>
+                                    <td style="text-align:center;width:10%">@item.Data.sys_config.sys_name_mar</td>
+                                    <td style="text-align:left;width:35%">@(Session["Lang"].ToString() == "mr" ? @item.Data.project_name + ' ' + @item.Data.survey_no : @item.Data.project_name_eng + ' ' + @item.Data.survey_no_eng)</td>
+                                    <td style="text-align:center;width:10%">@item.Data.total_huts</td>
+                                    <td style="text-align:left;width:35%">@(Session["Lang"].ToString() == "mr" ? @item.Data.developer_name + " / " + @item.Data.architect_name : @item.Data.developer_name_eng + " / " + @item.Data.architect_name_eng)</td>
+                                    <td style="text-align:center;width:30%">@item.Data.project_status1.status</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+
+                            // Initialize DataTable
+                            var table = $('#datatable3').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No column
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+                @*नव्याने दाखल होणारे योजना*@
+                <div id="Tab4" class="tabcontent table-container" style="padding:10px">
+                    <table id="datatable4" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.N.")</th>
+                                @*<th class="tCenter">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>*@
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "सादर दिनांक" : "Submission Date")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनाचे नाव व ठिकाण" : "Project")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची संख्या" : "Total huts")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विकसक / वास्तुविशारद" : "Developer/Architect")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.new_projectList1.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width:6%">@item.Index</td>
+                                    @*<td style="text-align:center">@(item.Data.project_no == "0" ? "" : item.Data.project_no) </td>*@
+                                    <td style="text-align:center;width:10%">@item.Data.sys_config.sys_name_mar</td>
+                                    <td style="text-align:center;width:15%">@Convert.ToDateTime(item.Data.submission_date).ToString("dd-MM-yyyy")</td>
+                                    <td style="text-align:left;width:35%">@(Session["Lang"].ToString() == "mr" ? @item.Data.project_name + ' ' + @item.Data.survey_no : @item.Data.project_name_eng + ' ' + @item.Data.survey_no_eng)</td>
+                                    <td style="text-align:center;width:10%">@item.Data.total_huts</td>
+                                    <td style="text-align:left;width:35%">@(Session["Lang"].ToString() == "mr" ? @item.Data.developer_name + " / " + @item.Data.architect_name : @item.Data.developer_name_eng + " / " + @item.Data.architect_name_eng)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+
+                            // Initialize DataTable
+                            var table = $('#datatable4').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [2] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No column
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+                @*दप्तरी झालेले योजना*@
+                <div id="Tab5" class="tabcontent table-container" style="padding:10px">
+                    <table id="datatable5" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.N.")</th>
+                                @*<th class="tCenter">@(Session["Lang"].ToString() == "mr" ? "स.नं./सि.स.नं./फा.नं." : "Survey No.")</th>*@
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "मा.क्र." : "Master No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विभाग" : "Department")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "योजनाचे नाव व ठिकाण" : "Project")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची संख्या" : "Total huts")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "विकसक / वास्तुविशारद" : "Developer/Architect")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.archieved_projectList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width:6%">@item.Index</td>
+                                    @*<td style="text-align:center">@item.Data.project_no</td>*@
+                                    <td style="text-align:center;width:6%">@item.Data.Master_no</td>
+                                    <td style="text-align:center;width:10%">@item.Data.sys_config.sys_name_mar</td>
+                                    <td style="text-align:left;width:50%">@(Session["Lang"].ToString() == "mr" ? @item.Data.project_name + ' ' + @item.Data.survey_no : @item.Data.project_name_eng + ' ' + @item.Data.survey_no_eng)</td>
+                                    <td style="text-align:center;width:10%">@item.Data.total_huts</td>
+                                    <td style="text-align:left;width:50%">@(Session["Lang"].ToString() == "mr" ? @item.Data.developer_name + " / " + @item.Data.architect_name : @item.Data.developer_name_eng + " / " + @item.Data.architect_name_eng)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+
+                            // Initialize DataTable
+                            var table = $('#datatable5').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No column
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        @*Tab Script*@
+        <script>
+            function openTab(evt, tabName) {
+                // Hide all tab content
+                let tabcontent = document.getElementsByClassName("tabcontent");
+                for (let i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Remove active class from all buttons
+                let tablinks = document.getElementsByClassName("tablinks");
+                for (let i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the selected tab content and mark button as active
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Open the default tab on page load
+            document.getElementById("defaultOpen").click();
+        </script>
+

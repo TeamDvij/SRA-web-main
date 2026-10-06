@@ -1,0 +1,66 @@
+﻿@model SRACMSApplication.Models.other_sra_rulesModel
+@{
+    ViewBag.Title = "Niyamavali2";
+    Layout = "~/Views/Shared/newMasternew.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @*javascript*@
+    <script>
+    $(document).ready(function () {
+        $('#datatable').dataTable(),
+        $("[data-toggle=tooltip]").tooltip();
+    });
+
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/webcss/New.css" rel="stylesheet" />
+    <link href="~/Content/webcss/template3.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="grid-container" style="margin-bottom: 190px;">
+        <div class="item3">
+            <h3 style="margin-top:-20px;">नियमावली</h3>
+            <div class="row" style="margin-top:-40px;">
+                <div class="col-md-12">
+                    <table id="datatable" cellspacing="0" width="100%">
+                        <thead style="background-color:#004274;">
+                            <tr>
+                                <th style="text-align:center">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center; width:500px;">@(Session["Lang"].ToString() == "mr" ? "नियमावली" : "Rule")</th>
+                                <th style="text-align:center;width:200px;">@(Session["Lang"].ToString() == "mr" ? "मंजूर दिनांक" : "Year")</th>
+                                <th style="text-align:center">@(Session["Lang"].ToString() == "mr" ? "पहा" : "View")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.sra_rulesList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center">@item.Index</td>
+                                    <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.rule_name : @item.Data.rule_name_eng)</td>
+                                    @if (@item.Data.rule_date.ToString("dd-MM-yyyy") != "01-01-1900")
+                                    {
+                                        <td style="text-align:center">@item.Data.rule_date.ToString("dd-MM-yyyy")</td>
+                                    }
+                                    @if (@item.Data.rule_date.ToString("dd-MM-yyyy") == "01-01-1900")
+                                    {
+                                        <td></td>
+                                    }
+                                    <td style="text-align:center" class="tCenter">
+                                        <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                            <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

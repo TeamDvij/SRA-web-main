@@ -1,0 +1,353 @@
+﻿@model SRACMSApplication.Models.mst_single_image_pdfModel
+@{
+    ViewBag.Title = "ChaluGhadamodi";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+
+
+<script>
+    $('.items a').on('click', function () {
+        var $this = $(this),
+            $bc = $('<div class="item"></div>');
+
+        $this.parents('li').each(function (n, li) {
+            var $a = $(li).children('a').clone();
+            $bc.prepend(' / ', $a);
+        });
+        $('.breadcrumb').html($bc.prepend('<a href="#home">Home</a>'));
+        return false;
+    })
+</script>
+@*Image Gallery Css*@
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+@*<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">*@
+<link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
+<style>
+    .container.gallery-container {
+        background-color: #fff;
+        color: #35373a;
+        min-height: 100vh;
+        padding: 30px 50px;
+    }
+
+    .gallery-container h1 {
+        text-align: center;
+        margin-top: 50px;
+        font-family: 'Droid Sans', sans-serif;
+        font-weight: bold;
+    }
+
+    .gallery-container p.page-description {
+        text-align: center;
+        margin: 25px auto;
+        font-size: 18px;
+        color: #999;
+    }
+
+    .tz-gallery {
+        padding: 11px;
+    }
+
+        /* Override bootstrap column paddings */
+        .tz-gallery .row > div {
+            padding: 2px;
+        }
+
+        .tz-gallery .lightbox img {
+            width: 100%;
+            height:200px;
+            border-radius: 0;
+            position: relative;
+        }
+
+        .tz-gallery .lightbox:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -13px;
+            margin-left: -13px;
+            opacity: 0;
+            color: #fff;
+            font-size: 26px;
+            font-family: 'Glyphicons Halflings';
+            content: '\e003';
+            pointer-events: none;
+            z-index: 9000;
+            transition: 0.4s;
+           
+        }
+
+
+        .tz-gallery .lightbox:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background-color: rgba(46, 132, 206, 0.7);
+            content: '';
+            transition: 0.4s;
+        }
+
+        .tz-gallery .lightbox:hover:after,
+        .tz-gallery .lightbox:hover:before {
+            opacity: 1;
+        }
+
+    .baguetteBox-button {
+        background-color: transparent !important;
+    }
+</style>
+<style>
+    .titleStyle {
+        border-bottom: 2px solid orange;
+        padding: 3px;
+    }
+
+    .galleryStyle {
+        /*border: 2px solid orange;*/
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .pFormate {
+        font-size: medium;
+    }
+
+    .liSet {
+        width: 25%;
+        float: left;
+        display: block;
+    }
+
+    .imgSet {
+        /*border: 1px solid;*/
+        display: inline-block;
+        height: auto;
+        padding: 10px;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+
+    .aSet {
+        font-size: larger;
+        border: 1px solid black;
+        display: inline-block;
+        height: auto;
+        padding: 44px;
+        max-width: 100%;
+        vertical-align: middle;
+        height: 129px;
+    }
+</style>
+
+@*<%--tab container css starts--%>*@
+<script src="/Container/Web/TabContainer/JavaScript1.js"></script>
+<link href="/Container/Web/TabContainer/StyleSheet1.css" rel="stylesheet" />
+<style>
+    .tabStyle {
+        /*padding:15px;*/
+    }
+
+    .nav {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .ul {
+        margin: 0px;
+        padding: 0px;
+        display: block;
+    }
+
+    .nav-tabs {
+        /*border-bottom: 0px solid #ddd;
+    background: #efefef;*/
+    }
+    /*.gallery_box
+        {
+            width: 100%;
+            float: left;
+            /*border: 1px solid rgba(0, 142, 255, 0.3803921568627451);
+            position: relative;
+            border-top: transparent;
+            padding: 13px;
+        }*/
+    .nav-tabs {
+        border-bottom: none;
+    }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+            color: #fff;
+            cursor: default;
+            background-color: #008eff;
+            border: 0px solid #ddd;
+            border-bottom: none;
+            border-bottom-color: transparent;
+            border-radius: 0;
+        }
+
+    .nav-tabs {
+        /*border-bottom: 0px solid #ddd;
+    background: #efefef;*/
+    }
+
+        .nav-tabs > li {
+            float: left;
+            margin-bottom: -1px;
+            font-size: 120%;
+            font-weight: 600;
+        }
+
+    .nav > li > a {
+        background: #8080800f;
+    }
+</style>
+
+<div class="container containerStyle">
+    <div class="row">
+                <div class="col-md-12">
+                    <div class="multimedia">
+                        <h3>@(Session["Lang"].ToString() == "mr" ? "बातम्या" : "News") </h3>
+                    </div>
+                    <div class="gallery_box" style="margin-left:15px">
+                                    <div class="gallery-container galleryStyle">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="titleStyle">
+                                                    <h2>@(Session["Lang"].ToString() == "mr" ? "शीर्षक" : "Title")</h2>
+                                                </div><br />
+                                                @foreach (var item in Model.DistinctYear.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                                {
+                                                    <div>
+                                                        <ul><li style="margin-left:10px; margin-top:10px;"><a style="font-size:larger;margin-bottom:10px" href="@Url.Content("~/Home/ChaluGhadamodi?desc="+@item.Data.Text)">@item.Data.Text</a></li></ul>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="titleStyle">
+                                                    <h2>@Session["defaultYear"]</h2>
+                                                </div><br />
+                                                <div class="tz-gallery">
+                                                    <div class="row">
+                                                        @{ int totalcount = Model.chalughadamodi_List.Count();}
+                                                        @if (Model.chalughadamodi_List.Count() > 8)
+                                                        {
+                                                            totalcount = 8;
+                                                        }
+                                                        @for (int j = 0; j < totalcount; j = j + 4)
+                                                        {
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-3">
+                                                                    <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j].doc_location + Model.chalughadamodi_List[j].doc_name)">
+                                                                        <img src="@Url.Content(Model.chalughadamodi_List[j].doc_location + Model.chalughadamodi_List[j].doc_name)" alt="Bridge">
+                                                                    </a>
+                                                                </div>
+                                                                @if (j + 1 < totalcount)
+                                                                {
+                                                                <div class="col-sm-12 col-md-3">
+                                                                    <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j+1].doc_location + Model.chalughadamodi_List[j+1].doc_name)">
+                                                                        <img src = "@Url.Content(Model.chalughadamodi_List[j+1].doc_location + Model.chalughadamodi_List[j+1].doc_name)" alt="Bridge">
+                                                                    </a>
+                                                                </div>
+                                                                 }
+                                                                @if (j + 2 < totalcount)
+                                                                {
+                                                                    <div class="col-sm-12 col-md-3">
+                                                                    <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j + 2].doc_location + Model.chalughadamodi_List[j + 2].doc_name)">
+                                                                        <img src="@Url.Content(Model.chalughadamodi_List[j + 2].doc_location + Model.chalughadamodi_List[j + 2].doc_name)" alt="Bridge">
+                                                                    </a>
+                                                                </div>
+                                                                }
+                                                                @if (j + 3 < totalcount)
+                                                                {
+                                                                <div class="col-sm-12 col-md-3">
+                                                                    <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j + 3].doc_location + Model.chalughadamodi_List[j + 3].doc_name)">
+                                                                        <img src="@Url.Content(Model.chalughadamodi_List[j + 3].doc_location + Model.chalughadamodi_List[j + 3].doc_name)" alt="Bridge">
+                                                                    </a>
+                                                                </div>
+                                                                }
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                
+                                                    <div class="row" id="less">
+                                                    </div>
+                                                    <div class="row" id="more" style="display:none">
+                                                        @for (int j = totalcount; j < Model.chalughadamodi_List.Count(); j = j + 4)
+                                                        {
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-3">
+                                                                    <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j].doc_location + Model.chalughadamodi_List[j].doc_name)">
+                                                                        <img src="@Url.Content(Model.chalughadamodi_List[j].doc_location + Model.chalughadamodi_List[j].doc_name)" alt="Bridge">
+                                                                    </a>
+                                                                </div>
+                                                                @if (j + 1 < Model.chalughadamodi_List.Count)
+                                                                {
+                                                                    <div class="col-sm-12 col-md-3">
+                                                                        <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j+1].doc_location + Model.chalughadamodi_List[j+1].doc_name)">
+                                                                            <img src="@Url.Content(Model.chalughadamodi_List[j+1].doc_location + Model.chalughadamodi_List[j+1].doc_name)" alt="Bridge">
+                                                                        </a>
+                                                                    </div>
+                                                                }
+                                                                @if (j + 2 < Model.chalughadamodi_List.Count)
+                                                                {
+                                                                    <div class="col-sm-12 col-md-3">
+                                                                        <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j + 2].doc_location + Model.chalughadamodi_List[j + 2].doc_name)">
+                                                                            <img src="@Url.Content(Model.chalughadamodi_List[j + 2].doc_location + Model.chalughadamodi_List[j + 2].doc_name)" alt="Bridge">
+                                                                        </a>
+                                                                    </div>
+                                                                }
+                                                                @if (j + 3 < Model.chalughadamodi_List.Count)
+                                                                {
+                                                                    <div class="col-sm-12 col-md-3">
+                                                                        <a class="lightbox" href="@Url.Content(Model.chalughadamodi_List[j + 3].doc_location + Model.chalughadamodi_List[j + 3].doc_name)">
+                                                                            <img src="@Url.Content(Model.chalughadamodi_List[j + 3].doc_location + Model.chalughadamodi_List[j + 3].doc_name)" alt="Bridge">
+                                                                        </a>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    <br />
+                                                    @if (Model.chalughadamodi_List.Count() > 8)
+                                                    {
+                                                        <a href="javascript:myFunction()" id="myBtn">More...</a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                    </div>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+                                    <script>
+                                            baguetteBox.run('.tz-gallery');
+                                    </script>
+                                    <br />
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script>
+function myFunction() {
+  var less = document.getElementById("less");
+  var more = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (less.style.display === "none") {
+      less.style.display = "inline";
+    btnText.innerHTML = "More...";
+    more.style.display = "none";
+  } else {
+      less.style.display = "none";
+      btnText.innerHTML = "Less...";
+      more.style.display = "inline";
+
+  }
+}
+
+</script>

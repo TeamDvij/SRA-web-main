@@ -1,0 +1,280 @@
+﻿@{
+    ViewBag.Title = "GalleryNews";
+    Layout = (Session["Layout"] != null) ? Session["Layout"].ToString() : "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/webcss/PressNews.css" rel="stylesheet" />
+
+<div class="sramain " id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                प्रसिद्धी पत्रक गॅलरी
+            </h3>
+
+            <div class="press-news-wrapper">
+                <div class="press-news-row">
+                    @if (ViewBag.NewsGalleryList != null)
+                    {
+                        for (int j = 0; j < ViewBag.NewsGalleryList.Count; j++)
+                        {
+                                <div class="press-news-col">
+                                    <div class="press-news-card">
+                                        <!-- News Image -->
+                                        <div class="press-news-image" onclick="openNewsModal('@Url.Content(ViewBag.NewsGalleryList[j].doc_location + ViewBag.NewsGalleryList[j].doc_name)', @(j))">
+                                            <img src="@Url.Content(ViewBag.NewsGalleryList[j].doc_location + ViewBag.NewsGalleryList[j].doc_name)"
+                                                 alt="Press News @j"
+                                                 class="gallery-thumb-img"
+                                                 loading="lazy" />
+                                            <div class="press-news-overlay">
+                                                <span class="news-view-icon">पहा</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+                    }
+
+                        </div>
+            </div>
+
+            <!-- PRESS NEWS MODAL -->
+            <div id="pressNewsModal" class="press-news-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:1000; overflow:hidden;">
+
+                <!-- Toolbar Controls (Zoom In, Zoom Out, Close) -->
+                <div class="press-news-modal-controls">
+                    <button type="button" class="modal-ctrl-btn" onclick="zoomIn()" title="Zoom In">+</button>
+                    <button type="button" class="modal-ctrl-btn" onclick="zoomOut()" title="Zoom Out">-</button>
+                    <button type="button" class="modal-ctrl-btn" onclick="closeNewsModal()" title="Close">&times;</button>
+                </div>
+
+                <!-- Previous Button -->
+                <button type="button" class="modal-nav-btn modal-nav-prev" onclick="prevImage()">&#10094;</button>
+
+                <!-- Modal Content Wrapper with Gesture Support -->
+                <div class="press-news-modal-content" id="newsContentWrapper" style="overflow:hidden; display:flex; justify-content:center; align-items:center; max-width:80%; max-height:80%; touch-action:none; cursor:grab;">
+                    <img id="modalNewsImage"
+                         src=""
+                         alt="Press News"
+                         style="transition: transform 0.05s ease-out; max-width:100%; max-height:80vh; object-fit:contain; transform-origin:center center;" />
+
+                    <div class="press-news-modal-body">
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <button type="button" class="modal-nav-btn modal-nav-next" onclick="nextImage()">&#10095;</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    let galleryImages = [];
+    let currentIndex = 0;
+    let currentZoom = 1;
+
+    // Pan & Drag state variables
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let translateX = 0, translateY = 0;
+
+    // Mobile Pinch state variable
+    let initialPinchDistance = null;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const thumbImages = document.querySelectorAll('.gallery-thumb-img');
+        galleryImages = Array.from(thumbImages).map(img => img.src);
+    });
+
+    function openNewsModal(imageUrl, index) {
+        currentIndex = index;
+        resetTransformState();
+
+        var modal = document.getElementById("pressNewsModal");
+        var imgElement = document.getElementById("modalNewsImage");
+
+        imgElement.src = galleryImages.length > 0 ? galleryImages[currentIndex] : imageUrl;
+        updateTransform();
+
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeNewsModal() {
+        var modal = document.getElementById("pressNewsModal");
+        modal.style.display = "none";
+
+        var imgElement = document.getElementById("modalNewsImage");
+        imgElement.src = "";
+
+        resetTransformState();
+        document.body.style.overflow = "";
+    }
+
+    function nextImage() {
+        if (galleryImages.length === 0) return;
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        resetTransformAndLoad();
+    }
+
+    function prevImage() {
+        if (galleryImages.length === 0) return;
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        resetTransformAndLoad();
+    }
+
+    function zoomIn() {
+        if (currentZoom < 4) {
+            currentZoom += 0.3;
+            updateTransform();
+        }
+    }
+
+    function zoomOut() {
+        if (currentZoom > 1) {
+            currentZoom -= 0.3;
+            if (currentZoom <= 1) {
+                resetTransformState();
+            } else {
+                updateTransform();
+            }
+        } else {
+            resetTransformState();
+        }
+    }
+
+    function resetTransformState() {
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        updateTransform();
+    }
+
+    function updateTransform() {
+        var imgElement = document.getElementById("modalNewsImage");
+        if (imgElement) {
+            imgElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        }
+    }
+
+    function resetTransformAndLoad() {
+        resetTransformState();
+        var imgElement = document.getElementById("modalNewsImage");
+        imgElement.src = galleryImages[currentIndex];
+    }
+
+    /* --- GESTURE LISTENERS (Mouse Wheel Zoom & Drag-to-Pan) --- */
+    const contentWrapper = document.getElementById("newsContentWrapper");
+
+    if (contentWrapper) {
+        // Mouse Wheel Zoom
+        contentWrapper.addEventListener('wheel', function (e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }, { passive: false });
+
+        // Mouse Drag Start
+        contentWrapper.addEventListener('mousedown', function (e) {
+            if (currentZoom > 1) {
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                contentWrapper.style.cursor = 'grabbing';
+            }
+        });
+
+        // Mouse Drag Move
+        window.addEventListener('mousemove', function (e) {
+            if (!isDragging) return;
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            updateTransform();
+        });
+
+        // Mouse Drag End
+        window.addEventListener('mouseup', function () {
+            isDragging = false;
+            if (contentWrapper) contentWrapper.style.cursor = 'grab';
+        });
+    }
+
+    /* --- MOBILE TOUCH GESTURES (Pinch-to-Zoom & One-Finger Drag) --- */
+    if (contentWrapper) {
+        contentWrapper.addEventListener('touchstart', function (e) {
+            if (e.touches.length === 1 && currentZoom > 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX - translateX;
+                startY = e.touches[0].clientY - translateY;
+            } else if (e.touches.length === 2) {
+                isDragging = false;
+                initialPinchDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+            }
+        }, { passive: true });
+
+        contentWrapper.addEventListener('touchmove', function (e) {
+            if (e.touches.length === 1 && isDragging) {
+                translateX = e.touches[0].clientX - startX;
+                translateY = e.touches[0].clientY - startY;
+                updateTransform();
+            } else if (e.touches.length === 2 && initialPinchDistance) {
+                let currentPinchDistance = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                let factor = currentPinchDistance / initialPinchDistance;
+                if (factor > 1.05) {
+                    zoomIn();
+                    initialPinchDistance = currentPinchDistance;
+                } else if (factor < 0.95) {
+                    zoomOut();
+                    initialPinchDistance = currentPinchDistance;
+                }
+            }
+        }, { passive: true });
+
+        contentWrapper.addEventListener('touchend', function (e) {
+            if (e.touches.length < 2) {
+                initialPinchDistance = null;
+            }
+            if (e.touches.length === 0) {
+                isDragging = false;
+            }
+        });
+    }
+
+    /* Close when clicking outside modal content */
+    document.getElementById("pressNewsModal").addEventListener("click", function (event) {
+        if (event.target === this) {
+            closeNewsModal();
+        }
+    });
+
+    /* Keyboard navigation & controls */
+    document.addEventListener("keydown", function (event) {
+        var modal = document.getElementById("pressNewsModal");
+        if (modal && modal.style.display === "flex") {
+            if (event.key === "Escape") {
+                closeNewsModal();
+            } else if (event.key === "ArrowRight") {
+                nextImage();
+            } else if (event.key === "ArrowLeft") {
+                prevImage();
+            } else if (event.key === "+" || event.key === "=") {
+                zoomIn();
+            } else if (event.key === "-" || event.key === "_") {
+                zoomOut();
+            }
+        }
+    });
+</script>

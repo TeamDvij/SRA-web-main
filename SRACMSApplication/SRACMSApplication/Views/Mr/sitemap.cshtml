@@ -1,0 +1,266 @@
+﻿@{
+    ViewBag.Title = "Sitemap";
+    Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+    <style>
+        
+        .sitemap-section {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 41px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+            .sitemap-section h3 {
+                font-size: 18px;
+                margin-bottom: 12px;
+                color: #111827;
+                border-bottom: 2px solid #e5e7eb;
+                padding-bottom: 6px;
+            }
+
+            .sitemap-section ul {
+                list-style: none;
+                padding-left: 0;
+                margin-bottom: 0;
+                text-align:left;
+            }
+
+            .sitemap-section li {
+                margin: 6px 0;
+                line-height: 2;
+                list-style-type: square; /* hollow circle (different style) */
+            }
+
+            .sitemap-section a {
+                text-decoration: none;
+                color: #0d6efd;
+            }
+
+                .sitemap-section a:hover {
+                    text-decoration: underline;
+                }
+            /* Submenu */
+            .sitemap-section ul ul {
+                margin-top: 6px;
+                margin-left: 18px;
+                padding-left: 12px;
+                border-left: 2px solid #dee2e6;
+                list-style: none; /* remove default bullets */
+            }
+
+                .sitemap-section ul ul li::before {
+                    content: "•"; /* or "→", "›", "‣" */
+                    color: #333; /* bullet color */
+                    font-weight: bold;
+                    display: inline-block;
+                    width: 1em;
+                    margin-left: -1em; /* align bullets correctly */
+                }
+
+
+                .sitemap-section ul ul li {
+                    font-size: 15px;
+                    margin: 4px 0;
+                    list-style-type: circle; /* hollow circle (different style) */
+                }
+    </style>
+    <style>
+        .scrollable-div {
+            height: 550px; /* Fixed height */
+            overflow-y: scroll; /* Enables vertical scrolling */
+            /*border: 1px solid #ccc;*/ /* Optional, for better visibility */
+            /*padding: 10px;*/
+        }
+
+        .b {
+            color: antiquewhite;
+        }
+    </style>
+    <div id="targetSection" class="container my-4 " style="width:70%; ">
+        
+        <div class="row">
+            <div >
+                <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                    साईटमॅप
+                </h3>
+            </div>
+            <!-- Column 1 -->
+            <div style="padding: 40px;">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="sitemap-section">
+                        @*<h3>Home</h3>*@
+                        <ul>
+                            <li><a href="@Url.Content("~/Mr")#targetSection"><i style="color: #dc3545;"></i>@(Session["Lang"].ToString() == "mr" ? " मुख्यपृष्ठ" : " Home")</a></li>
+                            <li><a href="@Url.Content("~/Mr/Yojana")#targetSection">
+                                झोपुप्रा योजना
+                            </a></li>
+                            <li>
+                                <a>@(Session["Lang"].ToString() == "mr" ? "आमच्या विषयी" : "About")</a>
+                                <ul>
+                                    <li><a href="@Url.Content("~/Mr/PradhikarnachiMahiti")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची माहिती" : "SRA Information") </a></li>
+                                    <li><a href="@Url.Content("~/Mr/PradhikaranachaAarakhada")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची संरचना" : "SRA Structure") </a></li>
+                                    <li><a href="@Url.Content(@Session["mahiti_pustika"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "योजनेची माहिती पुस्तिका" : "Booklet & Scheme") </a></li>
+                                    <li><a href="@Url.Content("~/Mr/AmcheNetrutva")#targetSection">@(Session["Lang"].ToString() == "mr" ? "आपले नेतृत्व" : "Our Leadership") </a></li>
+                                    <li><a href="@Url.Content("~/Mr/SakshamSadasya")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरण समिती" : "Authority Committee") </a></li>
+                                    <li><a href="@Url.Content("~/Mr/VarshikAhaval")#targetSection">@(Session["Lang"].ToString() == "mr" ? "वार्षिक लेखा अहवाल" : "Annual Audit Report") </a></li>
+                                    <li><a href="@Url.Content(@Session["listed_institutions"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "सूचिबध्द संस्था" : "Listed Institutions") </a></li>
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Content("~/Mr/Paripatrak")#targetSection">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा परिपत्रके" : "SRA Circulars")</a></li>
+                            <li><a href="@Url.Content("~/Mr/ShasanNirnay")#targetSection">@(Session["Lang"].ToString() == "mr" ? "शासन निर्णय" : "Government Resolution") </a></li>
+
+                            <li>
+                                <a>@(Session["Lang"].ToString() == "mr" ? "नागरी सेवा" : "Civil Service/Law")</a>
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Content(@Session["RTI2005"].ToString())#targetSection" target="_blank">@(Session["Lang"].ToString() == "mr" ? "माहितीचा अधिकार कायदा २००५" : "RTI Act 2005") </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Content("~/Mr/RTI_4C")#targetSection">@(Session["Lang"].ToString() == "mr" ? "माहितीचा अधिकार कायदा ४ ख" : "Right to Information Act 4C")</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Content(@Session["nagarikachi_sanad"].ToString())#targetSection" target="_blank">@(Session["Lang"].ToString() == "mr" ? "नागरिकांची सनद" : "Citizens' Charter")</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Content(@Session["loksevaHakka"].ToString())#targetSection" target="_blank">@(Session["Lang"].ToString() == "mr" ? "लोकसेवा हक्क अधिनियम अंतर्गत सेवा" : "Services under Public Service Rights Act")</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Content(@Session["slum_act"].ToString())#targetSection" target="_blank">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा अधिनियम" : "SRA Act") </a>
+                                    </li>
+                                    <li><a href="@Url.Content("~/Mr/FAQ")#targetSection">@(Session["Lang"].ToString() == "mr" ? "शंका समाधान (FAQ)" : "FAQ") </a></li>
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Content("~/Mr/Gallery")#targetSection">@(Session["Lang"].ToString() == "mr" ? "गॅलरी" : "Gallery")</a></li>
+                            <li><a href="@Url.Content("~/Mr/Contact")#targetSection">@(Session["Lang"].ToString() == "mr" ? "संपर्क" : "Contact") </a></li>
+                            <li>
+                                <a href="https://rts.srapune.gov.in/" target="_blank">@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Online RTS Services")</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="sitemap-section">
+                        @*<h3>Services</h3>*@
+                        <ul>
+                            <li>
+                                <a href='@Url.Action("Niyamavali", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "झो.पु.प्रा. नियमावली" : "SRA Rules")
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("WorkAreaMap", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "कार्यक्षेत्राचा नकाशा" : "MAP of Work Area")
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Content(Session["yojanecheTappe"].ToString())' target="_blank">
+                                    @(Session["Lang"].ToString() == "mr" ? "झो.पु.प्रा.योजनेचे टप्पे" : "SRA Stages of Plan")
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("VividhNamune", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "विहित निकष / नमुने / कार्यपद्धती" : "Download Forms")
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    @(Session["Lang"].ToString() == "mr" ? "झोपडपट्ट्यांची यादी" : "Slum List")
+                                </a>
+                            </li>
+                            <ul>
+                                <li><a href="@Url.Content("~/Mr/SlumList")">पुणे महानगरपालिका</a></li>
+                                <li><a href="@Url.Content("~/Mr/SlumList")">पिंपरी चिंचवड महानगरपालिका</a></li>
+                            </ul>
+                            <li>
+                                <a href='@Url.Action("VikasakList", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "नोंदणीकृत विकसकांची यादी" : "Registered Developer List")
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("Darpatrak", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "दरपत्रके / ई-निविदा" : "Quotations / e-Tenders")
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="sitemap-section">
+                        @*<h3>Support</h3>*@
+                        <ul class="flex-item-right">
+                            <li>
+                                <a>
+                                    @(Session["Lang"].ToString() == "mr" ? "पुनर्वसन क्षेत्र आदेश (३क)" : "Rehabilitation (3C) Orders")
+                                </a>
+                            </li>
+                            <ul>
+                                <li><a href='@Url.Action("SRA3C", "Mr")'>पूर्व सूचना</a></li>
+                                <li><a href='@Url.Action("SRA3C", "Mr")'>अंतिम सूचना</a></li>
+                            </ul>
+                            <li>
+                                <a>
+                                    @(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांच्या पात्रता यादी (परिशिष्ट २)" : "Eligibility List of Slum Holders (Appendix II)")
+                                </a>
+                            </li>
+                            <ul>
+                                <li><a href='@Url.Action("PatrataYadi", "Mr")'>प्राथमिक पात्रता</a></li>
+                                <li><a href='@Url.Action("PatrataYadi", "Mr")'>अंतिम पात्रता</a></li>
+                            </ul>
+                            <li>
+                                <a>
+                                    @(Session["Lang"].ToString() == "mr" ? "योजना मंजुरी 14.6.12 (1)" : "Project Approval")
+                                </a>
+                            </li>
+                            <ul>
+                                <li><a href='@Url.Action("SR4", "Mr")'>प्रारूप योजना मंजुरी ४(३)</a></li>
+                                <li><a href='@Url.Action("SR4", "Mr")'>अंतिम योजना मंजुरी ४(५)</a></li>
+                            </ul>
+                            <li>
+                                <a>
+                                    @(Session["Lang"].ToString() == "mr" ? "निर्मूलन आदेश (३ड)" : "Eradication (3D) Orders")
+                                </a>
+                            </li>
+                            <ul>
+                                <li><a href='@Url.Action("SRA3D", "Mr")'>पूर्व सूचना</a></li>
+                                <li><a href='@Url.Action("SRA3D", "Mr")'>अंतिम सूचना</a></li>
+                            </ul>
+                            <li>
+                                <a href='@Url.Action("BuildingPermission", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "बांधकाम परवानगी प्रमाणपत्रे" : "Building Permission Certificates")
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("Society", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "गृहनिर्माण संस्थांची यादी" : "List Of Housing Societies")
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("Occupancy", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "भोगवटा प्रमाणपत्रे" : "Occupancy Certificates")
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("Lottery", "Mr")#targetSection'>
+                                    @(Session["Lang"].ToString() == "mr" ? "लॉटरी पद्धतीने सदनिका वितरण" : "Allotment of Flats by Lottery")
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+

@@ -1,0 +1,98 @@
+﻿@model SRACMSApplication.Models.projectModel
+
+@{
+    ViewBag.Title = "cp_other_Prakalpa";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+<script src="~/Contents/vendor/jquery/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#datatable').dataTable({
+            order: [],
+            columnDefs: [{ orderable: false, targets: [0,1,2,3,4] }]
+        }),
+        $("[data-toggle=tooltip]").tooltip();
+
+    });
+
+</script>
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">झो.पु.प्रा. प्रकल्प यादी</h1>
+        <a href="@Url.Content("~/Prakalpa/cp_other_Prakalpa_addedit")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            Add New
+        </a>
+    </div>
+    @using (Html.BeginForm("cp_other_Prakalpa", "cp_other", FormMethod.Get))
+    {
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:small" id="dataTable">
+                    <thead>
+
+                        <tr style="height:46px;">
+                            <th>अ.क्र.</th>
+                            <th>मा.क्र.</th>
+                            <th>प्रकल्पाचे नाव व ठिकाण</th>
+                            <th>विकसक / वास्तुविशारद</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.tot_projectList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <tr class="tCenter" style="@(item.Data.active_status =="A" ? "color:Default" : "color:Red")">
+                                <td class="tCenter" width="10px">@item.Index</td>
+                                <td width="10px">@item.Data.project_no</td>
+                                <td width="500px">@item.Data.slum_name @item.Data.survey_no</td>
+                                <td width="700px">@item.Data.developer_name/ @item.Data.architect_name</td>
+                                
+                               
+                                <td>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-fw fa-wrench"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink">
+                                            <a href="@Url.Content("~/Prakalpa/cp_other_Prakalpa_addedit?id="+@item.Data.id)" class="dropdown-item edit" data-id="@item.Data.id">Edit</a>
+                                            <a href="" class="dropdown-item activeDeactive" data-id="@item.Data.id">@(item.Data.active_status == "A" ? "Remove" : "Add Again")</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+<script>
+        $(function () {
+            $(".activeDeactive").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                $.ajax({
+                    type: "Get",
+                    url: '../Prakalpa/cp_other_Prakalpa_activeDeactive',
+                    contentType: "application/json; charset=utf-8",
+                    data: { "id": id },
+                    datatype: "text",
+                    success: function (data, textStatus, jqXHR) {
+                        alert(textStatus);
+                    },
+                    error: function () {
+                        alert("Successfully Saved!");
+                    }
+                });
+            });
+        });
+</script>
+
+

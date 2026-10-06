@@ -1,0 +1,107 @@
+﻿@model SRACMSApplication.Models.faqModel
+@{
+    ViewBag.Title = "cp_faq";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+<script src="~/Contents/vendor/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datatable').dataTable(),
+        $("[data-toggle=tooltip]").tooltip();
+    });
+</script>
+<style>
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">शंका समाधान</h1>
+        <a href="@Url.Content("~/CPAdmin/cp_faq_addedit")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            Add New
+        </a>
+    </div>
+    @using (Html.BeginForm("cp_faq", "CPAdmin", FormMethod.Get))
+    {
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:small" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">अ.क्र.</th>
+                            <th class="tCenter">शंका</th>
+                            <th class="tCenter">समाधान</th>
+                            <th style="text-align:center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.faq_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <tr class="tCenter" style="@(item.Data.active_status =="A" ? "color:Default" : "color:Red")">
+                                <td class="tCenter">@item.Index.</td>
+                                <td style="text-align:left">@item.Data.faq1</td>
+                                <td style="text-align:left">@item.Data.answer</td>
+                                <td style="text-align:center">
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-fw fa-wrench"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink">
+                                            <a href="@Url.Content("~/CPAdmin/cp_faq_addedit?id="+@item.Data.id)" class="dropdown-item edit" data-id="@item.Data.id">Edit</a>
+                                            <a href="" class="dropdown-item activeDeactive" data-id="@item.Data.id">@(item.Data.active_status == "A" ? "Remove" : "Add Again")</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>@*script for activate deactivate*@
+<script>
+        $(function () {
+            $(".activeDeactive").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                $.ajax({
+                    type: "Get",
+                    url: '../CPAdmin/cp_faq_activeDeactive',
+                    contentType: "application/json; charset=utf-8",
+                    data: { "id": id },
+                    datatype: "text",
+                    success: function (data, textStatus, jqXHR) {
+                        alert(textStatus);
+                    },
+                    error: function () {
+                        alert("Successfully Saved!");
+                    }
+                });
+            });
+        });
+</script>

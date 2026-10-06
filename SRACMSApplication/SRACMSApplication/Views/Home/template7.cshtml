@@ -1,0 +1,486 @@
+﻿@model SRACMSApplication.Models.homeModel
+@{
+    ViewBag.Title = "template7";
+    Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+
+
+
+
+
+<div class="carousel-container" style="margin-top:20px;">
+    <div class="carousel-slide active">
+        <img src="~/Content/images/02.jpg" class="d-block w-100">
+    </div>
+    <div class="carousel-slide ">
+        <img src="~/Content/images/07.png" class="d-block w-100">
+    </div>
+
+    @*<div class="carousel-slide">
+            <img src="~/Content/images/Slide-2.jpg" class="d-block w-100">
+        </div>
+        <div class="carousel-slide">
+            <img src="~/Content/images/Slide-3.jpg" class="d-block w-100">
+        </div>*@
+
+    <!-- Navigation Dots -->
+    <div class="carousel-dots"></div>
+</div>
+<!--<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">-->
+@*<div class="carousel-item active">
+        <img src="~/Content/images/02.jpg" class="d-block w-100">
+    </div>*@
+<!--<div class="carousel-item active">
+    <img src="~/Content/images/02.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+    <img src="~/Content/images/02.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+    <img src="~/Content/images/02.png" class="d-block w-100">
+</div>-->
+@*<div class="carousel-item">
+        <img src="~/Content/images/07.png" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+        <img src="~/Content/images/08.png" class="d-block w-100">
+    </div>*@
+<!--</div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+
+</div>-->
+
+<div class="card" style="margin-top:-10px">
+    <div class="team teamback">
+        <div class="team-main">
+            <div class="team-row d-flex flex-row" style="gap: 0;">
+                <!-- Minister 1 -->
+                <div class="team text-center mx-3">
+                    <div class="ih-item">
+                        <div class="img">
+                            <img src="@Url.Content(@Model.minister1_Photo)" alt="img" class="minister-img">
+                        </div>
+                    </div>
+                    <div class="team-bottom">
+                        <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister1_Name : @Model.minister1_Name_eng)</h6>
+                        <p class="fw-bold text-danger">
+                            @(Session["Lang"].ToString() == "mr" ? "माननीय मुख्यमंत्री" : "Hon. Chief Minister")
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Minister 2 -->
+                <div class="team text-center mx-3">
+                    <div class="ih-item">
+                        <div class="img">
+                            <img src="@Url.Content(@Model.minister2_Photo)" alt="img" class="minister-img">
+                        </div>
+                    </div>
+                    <div class="team-bottom">
+                        <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister2_Name : @Model.minister2_Name_eng)</h6>
+                        <p class="fw-bold text-danger">
+                            @(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री तथा माननीय गृहनिर्माण मंत्री" : "Hon. Deputy Chief Minister and Hon. Housing Minister")
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Minister 3 -->
+                <div class="team text-center mx-3">
+                    <div class="ih-item">
+                        <div class="img">
+                            <img src="@Url.Content(@Model.minister3_Photo)" alt="img" class="minister-img">
+                        </div>
+                    </div>
+                    <div class="team-bottom">
+                        <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister3_Name : @Model.minister3_Name_eng)</h6>
+                        <p class="fw-bold text-danger">
+                            @(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री" : "Hon. Deputy Chief Minister")
+                        </p>
+                    </div>
+                </div>
+                <!-- Minister 4 -->
+
+                <div class="team text-center mx-3">
+                    <div class="ih-item">
+                        <div class="img">
+                            <img src="@Url.Content(@Model.minister4_Photo)" alt="img" class="minister-img">
+                        </div>
+                    </div>
+                    <div class="team-bottom">
+                        <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister4_Name : @Model.minister4_Name_eng)</h6>
+                        <b><p style="color: #dc3545">मा. राज्यमंत्री गृहनिर्माण </p></b>
+                    </div>
+                    <!-- end normal -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    @*<%--Marquee Tag starts here--%>*@
+    <div class="row">
+        <marquee class="marqueText" behavior="alternate" style="margin-top:25px;">ई-निविदा : १) संगणक व प्रिंटर खरेदी - 02/2025....अधिक माहितीसाठी येथे Click करा...</marquee>
+        @*<marquee class="marqueText" behavior="alternate">
+                <a href="~/Content//Documents/Jahirat/Advertise for the Appointment of Dy Engg_20241224.pdf" style="color:yellow;" target="_blank">
+                    जाहिरात :  शासकीय - निमशासकीय सेवानिवृत्त अधिकारी यांच्या करार पद्धतीने उपअभियंता पदाच्या सेवा उपलब्ध करून घेणेबाबत...अधिक माहितीसाठी येथे Click करा...
+                </a>
+            </marquee>*@
+    </div>
+    @*  <%--Marquee Tag ends here--%>*@
+    @*<%--news feed div style--%>*@
+    <style>
+        .titleNews {
+            color: white;
+            text-align: center;
+            background: red;
+            padding: 8px;
+            border-radius: 5px;
+            border-bottom: 2px solid red;
+            font-weight: bold;
+        }
+
+        .main {
+            text-align: center;
+            font-family: "Times New Roman";
+            /*border-radius: 5px;  commented by Umesh 14.01.2020*/
+            border-radius: 38px 38px 10px 10px;
+            /*border: 1px solid red;*/
+            padding: 5px;
+            width: 97%;
+            margin-left: 2%;
+            background: white;
+        }
+
+        .marq {
+            margin: 0 auto;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .geek1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #00446d;
+            text-align: center;
+        }
+
+        .geek2 {
+            text-align: center;
+            color: #00446d;
+        }
+
+        .smartmarquee {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .smartmarquee .container {
+                position: absolute;
+            }
+    </style>
+    <style>
+        div.scroll {
+            margin: 4px, 4px;
+            padding: 4px;
+            height: 345px;
+            overflow-x: hidden;
+            overflow-x: auto;
+            text-align: justify;
+        }
+    </style>
+    <style type="text/css">
+        .containerMarque {
+            position: relative;
+            /*width: 200px;*/ /*marquee width */
+            height: 350px; /*marquee height */
+            overflow: hidden;
+            /*background-color: white;*/
+            /*border: 3px solid orange;*/
+            padding: 2px;
+            padding-left: 40px;
+            color: black;
+            text-align: justify;
+            font-size: small;
+            font-weight: normal;
+        }
+
+        .pStyle {
+            border-bottom: 1px solid white;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var zxcMarquee = {
+
+            init: function (o) {
+                var mde = o.Mode, mde = typeof (mde) == 'string' && mde.charAt(0).toUpperCase() == 'H' ? ['left', 'offsetWidth', 'top', 'width'] : ['top', 'offsetHeight', 'left', 'height'], id = o.ID, srt = o.StartDelay, ud = o.StartDirection, p = document.getElementById(id), obj = p.getElementsByTagName('DIV')[0], sz = obj[mde[1]], clone;
+                p.style.overflow = 'hidden';
+                obj.style.position = 'absolute';
+                obj.style[mde[0]] = '0px';
+                obj.style[mde[3]] = sz + 'px';
+                clone = obj.cloneNode(true);
+                clone.style[mde[0]] = sz + 'px';
+                clone.style[mde[2]] = '0px';
+                obj.appendChild(clone);
+                o = this['zxc' + id] = {
+                    obj: obj,
+                    mde: mde[0],
+                    sz: sz
+                }
+                if (typeof (srt) == 'number') {
+                    o.dly = setTimeout(function () { zxcMarquee.scroll(id, typeof (ud) == 'number' ? ud : -1); }, srt);
+                }
+                else {
+                    this.scroll(id, 0)
+                }
+            },
+
+            scroll: function (id, ud) {
+                var oop = this, o = this['zxc' + id], p;
+                if (o) {
+                    ud = typeof (ud) == 'number' ? ud : 0;
+                    clearTimeout(o.dly);
+                    p = parseInt(o.obj.style[o.mde]) + ud;
+                    if ((ud > 0 && p > 0) || (ud < 0 && p < -o.sz)) {
+                        p += o.sz * (ud > 0 ? -1 : 1);
+                    }
+                    o.obj.style[o.mde] = p + 'px';
+                    o.dly = setTimeout(function () { oop.scroll(id, ud); }, 50);
+                }
+            }
+        }
+
+        function init() {
+
+            zxcMarquee.init({
+                ID: 'marquee1',     // the unique ID name of the parent DIV.                        (string)
+                Mode: 'Vertical',   //(optional) the mode of execution, 'Vertical' or 'Horizontal'. (string, default = 'Vertical')
+                StartDelay: 2000,   //(optional) the auto start delay in milli seconds'.            (number, default = no auto start)
+                StartDirection: -1  //(optional) the auto start scroll direction'.                  (number, default = -1)
+            });
+
+            zxcMarquee.init({
+                ID: 'marquee2',     // the unique ID name of the parent DIV.                        (string)
+                Mode: 'Horizontal', //(optional) the mode of execution, 'Vertical' or 'Horizontal'. (string, default = 'Vertical')
+                StartDelay: 2000,   //(optional) the auto start delay in milli seconds'.            (number, default = no auto start)
+                StartDirection: -1  //(optional) the auto start scroll direction'.                  (number, default = -1)
+            });
+
+        }
+
+        if (window.addEventListener)
+            window.addEventListener("load", init, false)
+        else if (window.attachEvent)
+            window.attachEvent("onload", init)
+        else if (document.getElementById)
+            window.onload = init
+
+
+    </script>
+    <script type="text/javascript">
+
+        var zxcMarquee = {
+
+            init: function (o) {
+                var mde = o.Mode, mde = typeof (mde) == 'string' && mde.charAt(0).toUpperCase() == 'H' ? ['left', 'offsetWidth', 'top', 'width'] : ['top', 'offsetHeight', 'left', 'height'], id = o.ID, srt = o.StartDelay, ud = o.StartDirection, p = document.getElementById(id), obj = p.getElementsByTagName('DIV')[0], sz = obj[mde[1]], clone;
+                p.style.overflow = 'hidden';
+                obj.style.position = 'absolute';
+                obj.style[mde[0]] = '0px';
+                obj.style[mde[3]] = sz + 'px';
+                clone = obj.cloneNode(true);
+                clone.style[mde[0]] = sz + 'px';
+                clone.style[mde[2]] = '0px';
+                obj.appendChild(clone);
+                o = this['zxc' + id] = {
+                    obj: obj,
+                    mde: mde[0],
+                    sz: sz
+                }
+                if (typeof (srt) == 'number') {
+                    o.dly = setTimeout(function () { zxcMarquee.scroll(id, typeof (ud) == 'number' ? ud : -1); }, srt);
+                }
+                else {
+                    this.scroll(id, 0)
+                }
+            },
+
+            scroll: function (id, ud) {
+                var oop = this, o = this['zxc' + id], p;
+                if (o) {
+                    ud = typeof (ud) == 'number' ? ud : 0;
+                    clearTimeout(o.dly);
+                    p = parseInt(o.obj.style[o.mde]) + ud;
+                    if ((ud > 0 && p > 0) || (ud < 0 && p < -o.sz)) {
+                        p += o.sz * (ud > 0 ? -1 : 1);
+                    }
+                    o.obj.style[o.mde] = p + 'px';
+                    o.dly = setTimeout(function () { oop.scroll(id, ud); }, 50);
+                }
+            }
+        }
+
+        function init() {
+
+            zxcMarquee.init({
+                ID: 'marquee22',     // the unique ID name of the parent DIV.                        (string)
+                Mode: 'Vertical',   //(optional) the mode of execution, 'Vertical' or 'Horizontal'. (string, default = 'Vertical')
+                StartDelay: 2000,   //(optional) the auto start delay in milli seconds'.            (number, default = no auto start)
+                StartDirection: -1  //(optional) the auto start scroll direction'.                  (number, default = -1)
+            });
+
+            zxcMarquee.init({
+                ID: 'marquee2',     // the unique ID name of the parent DIV.                        (string)
+                Mode: 'Horizontal', //(optional) the mode of execution, 'Vertical' or 'Horizontal'. (string, default = 'Vertical')
+                StartDelay: 2000,   //(optional) the auto start delay in milli seconds'.            (number, default = no auto start)
+                StartDirection: -1  //(optional) the auto start scroll direction'.                  (number, default = -1)
+            });
+
+        }
+
+        if (window.addEventListener)
+            window.addEventListener("load", init, false)
+        else if (window.attachEvent)
+            window.attachEvent("onload", init)
+        else if (document.getElementById)
+            window.onload = init
+
+
+    </script>
+    <script type="text/javascript">
+
+        var zxcMarquee = {
+
+            init: function (o) {
+                var mde = o.Mode, mde = typeof (mde) == 'string' && mde.charAt(0).toUpperCase() == 'H' ? ['left', 'offsetWidth', 'top', 'width'] : ['top', 'offsetHeight', 'left', 'height'], id = o.ID, srt = o.StartDelay, ud = o.StartDirection, p = document.getElementById(id), obj = p.getElementsByTagName('DIV')[0], sz = obj[mde[1]], clone;
+                p.style.overflow = 'hidden';
+                obj.style.position = 'absolute';
+                obj.style[mde[0]] = '0px';
+                obj.style[mde[3]] = sz + 'px';
+                clone = obj.cloneNode(true);
+                clone.style[mde[0]] = sz + 'px';
+                clone.style[mde[2]] = '0px';
+                obj.appendChild(clone);
+                o = this['zxc' + id] = {
+                    obj: obj,
+                    mde: mde[0],
+                    sz: sz
+                }
+                if (typeof (srt) == 'number') {
+                    o.dly = setTimeout(function () { zxcMarquee.scroll(id, typeof (ud) == 'number' ? ud : -1); }, srt);
+                }
+                else {
+                    this.scroll(id, 0)
+                }
+            },
+
+            scroll: function (id, ud) {
+                var oop = this, o = this['zxc' + id], p;
+                if (o) {
+                    ud = typeof (ud) == 'number' ? ud : 0;
+                    clearTimeout(o.dly);
+                    p = parseInt(o.obj.style[o.mde]) + ud;
+                    if ((ud > 0 && p > 0) || (ud < 0 && p < -o.sz)) {
+                        p += o.sz * (ud > 0 ? -1 : 1);
+                    }
+                    o.obj.style[o.mde] = p + 'px';
+                    o.dly = setTimeout(function () { oop.scroll(id, ud); }, 50);
+                }
+            }
+        }
+
+        function init() {
+
+            zxcMarquee.init({
+                ID: 'marquee3',     // the unique ID name of the parent DIV.                        (string)
+                Mode: 'Vertical',   //(optional) the mode of execution, 'Vertical' or 'Horizontal'. (string, default = 'Vertical')
+                StartDelay: 2000,   //(optional) the auto start delay in milli seconds'.            (number, default = no auto start)
+                StartDirection: -1  //(optional) the auto start scroll direction'.                  (number, default = -1)
+            });
+
+            zxcMarquee.init({
+                ID: 'marquee2',     // the unique ID name of the parent DIV.                        (string)
+                Mode: 'Horizontal', //(optional) the mode of execution, 'Vertical' or 'Horizontal'. (string, default = 'Vertical')
+                StartDelay: 2000,   //(optional) the auto start delay in milli seconds'.            (number, default = no auto start)
+                StartDirection: -1  //(optional) the auto start scroll direction'.                  (number, default = -1)
+            });
+
+        }
+
+        if (window.addEventListener)
+            window.addEventListener("load", init, false)
+        else if (window.attachEvent)
+            window.attachEvent("onload", init)
+        else if (document.getElementById)
+            window.onload = init
+
+
+    </script>
+    @*<%--news feed style--%>*@
+
+    <script>
+        class Carousel {
+            constructor(container) {
+                this.container = container;
+                this.slides = container.querySelectorAll('.carousel-slide');
+                this.dotsContainer = container.querySelector('.carousel-dots');
+                this.dots = [];
+                this.currentIndex = 0;
+                this.interval = null;
+                this.init();
+            }
+
+            init() {
+                // Create dots
+                this.slides.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                    this.dotsContainer.appendChild(dot);
+                    this.dots.push(dot);
+                });
+
+                // Start auto-slide
+                this.startAutoSlide();
+
+                // Pause on hover
+                this.container.addEventListener('mouseenter', () => this.stopAutoSlide());
+                this.container.addEventListener('mouseleave', () => this.startAutoSlide());
+            }
+
+            goToSlide(index) {
+                this.slides[this.currentIndex].classList.remove('active');
+                this.dots[this.currentIndex].classList.remove('active');
+
+                this.currentIndex = (index + this.slides.length) % this.slides.length;
+
+                this.slides[this.currentIndex].classList.add('active');
+                this.dots[this.currentIndex].classList.add('active');
+            }
+
+            startAutoSlide() {
+                this.interval = setInterval(() => {
+                    this.goToSlide(this.currentIndex + 1);
+                }, 5000); // Change slide every 5 seconds
+            }
+
+            stopAutoSlide() {
+                clearInterval(this.interval);
+            }
+        }
+
+        // Initialize the carousel
+        const carouselContainer = document.querySelector('.carousel-container');
+        new Carousel(carouselContainer);
+    </script>

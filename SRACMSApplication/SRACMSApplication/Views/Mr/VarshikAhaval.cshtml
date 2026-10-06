@@ -1,0 +1,90 @@
+﻿@model SRACMSApplication.Models.mst_single_image_pdfModel
+@{
+    ViewBag.Title = "VarshikAhaval";
+    //Layout = "~/Views/Shared/Master7.cshtml";
+    Layout = @Session["Layout"].ToString();
+}
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "वार्षिक लेखा अहवाल" : "Annual Audit Report")
+            </h3>
+        </div>
+        <div class="col-md-12 table-container">
+            <table id="datatable" style="padding:10px">
+                <thead>
+                    <tr>
+                        <th style="text-align:center; width:1%;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                        <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "आर्थिक वर्ष" : "Financial Year")</th>
+                        <th style="text-align:center;width:1%;">@(Session["Lang"].ToString() == "mr" ? "पहा" : "View")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.lstContentType.Select((x, i) => new { Data = x, Index = i + 1 }))
+                    {
+                        <tr>
+                            <td style="text-align:center;width:5%;">@item.Index</td>
+                            <td style="text-align:center;width:50%;">@item.Data.title</td>
+                            <td style="text-align:center;width:5%;">
+                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" class="marathi_font" target="_blank">
+                                    <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add DataTables CSS -->
+
+<script>
+    $(document).ready(function() {
+        var lang = '@Session["Lang"].ToString()';
+
+        // Initialize DataTable
+        var table = $('#datatable').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthMenu": [5,10, 25, 50, 100],
+            "language": {
+                "url": lang === 'mr' ?
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": [2] }, // Disable sorting for View column
+                { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+            ]
+        });
+
+        // Add search input functionality
+        $('#searchInput').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+
+    });
+</script>
+
+
+
+
+
+
+

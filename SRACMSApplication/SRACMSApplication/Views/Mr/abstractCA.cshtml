@@ -1,0 +1,145 @@
+﻿@model SRACMSApplication.Models.GroupedOrderCAModel
+    @{
+        ViewBag.Title = "abstractCA";
+        Layout = @Session["Layout"].ToString();
+        //Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+
+<div class="sramain" id="targetSection">
+    <div class="row col-sm-12">
+        <div class="col-sm-6" id="myDiv">
+            <h5 style="margin-left:20px;">सक्षम विभाग - Abstract Report</h5>
+            @*<button style="margin-left:70px;" onclick="printDiv()">Print</button>*@
+            <div class="col-md-12 table-container">
+                <table id="datatable3" style="font-size:small;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;vertical-align:middle" rowspan="2">विभाग</th>
+                            <th style="text-align:center" colspan="2">३क आदेश</th>
+                            <th style="text-align:center;background-color:aliceblue;color:black" colspan="2">३ड आदेश</th>
+                            <th style="text-align:center" colspan="2">पात्रता यादी</th>
+                        </tr>
+                        <tr style="font-weight:bold; color:darkblue;">
+                            <td style="text-align:center">पूर्व</td>
+                            <td style="text-align:center">अंतिम</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">पूर्व</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">अंतिम</td>
+                            <td style="text-align:center">प्राथमिक</td>
+                            <td style="text-align:center">अंतिम</td>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:large;">
+                        <tr>
+                            <td style="text-align:center">सक्षम १</td>
+                            <td style="text-align:center">@Model.CA1_3C_1</td>
+                            <td style="text-align:center">@Model.CA1_3C_2</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.CA1_3D_1</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.CA1_3D_2</td>
+                            <td style="text-align:center">@Model.CA1_yadi_1</td>
+                            <td style="text-align:center">@Model.CA1_yadi_2</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">सक्षम २</td>
+                            <td style="text-align:center">@Model.CA2_3C_1</td>
+                            <td style="text-align:center">@Model.CA2_3C_2</td>
+                            <td style="text-align:center;background-color:aliceblue;">@Model.CA2_3D_1</td>
+                            <td style="text-align:center;background-color:aliceblue;">@Model.CA2_3D_2</td>
+                            <td style="text-align:center">@Model.CA2_yadi_1</td>
+                            <td style="text-align:center">@Model.CA2_yadi_2</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">सक्षम ३</td>
+                            <td style="text-align:center">@Model.CA3_3C_1</td>
+                            <td style="text-align:center">@Model.CA3_3C_2</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.CA3_3D_1</td>
+                            <td style="text-align:center;background-color:aliceblue;">@Model.CA3_3D_2</td>
+                            <td style="text-align:center">@Model.CA3_yadi_1</td>
+                            <td style="text-align:center">@Model.CA3_yadi_2</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; font-weight:bold;">Total</td>
+                            <td style="text-align:center; font-weight:bold;">@(Model.CA1_3C_1 + Model.CA2_3C_1 + Model.CA3_3C_1)</td>
+                            <td style="text-align:center; font-weight:bold;">@(Model.CA1_3C_2 + Model.CA2_3C_2 + Model.CA3_3C_2)</td>
+                            <td style="text-align:center;background-color:aliceblue; font-weight:bold;">@(Model.CA1_3D_1 + Model.CA2_3D_1 + Model.CA3_3D_1)</td>
+                            <td style="text-align:center;background-color:aliceblue; font-weight:bold;">@(Model.CA1_3D_2 + Model.CA2_3D_2 + Model.CA3_3D_2)</td>
+                            <td style="text-align:center; font-weight:bold;">@(Model.CA1_yadi_1 + Model.CA2_yadi_1 + Model.CA3_yadi_1)</td>
+                            <td style="text-align:center; font-weight:bold;">@(Model.CA1_yadi_2 + Model.CA2_yadi_2 + Model.CA3_yadi_2)</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+
+        <div class="col-sm-6" id="myDiv1">
+            <h5 style="margin-left:20px;">तांत्रिक विभाग - Abstract Report</h5>
+            @*<button style="margin-left:70px;" onclick="printDiv()">Print</button>*@
+            <div class="col-md-12 table-container">
+                <table id="datatable4" style="font-size:small;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;vertical-align:middle;" rowspan="2">विभाग</th>
+                            <th style="text-align:center" colspan="2">योजना मंजुरी 14.6.12 (1)</th>
+                            <th style="text-align:center;background-color:aliceblue;color:black" colspan="2">प्रमाणपत्रे</th>
+                        </tr>
+                        <tr style="font-weight:bold; color:darkblue;">
+                            <td style="text-align:center">प्रारूप मंजुरी<s/td>
+                            <td style="text-align:center">अंतिम मंजुरी</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">बांधकाम परवानगी </td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">भोगवटा</td>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:large;">
+                        <tr>
+                            <td style="text-align:center">तांत्रिक १</td>
+                            <td style="text-align:center">@Model.tech1_permission_1</td>
+                            <td style="text-align:center">@Model.tech1_permission_2</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.tech1_cc</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.tech1_occup</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">तांत्रिक २</td>
+                            <td style="text-align:center">@Model.tech2_permission_1</td>
+                            <td style="text-align:center">@Model.tech2_permission_2</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.tech2_cc</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.tech2_occup</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">तांत्रिक ३</td>
+                            <td style="text-align:center">@Model.tech3_permission_1</td>
+                            <td style="text-align:center">@Model.tech3_permission_2</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.tech3_cc</td>
+                            <td style="text-align:center;background-color:aliceblue;color:black">@Model.tech3_occup</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; font-weight:bold;">Total</td>
+                            <td style="text-align:center; font-weight:bold;">@(Model.tech1_permission_1 + Model.tech2_permission_1 + Model.tech3_permission_1)</td>
+                            <td style="text-align:center; font-weight:bold;">@(Model.tech1_permission_2 + Model.tech2_permission_2 + Model.tech3_permission_2)</td>
+                            <td style="text-align:center;background-color:aliceblue; font-weight:bold;color:black">@(Model.tech1_cc + Model.tech2_cc + Model.tech3_cc)</td>
+                            <td style="text-align:center;background-color:aliceblue; font-weight:bold;color:black">@(Model.tech1_occup + Model.tech2_occup + Model.tech3_occup)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+
+    </div>
+</div>
+    <script>
+        function printDiv() {
+            // Get the content of the div
+            var content = document.getElementById('myDiv').innerHTML;
+
+            // Create a new window for printing
+            var printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Div</title></head><body style="background-color:green;">');
+            printWindow.document.write(content);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+
+            // Wait for the content to load and trigger the print dialog
+            printWindow.onload = function () {
+                printWindow.print();
+            };
+        }
+    </script>

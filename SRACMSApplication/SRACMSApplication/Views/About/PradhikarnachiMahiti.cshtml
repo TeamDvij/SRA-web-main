@@ -1,0 +1,365 @@
+﻿@model SRACMSApplication.Models.aboutModel
+@{
+    ViewBag.Title = "PradhikarnachiMahiti";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+@*css and script for accordian*@
+@*<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+@*<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+<script src="@Url.Content("~/Content/Web/js/jquery-3.5.1.min.js")"></script>
+<style>
+    .panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #EEEEEE;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #008eff;
+        background-color: #87ceeb21;
+        border-color: #EEEEEE;
+    }
+
+    .panel-title {
+        font-size: 14px;
+    }
+
+        .panel-title > a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+        }
+
+    .more-less {
+        float: right;
+        color: #008eff;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+</style>
+<script>
+
+    function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find(".more-less")
+            .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+</script>
+<!-- container --><!-- container -->
+<style>
+    .tHeadCss {
+        text-align: center;
+    }
+</style>
+<div class="container containerStyle">
+    <div class="row">
+        <div>
+            <div class="multimedia">
+                <h3>@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची माहिती" : "SRA Information")</h3>
+            </div>
+        <p class="pStyle">
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;@(Session["Lang"].ToString() == "mr" ? @Model.line1 : Model.line_eng1)
+        </p>
+            <p class="pStyle">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@(Session["Lang"].ToString() == "mr" ? @Model.line2 : Model.line_eng2)
+            </p>
+            <p class="pStyle">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@(Session["Lang"].ToString() == "mr" ? @Model.line2_1 : Model.line_eng2_1)
+            </p>
+            <p class="pStyle"><b>@(Session["Lang"].ToString() == "mr" ? "स्थापना" : "Establishment")</b>
+            <p class="pStyle">
+                @(Session["Lang"].ToString() == "mr" ? @Model.about_line_sthapana : Model.about_line_sthapana_eng)
+            </p>
+            <p class="pStyle"><b>@(Session["Lang"].ToString() == "mr" ? "संबधित वैधानिक तरतुदी" : "RELEVANT STATUTORY PROVISIONS")</b>
+            <p class="pStyle">
+                @(Session["Lang"].ToString() == "mr" ? @Model.line8 : Model.line_eng8)
+                <br />
+                @(Session["Lang"].ToString() == "mr" ? @Model.line9 : Model.line_eng9)
+                @*<br />
+                @(Session["Lang"].ToString() == "mr" ? @Model.line10 : Model.line_eng10)*@
+            </p>
+            
+            <p class="pStyle"><b>@(Session["Lang"].ToString() == "mr" ? "उद्देश" : "Objectives")</b></p>
+            <p class="pStyle">
+                @(Session["Lang"].ToString() == "mr" ? @Model.line5 : Model.line_eng5)<br />
+                @(Session["Lang"].ToString() == "mr" ? @Model.line6 : Model.line_eng6)<br />
+                @(Session["Lang"].ToString() == "mr" ? Model.line7 : Model.line_eng7)<br />
+                @(Session["Lang"].ToString() == "mr" ? Model.line7_1 : Model.line_eng7_1)
+            </p>
+            <p class="pStyle"><b>@(Session["Lang"].ToString() == "mr" ? "कार्यक्षेत्र" : "Workspace")</b></p>
+            <p class="pStyle">
+                @(Session["Lang"].ToString() == "mr" ? @Model.line3 : Model.line_eng3)
+                <br />
+                @(Session["Lang"].ToString() == "mr" ? @Model.line4 : Model.line_eng4)
+            </p>
+            
+            @*<p class="pStyle"><b>@(Session["Lang"].ToString() == "mr" ? "वैधानिक तरतुदी:- " : "Statutory provisions")</b></p>
+            <p class="pStyle">
+                @(Session["Lang"].ToString() == "mr" ? @Model.line8 : Model.line_eng8)<br />
+                @(Session["Lang"].ToString() == "mr" ? @Model.line9 : Model.line_eng9)
+            </p>
+            <br />*@
+            <p class="pStyle"><b>@(Session["Lang"].ToString() == "mr" ? "प्राधिकरण्याच्या कामकाजासंदर्भातील अधिनियम, नियम व नियमावली" : "Acts, Rules and Regulations relating to the functioning of the Authority")</b></p>
+            <p class="pStyle" style="margin-top:-5px;">
+                <div class="panel-body">
+                    <table class="table table-bordered tableSet">
+                        <thead>
+                            <tr>
+                                <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "अधिनियम, नियम व नियमावली" : "Acts, Rules and Regulations")</th>
+                                <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "वर्ष" : "Year")</th>
+                            </tr>
+                            @*<tr style="font-size:medium;">
+                                <th style="text-align:center;">1</th>
+                                <th style="text-align:center;">2</th>
+                                <th style="text-align:center;">3</th>
+                            </tr>*@
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.LawRegulationTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col0 : item.Data.col_eng0)</td>
+                                    <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col1 : item.Data.col_eng1)</td>
+                                    <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col2 : item.Data.col_eng2)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </p>
+            <br />
+
+            @*<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <b>@(Session["Lang"].ToString() == "mr" ? "लागू कायदे व नियमावली" : "Applicable laws and regulations")</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <table class="table table-bordered tableSet">
+                                <thead>
+                                    <tr>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "नियमावली" : "Rule")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "वर्ष" : "Year")</th>
+                                    </tr>
+                                    <tr style="font-size:medium;">
+                                        <th style="text-align:center;">1</th>
+                                        <th style="text-align:center;">2</th>
+                                        <th style="text-align:center;">3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.LawRegulationTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                    {
+                                        <tr>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col0 : item.Data.col_eng0)</td>
+                                            <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col1 : item.Data.col_eng1)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col2 : item.Data.col_eng2)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <b>@(Session["Lang"].ToString() == "mr" ? "सन २०११  नुसार - कार्यक्षेत्रातील झोपडपट्टंयाचा तपशील" : "As of 2011 - Details of slums in the work area")</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <table class="table table-bordered tableSet">
+                                <thead>
+                                    <tr>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "अ. क्र." : "Sr.No.")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "तपशील" : "Details")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पुणे मनपा" : "PMC") </th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पिंपरी चिंचवड  मनपा" : "PCMC") </th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "एकूण" : "Total")</th>
+                                    </tr>
+                                    <tr style="font-size:medium;">
+                                        <th style="text-align:center;">1</th>
+                                        <th style="text-align:center;">2</th>
+                                        <th style="text-align:center;">3</th>
+                                        <th style="text-align:center;">4</th>
+                                        <th style="text-align:center;">5</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.SlumDetailsTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                    {
+                                        <tr>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col0 : @item.Data.col_eng0)</td>
+                                            <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col1 : @item.Data.col_eng1)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col2 : @item.Data.col_eng2)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col3 : @item.Data.col_eng3)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col4 : @item.Data.col_eng4)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <b>@(Session["Lang"].ToString() == "mr" ? "झोपडपट्टयांचे जमीन मालकीनिहाय वर्गीकरण" : "Land ownership classification of slums")</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <table class="table table-bordered tableSet">
+                                <thead>
+                                    <tr>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "मालकीहक्क" : "Ownership") </th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पुणे मनपा झोपडपट्टी संख्या" : "PMC : Slums")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पुणे मनपा झोपड्यांची संख्या" : "PMC : Huts")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पिंपरी चिंचवड  मनपा झोपडपट्टी संख्या" : "PCMC : Slums")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पिंपरी चिंचवड  मनपा झोपड्यांची संख्या" : "PCMC : Huts")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "एकूण झोपडपट्टी संख्या" : "Total Slums")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "एकूण झोपड्यांची संख्या" : "Total Huts")</th>
+                                    </tr>
+                                    <tr style="font-size:medium;">
+                                        <th style="text-align:center;">1</th>
+                                        <th style="text-align:center;">2</th>
+                                        <th style="text-align:center;">3</th>
+                                        <th style="text-align:center;">4</th>
+                                        <th style="text-align:center;">5</th>
+                                        <th style="text-align:center;">6</th>
+                                        <th style="text-align:center;">7</th>
+                                        <th style="text-align:center;">8</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OwnershipClassificationTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                    {
+                                        <tr>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col0 : @item.Data.col_eng0)</td>
+                                            <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col1 : @item.Data.col_eng1)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col2 : @item.Data.col_eng2)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col3 : @item.Data.col_eng3)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col4 : @item.Data.col_eng4)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col5 : @item.Data.col_eng5)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col6 : @item.Data.col_eng6)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col7 : @item.Data.col_eng7)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <b>@(Session["Lang"].ToString() == "mr" ? "कार्यक्षेत्रातील झोपड्यांची घनता" : "Density of huts in the work area")</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="panel-body">
+                            <table class="table table-bordered tableSet">
+                                <thead>
+                                    <tr>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.") </th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "तपशील" : "Details")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पुणे मनपा" : "PMC")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "पिंपरी चिंचवड  मनपा" : "PCMC") </th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "एकूण" : "Total")</th>
+                                    </tr>
+                                    <tr style="font-size:medium;">
+                                        <th style="text-align:center;">1</th>
+                                        <th style="text-align:center;">2</th>
+                                        <th style="text-align:center;">3</th>
+                                        <th style="text-align:center;">4</th>
+                                        <th style="text-align:center;">5</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.SlumDensityTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                    {
+                                        <tr>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col0 : @item.Data.col_eng0)</td>
+                                            <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col1 : @item.Data.col_eng1)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col2 : @item.Data.col_eng2)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col3 : @item.Data.col_eng3)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col4 : @item.Data.col_eng4)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFive">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <b>@(Session["Lang"].ToString() == "mr" ? "झोपडपट्टी पुनर्वसन योजनांचा गोषवारा" : "Summary of Slum Rehabilitation Schemes")</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="panel-body">
+                            <table class="table table-bordered tableSet">
+                                <thead>
+                                    <tr>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.") </th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "तपशील" : "Details")</th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "प्रस्तावांची संख्या" : "Proposals") </th>
+                                        <th class="tHeadCss">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची संख्या" : "Hut Owners") </th>
+                                    </tr>
+                                    <tr style="font-size:medium;">
+                                        <th style="text-align:center;">1</th>
+                                        <th style="text-align:center;">2</th>
+                                        <th style="text-align:center;">3</th>
+                                        <th style="text-align:center;">4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.slumPlanTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                    {
+                                        <tr>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col0 : @item.Data.col_eng0)</td>
+                                            <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col1 : @item.Data.col_eng1)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col2 : @item.Data.col_eng2)</td>
+                                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col3 : @item.Data.col_eng3)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>*@<!-- panel-group -->
+        </div>
+    </div>
+</div>

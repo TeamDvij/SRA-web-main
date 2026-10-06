@@ -1,0 +1,160 @@
+﻿@model SRACMSApplication.Models.homeModel
+@{
+    ViewBag.Title = "SlumList";
+    Layout = @Session["Layout"].ToString();
+    //Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "झोपडपट्टयांची यादी (एकूण - " : "Slum List (Total - ") @ViewBag.totalSlums)
+            </h3>
+        </div>
+        <div class="col-md-12">
+            @*Tab List*@
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">@(Session["Lang"].ToString() == "mr" ? "पुणे महानगरपालिका ( " : "PMC ( ") @Model.pmc_slumList.Count)</button>
+                <button class="tablinks" onclick="openTab(event, 'Tab2')">@(Session["Lang"].ToString() == "mr" ? "पिंपरी चिंचवड महानगरपालिका ( " : "PCMC ( ") @Model.pcmc_slumList.Count)</button>
+            </div>
+            @*पुणे महानगरपालिका*@
+            <div id="Tab1" class="tabcontent" style="padding:10px;">
+                <div class="table-container">
+                    <table id="datatable1" cellspacing="0" style="padding:10px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "वार्ड" : "Ward")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "झोपडपट्टीचे नाव" : "Slum Name")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अंदाजे झोपड्यांची संख्या" : "Appx. Slums")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "क्षेत्रफळ चौ.मी." : "Area (SqM")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.pmc_slumList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width: 5%;">@item.Index</td>
+                                    <td style="text-align:center;width: 25%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.ward : @item.Data.ward_eng)</td>
+                                    <td style="text-align:left;width: 30%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.slum_name : @item.Data.slum_name_eng) </td>
+                                    <td style="text-align:center;width: 18%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.hut_count : @item.Data.hut_count_eng)</td>
+                                    <td style="text-align:center;width: 18%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.slum_area : @item.Data.slum_area_eng)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Add DataTables CSS -->
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+                            // Initialize DataTable
+                            var table = $('#datatable1').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [3, 4] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            @*पिंपरी चिंचवड महानगरपालिका*@
+            <div id="Tab2" class="tabcontent" style="padding:10px;">
+                <div class="table-container">
+                    <table id="datatable2" cellspacing="0" style="padding:10px;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "वार्ड" : "Ward")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "झोपडपट्टीचे नाव" : "Slum Name")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "अंदाजे झोपड्यांची संख्या" : "Appx. Slums")</th>
+                                <th style="text-align:center;">@(Session["Lang"].ToString() == "mr" ? "क्षेत्रफळ चौ.मी." : "Area (SqM")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.pcmc_slumList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr>
+                                    <td style="text-align:center;width: 5%;">@item.Index</td>
+                                    <td style="text-align:center;width: 25%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.ward : @item.Data.ward_eng)</td>
+                                    <td style="text-align:left;width: 30%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.slum_name : @item.Data.slum_name_eng) </td>
+                                    <td style="text-align:center;width: 18%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.hut_count : @item.Data.hut_count_eng)</td>
+                                    <td style="text-align:center;width: 18%;">@(Session["Lang"].ToString() == "mr" ? @item.Data.slum_area : @item.Data.slum_area_eng)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- Add DataTables CSS -->
+                    <script>
+                        $(document).ready(function () {
+                            var lang = '@Session["Lang"].ToString()';
+                            // Initialize DataTable
+                            var table = $('#datatable2').DataTable({
+                                "paging": true,
+                                "pageLength": 5,
+                                "lengthMenu": [5, 10, 25, 50, 100],
+                                "language": {
+                                    "url": lang === 'mr' ?
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                                        '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+                                },
+                                "columnDefs": [
+                                    { "orderable": false, "targets": [] }, // Disable sorting for View column
+                                    { "searchable": false, "targets": [] } // Disable search for Sr.No and View columns
+                                ]
+                            });
+                            // Add search input functionality
+                            $('#searchInput').on('keyup', function () {
+                                table.search(this.value).draw();
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Tab Script*@
+<script>
+            function openTab(evt, tabName) {
+                // Hide all tab content
+                let tabcontent = document.getElementsByClassName("tabcontent");
+                for (let i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Remove active class from all buttons
+                let tablinks = document.getElementsByClassName("tablinks");
+                for (let i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the selected tab content and mark button as active
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Open the default tab on page load
+            document.getElementById("defaultOpen").click();
+</script>

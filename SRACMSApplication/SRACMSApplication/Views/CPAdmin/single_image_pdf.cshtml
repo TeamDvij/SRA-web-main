@@ -1,0 +1,163 @@
+﻿@model SRACMSApplication.Models.mst_single_image_pdfModel
+@{
+    ViewBag.Title = "single_image_pdf";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+@*<script src="~/Contents/vendor/jquery/jquery.min.js"></script>*@
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+<script src="@Url.Content("~/Content/Web/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Content/Web/js/jquery-3.5.1.min.js")"></script>
+
+@if (@ViewBag.Message != null)
+{
+    <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+    </script>
+}
+
+@if (@ViewBag.error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.error");
+        };
+    </script>
+}
+
+@using (Html.BeginForm("single_image_pdf", "CPAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Update : @Model.title1</h1>
+        </div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h4 style="font-size:medium; color:green">@ViewBag.Message</h4>
+        </div>
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("Type")
+                        @Html.DropDownListFor(m => m.content_type, new SelectList(Model.lstContentType, "content_type", "content_type"), new { Class = "form-control", id = "ddlContentType" })
+                        @Html.ValidationMessageFor(a => a.content_type)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("नाव")
+                        @Html.TextBox("title1", null, new { @class = "form-control form-control-user", id= "title1", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.title1)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Title Name")
+                        @Html.TextBox("title_eng", null, new { @class = "form-control form-control-user",id= "title_eng" })
+                        @Html.ValidationMessageFor(a => a.title_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("Upload File")
+                        @if (Model.doc_name != null)
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".pdf,.jpg,.jpeg" />
+                        }
+                        else
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".pdf,.jpg,.jpeg" required />
+                        }
+                    </div>
+                    <div class="col-sm-6">
+                        @if (Model.doc_name != null)
+                        {
+                            @Html.Label("Current File")
+                            <a href="@Url.Content(Model.doc_location+Model.doc_name)" id="doc_name" class="marathi_font" target="_blank">
+                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block" />
+                    </div>
+                </div>
+                @Html.HiddenFor(a => a.id)
+                @Html.HiddenFor(a => a.file_type)
+                @Html.HiddenFor(a => a.content_type)
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+    $("#ddlContentType").on("change", function ()
+    {
+        //alert($('#ddlContentType').find(":selected").text());
+        var contentType = $('#ddlContentType').find(":selected").text();
+        $.ajax({
+            type: "GET",
+            url: "../CPAdmin/get_single_image_pdf_details",
+            contentType: "application/json; charset=utf-8",
+            data: { "contentType": contentType },
+            datatype: "text",
+            success: function (response) {
+                if (response != null) {
+                    $('#content_type').val(response.content_type);
+                    $('#title1').val(response.title1);
+                    $('#title_eng').val(response.title_eng);
+                    $('#doc_name').val(response.doc_name);
+                    $(this).attr("href", response.doc_name); // Set herf value
+                    $('#file_type').val(response.file_type);
+                    $('#id').val(response.id);
+                } else {
+                    alert("Something went wrong");
+                }
+            },
+            error: function () {
+                alert("Successfully Saved!");
+            }
+        });
+
+    });
+});
+</script>
+
+
+@if (@ViewBag.fileExtensionMessage != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.fileExtensionMessage");
+        };
+    </script>
+}
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+    })
+    $('#file').on('change', function () {
+        var val = $(this).val().toLowerCase();
+        var regex = new RegExp("(.*?)\.(pdf|jpg|jpeg)$");
+        if (!(regex.test(val))) {
+            $(this).val('');
+            alert('Select valid file!');
+        }
+    });
+</script>

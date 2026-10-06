@@ -1,0 +1,184 @@
+﻿body {
+}
+
+
+.profileSet
+{
+        width: 90%;
+    height: 171px;
+}
+.multimedia
+{
+    margin-left:15px;
+}
+.multimedia h3 {
+    background: #87ceeb21;
+    text-transform: uppercase;
+    color: #008eff;
+    font-size: xx-large;
+    margin-top: -37px;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: 600;
+    padding:20px;
+    margin-bottom: 6px;
+}
+    .containerStyle
+    {
+       margin-right: 77px;
+    width: 89%;
+    margin-top:17px;
+    }
+    .tableSet
+    {
+        font-size: 17px;
+        width: 70%
+    }
+    table tbody tr:nth-child(odd) {
+    background: #fbf9f7;
+}
+     .tCenter
+    {
+        text-align: center;
+    }
+    .pStyle
+    {
+    margin-left:15px;
+    text-align: justify;
+    line-height: 40px;
+    font-size: larger;
+    color:black;
+    }
+    .ContentDiv
+    {
+        margin-left: 73px;
+    /*border: 1px solid orange;*/
+    padding: 20px;
+    border-radius: 10px;
+    }
+    .copy-right {
+    background: #00a9ff;
+    padding: 0.5em 0em;
+    text-align: center;
+    line-height: 25px;
+    border: 1px solid;
+}
+
+.footerText
+{
+    font-size:small;color:white;
+}
+.logo
+{
+    float:left;
+}
+.logo_text {
+    /*padding-left: 10px;
+    margin-left: 10px;*/
+    /*border-left: 2px solid #a5a5a5;*/
+
+}
+span.hindi_19 {
+    font-size: 100%;
+}
+.font_90 {
+    /*font-size: 55%;*/
+}
+.pull-right {
+    float: right !important;
+}
+.topContainer
+{
+        /*width: 100%;
+    border-bottom: 2px solid #FF3B04;
+    box-shadow: 0px 4px 4px 0px #808080b5;*/
+}
+/*menu css*/
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+body{font-family: 'Roboto', sans-serif;}
+
+/*
+1.1 Header Area
+***************************************************/
+/*Bootstrap Reset*/
+.navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.mainmenu {
+    background-color: transparent;
+    border-color: transparent;
+    margin-bottom: 0;
+	border: 0px !important;
+}
+.navbar-nav > li:last-child > a {
+    padding-right: 0px;
+    margin-right: 0px;
+}
+.dropdown-menu {
+    padding: 0px 0; 
+    margin: 0 0 0; 
+    border: 0px solid transition !important;
+	border: 0px solid rgba(0,0,0,.15);	
+	border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+
+}
+/*=-====Main Menu=====*/
+.navbar-nav .open .dropdown-menu > li > a {padding: 16px 15px 16px 25px;
+}
+.header_bottom { background: #008eff }
+.header_area .header_bottom .mainmenu a , .navbar-default .navbar-nav > li > a {
+    color: #fff;
+    font-size: large;
+    text-transform: capitalize;
+    padding: 7px 15px;
+	font-family: 'Roboto',sans-serif;
+}
+.header_area .mainmenu .active a,
+.header_area .mainmenu .active a:focus,
+.header_area .mainmenu .active a:hover,
+.header_area .mainmenu li a:hover,
+.header_area .mainmenu li a:focus ,
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    /*color: #0071ba;
+    background: #54c6d4;*/
+    outline: 0;
+}
+/*-----./ Main Menu-----*/
+
+.navbar-default .navbar-toggle { border-color: #fff } /*Toggle Button*/
+.navbar-default .navbar-toggle .icon-bar { background-color: #fff } /*Toggle Button*/
+
+/*==========Sub Menu=v==========*/
+.mainmenu .collapse ul > li:hover > a{background: #87ceebbd;}
+.mainmenu .collapse ul ul > li:hover > a, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover{background: #0a599a;}
+.mainmenu .collapse ul ul ul > li:hover > a{background: #CBEAF0;}
+
+.mainmenu .collapse ul ul, .mainmenu .collapse ul ul.dropdown-menu{background:#008eff;}
+.mainmenu .collapse ul ul ul, .mainmenu .collapse ul ul ul.dropdown-menu{background:#0a1464}
+.mainmenu .collapse ul ul ul ul, .mainmenu .collapse ul ul ul ul.dropdown-menu{background:#e4eeb8}
+
+/******************************Drop-down menu work on hover**********************************/
+.mainmenu{background: none;border: 0 solid;margin: 0;padding: 0;min-height:20px}
+@media only screen and (min-width: 767px) {
+.mainmenu .collapse ul li{position:relative;}
+.mainmenu .collapse ul li:hover> ul{display:block}
+.mainmenu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+/*******/
+.mainmenu .collapse ul ul li{position:relative}
+.mainmenu .collapse ul ul li:hover> ul{display:block}
+.mainmenu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+/*******/
+.mainmenu .collapse ul ul ul li{position:relative}
+.mainmenu .collapse ul ul ul li:hover ul{display:block}
+.mainmenu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+
+}

@@ -1,0 +1,714 @@
+﻿@model SRACMSApplication.Models.galaryModel
+
+@{
+    ViewBag.Title = "Gallery";
+    Layout = @Session["Layout"].ToString();
+    //Layout = "~/Views/Shared/Master7.cshtml";
+
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+<!-- Bootstrap for tz-gallery -->
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="background-color: antiquewhite;   align-content: center;"></h3>
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen">@(Session["Lang"].ToString() == "mr" ? "फोटो गॅलरी" : "Photo gallary")</button>
+                <button class="tablinks" onclick="openTab(event, 'Tab2')">@(Session["Lang"].ToString() == "mr" ? "व्हिडिओ गॅलरी" : "Video Gallary")</button>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div id="Tab1" class="tabcontent" style="padding:10px; ">
+                <div class="row">
+                    @foreach (var item in Model.DistinctPhotoAlbum.Select((x, i) => new { Data = x, Index = i + 1 }))
+                    {
+                        <a class="mb-3 fs-4 text-start" style="text-align: left; padding: 10px; font-size: large; color: #004d99" href="@Url.Content("~/Gallery/Gallery?desc="+@item.Data.Text)"><b>@item.Data.Text</b></a>
+                        @*foreach (var item1 in Model.PhotoGalleryList.Select((x, i) => new { Data = x, Index1 = i + 1 }))
+                            {
+                                <div class="event2-container">
+                                    <div class="event2-track tz-gallery ">
+                                        @if (item1.Data.album_desc == item.Data.Text)
+                                        {
+                                            <div class="col-sm-12 col-md-3">
+                                                <a class="lightbox" href="@Url.Content(Model.PhotoGalleryList[item1.Index1].doc_location + Model.PhotoGalleryList[item1.Index1].doc_name)">
+                                                    <img src="@Url.Content(Model.PhotoGalleryList[item1.Index1].doc_location + Model.PhotoGalleryList[item1.Index1].doc_name)" alt="Image">
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }*@
+                    }
+
+                    <div class="event2-container">
+                        <div class="event2-track tz-gallery ">
+                            @{
+                                int totalcount = Model.PhotoGalleryList.Count();
+                                if (totalcount > 13)
+                                {
+                                    totalcount = 13;
+                                }
+                            }
+
+                            @for (int j = 0; j < totalcount; j += 4)
+                            {
+
+                                for (int i = 0; i < 4; i++)
+                                {
+                                    int index = j + i;
+                                    if (index < totalcount)
+                                    {
+                                        <div class="col-sm-12 col-md-3">
+                                            <a class="lightbox" href="@Url.Content(Model.PhotoGalleryList[index].doc_location + Model.PhotoGalleryList[index].doc_name)">
+                                                <img src="@Url.Content(Model.PhotoGalleryList[index].doc_location + Model.PhotoGalleryList[index].doc_name)" alt="Image">
+                                            </a>
+                                        </div>
+                                    }
+                                }
+
+                            }
+
+
+                        </div>
+                        <div class="event2-buttons">
+                            <button class="event2-btn" onclick="moveEvent2Slide(-1)">&#10094; Prev</button>
+                            <button class="event2-btn" onclick="moveEvent2Slide(1)">Next &#10095;</button>
+                        </div>
+                    </div>
+
+                    <div id="modal" class="modal">
+                        <span class="close" id="close">&times;</span>
+                        <img class="modal-content" id="modal-img">
+                        <div id="caption"></div>
+                        <div class="zoom-controls">
+                            <button id="zoomIn">+</button>
+                            <button id="zoomOut">-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@*Video tab*@
+<div id="Tab2" class="tabcontent" style="padding:10px">
+
+
+
+</div>
+
+
+
+
+<script>
+    function openTab(evt, tabName) {
+        // Hide all tab content
+        let tabcontent = document.getElementsByClassName("tabcontent");
+        for (let i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove active class from all buttons
+        let tablinks = document.getElementsByClassName("tablinks");
+        for (let i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the selected tab content and mark button as active
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Open the default tab on page load
+    document.getElementById("defaultOpen").click();
+</script>
+
+<div style="display:none;">
+    @*Image Gallery Css*@
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+    @*<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">*@
+    <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
+
+
+
+
+    @*<%--tab container css starts--%>*@
+    <script src="/Container/Web/TabContainer/JavaScript1.js"></script>
+    <link href="/Container/Web/TabContainer/StyleSheet1.css" rel="stylesheet" />
+
+    <div class="container containerStyle">
+        <div class="row">
+            <div class="col-md-11 ContentDiv">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="multimedia">
+                            <h3>गॅलरी  </h3>
+                        </div>
+                        <div class="gallery_box">
+
+                            <div class="tab-group rates-page-tabs tabStyle galley_box">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs responsive nav-tabs" role="tablist">
+                                    @*
+                                        <li role="presentation" class="active"><a href="#loan-rates" aria-controls="loan-rates" role="tab" data-toggle="tab">Loan Rates</a></li>*@
+                                    <li role="presentation" class="active"><a href="#loan-rates" aria-controls="mortgage-rates" role="tab" data-toggle="tab">फोटो गॅलरी </a></li>
+                                    <li role="presentation"><a href="#mortgage-rates" aria-controls="mortgage-rates" role="tab" data-toggle="tab">व्हिडिओ गॅलरी  </a></li>
+                                    @*
+                                        <li role="presentation"><a href="#checking-savings-rates" aria-controls="checking-savings-rates" role="tab" data-toggle="tab">दाखल असलेले </a></li>*@
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content responsive">
+                                    <div role="tabpanel" class="tab-pane active" id="#">
+                                        <div class="panel-group" id="accordion">
+                                        </div><!-- /.panel-group -->
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane active gallery_box" id="loan-rates">
+                                        @*Image Gallery*@
+                                        <div class="gallery-container galleryStyle">
+                                            <div class="col-md-3 titleStyle">
+                                                <h2>फोटो गॅलरी </h2>
+                                            </div><br /><br />
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <div class="tz-gallery">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/bridge.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/bridge.jpg" alt="Bridge">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/park.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/park.jpg" alt="Park">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/tunnel.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/tunnel.jpg" alt="Tunnel">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/traffic.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/traffic.jpg" alt="Traffic">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg" alt="Coast">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg" alt="Rails">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg" alt="Coast">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-3">
+                                                                <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg">
+                                                                    <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg" alt="Rails">
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+                                        <script>
+                                            baguetteBox.run('.tz-gallery');
+                                        </script>
+                                        <br />
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane gallery_box" id="mortgage-rates">
+                                        @*video gallery*@
+                                        <div class="row galleryStyle" style="width: 100%;margin-left: 0%;">
+                                            <div class="col-md-3 titleStyle">
+                                                <h2>व्हिडिओ गॅलरी </h2>
+                                            </div><br /><br />
+                                            <div class="col-md-11">
+
+                                                <!-- Grid row -->
+                                                <div class="row">
+                                                    <!-- Grid column -->
+                                                    <div class="col-lg-4 col-md-12 mb-4">
+                                                        <!--Modal: Name-->
+                                                        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <!--Content-->
+                                                                <div class="modal-content">
+                                                                    <!--Body-->
+                                                                    <div class="modal-body mb-0 p-0">
+                                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/A3PDXmYoF5U"
+                                                                                    allowfullscreen></iframe>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--Footer-->
+                                                                    <div class="modal-footer justify-content-center">
+                                                                        <span class="mr-4">Spread the word!</span>
+                                                                        <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+                                                                        <!--Twitter-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+                                                                        <!--Google +-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+                                                                        <!--Linkedin-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+
+                                                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--/.Content-->
+                                                            </div>
+                                                        </div>
+                                                        <!--Modal: Name-->
+                                                        <a>
+                                                            <img class="img-fluid z-depth-1 imgSet" src="https://mdbootstrap.com/img/screens/yt/screen-video-1.jpg" alt="video"
+                                                                 data-toggle="modal" data-target="#modal1">
+                                                        </a>
+                                                    </div>
+                                                    <!-- Grid column -->
+                                                    <!-- Grid column -->
+                                                    <div class="col-lg-4 col-md-6 mb-4">
+                                                        <!--Modal: Name-->
+                                                        <div class="modal fade" id="modal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <!--Content-->
+                                                                <div class="modal-content">
+                                                                    <!--Body-->
+                                                                    <div class="modal-body mb-0 p-0">
+                                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/wTcNtgA6gHs"
+                                                                                    allowfullscreen></iframe>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--Footer-->
+                                                                    <div class="modal-footer justify-content-center">
+                                                                        <span class="mr-4">Spread the word!</span>
+                                                                        <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+                                                                        <!--Twitter-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+                                                                        <!--Google +-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+                                                                        <!--Linkedin-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+
+                                                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--/.Content-->
+
+                                                            </div>
+                                                        </div>
+                                                        <!--Modal: Name-->
+
+                                                        <a>
+                                                            <img class="imgSet img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-2.jpg" alt="video"
+                                                                 data-toggle="modal" data-target="#modal6">
+                                                        </a>
+
+                                                    </div>
+                                                    <!-- Grid column -->
+                                                    <!-- Grid column -->
+                                                    <div class="col-lg-4 col-md-6 mb-4">
+                                                        <!--Modal: Name-->
+                                                        <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <!--Content-->
+                                                                <div class="modal-content">
+                                                                    <!--Body-->
+                                                                    <div class="modal-body mb-0 p-0">
+                                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vlDzYIIOYmM"
+                                                                                    allowfullscreen></iframe>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--Footer-->
+                                                                    <div class="modal-footer justify-content-center">
+                                                                        <span class="mr-4">Spread the word!</span>
+                                                                        <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+                                                                        <!--Twitter-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+                                                                        <!--Google +-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+                                                                        <!--Linkedin-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+
+                                                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--/.Content-->
+
+                                                            </div>
+                                                        </div>
+                                                        <!--Modal: Name-->
+                                                        <a>
+                                                            <img class="imgSet img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-3.jpg" alt="video"
+                                                                 data-toggle="modal" data-target="#modal4">
+                                                        </a>
+
+                                                    </div>
+                                                    <!-- Grid column -->
+                                                </div>
+                                                <!-- Grid row -->
+                                                <!-- Grid row -->
+                                                <div class="row">
+                                                    <!-- Grid column -->
+                                                    <div class="col-lg-4 col-md-12 mb-4">
+                                                        <!--Modal: Name-->
+                                                        <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <!--Content-->
+                                                                <div class="modal-content">
+                                                                    <!--Body-->
+                                                                    <div class="modal-body mb-0 p-0">
+                                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/GUEZCxBcM78"
+                                                                                    allowfullscreen></iframe>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--Footer-->
+                                                                    <div class="modal-footer justify-content-center">
+                                                                        <span class="mr-4">Spread the word!</span>
+                                                                        <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+                                                                        <!--Twitter-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+                                                                        <!--Google +-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+                                                                        <!--Linkedin-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+
+                                                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--/.Content-->
+
+                                                            </div>
+                                                        </div>
+                                                        <!--Modal: Name-->
+
+                                                        <a>
+                                                            <img class="imgSet img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-4.jpg" alt="video"
+                                                                 data-toggle="modal" data-target="#modal2">
+                                                        </a>
+
+                                                    </div>
+                                                    <!-- Grid column -->
+                                                    <!-- Grid column -->
+                                                    <div class="col-lg-4 col-md-6 mb-4">
+                                                        <!--Modal: Name-->
+                                                        <div class="modal fade" id="modal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <!--Content-->
+                                                                <div class="modal-content">
+                                                                    <!--Body-->
+                                                                    <div class="modal-body mb-0 p-0">
+                                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PjGkVCAo8Fw"
+                                                                                    allowfullscreen></iframe>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--Footer-->
+                                                                    <div class="modal-footer justify-content-center">
+                                                                        <span class="mr-4">Spread the word!</span>
+                                                                        <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+                                                                        <!--Twitter-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+                                                                        <!--Google +-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+                                                                        <!--Linkedin-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+
+                                                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--/.Content-->
+
+                                                            </div>
+                                                        </div>
+                                                        <!--Modal: Name-->
+
+                                                        <a>
+                                                            <img class="imgSet img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-5.jpg" alt="video"
+                                                                 data-toggle="modal" data-target="#modal5">
+                                                        </a>
+
+                                                    </div>
+                                                    <!-- Grid column -->
+                                                    <!-- Grid column -->
+                                                    <div class="col-lg-4 col-md-6 mb-4">
+                                                        <!--Modal: Name-->
+                                                        <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <!--Content-->
+                                                                <div class="modal-content">
+                                                                    <!--Body-->
+                                                                    <div class="modal-body mb-0 p-0">
+                                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/gsNY7TV4r1M"
+                                                                                    allowfullscreen></iframe>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <!--Footer-->
+                                                                    <div class="modal-footer d-block d-md-flex justify-content-center">
+                                                                        <span class="mr-4">Spread the word!</span>
+                                                                        <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+                                                                        <!--Twitter-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+                                                                        <!--Google +-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+                                                                        <!--Linkedin-->
+                                                                        <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+
+                                                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--/.Content-->
+
+                                                            </div>
+                                                        </div>
+                                                        <!--Modal: Name-->
+
+                                                        <a>
+                                                            <img class="imgSet img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-6.jpg" alt="video"
+                                                                 data-toggle="modal" data-target="#modal3">
+                                                        </a>
+
+                                                    </div>
+                                                    <!-- Grid column -->
+                                                </div>
+                                                <!-- Grid row -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane gallery_box" id="checking-savings-rates">
+                                        <img src="/Content/images/Slide-3.jpg" />
+                                        <img src="/Content/images/Slide-5.png" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    let event2Index = 0;
+    function moveEvent2Slide(direction) {
+        const track = document.querySelector('.event2-track');
+        const images = document.querySelectorAll('.event2-track img');
+        const imageWidth = images[0].clientWidth + 30;
+
+        event2Index += direction;
+        const maxIndex = images.length - Math.floor(document.querySelector('.event2-container').clientWidth / imageWidth);
+
+        if (event2Index < 0) event2Index = 0;
+        if (event2Index > maxIndex) event2Index = maxIndex;
+
+        track.style.transform = `translateX(-${event2Index * imageWidth}px)`;
+    }
+
+</script>
+
+<script>
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.getElementById("close");
+    const zoomInBtn = document.getElementById("zoom-in");
+    const zoomOutBtn = document.getElementById("zoom-out");
+
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    let scale = 1;
+
+    galleryItems.forEach(item => {
+        item.addEventListener("click", function () {
+            modal.style.display = "flex";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+            scale = 1; // Reset scale when a new image is opened
+            modalImg.style.transform = `scale(${scale})`;
+        });
+    });
+
+    closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    zoomInBtn.addEventListener("click", function () {
+        scale += 0.1; // Increase scale
+        modalImg.style.transform = `scale(${scale})`;
+    });
+
+    zoomOutBtn.addEventListener("click", function () {
+        if (scale > 0.1) {
+            scale -= 0.1; // Decrease scale
+            modalImg.style.transform = `scale(${scale})`;
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let scale = 1;
+        const zoomStep = 0.2;
+        let activeImg = null;
+
+        // Create Zoom Control Buttons
+        const zoomControls = document.createElement("div");
+        zoomControls.id = "zoomControls";
+        zoomControls.innerHTML = `
+        <button id="zoomIn">+</button>
+        <button id="zoomOut">-</button>
+    `;
+        zoomControls.style.position = "fixed";
+        zoomControls.style.bottom = "20px";
+        zoomControls.style.left = "50%";
+        zoomControls.style.transform = "translateX(-50%)";
+        zoomControls.style.zIndex = "1000";
+        zoomControls.style.display = "none"; // Initially hidden
+        document.body.appendChild(zoomControls);
+
+        // Function to reset zoom
+        function resetZoom() {
+            if (activeImg) {
+                activeImg.style.transform = "scale(1)";
+                scale = 1;
+            }
+        }
+
+        // Apply zoomable functionality
+        document.querySelectorAll(".zoomable").forEach(img => {
+            img.addEventListener("click", function () {
+                // Reset previous zoom if a new image is clicked
+                if (activeImg && activeImg !== this) {
+                    resetZoom();
+                }
+
+                activeImg = this;
+                zoomControls.style.display = "block"; // Show zoom buttons
+            });
+        });
+
+        // Zoom-In Button
+        document.getElementById("zoomIn").addEventListener("click", () => {
+            if (activeImg) {
+                scale += zoomStep;
+                activeImg.style.transform = `scale(${scale})`;
+            }
+        });
+
+        // Zoom-Out Button
+        document.getElementById("zoomOut").addEventListener("click", () => {
+            if (activeImg) {
+                scale -= zoomStep;
+                if (scale < 1) scale = 1; // Prevent shrinking below original size
+                activeImg.style.transform = `scale(${scale})`;
+            }
+        });
+
+        // Hide zoom controls when clicking outside an image
+        document.addEventListener("click", function (event) {
+            if (!event.target.classList.contains("zoomable")) {
+                zoomControls.style.display = "none";
+                resetZoom();
+            }
+        });
+    });
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let scale = 1;
+        const zoomStep = 0.2;
+
+        // Create Zoom Control Buttons
+        const zoomControls = document.createElement("div");
+        zoomControls.id = "zoomControls";
+        zoomControls.innerHTML = `
+
+    `;
+        zoomControls.style.position = "fixed";
+        zoomControls.style.bottom = "20px";
+        zoomControls.style.left = "50%";
+        zoomControls.style.transform = "translateX(-50%)";
+        zoomControls.style.zIndex = "1000";
+        zoomControls.style.display = "none"; // Initially hidden
+        document.body.appendChild(zoomControls);
+
+        // Detect when BaguetteBox lightbox is opened
+        document.addEventListener("click", function (event) {
+            if (event.target.closest("#baguetteBox-overlay")) {
+                const fullImage = document.querySelector("#baguetteBox-overlay .full-image");
+
+                if (fullImage) {
+                    scale = 1; // Reset scale
+                    fullImage.style.transform = `scale(${scale})`;
+                    zoomControls.style.display = "block"; // Show zoom buttons
+
+                    // Zoom-In Button
+                    document.getElementById("zoomIn").onclick = function () {
+                        scale += zoomStep;
+                        fullImage.style.transform = `scale(${scale})`;
+                    };
+
+                    // Zoom-Out Button
+                    document.getElementById("zoomOut").onclick = function () {
+                        scale -= zoomStep;
+                        if (scale < 1) scale = 1; // Prevent shrinking below original size
+                        fullImage.style.transform = `scale(${scale})`;
+                    };
+                }
+            } else {
+                zoomControls.style.display = "none"; // Hide buttons when closing the lightbox
+            }
+        });
+    });
+</script>

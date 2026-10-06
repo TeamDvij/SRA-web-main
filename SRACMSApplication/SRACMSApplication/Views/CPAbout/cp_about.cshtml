@@ -1,0 +1,406 @@
+﻿@model SRACMSApplication.Models.aboutModel
+@{
+    ViewBag.Title = "cp_about";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+<script src="~/Contents/vendor/jquery/jquery.min.js"></script>
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">आमच्या विषयी</h1>
+    </div>
+    <hr/>
+    <h1 class="h3 mb-0 text-gray-800">लागू कायदे व नियमावली</h1>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table  class="table table-bordered" style="font-size:small" id="dataTable1">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">#</th>
+                            <th style="text-align:center">अ.क्र.</th>
+                            <th class="tCenter">नियमावली</th>
+                            <th class="tCenter">वर्ष</th>
+                            <th style="text-align:center">Sr.No.</th>
+                            <th class="tCenter">Rule</th>
+                            <th class="tCenter">Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.LawRegulationTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <tr class="tCenter">
+                                <td align="center" width="10px"><input type="hidden" id="id1" value="@item.Data.id" /> @item.Index</td>
+                                <td style="text-align:center"><input style="width:50px; height:50px" type="text" id="col0" value="@item.Data.col0" /></td>
+                                <td style="text-align:left"><input multiple; style="width:700px; height:50px" type="text" id="col1" value="@item.Data.col1" /></td>
+                                <td style="text-align:left"><input style="width:100px; height:50px"  type="text" id="col2" value="@item.Data.col2"/></td>
+                                <td style="text-align:center"><input style="width:50px; height:50px" type="text" id="col_eng0" value="@item.Data.col_eng0" /></td>
+                                <td style="text-align:left"><input multiple; style="width:700px; height:50px" type="text" id="col_eng1" value="@item.Data.col_eng1" /></td>
+                                <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng2" value="@item.Data.col_eng2" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <input type="button" id="btnSave1" value="Save" class="btn btn-primary btn-user btn-block" />
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h1 class="h3 mb-0 text-gray-800">सन २०११  नुसार - कार्यक्षेत्रातील झोपडपट्टंयाचा तपशील</h1>
+           <div class="table-responsive">
+                    <table class="table table-bordered" style="font-size:small" id="dataTable2">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">#</th>
+                                <th style="text-align:center">अ.क्र.</th>
+                                <th class="tCenter">तपशील</th>
+                                <th class="tCenter">पुणे मनपा</th>
+                                <th class="tCenter">पिंपरी चिंचवड  मनपा </th>
+                                <th class="tCenter">एकूण</th>
+                                <th style="text-align:center">Sr.No.</th>
+                                <th class="tCenter">Details</th>
+                                <th class="tCenter">PMC</th>
+                                <th class="tCenter">PCMC </th>
+                                <th class="tCenter">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SlumDetailsTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                            {
+                                <tr class="tCenter">
+                                    <td align="center" width="10px"><input type="hidden" id="id2" value="@item.Data.id" />@item.Index</td>
+                                    <td style="text-align:left"><input style="width:50px; height:50px" type="text" id="col0" value="@item.Data.col0" /></td>
+                                    <td style="text-align:left"><input style="width:450px; height:50px" type="text" id="col1" value="@item.Data.col1" /></td>
+                                    <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col2" value="@item.Data.col2" /></td>
+                                    <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col3" value="@item.Data.col3" /></td>
+                                    <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col4" value="@item.Data.col4" /></td>
+                                    <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng0" value="@item.Data.col_eng0" /></td>
+                                    <td style="text-align:left"><input style="width:450px; height:50px" type="text" id="col_eng1" value="@item.Data.col_eng1" /></td>
+                                    <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng2" value="@item.Data.col_eng2" /></td>
+                                    <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng3" value="@item.Data.col_eng3" /></td>
+                                    <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng4" value="@item.Data.col_eng4" /></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+           <div class="form-group row">
+                    <div class="col-sm-3">
+                        <input type="button" id="btnSave2" value="Save" class="btn btn-primary btn-user btn-block" />
+                    </div>
+                </div>
+    <hr />
+    <h1 class="h3 mb-0 text-gray-800">झोपडपट्टयांचे जमीन मालकीनिहाय वर्गीकरण</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered" style="font-size:small" id="dataTable3">
+            <thead>
+                <tr>
+                    <th style="text-align:center">#</th>
+                    <th style="text-align:center">अ.क्र.</th>
+                    <th class="tCenter">मालकीहक्क</th>
+                    <th class="tCenter">पुणे मनपा झोपडपट्टी संख्या</th>
+                    <th class="tCenter">पुणे मनपा झोपड्यांची संख्या</th>
+                    <th class="tCenter">पिंपरी चिंचवड  मनपा झोपडपट्टी संख्या</th>
+                    <th class="tCenter">पिंपरी चिंचवड  मनपा झोपड्यांची संख्या</th>
+                    <th class="tCenter">एकूण झोपडपट्टी संख्या</th>
+                    <th class="tCenter">एकूण झोपड्यांची संख्या</th>
+                    <th style="text-align:center">Sr.No.</th>
+                    <th class="tCenter">Ownership</th>
+                    <th class="tCenter">PMC : Slums</th>
+                    <th class="tCenter">PMC : Huts</th>
+                    <th class="tCenter">PCMC : Slums</th>
+                    <th class="tCenter">PCMC : Huts</th>
+                    <th class="tCenter">Total Slums</th>
+                    <th class="tCenter">Total Huts</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OwnershipClassificationTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                {
+                    <tr class="tCenter">
+                        <td align="center" width="10px"><input type="hidden" id="id3" value="@item.Data.id" />@item.Index</td>
+                        <td style="text-align:center"><input style="width:50px; height:50px" type="text" id="col0" value="@item.Data.col0" /></td>
+                        <td style="text-align:left"><input style="width:150px; height:50px" type="text" id="col1" value="@item.Data.col1" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col2" value="@item.Data.col2" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col3" value="@item.Data.col3" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col4" value="@item.Data.col4" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col5" value="@item.Data.col5" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col6" value="@item.Data.col6" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col7" value="@item.Data.col7" /></td>
+                        <td style="text-align:center"><input style="width:50px; height:50px" type="text" id="col_eng0" value="@item.Data.col_eng0" /></td>
+                        <td style="text-align:left"><input style="width:150px; height:50px" type="text" id="col_eng1" value="@item.Data.col_eng1" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng2" value="@item.Data.col_eng2" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng3" value="@item.Data.col_eng3" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng4" value="@item.Data.col_eng4" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng5" value="@item.Data.col_eng5" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng6" value="@item.Data.col_eng6" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng7" value="@item.Data.col_eng7" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <input type="button" id="btnSave3" value="Save" class="btn btn-primary btn-user btn-block" />
+        </div>
+    </div>
+
+    <hr />
+    <h1 class="h3 mb-0 text-gray-800">कार्यक्षेत्रातील झोपड्यांची घनता</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered" style="font-size:small" id="dataTable4">
+            <thead>
+                <tr>
+                    <th style="text-align:center">#</th>
+                    <th style="text-align:center">अ.क्र.</th>
+                    <th class="tCenter">तपशील</th>
+                    <th class="tCenter">पुणे मनपा</th>
+                    <th class="tCenter">पिंपरी चिंचवड मनपा</th>
+                    <th class="tCenter">एकूण</th>
+                    <th style="text-align:center">Sr.No.</th>
+                    <th class="tCenter">Details</th>
+                    <th class="tCenter">PMC</th>
+                    <th class="tCenter">PCMC</th>
+                    <th class="tCenter">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SlumDensityTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                {
+                    <tr class="tCenter">
+                        <td align="center" width="10px"><input type="hidden" id="id3" value="@item.Data.id" />@item.Index</td>
+                        <td style="text-align:center"><input style="width:50px; height:50px" type="text" id="col0" value="@item.Data.col0" /></td>
+                        <td style="text-align:left"><input style="width:350px; height:50px" type="text" id="col1" value="@item.Data.col1" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col2" value="@item.Data.col2" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col3" value="@item.Data.col3" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col4" value="@item.Data.col4" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng0" value="@item.Data.col_eng0" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng1" value="@item.Data.col_eng1" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng2" value="@item.Data.col_eng2" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng3" value="@item.Data.col_eng3" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng4" value="@item.Data.col_eng4" /></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <input type="button" id="btnSave4" value="Save" class="btn btn-primary btn-user btn-block" />
+        </div>
+    </div>
+
+    <hr />
+    <h1 class="h3 mb-0 text-gray-800">झोपडपट्टी पुनर्वसन योजनांचा गोषवारा</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered" style="font-size:small" id="dataTable5">
+            <thead>
+                <tr>
+                    <th style="text-align:center">#</th>
+                    <th style="text-align:center">अ.क्र.</th>
+                    <th class="tCenter">तपशील</th>
+                    <th class="tCenter">प्रस्तावांची संख्या</th>
+                    <th class="tCenter">झोपडीधारकांची संख्या</th>
+                    <th style="text-align:center">Sr.No.</th>
+                    <th class="tCenter">Details</th>
+                    <th class="tCenter">Proposals</th>
+                    <th class="tCenter">Hut owners</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.slumPlanTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                {
+                    <tr class="tCenter">
+                        <td align="center" width="10px"><input type="hidden" id="id3" value="@item.Data.id" />@item.Index</td>
+                        <td style="text-align:center"><input style="width:50px; height:50px" type="text" id="col0" value="@item.Data.col0" /></td>
+                        <td style="text-align:left"><input style="width:650px; height:50px" type="text" id="col1" value="@item.Data.col1" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col2" value="@item.Data.col2" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col3" value="@item.Data.col3" /></td>
+                        <td style="text-align:center"><input style="width:50px; height:50px" type="text" id="col_eng0" value="@item.Data.col_eng0" /></td>
+                        <td style="text-align:left"><input style="width:650px; height:50px" type="text" id="col_eng1" value="@item.Data.col_eng1" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng2" value="@item.Data.col_eng2" /></td>
+                        <td style="text-align:left"><input style="width:100px; height:50px" type="text" id="col_eng3" value="@item.Data.col_eng3" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <input type="button" id="btnSave5" value="Save" class="btn btn-primary btn-user btn-block" />
+        </div>
+    </div>
+</div>
+
+<script>
+        $(function () {
+                $("#btnSave1").click(function () {
+                    //Loop through the Table rows and build a JSON array.
+                var abouts = new Array();
+                $("#dataTable1 TBODY TR").each(function () {
+                    var row = $(this);
+                    var about = {};
+                    about.id = $(this).find("td:eq(0) input[type='hidden']").val();
+                    about.col0 = $(this).find("td:eq(1) input[type='text']").val();
+                    about.col1 = $(this).find("td:eq(2) input[type='text']").val();
+                    about.col2 = $(this).find("td:eq(3) input[type='text']").val();
+                    about.col_eng0 = $(this).find("td:eq(4) input[type='text']").val();
+                    about.col_eng1 = $(this).find("td:eq(5) input[type='text']").val();
+                    about.col_eng2 = $(this).find("td:eq(6) input[type='text']").val();
+                    abouts.push(about);
+
+                });
+                //Send the JSON array to Controller using AJAX.
+                $.ajax({
+                    type: "POST",
+                    url: "../CPAbout/SaveAboutTableList",
+                    data: JSON.stringify(abouts),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        alert(r);
+                    }
+                });
+                });
+
+                $("#btnSave2").click(function () {
+                    //Loop through the Table rows and build a JSON array.
+                    var abouts = new Array();
+                    $("#dataTable2 TBODY TR").each(function () {
+                        var row = $(this);
+                        var about = {};
+                        about.id = $(this).find("td:eq(0) input[type='hidden']").val();
+                        about.col0 = $(this).find("td:eq(1) input[type='text']").val();
+                        about.col1 = $(this).find("td:eq(2) input[type='text']").val();
+                        about.col2 = $(this).find("td:eq(3) input[type='text']").val();
+                        about.col3 = $(this).find("td:eq(4) input[type='text']").val();
+                        about.col4 = $(this).find("td:eq(5) input[type='text']").val();
+                        about.col_eng0 = $(this).find("td:eq(6) input[type='text']").val();
+                        about.col_eng1 = $(this).find("td:eq(7) input[type='text']").val();
+                        about.col_eng2 = $(this).find("td:eq(8) input[type='text']").val();
+                        about.col_eng3 = $(this).find("td:eq(9) input[type='text']").val();
+                        about.col_eng4 = $(this).find("td:eq(10) input[type='text']").val();
+
+                        abouts.push(about);
+
+                    });
+                    //Send the JSON array to Controller using AJAX.
+                    $.ajax({
+                        type: "POST",
+                        url: "../CPAbout/SaveAboutTableList",
+                        data: JSON.stringify(abouts),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (r) {
+                            alert(r);
+                        }
+                    });
+                });
+                $("#btnSave3").click(function () {
+                    //Loop through the Table rows and build a JSON array.
+                    var abouts = new Array();
+                    $("#dataTable3 TBODY TR").each(function () {
+                        var row = $(this);
+                        var about = {};
+                        about.id = $(this).find("td:eq(0) input[type='hidden']").val();
+                        about.col0 = $(this).find("td:eq(1) input[type='text']").val();
+                        about.col1 = $(this).find("td:eq(2) input[type='text']").val();
+                        about.col2 = $(this).find("td:eq(3) input[type='text']").val();
+                        about.col3 = $(this).find("td:eq(4) input[type='text']").val();
+                        about.col4 = $(this).find("td:eq(5) input[type='text']").val();
+                        about.col5 = $(this).find("td:eq(6) input[type='text']").val();
+                        about.col6 = $(this).find("td:eq(7) input[type='text']").val();
+                        about.col7 = $(this).find("td:eq(8) input[type='text']").val();
+                        about.col_eng0 = $(this).find("td:eq(9) input[type='text']").val();
+                        about.col_eng1 = $(this).find("td:eq(10) input[type='text']").val();
+                        about.col_eng2 = $(this).find("td:eq(11) input[type='text']").val();
+                        about.col_eng3 = $(this).find("td:eq(12) input[type='text']").val();
+                        about.col_eng4 = $(this).find("td:eq(13) input[type='text']").val();
+                        about.col_eng5 = $(this).find("td:eq(14) input[type='text']").val();
+                        about.col_eng6 = $(this).find("td:eq(15) input[type='text']").val();
+                        about.col_eng7 = $(this).find("td:eq(16) input[type='text']").val();
+
+                        abouts.push(about);
+
+                    });
+                    //Send the JSON array to Controller using AJAX.
+                    $.ajax({
+                        type: "POST",
+                        url: "../CPAbout/SaveAboutTableList",
+                        data: JSON.stringify(abouts),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (r) {
+                            alert(r);
+                        }
+                    });
+                });
+                $("#btnSave4").click(function () {
+                    //Loop through the Table rows and build a JSON array.
+                    var abouts = new Array();
+                    $("#dataTable4 TBODY TR").each(function () {
+                        var row = $(this);
+                        var about = {};
+                        about.id = $(this).find("td:eq(0) input[type='hidden']").val();
+                        about.col0 = $(this).find("td:eq(1) input[type='text']").val();
+                        about.col1 = $(this).find("td:eq(2) input[type='text']").val();
+                        about.col2 = $(this).find("td:eq(3) input[type='text']").val();
+                        about.col3 = $(this).find("td:eq(4) input[type='text']").val();
+                        about.col4 = $(this).find("td:eq(5) input[type='text']").val();
+                        about.col_eng0 = $(this).find("td:eq(6) input[type='text']").val();
+                        about.col_eng1 = $(this).find("td:eq(7) input[type='text']").val();
+                        about.col_eng2 = $(this).find("td:eq(8) input[type='text']").val();
+                        about.col_eng3 = $(this).find("td:eq(9) input[type='text']").val();
+                        about.col_eng4 = $(this).find("td:eq(10) input[type='text']").val();
+
+                        abouts.push(about);
+                    });
+                    //Send the JSON array to Controller using AJAX.
+                    $.ajax({
+                        type: "POST",
+                        url: "../CPAbout/SaveAboutTableList",
+                        data: JSON.stringify(abouts),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (r) {
+                            alert(r);
+                        }
+                    });
+                });
+                $("#btnSave5").click(function () {
+                    //Loop through the Table rows and build a JSON array.
+                    var abouts = new Array();
+                    $("#dataTable5 TBODY TR").each(function () {
+                        var row = $(this);
+                        var about = {};
+                        about.id = $(this).find("td:eq(0) input[type='hidden']").val();
+                        about.col0 = $(this).find("td:eq(1) input[type='text']").val();
+                        about.col1 = $(this).find("td:eq(2) input[type='text']").val();
+                        about.col2 = $(this).find("td:eq(3) input[type='text']").val();
+                        about.col3 = $(this).find("td:eq(4) input[type='text']").val();
+                        about.col_eng0 = $(this).find("td:eq(5) input[type='text']").val();
+                        about.col_eng1 = $(this).find("td:eq(6) input[type='text']").val();
+                        about.col_eng2 = $(this).find("td:eq(7) input[type='text']").val();
+                        about.col_eng3 = $(this).find("td:eq(8) input[type='text']").val();
+
+                        abouts.push(about);
+                    });
+                    //Send the JSON array to Controller using AJAX.
+                    $.ajax({
+                        type: "POST",
+                        url: "../CPAbout/SaveAboutTableList",
+                        data: JSON.stringify(abouts),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (r) {
+                            alert(r);
+                        }
+                    });
+                });
+        });
+</script>

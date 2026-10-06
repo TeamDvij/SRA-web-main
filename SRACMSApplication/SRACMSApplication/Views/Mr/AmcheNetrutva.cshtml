@@ -1,0 +1,47 @@
+﻿@model SRACMSApplication.Models.about_amache_netrutvaModel
+@{
+    ViewBag.Title = "AmcheNetrutva";
+    //Layout = "~/Views/Shared/Master7.cshtml";
+    Layout = @Session["Layout"].ToString();
+}
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "आपले नेतृत्व" : "Our Leadership")
+            </h3>
+            <div class="col-md-12 table-container">
+                <table id="datatable" cellspacing="0">
+                    <tbody>
+                        @foreach (var item in Model.AmacheNetrutvaList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                    {
+                            <tr>
+                                <td style="width:12%;">
+                                    <img src="@Url.Content(item.Data.sadasya_photo_location)" />
+                                </td>
+                                <td width="30%">
+                                    <p class="pStyle">
+                                        <strong>@(Session["Lang"].ToString() == "mr" ? @item.Data.sadasya_name : @item.Data.sadasya_name_eng),</strong>
+                                        <br>
+                                        @(Session["Lang"].ToString() == "mr" ? @item.Data.designation : @item.Data.designation_eng )
+                                        <br /> @(Session["Lang"].ToString() == "mr" ? @item.Data.department : @item.Data.department_eng)
+                                    </p>
+                                </td>
+                                <td width="30%">
+                                    <p>@(Session["Lang"].ToString() == "mr" ? @item.Data.address_line1 : @item.Data.address_line1_eng)</p>
+                                    <p>@(Session["Lang"].ToString() == "mr" ? @item.Data.address_line2 : @item.Data.address_line2_eng)</p>
+                                    <p>@(Session["Lang"].ToString() == "mr" ? @item.Data.address_line3 : @item.Data.address_line3_eng)</p>
+                                    <p>@(Session["Lang"].ToString() == "mr" ? @item.Data.address_line4 : @item.Data.address_line4_eng)</p>
+                                    <p>@(Session["Lang"].ToString() == "mr" ? "दूरध्वनी क्रमांक – " + @item.Data.contact : "Telephone No. " + @item.Data.contact_eng)</p>
+                                    <p>@(Session["Lang"].ToString() == "mr" ? "ई मेल - " : "email - ")<a href="mailto:@item.Data.email">@item.Data.email </a></p>
+                                </td>
+                            </tr>
+                    }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

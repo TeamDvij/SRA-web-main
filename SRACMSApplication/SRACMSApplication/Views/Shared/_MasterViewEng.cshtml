@@ -1,0 +1,706 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Slum Rehabilitation Authority Pune, Pimpri Chinchwad Region</title>
+    <style>
+        
+        .arrowCss
+        {
+            margin-left: 5px;height:20px; float:right;
+        }
+        .logo_text {
+            padding-left: 0px;
+            margin-left: 0px;
+            /*border-left: 2px solid #a5a5a5;*/
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            margin-bottom: -1px;
+            background-color: #add8e640;
+            border-radius: 0px 20px 0px 20px;
+            /* border: 1px solid #ddd; */
+        }
+
+        .scroll_sec {
+            /*border-radius: 150px 0px 150px 0px;*/
+            background: #add8e640;
+            padding: 40px 0;
+            border-top: 5px solid orange;
+        }
+
+        .imgSet {
+            padding: 0px 15px 0px 5px;
+        }
+
+        .linkDiv {
+            background: #add8e640;
+            border-top: 5px solid orange;
+            border-bottom: 3px solid orange;
+            width: 100%;
+        }
+
+        .linkHeader {
+            text-align: center;
+            color: orange;
+            font-size: xx-large;
+            font-weight:600;
+            padding: 16px 0px 0px 0px;
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: 35px 45px;
+            margin-bottom: -1px;
+            background-color: #fff;
+            border: none;
+            text-align: center;
+            /*box-shadow: -2px -2px 6px 1px orange;*/
+            margin-top: 18px;
+
+        }
+    </style>
+    <style>
+        .h1Style {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: xx-large;
+        }
+
+        .h3Style {
+            color: #008eff ;
+            font-size: large;
+            line-height: 34px;
+        }
+
+        .pStyle {
+            color: #ff6a00;
+        }
+
+        .footer1 {
+            background: #6F6F8C;
+        }
+
+        .copy-right {
+            background: #00a9ff url('images/bg_orange.png');
+            padding: 1.5em 0em;
+            text-align: center;
+        }
+
+        a {
+            font-size: large;
+        }
+       .lnkTitle
+       {
+           font-size: smaller;
+       }
+    </style>
+    <link href="@Url.Content("~/Web/css/MyCss.css")" rel="stylesheet" />
+  
+    <link href="@Url.Content("~/Content/Web/css/MyCss.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Web/css/bootstrap.css")" rel="stylesheet" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="@Url.Content("~/Content/Web/js/jquery-1.11.0.min.js")"></script>
+    <!-- Custom Theme files -->
+    <link href="@Url.Content("~/Content/Web/css/style.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="@Url.Content("~/Content/Web/css/style1.css")" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Mr Hotel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--Google Fonts-->
+    <link href="@Url.Content("~/Content/Web/css/fontCss1.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Web/css/fontCss2.css")" rel="stylesheet" />
+    <!--google fonts-->
+    <!-- animated-css -->
+    <link href="@Url.Content("~/Content/Web/css/animate.css")" rel="stylesheet" type="text/css" media="all" />
+    <script src="@Url.Content("~/Content/Web/js/wow.min.js")"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!-- animated-css -->
+
+    <script src="@Url.Content("~/Content/Web/js/bootstrap.min.js")"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+
+  
+    @*scroll top*@
+    <style>
+        #scroll {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            text-indent: -9999px;
+            display: none;
+            -webkit-border-radius: 60px;
+            -moz-border-radius: 60px;
+            border-radius: 60px;
+        }
+
+            #scroll span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -8px;
+                margin-top: -12px;
+                height: 0;
+                width: 0;
+                border: 8px solid transparent;
+                border-bottom-color: #ffffff;
+            }
+
+            #scroll:hover {
+                background-color: #e74c3c;
+                opacity: 1;
+                filter: "alpha(opacity=100)";
+                -ms-filter: "alpha(opacity=100)";
+            }
+    </style>
+    <script>
+
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('#scroll').fadeIn();
+                } else {
+                    $('#scroll').fadeOut();
+                }
+            });
+            $('#scroll').click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+        });
+    </script>
+  
+</head>
+<body style="font-family:none;overflow-x:hidden">
+  
+    @*scroll top*@
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    @*social icon starts*@
+    
+    <div>
+        <div>
+            <!--header-top start here-->
+            <div class="top-header">
+                <div class="container">
+                    <div class="top-header-main">
+                        <div class="col-md-10 top-social wow bounceInLeft" data-wow-delay="0.3s">
+                            @*<ul>
+                                <li><h5>संपर्क :</h5></li>
+                                <li style="margin-right: 0em;"><b style="color:white">०२०-२५५७७९९९ / २५६३०२३४/३६ email : srapune@yahoo.in</b></li>
+                            </ul>*@
+                            <ul>
+                                <li style="margin-right: 0em;"><b style="color:white">@Session["topHeader"]</b></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 header-address wow bounceInRight" data-wow-delay="0.3s">
+                            <div class="region region-language">
+                                <div id="block-lang-dropdown-language" class="block block-lang-dropdown">
+
+
+                                    <div class="content sec-footerlist-cnt">
+                                        @*<form class="lang_dropdown_form language" id="lang_dropdown_form_language" action="/mr" method="post" accept-charset="UTF-8"><div>
+                                                <div class="form-item form-type-select form-item-lang-dropdown-select">
+                                             <select style="width: 80px; padding: 1px; class="lang-dropdown-select-element form-select" id="lang-dropdown-select-language" name="lang_dropdown_select">
+                                             <option value="mr" selected="selected" >मराठी</option><option value="en">English</option></select>
+
+                                            </div>
+
+                                            </div></form>*@
+                                        <ul>
+                                            <li>@Html.ActionLink("मराठी", "Change", "Language", new { LanguageAbbrevation = "mr" }, null)</li>
+                                                <li>@Html.ActionLink("English", "Change", "Language", new { LanguageAbbrevation = "en" }, null)</li>
+                                            @*<li>@Html.ActionLink("मराठी", "Home", "Home")</li>
+                                                <li>@Html.ActionLink("English", "Home", "Home")</li>*@
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+            <!--header-top end here-->
+            <!--header start here-->
+            @*<%--scond header starts--%>*@
+            <div class="container topContainer" style="width:100%;    background: white;">
+                <div class="row">
+                    <div class="col-md-1 wow bounceInLeft">
+                        <div class="pull-left logo">
+                            @*<a href="@Url.Content("~/Home/Home")"><img src="@Url.Content("~/Content/images/SRA-Logo.jpg")" class="img-responsive hvr-push" /></a>*@
+                            @*<a href="@Url.Content("~/Home/Home")"><img src="@Url.Content("~/Content/images/SRA-Logo.jpg")" class="img-responsive hvr-push" /></a>*@
+                            <a href="@Url.Content("~/Home/Home")"><img src="@Url.Content(@Session["sraLogo"].ToString())" class="img-responsive hvr-push" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 wow bounceInLeft">
+                        @* <a href="@Url.Content("~/Home/Home")"><img src="@Url.Content("~/Content/images/SRA-Logo_new.jpg")" class="img-responsive hvr-push" style="width:80%; height:134px" /></a>*@
+                        @*<a href="@Url.Content("~/Home/Home")"><img src="@Url.Content("~/Content/images/SRA-Logo.jpg")" class="img-responsive hvr-push" style="width:25%; height:130px" /></a>*@
+                        @*<h1 class="h1Style">झोपडपट्टी पुनर्वसन प्राधिकरण, पुणे व पिंपरी चिंचवड क्षेत्र, पुणे</h1>
+                        <h3 class="h3Style">(गृहनिर्माण विभाग, महाराष्ट्र शासन)</h3>*@
+                        <h1 class="h1Style">@Session["titleLine1"]</h1>
+                        <h3 class="h3Style">@Session["titleLine2"]</h3>
+                    </div>
+                    <div class="col-md-1 col-lg-offset-1 wow bounceInRight">
+                        <div class="pull-right">
+                            @*<img src="@Url.Content("~/Content/images/Satyamev-Logo.png")" class="img-responsive hvr-push" style="height:81px" />*@
+                            <img src="@Url.Content(@Session["satyamevLogo"].ToString())" class="img-responsive hvr-push" style="height:81px" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="border-bottom: 1px solid #ff4700;margin-bottom: 15px;box-shadow: rgb(255 71 0 / 86%) 0px 5px 7px 0px;">
+                    <div class="">
+                        @*                   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+                            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+                        <!------ Include the above in your HEAD tag ---------->
+                        <div id="header-area" class="header_area">
+                            <div class="header_bottom">
+                                <div class="container">
+                                    <div class="row">
+                                        <nav id="items" role="navigation" class="navbar navbar-default mainmenu">
+                                            <!-- Brand and toggle get grouped for better mobile display -->
+                                            <div class="navbar-header">
+                                                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                                                    <span class="sr-only">Toggle navigation</span>
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                </button>
+                                            </div>
+                                            <!-- Collection of nav links and other content for toggling -->
+                                            <div id="navbarCollapse" class="collapse navbar-collapse">
+                                                <ul id="fresponsive" class="nav navbar-nav dropdown">
+                                                    <li><a class="link-3" href="@Url.Content("~/Home/Home")">Home</a></li>
+                                                    @*<li class="dropdown"><a href="@Url.Content("~/Home/Home")">@Html.Label(SRACMSApplication.Resources.Language.Home)</a>*@
+                                                    <li class="dropdown">
+                                                        <a href="@Url.Content("#")">About
+                                                            <img src="@Url.Content("~/Content/images/downarrow.png")" class="img-responsive" style=" margin-left: 5px;height:20px; float:right;" />
+                                                            </a>
+                                                        <ul class="dropdown-menu">
+                                                            <li>@*<a class="" href="@Url.Content("~/About/VibhagiyMahiti")">विभागीय माहिती  </a>*@</li>
+                                                            <li><a href="@Url.Content("~/About/PradhikarnachiMahiti")">प्राधिकरणाची माहिती </a></li>
+                                                            <li><a href="@Url.Content("~/About/SansthechaAarakhada")">संस्थेचा आराखडा </a></li>
+                                                            <li><a href="@Url.Content("~/About/AmcheNetrutva")">आपले नेतृत्व </a></li>
+                                                            <li><a href="@Url.Content("~/About/SakshamSadasya")">सक्षम सदस्य (झो.पु.प्रा. समिती)</a></li>
+                                                            @*<li><a href="@Url.Content("~/About/PragatiAdhava")">प्रगती आढावा </a></li>*@
+                                                            @*<li><a href="@Url.Content("~/About/MahitiPustika")">माहिती पुस्तिका </a></li>*@
+                                                            <li><a href="@Url.Content("~/About/VarshikAhaval")">वार्षिक लेखा अहवाल </a></li>
+                                                            <li><a href="@Url.Content("~/About/Paripatrak")">परिपत्रके</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a class="link-3" href="@Url.Content("~/Prakalpa/Prakalpa")">Project </a>
+                                                        @*<ul class="dropdown-menu">
+                                                                <li><a href="@Url.Content("~/Prakalpa/Prakalpa")">झालेले प्रकल्प</a></li>
+                                                                <li><a href="@Url.Content("~/Prakalpa/Prakalpa")">चालू असलेले प्रकल्प</a></li>
+                                                                <li><a href="@Url.Content("~/Prakalpa/Prakalpa")">दाखल असलेले प्रकल्प</a></li>
+                                                                <li><a href="@Url.Content("~/Prakalpa/Prakalpa")">पात्रता यादी</a></li>
+                                                            </ul>*@
+                                                    </li>
+                                                    <li>
+                                                        <a class="link-3" href="@Url.Content("~/Home/SlumList")">Slum List</a>
+                                                    </li>
+                                                    @*<li>
+                                                            <a class="link-3" href="@Url.Content("~/ShasanNirnay/ShasanNirnay")">शासन निर्णय</a>
+                                                        </li>*@
+                                                    @*<li><a href="@Url.Content("~/Paripatrake/Paripatrake")">परिपत्रके </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="@Url.Content("~/ShasanNirnay/ShasanNirnay")">शासन निर्णय</a></li>
+                                                                <li><a href="@Url.Content("~/Paripatrake/Paripatrake")">शासन परिपत्रके</a></li>
+                                                                <li><a href="@Url.Content("~/Paripatrake/Paripatrake")">प्राधिकरणाचे परिपत्रके</a></li>
+                                                            </ul>
+                                                        </li>*@
+                                                    <li><a href="@Url.Content("~/ShasanNirnay/ShasanNirnay")">Government Resolution </a></li>
+                                                    <li><a href="@Url.Content("~/Home/ChaluGhadamodi")">News</a></li>
+                                                    <li>
+                                                        <a class="link-3" href="@Url.Content("~/Gallery/Gallery")">Gallery </a>
+                                                    </li>
+
+                                                    @*<li>
+                                                            <a class="link-3" href="@Url.Content("~/News/News")">बातम्या (चालू घडामोडी)</a>
+                                                        </li>*@
+                                                    <li class="dropdown">
+                                                        <a class="link-3" href="@Url.Content("#")">Civil Service Law
+                                                            <img src="@Url.Content("~/Content/images/downarrow.png")" class="img-responsive"style="margin-left: 5px;height:20px; float:right;" />
+                                                         </a>
+                                                        <ul class="dropdown-menu">
+                                                            <li class="arrow_top"></li>
+                                                            <li><a href="@Url.Content(@Session["RTI2005"].ToString())" class="marathi_font" target="_blank">माहितीचा अधिकार कायदा २००५ </a></li>
+                                                            <li><a href="@Url.Content(@Session["RTI4C"].ToString())" class="marathi_font" target="_blank">माहितीचा अधिकार कायदा ४ क</a></li>
+                                                            <li><a href="@Url.Content(@Session["nagarikachi_sanad"].ToString())" class="marathi_font" target="_blank">नागरिकांची सनद</a></li>
+                                                            <li><a href="@Url.Content(@Session["ceo_adhikar"].ToString())" class="marathi_font" target="_blank">सी.ई.ओ. अधिकार</a></li>
+                                                            <li><a href="@Url.Content(@Session["slum_act"].ToString())" class="marathi_font" target="_blank">झोपुप्रा कायदा </a></li>
+                                                            <li><a href="@Url.Content("~/Home/FAQ")">FAQ's </a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a class="link-3" href="@Url.Content("~/About/Contact")">Contact </a></li>
+                                                    @*<li><a class="link-3" href="@Url.Content("#")">साईट मॅप </a></li>*@
+                                                </ul>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div><!-- /.header_bottom -->
+
+                        </div>
+
+                        <script>
+                                $(function () {
+                                    setNavigation();
+                                });
+
+                                function setNavigation() {
+                                    var path = window.location.pathname;
+                                    path = path.replace(/\/$/, "");
+                                    path = decodeURIComponent(path);
+
+                                    $(".nav a").each(function () {
+                                        var href = $(this).attr('href');
+                                        if (path.substring(0, href.length) === href) {
+                                            $(this).closest('li').addClass('active');
+                                        }
+                                    });
+                                }
+                        </script>
+
+                        <script>
+                                (function ($) {
+                                    $(document).ready(function () {
+                                        $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                            $(this).parent().siblings().removeClass('open');
+                                            $(this).parent().toggleClass('open');
+                                        });
+                                    });
+                                })(jQuery);
+                        </script>
+                    </div>
+                </div>
+            </div>
+            @*<%--scond header ends--%>*@
+        </div>
+
+        @RenderBody()
+    </div>
+    @*iter mahiti css jss*@
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <style>
+        
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btnLink {
+  /*width: 150px;*/
+  height: 50px;
+  border: 2px solid orange;
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+  transition: 1s;
+  border-radius: 0px 20px 0px 20px;
+}
+
+.btnLink::before, .btnLink::after {
+  position: absolute;
+  /*background: #eee;*/
+  background:white;
+  z-index: -1;
+  transition: 1s;
+  content: '';
+}
+
+.btnLink::before {
+  height: 70px;
+  width: 300px;
+  border-radius: 0px 20px 0px 20px;
+}
+
+.btnLink::after {
+  width: 150px;
+  height: 30px;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.btnLink:hover::before {
+  width: 0px;
+  background: #00a9ff;
+}
+
+.btnLink:hover::after {
+  height: 0px;
+  background: #00a9ff;
+}
+
+.btnLink:hover {
+  background: #00a9ff;
+}
+        .aText {
+            color:black;
+            font-size:medium;
+            font-weight:600;
+        }
+    </style>
+    <div class="linkDiv">
+        <div class="Row">
+
+            <h3 class="linkHeader">इतर माहिती</h3>
+        </div>
+        <div class="row" style="margin-left:10px; margin-right:10px; margin-bottom: 5px;">
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a href="@Url.Content("~/Home/Niyamavali")" class="marathi_font aText">
+                           झो.पु.प्रा. नियमावली </>
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut">
+                        <a class="aText" href="@Url.Content("~/Home/VikasakList")">
+                            नोंदणीक्रुत विकासकांची यादी
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut">
+                        <a href="@Url.Content(@Session["yojanecheTappe"].ToString())" class="marathi_font aText" target="_blank">
+                            झो.पु.प्रा.योजनेचे टप्पे
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a href="@Url.Content("~/Home/JahirPrakatan")" class="marathi_font aText">
+                            &nbsp;&nbsp;जाहीर प्रकटन
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a class="aText" href="@Url.Content("~/Home/WorkAreaMap")">
+                            कार्यक्षेत्राचा नकाशा
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut">
+                        <a class="aText" href="@Url.Content(@Session["viksak_nodni_nikash"].ToString())" class="marathi_font aText" target="_blank">
+                            विकसक नोंदणी निकष
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut">
+                        <a href="@Url.Content("~/Home/SRA3C3D")" class="marathi_font aText">
+                            ३ क/ड आदेश
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a href="@Url.Content("~/Home/Darpatrak")" class="marathi_font aText">
+                           दरपत्रक
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a href="@Url.Content(@Session["mahiti_pustika"].ToString())" class="marathi_font aText" target="_blank">
+                            योजनेची माहिती पुस्तिका
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut">
+                        <a href="@Url.Content("~/Home/VividhNamune")" class="marathi_font aText">
+                            विविध नमुने
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut">
+                        <a class="aText" href="@Url.Content("~/Home/BuildingPermission")">
+                            परवानगी आणि प्रमाणपत्र
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a class="aText" href="@Url.Content("~/Home/Lottery")">
+                          लॉटरी योजनांची यादी
+                        </a>
+                    </li>
+                 
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a href="@Url.Content(@Session["sar_sangrah_pustika"].ToString())" class="marathi_font aText" target="_blank">
+                             सार संग्रह पुस्तिका
+                        </a>
+                    </li>
+                    @*<li class="list-group-item btnLink zoomOut">
+                        <a href="/Content/Documents/co-operativedept_सहकारी गृहनिर्माण संस्था नोंदणी कार्यपद्धती.pdf" class="marathi_font aText" target="_blank">
+                          सहकारी गृहनिर्माण संस्था नोंदणी कार्यपद्धती
+                        </a>
+                    </li>*@
+                    <li class="list-group-item btnLink zoomOut">
+                        <a href="@Url.Content(@Session["coop_hsg_society"].ToString())" class="marathi_font aText" target="_blank">
+                            सहकारी गृहनिर्माण संस्था नोंदणी कार्यपद्धती
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a href="@Url.Content(@Session["prastav_dakhal"].ToString())" class="marathi_font aText" target="_blank">
+                            झोपुप्रा प्रस्ताव दाखल कार्यपद्धती
+                        </a>
+                    </li>
+                    <li class="list-group-item btnLink zoomOut" style="border-radius: 0px 20px 0px 20px;">
+                        <a href="https://mhada.maharashtra.etenders.in/common/home.asp" class="marathi_font aText" target="_blank">
+                            ई-निविदा
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    @*@*css for other gov link*@
+    <style>
+        .titleText 
+        {
+            padding: 10px;
+            font-size:x-small;
+        }
+    </style>
+    <section class="scroll_sec" style="padding:25px">
+        <div class="container">
+            <div class="col-md-2">
+                <a href="https://www.maharashtra.gov.in" target="_blank" onclick="return sitevisit();">
+                    <img src="@Url.Content("~/Content/images/mhGov.png")" style="padding-left: 60px;" class="img-responsive hvr-push" alt="Maharashtra Govt." title="Maharashtra Govt. : External website that opens in a new window" />
+             
+                 </a>
+                <br /> <div style="margin-top:-6px;padding-left: 60px;"><span class="titleText">महाराष्ट्र शासन </span></div>
+            </div>
+            <div class="col-md-2">
+                <a href="https://www.nic.in" target="_blank" onclick="return sitevisit();">
+                    <img src="@Url.Content("~/Content/images/nic.png")" class="img-responsive hvr-push" alt="NIC" title="NIC : External website that opens in a new window" />
+                 </a>
+                <br /> <div style="margin-top:-6px"><span style="margin-left:10px" class="titleText">राष्ट्रीय सूचना-विज्ञान केन्द्र</span></div>
+            </div>
+           
+            <div class="col-md-2">
+                <a href="https://pmc.gov.in" target="_blank" onclick="return sitevisit();">
+                    <img src="@Url.Content("~/Content/images/pmc.png")" class="img-responsive hvr-push" alt="Pune Municipal Corporation" title="Pune Municipal Corporation: External website that opens in a new window" />
+                </a>
+                <br /><div><span style="margin-left: 25px;" class="titleText">पुणे महानगरपालिका</span></div>
+            </div>
+            <div class="col-md-2">
+                <a href="https://aaplesarkar.maharashtra.gov.in/en/" target="_blank" onclick="return sitevisit();">
+                    <img src="@Url.Content("~/Content/images/aaple-sarkar.png")" class="img-responsive hvr-push" alt="Aaple Sarker" title="Aaple Sarker : External website that opens in a new window" />
+                </a>
+                <br /> <div><span style="margin-left: 32px;" class="titleText">आपले सरकार </span></div>
+            </div>
+            <div class="col-md-2">
+                <a href="http://www.igrmaharashtra.gov.in/eASR/eASRCommon.aspx?hDistName=Pune" target="_blank" onclick="return sitevisit();">
+                    <img src="@Url.Content("~/Content/images/igr.png")" class="img-responsive hvr-push" alt="IGR" title="IGR : External website that opens in a new window" />
+                </a>
+                <br /><div><span style="margin-left:32px" class="titleText">नोंदणी व मुद्रांक विभाग</span></div>
+            </div>
+            <div class="col-md-2">
+                <a href="https://www.pcmcindia.gov.in" target="_blank" onclick="return sitevisit();">
+                    <img src="@Url.Content("~/Content/images/pcmc.png")" class="img-responsive hvr-push" alt="Pimpri Chinchwad Municipal Corporation" title="Pimpri Chinchwad Municipal Corporation: External website that opens in a new window" />
+                </a>
+                <br /><div><span class="titleText">पिंपरी व चिंचवड महानगरपालिका </span></div>
+            </div>
+       
+        </div>
+
+    </section>
+    <div class="copy-right">
+        <div class="container">
+            <div class="col-md-6 wow zoomIn" data-wow-delay="0.3s" style="color:white">
+                <b><h4 class="footerText">मुख्य कार्यालयीन पत्ता</h4></b>
+                <span class="ftr-line flm footerText" style="margin-top:12px;">
+                    @Session["address1"]</br>
+                    
+                </span>
+            </div>
+            
+            <div class="col-md-6 wow zoomIn" data-wow-delay="0.3s" style="color:white">
+                <b><h4 class="footerText">कार्यालयीन पत्ता</h4></b>
+                <span class="footerText" style="margin-top: 12px;">
+                   @Session["address2"]<br/>
+                </span>
+
+            </div>
+
+        </div>
+        
+    </div>
+    <div class="top-header">
+        <div class="container" style="padding:5px;">
+            <div class="top-header-main">
+                <div class="top-social wow bounceInLeft" data-wow-delay="0.3s">
+                    <p class="footerText" style="text-align:center; margin-top:5px;">© ही झोपडपट्टी पुनर्वसन प्राधिकरण-पुणे अधिकृत संकेतस्थळ आहे. सर्व हक्क राखीव  </p>
+                </div>
+                
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        $(".sendmail").click(function () {
+            var $buttonClicked = $(this);
+            debugger;
+            $.ajax({
+                type: "GET",
+                //url: '/Project/forwardAction?proj_id='+$buttonClicked.attr('proj_id')+'&forward_to='+$("#proj_at").val()+'&remark='+$("#proj_proposal_remark").val(),
+                url: '/Home/sendMail',
+                contentType: "application/json; charset=utf-8",
+                //data: { proj_id:$buttonClicked.attr('proj_id') , forward_to: $("#proj_at").val(), remark: $("#proj_proposal_remark").val()},
+                data: { name: $("#name").val(), mobile: $("#mobile").val(), email: $("#email").val(), remark: $("#remark").val() },
+                datatype: "text",
+                success: function (data, textStatus, jqXHR) {
+                    alert("Send mail!");
+                },
+                error: function () {
+                    alert("Please try again!");
+                }
+            });
+        });
+    });
+</script>

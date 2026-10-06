@@ -1,0 +1,101 @@
+﻿@model SRACMSApplication.Models.aboutModel
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = @Session["Layout"].ToString();
+    //Layout = "~/Views/Shared/Master7.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+
+<!-- Add jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/webcss/tabs.css" rel="stylesheet" />
+
+
+<div class="sramain" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "संपर्क-अधिकारी व कर्मचारी" : "Liaison Officer and Staff")
+            </h3>
+        </div>
+        <div>
+            <p><strong class="fs-5">नागरीकांची भेटीची वेळ </strong></p>
+            <p><strong>मुख्य कार्यकारी अधिकारी :</strong> कार्यालयीन वेळेत <span class="fw-bold" style="color: #dc3545;">दु. ३:०० ते सांय. ४:००</span></p>
+            <p><strong>इतर अधिकारी :</strong> कार्यालयीन वेळेत<span class="fw-bold" style="color: #dc3545;"> स. १०:०० ते सांय. ६:००</span></p>
+        </div>
+        <div class="col-md-12 table-container">
+            <table id="datatable"  style="padding:10px">
+                <thead>
+                    <tr>
+                        <th style="text-align:center; width:1%;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                        <th style="text-align:center; width:15%;">@(Session["Lang"].ToString() == "mr" ? "अधिकारी / कर्मचारी नाव" : "Officer / Employee Name") </th>
+                        <th style="text-align:center; width:15%;">@(Session["Lang"].ToString() == "mr" ? "पदनाम" : "Designation")</th>
+                        <th style="text-align:center; width:13%;">@(Session["Lang"].ToString() == "mr" ? "कार्यालयीन दूरध्वनी" : "Office Telephone")</th>
+                        <th style="text-align:center; width:12%;">@(Session["Lang"].ToString() == "mr" ? "बसण्याचे ठिकाण" : "Sitting Place")</th>
+                        <th style="text-align:center; width:15%;">@(Session["Lang"].ToString() == "mr" ? "कार्य" : "Work")</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ContactOfficerTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                    {
+                        <tr>
+                            @*<td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col0 : @item.Data.col_eng0)</td>*@
+                            <td style="text-align:center">@item.Index</td>
+                            <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col1 : @item.Data.col_eng1)</td>
+                            <td style="text-align:left">@(Session["Lang"].ToString() == "mr" ? @item.Data.col2 : @item.Data.col_eng2)</td>
+                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col3 : @item.Data.col_eng3)</td>
+                            <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.col4 : @item.Data.col_eng4)</td>
+                            <td style="text-align:left">
+                                @(Session["Lang"].ToString() == "mr" ? @item.Data.col5 : @item.Data.col_eng5)
+                                @if (@item.Data.col6 != null)
+                                {
+                                    @*<br /> <a href="@Url.Content(@item.Data.col6)" class="marathi_font" style="font-size:small;" target="_blank"> @(Session["Lang"].ToString() == "mr" ? "अधिक माहिती..." : "Read More...")</a>*@
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add DataTables CSS -->
+
+<script>
+    $(document).ready(function() {
+        var lang = '@Session["Lang"].ToString()';
+
+        // Initialize DataTable
+        var table = $('#datatable').DataTable({
+            "paging": true,
+            "pageLength": 5,
+            "lengthMenu": [5,10, 25, 50, 100],
+            "language": {
+                "url": lang === 'mr' ?
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/mr.json' :
+                    '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": [5] }, // Disable sorting for View column
+                { "searchable": false, "targets": [0,5] } // Disable search for Sr.No and View columns
+            ]
+        });
+
+        // Add search input functionality
+        $('#searchInput').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+
+    });
+</script>
+
+
+
+

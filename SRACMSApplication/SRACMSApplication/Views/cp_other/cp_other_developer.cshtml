@@ -1,0 +1,124 @@
+﻿@model SRACMSApplication.Models.other_developerModel
+@{
+    ViewBag.Title = "cp_other_developer";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+<script src="~/Contents/vendor/jquery/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#datatable').dataTable({
+            order: [],
+            columnDefs: [{ orderable: false, targets: [0,1,2,3,4] }]
+        }),
+        $("[data-toggle=tooltip]").tooltip();
+
+    });
+
+</script>
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">नोंदणीकृत विकसकांची यादी</h1>
+        <a href="@Url.Content("~/cp_other/cp_other_developer_addedit")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            Add New
+        </a>
+    </div>
+    @using (Html.BeginForm("cp_other_developer", "cp_other", FormMethod.Get))
+    {
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:small" id="dataTable">
+                    <thead>
+
+                        <tr style="height:46px;">
+                            <th>अ.क्र.</th>
+                            <th>विकसक संस्थेचे नाव</th>
+                            <th>विकसक संस्थेचा पत्ता</th>
+                            <th>दूरध्वनी / मोबाईल क्रमांक</th>
+                            <th>नोंदणीचा वर्ग</th>
+                            <th>नोंदणी क्रमांक</th>
+                            <th>नोंदणी दिनांक</th>
+                            <th>पूर्ण केलेले प्रकल्प</th>
+                            <th>सुरु असलेले प्रकल्प</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.developerList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <tr class="tCenter" style="@(item.Data.active_status =="A" ? "color:Default" : "color:Red")">
+                                <td class="tCenter"width="10px">@item.Index</td>
+                                <td width="500px">@item.Data.dev_name</td>
+                                <td width="700px">@item.Data.dev_address</td>
+                                <td>@item.Data.dev_contact</td>
+                                <td align="center">@item.Data.dev_class</td>
+                                <td width="300px">@item.Data.dev_registration_no</td>
+                                @if (@item.Data.dev_registration_date.ToString("dd-MM-yyyy") != "01-01-1900")
+                                {
+                                    <td style="text-align:center" width="150">@item.Data.dev_registration_date.ToString("dd-MM-yyyy")</td>
+                                }
+                                @if (@item.Data.dev_registration_date.ToString("dd-MM-yyyy") == "01-01-1900")
+                                {
+                                    <td></td>
+                                } 
+                                @if (@item.Data.completed_projects != "0")
+                                {
+                                    <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.completed_projects : @item.Data.completed_projects_eng)</td>
+                                }
+                                @if (@item.Data.completed_projects == "0")
+                                {
+                                    <td></td>
+                                }
+                                @if (@item.Data.current_projects != "0")
+                                {
+                                    <td style="text-align:center">@(Session["Lang"].ToString() == "mr" ? @item.Data.current_projects : @item.Data.current_projects_eng)</td>
+                                }
+                                @if (@item.Data.current_projects == "0")
+                                {
+                                    <td></td>
+                                }
+                                <td>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-fw fa-wrench"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink">
+                                            <a href="@Url.Content("~/cp_other/cp_other_developer_addedit?id="+@item.Data.id)" class="dropdown-item edit" data-id="@item.Data.id">Edit</a>
+                                            <a href="" class="dropdown-item activeDeactive" data-id="@item.Data.id">@(item.Data.active_status == "A" ? "Remove" : "Add Again")</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+@*script for activate deactivate*@
+<script>
+        $(function () {
+            $(".activeDeactive").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                $.ajax({
+                    type: "Get",
+                    url: '../cp_other/cp_other_developer_activeDeactive',
+                    contentType: "application/json; charset=utf-8",
+                    data: { "id": id },
+                    datatype: "text",
+                    success: function (data, textStatus, jqXHR) {
+                        alert(textStatus);
+                    },
+                    error: function () {
+                        alert("Successfully Saved!");
+                    }
+                });
+            });
+        });
+</script>

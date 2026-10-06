@@ -1,0 +1,122 @@
+﻿@model SRACMSApplication.Models.other_rti_4cModel
+@{
+    ViewBag.Title = "rti4c_addedit";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+<script src="@Url.Content("~/Content/Web/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Content/Web/js/jquery-3.5.1.min.js")"></script>
+
+@if (@ViewBag.Message != null)
+{
+    <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+    </script>
+}
+
+@if (@ViewBag.error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.error");
+        };
+    </script>
+}
+
+@using (Html.BeginForm("rti4c_addedit", "cp_other", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Add/Edit माहितीचा अधिकार कायदा ४ क</h1>
+            <a href="@Url.Content("~/cp_other/rti4c")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                Back to List
+            </a>
+        </div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h4 style="font-size:medium; color:green">@ViewBag.Message</h4>
+            <a href="@Url.Content("~/cp_other/rti4c_addedit")" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                Add New
+            </a>
+        </div>
+
+        <!-- Content Row -->
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("वर्ष")
+                        @Html.TextBox("year", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.year)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Year(eng)")
+                        @Html.TextBox("year_eng", null, new { @class = "form-control form-control-user", @required = "required" })
+                        @Html.ValidationMessageFor(a => a.year_eng)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("Upload File")
+                        @if (Model.doc_name != null)
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".pdf" />
+                        }
+                        else
+                        {
+                            <input type="file" id="file" name="postedFile" accept=".pdf" required />
+                        }
+                    </div>
+                    <div class="col-sm-6">
+                        @if (Model.doc_name != null)
+                        {
+                            @Html.Label("Current File")
+                            <a href="@Url.Content(Model.doc_location+Model.doc_name)" class="marathi_font" target="_blank">
+                                <img src="~/Content/images/pdf-logo.png" width="25" height="25">
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block" />
+                    </div>
+                </div>
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+}
+@if (@ViewBag.fileExtensionMessage != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.fileExtensionMessage");
+        };
+    </script>
+}
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+    })
+    $('#file').on('change', function () {
+        var val = $(this).val().toLowerCase();
+        var regex = new RegExp("(.*?)\.(pdf)$");
+        if (!(regex.test(val))) {
+            $(this).val('');
+            alert('Select pdf file only!');
+        }
+    });
+</script>

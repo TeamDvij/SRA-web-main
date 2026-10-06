@@ -1,0 +1,147 @@
+﻿@model SRACMSApplication.Models.aboutModel
+@{
+    ViewBag.Title = "PradhikarnachiMahiti";
+    Layout = @Session["Layout"].ToString();
+    //Layout = "~/Views/Shared/Master7.cshtml";
+}
+<style>
+    .scrollable-div {
+        height: 635px; /* Fixed height */
+        overflow-y: scroll; /* Enables vertical scrolling */
+        /*border: 1px solid #ccc;*/ /* Optional, for better visibility */
+        /*padding: 10px;*/
+
+    }
+    .b{
+        color:antiquewhite;
+    }
+</style>
+<div class="sramain scrollable-div" id="targetSection">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+                @(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची माहिती" : "SRA Information")
+            </h3>
+        </div>
+        <div class="col-12" style="padding: 25px;">
+
+            <p class="mb-3 fs-5 text-start">
+                <span class="d-block" style="font-family: 'TrioDevanagari'; line-height: 40px;" &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;>
+                    @*@(Session["Lang"].ToString() == "mr" ? @Model.line1 : Model.line_eng1)*@
+                    पुणे शहर हे महाराष्ट्राची सांस्कृतिक राजधानी म्हणून आणि पिंपरी-चिंचवड हे शहर उद्योग नगरी म्हणून ओळखले जाते.
+                    पुणे आणि पिंपरी-चिंचवड या शहरामध्ये उद्योग, व्यवसाय, शिक्षण तसेच रोजगार यासाठी देशाच्या अन्य भागातून मोठ्या प्रमाणात लोक स्थलांतरित होतात.
+                    स्थलांतरित होणाऱ्या लोकांना किफायतशीर दरातील निवाऱ्याची सोय उपलब्ध होत नसल्याने, झोपडपट्टीमध्ये वास्तव्य करणे भाग पडते.
+                    सद्यस्थितीत पुणे शहरामध्ये ४८६ झोपडपट्ट्यामध्ये साधारण <b>१,६५,०००</b> एवढ्या कुटुंबाचे वास्तव्य असून शहराच्या एकूण लोकसंख्येच्या सुमारे <b>२८%</b>लोक झोपडपट्टीत राहत आहेत.
+                    पिंपरी-चिंचवड महानगरपालिका क्षेत्रात ७१ झोपडपट्ट्या असून त्यामध्ये सुमारे <b>३५,२६१</b> कुटुंबाचे वास्तव्य आहे.
+                    शहराच्या एकूण लोकसंख्येच्या सुमारे <b>१४.७८</b> टक्के लोक झोपडपट्टीत राहत आहेत. झोपडपट्टीतील अस्वच्छ व अनारोग्य असलेल्या परिस्थितीत तेथील लोक खडतर अवस्थेत जीवन कंठीत असतात. सर्वसामान्य जनतेप्रमाणे झोपडीधारकाचे स्वत:च्या घराचे स्वप्न असते. या स्वप्नपूर्तीसाठी महाराष्ट्र शासन कटिबद्ध आहे.
+
+                </span>
+            </p>
+
+            <p class="mb-3 fs-5 text-start">
+                <span class="d-block" style="font-family: 'TrioDevanagari'; line-height: 40px;">
+                    महाराष्ट्र शासनाच्या महत्वाकांक्षी धोरणानुसार, झोपडपट्टीधारकांना आवश्यक त्या सोयी सुविधायुक्त मोफत घर/सदनिका उपलब्ध करून देऊन त्यांचे राहणीमान
+                    व जीवनमान उंचावणे यासाठीचे एक प्रभावी अभियान म्हणजे महाराष्ट्र शासनाची झोपडपट्टी पुनर्वसन योजना होय.
+                    या योजनेमध्ये शासनाने झोपडपट्टीने व्यापलेल्या जमिनीचा साधनसंपत्ती म्हणून सुयोग्य वापर करून प्रोत्साहनात्मक चटईक्षेत्र निर्देशांक अनुज्ञेय करून झोपडपट्टी पुनर्वसन योजना राबविली जाते.
+                    त्यासाठी शासनाने झोपडपट्टी पुनर्वसन प्राधिकरणाची स्थापना केली आहे.
+                </span>
+            </p>
+
+            <p class="mb-3 fs-5 text-start">
+                <span class="d-block" style="font-family: 'TrioDevanagari'; line-height: 40px;">
+                    शासनाने प्राधिकरणाच्या माध्यमातून पात्र झोपडीधारकांना त्यांच्या स्वप्नातील मालकी हक्काचे घर विनामूल्य देवू केले आहे. तसेच <b>दि. १६ मे, २०१८</b> रोजीच्या शासन निर्णयानुसार,
+                    असंरक्षित झोपडीधारकांसाठी सशुल्क योजनेच्या माध्यमातून झोपडीधारकांच्या स्वप्नाला बळकटी प्राप्त होत आहे.
+                    झोपडपट्टी मुक्त शहर करणे हा प्राधिकरणाचा ध्यास आहे. “अल्पायुषी प्राधिकरण आणि पुनर्विकास चिरंतर” झोपडपट्टी पुनर्वसन योजनेचे ध्येय आहे.
+                </span>
+            </p>
+
+            <p class="mb-3 fs-4 text-start" style="color:#004d99;"><b>@(Session["Lang"].ToString() == "mr" ? "स्थापना" : "Establishment")</b></p>
+            <p class="mb-3 fs-5 text-start">
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.about_line_sthapana : Model.about_line_sthapana_eng)
+                </span>
+            </p>
+
+            <p class="mb-3 fs-4 text-start" style="color:#004d99;"><b>@(Session["Lang"].ToString() == "mr" ? "संबधित वैधानिक तरतुदी" : "RELEVANT STATUTORY PROVISIONS")</b></p>
+            <p class="mb-3 fs-5 text-start">
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.line8 : Model.line_eng8)
+                </span>
+                <br />
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.line9 : Model.line_eng9)
+                </span>
+            </p>
+
+            <p class="mb-3 fs-4 text-start" style="color:#004d99;"><b>@(Session["Lang"].ToString() == "mr" ? "उद्देश" : "Objectives")</b></p>
+            <p class="mb-3 fs-5 text-start">
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.line5 : Model.line_eng5)
+                </span><br />
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.line6 : Model.line_eng6)
+                </span><br />
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? Model.line7 : Model.line_eng7)
+                </span><br />
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? Model.line7_1 : Model.line_eng7_1)
+                </span>
+            </p>
+
+            <p class="mb-3 fs-4 text-start" style="color:#004d99;"><b>@(Session["Lang"].ToString() == "mr" ? "कार्यक्षेत्र" : "Workspace")</b></p>
+            <p class="mb-3 fs-5 text-start">
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.line3 : Model.line_eng3)
+                </span><br />
+                <span class="d-block" style="font-family: 'TrioDevanagari';">
+                    @(Session["Lang"].ToString() == "mr" ? @Model.line4 : Model.line_eng4)
+                </span>
+            </p>
+
+            <p class="mb-3 fs-4 text-start" style=" font-family 'TrioDevanagari' ;color:#004d99;"><b>@(Session["Lang"].ToString() == "mr" ? "प्राधिकरण्याच्या कामकाजासंदर्भातील अधिनियम, नियम व नियमावली" : "Acts, Rules and Regulations relating to the functioning of the Authority")</b></p>
+            <div class="table-responsive">
+                <table id="datatable" style="padding:10px" class="fs-5">
+                    <thead>
+                        <tr>
+                            <th class="fs-5" style="text-align: center; font-family: 'TrioDevanagari'; width: 1%;">@(Session["Lang"].ToString() == "mr" ? "अ.क्र." : "Sr.No.")</th>
+                            <th class="fs-5" style="text-align: center; font-family: 'TrioDevanagari'; width: 15%;">@(Session["Lang"].ToString() == "mr" ? "अधिनियम, नियम व नियमावली" : "Acts, Rules and Regulations")</thstyle="text-align:center;>
+                            <th class="fs-5" style="text-align: center; font-family: 'TrioDevanagari'; width: 5%;">@(Session["Lang"].ToString() == "mr" ? "वर्ष" : "Year")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.LawRegulationTableList.Select((x, i) => new { Data = x, Index = i + 1 }))
+                        {
+                            <tr>
+                                <td class="text-center fs-5" style="font-family: 'TrioDevanagari';">
+                                    @(
+                                    Session["Lang"].ToString() == "mr" ? @item.Data.col0 : item.Data.col_eng0
+                                    )
+                                </td>
+                                <td class="fs-5" style="font-family: 'TrioDevanagari';">
+                                    @(
+                                    Session["Lang"].ToString() == "mr" ? @item.Data.col1 : item.Data.col_eng1
+                                    )
+                                </td>
+                                <td class="text-center fs-5" style="font-family: 'TrioDevanagari';">
+                                    @(
+                                    Session["Lang"].ToString() == "mr" ? @item.Data.col2 : item.Data.col_eng2
+                                    )
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

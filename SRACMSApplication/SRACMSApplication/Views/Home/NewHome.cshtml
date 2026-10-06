@@ -1,0 +1,460 @@
+﻿@model SRACMSApplication.Models.homeModel
+@{
+    ViewBag.Title = "NewHome";
+    Layout = "~/Views/Shared/_newMaster1.cshtml";
+}
+
+
+<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/Content/images/02.jpg" class="d-block w-100" alt="nvd2025">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Content/images/02.png" class="d-block w-100" alt="IC slider">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Content/images/07.png" class="d-block w-100" alt="Delhi pc slider">
+        </div>
+        @*<div class="carousel-item">
+            <img src="~/Content/images/08.png" class="d-block w-100" alt="Delhi pc slider">
+        </div>*@
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="press-link-icon">
+    <div class="fact-icon">
+        <a href="@Url.Content(@Session["RTI2005"].ToString())" target="_blank" rel="noopener">
+            <i class="fa-solid fa-envelope fa-bounce" style="--fa-bounce-start-scale-x: 1;--fa-bounce-start-scale-y: 1;--fa-bounce-jump-scale-x: 1;--fa-bounce-jump-scale-y: 1;--fa-bounce-land-scale-x: 1;--fa-bounce-land-scale-y: 1;--fa-bounce-rebound: 0;"></i>
+            @(Session["Lang"].ToString() == "mr" ? "नवीनतम" : "Latest")
+        </a>
+    </div>
+    <div class="fact-icon">
+        <a href="#" target="_blank" rel="noopener">
+            <i class="fa-solid fa-envelope fa-bounce" style="--fa-bounce-start-scale-x: 1;--fa-bounce-start-scale-y: 1;--fa-bounce-jump-scale-x: 1;--fa-bounce-jump-scale-y: 1;--fa-bounce-land-scale-x: 1;--fa-bounce-land-scale-y: 1;--fa-bounce-rebound: 0;"></i>
+            @(Session["Lang"].ToString() == "mr" ? "माहितीचा अधिकार कायदा २००५" : "RTI Act 2005")
+        </a>
+    </div>
+    <div class="fact-icon">
+        <a href="#" target="_blank" rel="noopener">
+            <i class="fa-solid fa-envelope fa-bounce" style="--fa-bounce-start-scale-x: 1;--fa-bounce-start-scale-y: 1;--fa-bounce-jump-scale-x: 1;--fa-bounce-jump-scale-y: 1;--fa-bounce-land-scale-x: 1;--fa-bounce-land-scale-y: 1;--fa-bounce-rebound: 0;"></i>
+            @(Session["Lang"].ToString() == "mr" ? "लॉटरी" : "Lottery")
+        </a>
+    </div>
+    <div class="fact-icon">
+        <a href="~/Home/Darpatrak" target="_blank" rel="noopener">
+            <i class="fa-solid fa-envelope fa-bounce" style="--fa-bounce-start-scale-x: 1;--fa-bounce-start-scale-y: 1;--fa-bounce-jump-scale-x: 1;--fa-bounce-jump-scale-y: 1;--fa-bounce-land-scale-x: 1;--fa-bounce-land-scale-y: 1;--fa-bounce-rebound: 0;"></i>
+            @(Session["Lang"].ToString() == "mr" ? "दरपत्रके / ई निविदा " : "Quotation/Tenders")
+        </a>
+    </div>
+</div>
+<div>
+    <img >
+</div>
+
+<div>
+    <div class="background">
+        <div class="container d-flex justify-content-between">
+            <!-- Team Section (Left Container) -->
+            <div class="team-container col-md-3 " style=" width: 10.666667%; ">
+                <div class="team teamback">
+                    <div class="team-main">
+                        <div class="team-row d-flex justify-content-center">
+                            <!-- Minister 1 -->
+                            <div class="team">
+                                <div class="ih-item">
+                                    <div class="img"><img src="@Url.Content(@Model.minister1_Photo)" alt="img" class="img-responsive"></div>
+                                </div>
+                                <div class="team-bottom">
+                                    <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister1_Name : @Model.minister1_Name_eng)</h6>
+                                    <p style="color:#c42738;font-weight:bold;">@(Session["Lang"].ToString() == "mr" ? "माननीय मुख्यमंत्री" : "Hon. Chief Minister")</p>
+                                </div>
+                            </div>
+
+                            <!-- Minister 2 -->
+                            <div class="team">
+                                <div class="ih-item">
+                                    <div class="img"><img src="@Url.Content(@Model.minister2_Photo)" alt="img" class="img-responsive"></div>
+                                </div>
+                                <div class="team-bottom">
+                                    <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister2_Name : @Model.minister2_Name_eng)</h6>
+                                    <p style="color:#c42738;font-weight:bold;">@(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री तथा माननीय गृहनिर्माण मंत्री" : "Hon. Deputy Chief Minister and Hon. Housing Minister")</p>
+                                </div>
+                            </div>
+
+                            <!-- Minister 3 -->
+                            <div class="team">
+                                <div class="ih-item">
+                                    <div class="img"><img src="@Url.Content(@Model.minister3_Photo)" alt="img" class="img-responsive"></div>
+                                </div>
+                                <div class="team-bottom">
+                                    <h6>@(Session["Lang"].ToString() == "mr" ? @Model.minister3_Name : @Model.minister3_Name_eng)</h6>
+                                    <p style="color:#c42738;font-weight:bold;">@(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री" : "Hon. Deputy Chief Minister")</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room Section (Right Container) -->
+            <div >
+                <div class="room-container col-md-12">
+                    <div class="rooms-main" style="margin-top: -110px;">
+                        <div class="rooms-top">
+                            <div class="rooms-left wow slideInLeft">
+                                <div class="rooms-text">
+                                    <h2><b>@(Session["Lang"].ToString() == "mr" ? "झोपडपट्टी पुनर्वसन प्राधिकरण, पुणे व पिंपरी चिंचवड क्षेत्र, पुणे" : "Slum Rehabilitation Authority, Pune")</b></h2>
+                                    <div class="row">
+                                        <div class="rooms-img col-md-4">
+                                            <div class="luxury-block">
+                                                <img src="@Url.Content(@Model.sra_map)" alt="" class="img-responsive img-rounded hvr-push  c1Style" style="height:110%; width:100%;">
+                                            </div>
+                                        </div>
+                                        <div class=" rooms-text col-md-7">
+                                            <div class="container">
+                                                <table border="1">
+
+                                                    <tr >
+                                                        <td border="1" style="width:103px;"><strong>कार्यक्षेत्र</strong></td>
+                                                        <td border="1"><strong>झोपड्यांची संख्या</strong></td>
+                                                        <td border="1"><strong>कुटुंबांची संख्या</strong></td>
+
+                                                    </tr>
+                                                    <tr >
+                                                        <td border="1">पुणे</td>
+                                                        <td border="1">486</td>
+                                                        <td border="1">1,65,000</td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td border="1">पिंपरी-चिंचवड</td>
+                                                        <td border="1">71</td>
+                                                        <td border="1">35,261</td>
+                                                    </tr>
+
+                                                </table>
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <td><strong>झोपुप्रा स्थापना</strong></td>
+                                                                    <td> ३० जून २००५</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><strong>उद्देश</strong></td>
+                                                                    <td>झोपडपट्टीवासीयांना स्वतःच्या घराची स्वप्नपूर्ततेसाठी सर्व सोयी सुविधायुक्त ३०० चौ. फुट क्षेत्राची सदनिका उपलब्ध करून देणे</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><strong>प्रमुख उद्देश</strong></td>
+                                                                    <td>झोपडपट्टी मुक्त शहरांचे निर्माण, जीवनमान सुधारणा</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td><strong>योजना प्रकार</strong></td>
+                                                                    <td>भूमीचा सुयोग्य वापर, प्रोत्साहनात्मक योजना</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><strong>ध्येय</strong></td>
+                                                                    <td>"अल्पायुषी प्राधिकरण आणि पुनर्विकास चिरंतर"</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><strong>लक्ष्य</strong></td>
+                                                                    <td>झोपडपट्टी क्षेत्राच्या पुनर्विकासाद्वारे घरांची सुविधा मिळवणे</td>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="b-example-divider" style=" height: 2rem; background-color: #f4f5ff; border: solid rgba(0, 0, 0, .15); border-width: 1px 0; "></div>
+
+@*<div class=" d-flex justify-content-between py-4 my-4 border-top">*@
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="current-section">
+                <div class="customTabs" style="padding: 0;">
+                    <div class="tabs-wrap">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="tab1" data-bs-toggle="tab" data-bs-target="#menu1" type="button" role="tab" aria-controls="home" aria-selected="true">
+                                    <i class="fa-regular fa-file-lines"></i> जाहीर प्रकटने
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab2" data-bs-toggle="tab" data-bs-target="#menu2" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                    <i class="fa-regular fa-file-lines"></i> पात्रता यादी (परिशिष्ट २)
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab3" data-bs-toggle="tab" data-bs-target="#menu3" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                    <i class="fa-regular fa-file-lines"></i> पुनर्वसन क्षेत्र आदेश (३क)
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab4" data-bs-toggle="tab" data-bs-target="#menu4" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                    <i class="fa-regular fa-file-lines"></i> निर्मूलन आदेश (३ड)
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab5" data-bs-toggle="tab" data-bs-target="#menu5" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                    <i class="fa-regular fa-file-lines"></i> बांधकाम परवानगी
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab6" data-bs-toggle="tab" data-bs-target="#menu6" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                    <i class="fa-regular fa-file-lines"></i> योजना मंजुरी
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab7" data-bs-toggle="tab" data-bs-target="#menu7" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                    <i class="fa-regular fa-file-lines"></i> भोगवटा प्रमाणपत्रे
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab8" data-bs-toggle="tab" data-bs-target="#menu8" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                    <i class="fa-regular fa-file-lines"></i> दरपत्रके / ई-निविदा
+                                </button>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content" id="myTabContent" style="background-color: #004274;">
+                            <div class="tab-pane fade show active" id="menu1" role="tabpanel" aria-labelledby="tab1">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                            @foreach (var item in Model.final_List_List.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                            {
+                                                <div class="list-lable">
+                                                    <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                        <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.plan_name : @item.Data.plan_name_eng)
+                                                        <div class="light-sm-txt"><i class="fa-regular fa-clock"></i> Date : @item.Data.plan_date_New.ToString("dd-MM-yyyy")</div>
+                                                    </a>
+                                                </div>
+                                            }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/JahirPrakatan">View More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="menu2" role="tabpanel" aria-labelledby="tab2">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                        @foreach (var item in Model.final_List_2.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                        {
+                                            <div class="list-lable">
+                                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                    <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.plan_name : @item.Data.plan_name_eng)
+                                                    <div class="light-sm-txt"><i class="fa-regular fa-clock"></i> Date : @item.Data.plan_date_New.ToString("dd-MM-yyyy")</div>
+                                                </a>
+                                            </div>
+                                        }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/PatrataYadi">@(Session["Lang"].ToString() == "mr" ? "आणखी पहा..." : "View More...")<i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="menu3" role="tabpanel" aria-labelledby="tab3">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                            @foreach (var item in Model.other_order_3c_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                            {
+                                                <div class="list-lable">
+                                                    <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                        <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.project_name : @item.Data.project_name_eng)
+                                                        <div class="light-sm-txt"><i class="fa-regular fa-clock"></i> Date : @item.Data.project_date.ToString("dd-MM-yyyy")</div>
+                                                    </a>
+                                                </div>
+                                            }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/SRA3C">View More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add content for other tabs here -->
+                            <div class="tab-pane fade" id="menu4" role="tabpanel" aria-labelledby="tab4">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                          @foreach (var item in Model.other_order_3d_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                          {
+                                            <div class="list-lable">
+                                                <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                    <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.project_name : @item.Data.project_name_eng)
+                                                    <div class="light-sm-txt"><i class="fa-regular fa-clock"></i> Date : @item.Data.project_date.ToString("dd-MM-yyyy")</div>
+                                                </a>
+                                            </div>
+                                          }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/SRA3D">View More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add content for other tabs here -->
+                            <div class="tab-pane fade" id="menu5" role="tabpanel" aria-labelledby="tab5">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                            @foreach (var item in Model.other_building_permission_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                            {
+                                                <div class="list-lable">
+                                                    <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                        <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.proj_name : @item.Data.proj_name_eng)
+                                                        <div class="light-sm-txt"><i class="fa-regular fa-clock"></i> Date : @item.Data.proj_date.ToString("dd-MM-yyyy")</div>
+                                                    </a>
+                                                </div>
+                                            }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/BuildingPermission">View More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add content for other tabs here -->
+                            <div class="tab-pane fade" id="menu6" role="tabpanel" aria-labelledby="tab6">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                            @foreach (var item in Model.other_sr_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                            {
+                                                <div class="list-lable">
+                                                    <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                        <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.subject : @item.Data.subject_eng)
+                                                        <div class="light-sm-txt"><i class="fa-regular fa-clock"></i> Date : @item.Data.subject_date.ToString("dd-MM-yyyy")</div>
+                                                    </a>
+                                                </div>
+                                            }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/SR4">View More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add content for other tabs here -->
+                            <div class="tab-pane fade" id="menu7" role="tabpanel" aria-labelledby="tab7">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                            @foreach (var item in Model.other_building_bhogvata_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                            {
+                                                <div class="list-lable">
+                                                    <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                        <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.proj_name : @item.Data.proj_name_eng)
+                                                        <div class="light-sm-txt"><i class="fa-regular fa-clock"></i> Date : @item.Data.proj_date.ToString("dd-MM-yyyy")</div>
+                                                    </a>
+                                                </div>
+                                            }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/occupancy">View More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add content for other tabs here -->
+                            <div class="tab-pane fade" id="menu8" role="tabpanel" aria-labelledby="tab8">
+                                <div class="fixed-area">
+                                    <div class="scroll-content" style="background-color: #004274">
+                                        <div class="container-fluid">
+                                            @foreach (var item in Model.other_darpatrak_list.Select((x, i) => new { Data = x, Index = i + 1 }))
+                                            {
+                                                <div class="list-lable">
+                                                    <a href="@Url.Content(@item.Data.doc_location+@item.Data.doc_name)" target="_blank">
+                                                        <span><i class="fa-regular fa-circle-check"></i></span>@(Session["Lang"].ToString() == "mr" ? @item.Data.subject : @item.Data.subject_eng)
+                                                        <div class="light-sm-txt"><i class="fa-regular fa-clock"></i>Due Date : @item.Data.subject_date.ToString("dd-MM-yyyy")</div>
+                                                    </a>
+                                                </div>
+                                            }
+                                            <div class="d-flex justify-content-end m-3">
+                                                <a class="btn btn-outline-primary " style="background-color: orangered; color:white" href="~/Home/Darpatrak">View More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-md-4" style="display:none;">
+            <!-- Initial 2x2 Grid -->
+            <div class="row gallery " style="margin-bottom: 24px; width:50%;">
+                <div class="container col-6">
+                    <img src="~/Content/images/Gallery/images.png" alt="Avatar" class="image">
+                    <div class="overlay">
+                        <div class="text">See More</div>
+                    </div>
+                </div>
+                <div class="container col-6">
+                    <img src="~/Content/images/Gallery/images.png" alt="Avatar" class="image">
+                    <div class="overlay">
+                        <div class="text">See More</div>
+                    </div>
+                </div>
+                <div class="container col-6">
+                    <img src="~/Content/images/Gallery/images.png" alt="Avatar" class="image">
+                    <div class="overlay">
+                        <div class="text">See More</div>
+                    </div>
+                </div>
+                <div class="container col-6">
+                    <img src="~/Content/images/Gallery/images.png" alt="Avatar" class="image">
+                    <div class="overlay">
+                        <div class="text">See More</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap & JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('loadMore').addEventListener('click', function () {
+        document.getElementById('extraImages').classList.remove('hidden'); // Show hidden images
+        this.style.display = 'none'; // Hide button after click
+    });
+</script>
+
+
+

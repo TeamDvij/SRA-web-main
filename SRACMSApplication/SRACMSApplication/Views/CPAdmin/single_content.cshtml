@@ -1,0 +1,107 @@
+﻿@model SRACMSApplication.Models.mst_content_singleModel
+@{
+    ViewBag.Title = "single_content";
+    Layout = "~/Views/Shared/_MainView.cshtml";
+}
+
+<script src="~/Contents/vendor/jquery/jquery.min.js"></script>
+
+
+@if (@ViewBag.Message != null)
+{
+    <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+    </script>
+}
+
+@if (@ViewBag.error != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.error");
+        };
+    </script>
+}
+
+@using (Html.BeginForm("single_content", "CPAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Update Single Content</h1>
+        </div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h4 style="font-size:medium; color:green">@ViewBag.Message</h4>
+        </div>
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        @Html.Label("Type")
+                        @Html.DropDownListFor(m => m.content_type, new SelectList(Model.lstContentType, "content_type", "content_type"), new { Class = "form-control",id = "ddlContentType" })  
+                        @Html.ValidationMessageFor(a => a.content_type)
+                    </div>
+                </div>
+              
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        @Html.Label("तपशील")
+                        @Html.TextArea("description", null, new { @class = "form-control form-control-user", rows = "4", id = "description", @required = "required" })
+                      @Html.ValidationMessageFor(a => a.description)
+                    </div>
+                </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            @Html.Label("Content Description(Eng)")
+                            @Html.TextArea("description_eng", null, new { @class = "form-control form-control-user", rows = "4", id = "description_eng", @required = "required" })
+                            @Html.ValidationMessageFor(a => a.description_eng)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block" />
+                        </div>
+                    </div>
+                    @Html.HiddenFor(a => a.id)
+                    @Html.HiddenFor(a => a.content_type)
+                </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+    $("#ddlContentType").on("change", function ()
+    {
+        //alert($('#ddlContentType').find(":selected").text());
+        var contentType = $('#ddlContentType').find(":selected").text();
+        $.ajax({
+            type: "GET",
+            url: "../CPAdmin/get_single_content_details",
+            contentType: "application/json; charset=utf-8",
+            data: { "contentType": contentType },
+            datatype: "text",
+            success: function (response) {
+                if (response != null) {
+                    $('#description').val(response.description);
+                    $('#description_eng').val(response.description_eng);
+                    $('#id').val(response.id);
+                } else {
+                    alert("Something went wrong");
+                }
+            },
+            error: function () {
+                alert("Successfully Saved!");
+            }
+        });
+        
+    });
+});
+</script>
