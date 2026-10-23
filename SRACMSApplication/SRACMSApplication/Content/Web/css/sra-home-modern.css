@@ -1,0 +1,2321 @@
+
+
+
+.sra-bottom-card button {
+    width: 100%;
+
+    min-height: 110px;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+
+.bottom-icon {
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 6px;
+
+    background: #fff0f3;
+
+    color: #e91e45;
+}
+
+
+.bottom-title {
+    color: #17346b;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+
+    text-align: center;
+}
+
+
+.bottom-arrow {
+    width: 20px;
+
+    height: 20px;
+
+    margin-top: 5px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eef3ff;
+
+    color: #e91e45;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 1201px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns:
+            repeat(6, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .flex-container > .flex-item-right {
+        width: 220px !important;
+
+        flex: 0 0 220px !important;
+    }
+
+
+  
+
+
+    .sra-left-buttons-below {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        padding:
+            15px 15px 18px !important;
+    }
+
+
+    .sra-bottom-links-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / SMALL
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+
+    .sra-left-buttons-below > form > .Masterbutton,
+    .sra-left-buttons-below > .Masterbutton {
+        min-height: 110px;
+
+        height: 110px;
+
+        font-size: 12px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .flex-container {
+        display: block !important;
+    }
+
+
+    .flex-container > .sra-home-layout {
+        width: 100% !important;
+
+        max-width: 100% !important;
+    }
+
+
+    .flex-container > .flex-item-right {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+
+        padding: 10px;
+    }
+
+
+    .sra-left-buttons-below {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+
+        padding:
+            12px 10px 16px !important;
+    }
+
+
+    .sra-left-buttons-below > form > .Masterbutton,
+    .sra-left-buttons-below > .Masterbutton {
+        min-height: 105px;
+
+        height: 105px;
+
+        font-size: 12px !important;
+
+        padding: 8px 5px !important;
+    }
+
+
+    .sra-left-buttons-below > form > .Masterbutton::before,
+    .sra-left-buttons-below > .Masterbutton::before {
+        width: 40px;
+
+        height: 40px;
+
+        min-width: 40px;
+
+        font-size: 18px;
+    }
+
+
+    .hero-quick-menu {
+        top: 12px;
+
+        right: 12px;
+
+        width: 250px;
+    }
+
+
+    .sra-bottom-links {
+        padding: 10px;
+    }
+
+
+    .sra-bottom-links-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 6px;
+
+        padding:
+            8px 6px 12px !important;
+    }
+
+
+    .sra-left-buttons-below > form > .Masterbutton,
+    .sra-left-buttons-below > .Masterbutton {
+        min-height: 95px;
+
+        height: 95px;
+
+        font-size: 11px !important;
+    }
+
+
+    .sra-left-buttons-below > form > .Masterbutton::before,
+    .sra-left-buttons-below > .Masterbutton::before {
+        width: 36px;
+
+        height: 36px;
+
+        min-width: 36px;
+
+        font-size: 16px;
+    }
+
+
+    .sra-left-buttons-below > form > .Masterbutton::after,
+    .sra-left-buttons-below > .Masterbutton::after {
+        width: 18px;
+
+        height: 18px;
+
+        font-size: 10px;
+    }
+
+
+    .flex-container > .flex-item-right {
+        grid-template-columns: 1fr;
+    }
+
+
+    .hero-quick-menu {
+        width: 225px;
+
+        right: 8px;
+    }
+/* =========================================================
+   SRA LEFT BUTTONS - MODERN CARD SECTION
+   Place this at the VERY END of sra-home-modern.css
+========================================================= */
+
+.sra-left-buttons-below {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 8px;
+
+    padding: 8px 30px 15px 30px;
+
+    background: #f7faff;
+}
+
+
+/* Individual card */
+.sra-left-buttons-below .sra-feature-card {
+    width: 100%;
+    min-width: 0;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid #e5ebf4;
+    border-radius: 8px;
+
+    box-shadow: 0 3px 12px rgba(20, 45, 90, 0.08);
+
+    overflow: hidden;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover */
+.sra-left-buttons-below .sra-feature-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 22px rgba(20, 45, 90, 0.15);
+
+    border-color: #d5deec;
+}
+
+
+/* Form */
+.sra-left-buttons-below .sra-feature-card form {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+
+/* Button */
+.sra-left-buttons-below .sra-feature-button {
+    width: 100%;
+    min-height: 115px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    padding: 12px 8px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+
+/* Icon circle */
+.sra-left-buttons-below .sra-feature-icon {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 7px;
+
+    background: #ffe9ee;
+
+    font-size: 20px;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Different icon colors */
+.sra-left-buttons-below .sra-feature-card:nth-child(1)
+.sra-feature-icon {
+    background: #ffe7ed;
+}
+
+.sra-left-buttons-below .sra-feature-card:nth-child(2)
+.sra-feature-icon {
+    background: #fff0df;
+}
+
+.sra-left-buttons-below .sra-feature-card:nth-child(3)
+.sra-feature-icon {
+    background: #e5f0ff;
+}
+
+.sra-left-buttons-below .sra-feature-card:nth-child(4)
+.sra-feature-icon {
+    background: #e2f8ec;
+}
+
+.sra-left-buttons-below .sra-feature-card:nth-child(5)
+.sra-feature-icon {
+    background: #f0e5ff;
+}
+
+.sra-left-buttons-below .sra-feature-card:nth-child(6)
+.sra-feature-icon {
+    background: #ffe8ee;
+}
+
+
+/* Title */
+.sra-left-buttons-below .sra-feature-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 36px;
+
+    color: #142b58;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.25;
+
+    text-align: center;
+}
+
+
+/* Arrow */
+.sra-left-buttons-below .sra-feature-arrow {
+    width: 20px;
+    height: 20px;
+
+    margin-top: 7px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffe8ed;
+
+    color: #e91e45;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover icon */
+.sra-left-buttons-below .sra-feature-card:hover
+.sra-feature-icon {
+    transform: translateY(-2px) scale(1.05);
+}
+
+
+/* Hover arrow */
+.sra-left-buttons-below .sra-feature-card:hover
+.sra-feature-arrow {
+    background: #e91e45;
+    color: #ffffff;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   8 CARDS
+========================================================= */
+
+.sra-left-buttons-below .sra-feature-card:nth-child(7),
+.sra-left-buttons-below .sra-feature-card:nth-child(8) {
+    /* Keep last 2 cards on second row */
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns: repeat(4, 1fr);
+
+        padding: 10px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 8px;
+
+        padding: 10px 12px;
+    }
+
+    .sra-left-buttons-below .sra-feature-button {
+        min-height: 105px;
+    }
+
+    .sra-left-buttons-below .sra-feature-title {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 6px;
+
+        padding: 8px;
+    }
+
+    .sra-left-buttons-below .sra-feature-button {
+        min-height: 95px;
+
+        padding: 8px 5px;
+    }
+
+    .sra-left-buttons-below .sra-feature-icon {
+        width: 36px;
+        height: 36px;
+
+        min-width: 36px;
+
+        font-size: 17px;
+    }
+
+    .sra-left-buttons-below .sra-feature-title {
+        font-size: 11px;
+    }
+
+}
+}
+/* =========================================================
+   SRA QUICK LINKS - MODERN CARD DESIGN
+   ========================================================= */
+
+.sra-left-buttons-below {
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    display: grid !important;
+
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+
+    gap: 8px !important;
+
+    padding: 10px 30px 16px 30px !important;
+
+    background: #f5f9ff !important;
+
+    align-items: stretch !important;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.sra-left-buttons-below .sra-feature-card {
+    width: 100% !important;
+    min-width: 0 !important;
+
+    height: 105px !important;
+    min-height: 105px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e5edf7 !important;
+
+    border-radius: 8px !important;
+
+    box-shadow: 0 2px 8px rgba(30, 70, 120, 0.08) !important;
+
+    overflow: hidden !important;
+
+    transition: all 0.25s ease !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.sra-left-buttons-below .sra-feature-card:hover {
+    transform: translateY(-3px) !important;
+
+    border-color: #d2e2f5 !important;
+
+    box-shadow:
+        0 8px 20px rgba(30, 70, 120, 0.14) !important;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.sra-left-buttons-below .sra-feature-card form {
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.sra-left-buttons-below .sra-feature-button {
+    width: 100% !important;
+    height: 100% !important;
+
+    min-height: 105px !important;
+
+    margin: 0 !important;
+    padding: 8px 6px !important;
+
+    border: none !important;
+    outline: none !important;
+
+    background: transparent !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    cursor: pointer !important;
+
+    font-family: inherit !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   ICON CIRCLE
+   ========================================================= */
+
+.sra-left-buttons-below .sra-feature-icon {
+    width: 40px !important;
+    height: 40px !important;
+
+    min-width: 40px !important;
+    min-height: 40px !important;
+
+    border-radius: 50% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin: 0 0 5px 0 !important;
+
+    font-size: 20px !important;
+
+    line-height: 1 !important;
+
+    transition: transform 0.25s ease !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   INDIVIDUAL ICON BACKGROUNDS
+   ========================================================= */
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(1)
+.sra-feature-icon {
+    background: #ffe9ee !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(2)
+.sra-feature-icon {
+    background: #fff0df !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(3)
+.sra-feature-icon {
+    background: #e8f1ff !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(4)
+.sra-feature-icon {
+    background: #e2f7eb !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(5)
+.sra-feature-icon {
+    background: #eee6ff !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(6)
+.sra-feature-icon {
+    background: #ffe8ed !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(7)
+.sra-feature-icon {
+    background: #e9f3ff !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:nth-child(8)
+.sra-feature-icon {
+    background: #e9edff !important;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.sra-left-buttons-below .sra-feature-title {
+    width: 100% !important;
+
+    min-height: 30px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    color: #10285c !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.25 !important;
+
+    text-align: center !important;
+
+    padding: 0 3px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.sra-left-buttons-below .sra-feature-arrow {
+    width: 19px !important;
+    height: 19px !important;
+
+    min-width: 19px !important;
+    min-height: 19px !important;
+
+    margin-top: 3px !important;
+
+    border-radius: 50% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #edf2ff !important;
+
+    color: #e91e45 !important;
+
+    font-size: 11px !important;
+
+    font-weight: bold !important;
+
+    line-height: 1 !important;
+
+    transition: all 0.25s ease !important;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.sra-left-buttons-below
+.sra-feature-card:hover
+.sra-feature-icon {
+    transform: scale(1.08) !important;
+}
+
+.sra-left-buttons-below
+.sra-feature-card:hover
+.sra-feature-arrow {
+    background: #e91e45 !important;
+
+    color: #ffffff !important;
+
+    transform: translateX(2px) !important;
+}
+
+
+/* =========================================================
+   REMOVE OLD MASTER BUTTON STYLING
+   ========================================================= */
+
+.sra-left-buttons-below .Masterbutton {
+    appearance: none !important;
+
+    -webkit-appearance: none !important;
+
+    border: none !important;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+
+        gap: 8px !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+        padding: 8px !important;
+
+        gap: 8px !important;
+    }
+
+    .sra-left-buttons-below .sra-feature-card {
+        height: 105px !important;
+        min-height: 105px !important;
+    }
+
+    .sra-left-buttons-below .sra-feature-button {
+        min-height: 105px !important;
+    }
+
+    .sra-left-buttons-below .sra-feature-title {
+        font-size: 11px !important;
+    }
+}
+/* =========================================================
+   FINAL HERO LAYOUT OVERRIDE
+   HERO = FULL WIDTH
+   QUICK BUTTONS = OVER HERO
+   ========================================================= */
+
+/* Main wrapper */
+.flex-container {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   HERO / SLIDER FULL WIDTH
+   ========================================================= */
+
+.flex-container > .sra-home-layout {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Hero wrapper */
+.sra-home-layout .sra-hero-wrapper,
+.sra-hero-wrapper {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   KEEP EXISTING SLIDER IMAGES
+   DO NOT CROP
+   DO NOT CHANGE SOURCE IMAGES
+   ========================================================= */
+
+.sra-hero-wrapper img {
+    max-width: 100%;
+}
+
+
+/* Slider containers */
+.sra-hero-wrapper .carousel,
+.sra-hero-wrapper .slider,
+.sra-hero-wrapper .slide {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+
+/* Existing slider images */
+.sra-hero-wrapper .carousel img,
+.sra-hero-wrapper .slider img,
+.sra-hero-wrapper .slide img {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: auto !important;
+
+    display: block !important;
+
+    object-fit: contain !important;
+}
+
+
+/* =========================================================
+   RIGHT QUICK BUTTONS
+   OVERLAY ON HERO
+   ========================================================= */
+
+.flex-container > .flex-item-right {
+    position: absolute !important;
+
+    top: 25px !important;
+    right: 25px !important;
+
+    width: 260px !important;
+    max-width: 260px !important;
+
+    flex: none !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 10px !important;
+
+    padding: 12px !important;
+
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+
+    z-index: 100 !important;
+
+    background: rgba(255, 255, 255, 0.94) !important;
+
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15) !important;
+
+    backdrop-filter: blur(8px);
+}
+/* =========================================
+   HERO QUICK BUTTON PANEL
+   ========================================= */
+
+.sra-main-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+
+/* RIGHT WHITE PANEL */
+.hero-quick-panel {
+    position: absolute !important;
+
+    top: 25px !important;
+    right: 30px !important;
+
+    width: 285px !important;
+
+    padding: 10px !important;
+
+    background: rgba(255, 255, 255, 0.96) !important;
+
+    border-radius: 20px !important;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+
+    z-index: 50 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 2px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* REMOVE FORM DEFAULT SPACING */
+.hero-quick-panel form {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* =========================================
+   INDIVIDUAL BUTTON
+   ========================================= */
+
+.hero-quick-button {
+    width: 100% !important;
+
+    min-height: 55px !important;
+
+    padding: 7px 12px !important;
+
+    border: none !important;
+
+    background: #ffffff !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    cursor: pointer !important;
+
+    text-align: left !important;
+
+    border-radius: 12px !important;
+
+    color: #172c60 !important;
+
+    transition: all 0.25s ease !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================
+   LEFT ICON CIRCLE
+   ========================================= */
+
+.quick-icon {
+    width: 36px !important;
+    height: 36px !important;
+
+    min-width: 36px !important;
+
+    border-radius: 50% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    background: #fff0f3 !important;
+
+    color: #e51b3e !important;
+
+    font-size: 19px !important;
+
+    font-weight: bold !important;
+
+    line-height: 1 !important;
+}
+
+
+/* =========================================
+   BUTTON TEXT
+   ========================================= */
+
+.quick-text {
+    flex: 1 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+    color: #263b6d !important;
+
+    line-height: 1.25 !important;
+
+    white-space: nowrap !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+}
+
+
+/* =========================================
+   RIGHT ARROW
+   ========================================= */
+
+.quick-arrow {
+    width: 24px !important;
+
+    min-width: 24px !important;
+
+    text-align: center !important;
+
+    color: #ed1b3b !important;
+
+    font-size: 25px !important;
+
+    font-weight: 500 !important;
+
+    line-height: 1 !important;
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.hero-quick-button:hover {
+    background: #fff5f6 !important;
+
+    transform: translateX(-3px) !important;
+}
+
+.hero-quick-button:hover .quick-icon {
+    background: #ffe1e6 !important;
+
+    transform: scale(1.05) !important;
+}
+
+.hero-quick-button:hover .quick-arrow {
+    transform: translateX(3px) !important;
+}
+
+
+/* =========================================
+   HERO IMAGE SHOULD BE BEHIND PANEL
+   ========================================= */
+
+.sra-home-content {
+    position: relative;
+    width: 100%;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .hero-quick-panel {
+        position: relative !important;
+
+        top: auto !important;
+        right: auto !important;
+
+        width: 95% !important;
+
+        margin: 10px auto !important;
+    }
+
+    .quick-text {
+        white-space: normal !important;
+    }
+}
+
+/* =========================================================
+   RIGHT BUTTON FORMS
+   ========================================================= */
+
+.flex-container > .flex-item-right form {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* ================================
+   RIGHT QUICK BUTTON PANEL
+================================ */
+
+.hero-quick-panel {
+    position: absolute !important;
+    top: 25px !important;
+    right: 25px !important;
+
+    width: 235px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 6px !important;
+
+    padding: 10px !important;
+
+    background: rgba(255, 255, 255, 0.96) !important;
+
+    border-radius: 16px !important;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+
+    z-index: 1000 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* FORM */
+.hero-quick-panel form {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* ================================
+   QUICK BUTTON
+================================ */
+
+.hero-quick-button {
+    width: 100% !important;
+
+    min-height: 38px !important;
+    height: auto !important;
+
+    padding: 6px 8px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    border: none !important;
+    border-radius: 9px !important;
+
+    background: linear-gradient(
+        135deg,
+        #8e1d2c,
+        #263f72,
+        #2f6575
+    ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.2 !important;
+
+    cursor: pointer !important;
+
+    box-sizing: border-box !important;
+
+    transition: all 0.2s ease !important;
+}
+
+
+/* ================================
+   ICON
+================================ */
+
+.hero-quick-button .quick-icon {
+    width: 25px !important;
+    min-width: 25px !important;
+    height: 25px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin-right: 7px !important;
+
+    background: rgba(255, 255, 255, 0.95) !important;
+
+    color: #d7194b !important;
+
+    border-radius: 50% !important;
+
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+
+/* ================================
+   TEXT
+================================ */
+
+.hero-quick-button .quick-text {
+    flex: 1 !important;
+
+    text-align: left !important;
+
+    white-space: normal !important;
+
+    overflow: visible !important;
+
+    text-overflow: clip !important;
+
+    word-break: normal !important;
+
+    line-height: 1.2 !important;
+}
+
+
+/* ================================
+   ARROW
+================================ */
+
+.hero-quick-button .quick-arrow {
+    width: 18px !important;
+    min-width: 18px !important;
+
+    margin-left: 5px !important;
+
+    text-align: center !important;
+
+    font-size: 18px !important;
+
+    color: #e91e4d !important;
+}
+
+
+/* ================================
+   HOVER
+================================ */
+
+.hero-quick-button:hover {
+    transform: translateX(-2px) !important;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18) !important;
+}
+
+
+/* ================================
+   HERO CONTAINER
+================================ */
+
+.sra-main-wrapper {
+    position: relative !important;
+}
+
+.sra-home-content {
+    position: relative !important;
+}
+
+
+/* =========================================================
+   LEADERSHIP / CONTENT BELOW HERO
+   ========================================================= */
+
+.sra-home-layout .leadership-section,
+.sra-home-layout .leadership,
+.sra-home-layout .leaders-section {
+    width: 100% !important;
+
+    max-width: 100% !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .flex-container {
+        display: block !important;
+    }
+
+    .flex-container > .sra-home-layout {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .flex-container > .flex-item-right {
+        position: relative !important;
+
+        top: auto !important;
+        right: auto !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 !important;
+
+        border-radius: 0 !important;
+
+        box-shadow: none !important;
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 10px !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .flex-container > .flex-item-right {
+        grid-template-columns: 1fr !important;
+
+        padding: 10px !important;
+    }
+
+    .flex-container > .flex-item-right .Masterbutton {
+        min-height: 44px !important;
+
+        font-size: 12px !important;
+    }
+}
+/* =========================================================
+   CHANGE HOME SECTION ORDER
+   HERO
+   ↓
+   LEFT BUTTONS
+   ↓
+   LEADERSHIP
+   ========================================================= */
+
+/* Make the home layout a vertical container */
+.flex-container > .sra-home-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* 1. HERO FIRST */
+.flex-container > .sra-home-layout .sra-hero-wrapper {
+    order: 1 !important;
+    width: 100% !important;
+}
+
+/* 2. LEFT BUTTONS SECOND */
+.flex-container > .sra-home-layout .sra-left-buttons-below {
+    order: 2 !important;
+    width: 100% !important;
+}
+
+/* 3. LEADERSHIP THIRD */
+.flex-container > .sra-home-layout .leadership-section,
+.flex-container > .sra-home-layout .leadership,
+.flex-container > .sra-home-layout .leaders-section {
+    order: 3 !important;
+    width: 100% !important;
+}
+/* =========================================================
+   FINAL SRA HOME LAYOUT
+   HERO = FULL WIDTH
+   RIGHT BUTTONS = OVERLAY
+   LEADERSHIP = BELOW HERO
+   ========================================================= */
+
+.flex-container {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HERO / MAIN CONTENT
+   ========================================================= */
+
+.flex-container > .sra-home-layout {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    flex: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    min-width: 0 !important;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HERO WRAPPER
+   ========================================================= */
+
+.sra-hero-wrapper {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   SLIDER
+   Do not change the actual images
+   ========================================================= */
+
+.sra-hero-wrapper .carousel,
+.sra-hero-wrapper .carousel-inner,
+.sra-hero-wrapper .carousel-item {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+
+/* Slider image */
+
+.sra-hero-wrapper .carousel-item img,
+.sra-hero-wrapper .carousel img,
+.sra-hero-wrapper .slider img,
+.sra-hero-wrapper .slide img {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: block !important;
+
+    height: auto !important;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   RIGHT SIDE BUTTON PANEL
+   FLOAT OVER HERO
+   ========================================================= */
+
+.flex-container > .flex-item-right {
+
+    position: absolute !important;
+
+    top: 20px !important;
+    right: 18px !important;
+
+    width: 220px !important;
+    max-width: 220px !important;
+
+    flex: none !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 10px !important;
+
+    padding: 12px !important;
+
+    background: rgba(255,255,255,0.92) !important;
+
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.15) !important;
+
+    z-index: 100 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Forms */
+
+.flex-container > .flex-item-right form {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* Buttons */
+
+.flex-container > .flex-item-right .Masterbutton {
+    width: 100% !important;
+
+    min-height: 48px !important;
+
+    padding: 9px 12px !important;
+
+    border: 1px solid #175b7a !important;
+
+    border-radius: 9px !important;
+
+    background: linear-gradient(
+        90deg,
+        #8d2845,
+        #23627d
+    ) !important;
+
+    color: #fff !important;
+
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    text-align: center !important;
+
+    cursor: pointer;
+
+    transition: all .25s ease !important;
+}
+
+
+.flex-container > .flex-item-right .Masterbutton:hover {
+    transform: translateX(-3px) !important;
+
+    background: linear-gradient(
+        90deg,
+        #a9284b,
+        #176887
+    ) !important;
+
+    box-shadow:
+        0 7px 18px rgba(0,0,0,.18) !important;
+}
+
+
+/* =========================================================
+   LEADERSHIP SECTION
+   ALWAYS BELOW HERO
+   ========================================================= */
+
+.sra-home-layout .leadership,
+.sra-home-layout .sra-leadership,
+.sra-home-layout .leadership-section {
+    position: relative !important;
+
+    width: 100% !important;
+
+    margin-top: 0 !important;
+
+    clear: both !important;
+}
+
+
+/* =========================================================
+   LEFT FEATURE BUTTONS
+   BELOW LEADERSHIP
+   ========================================================= */
+
+.sra-left-buttons-below {
+    position: relative !important;
+
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: repeat(4, 1fr) !important;
+
+    gap: 10px !important;
+
+    padding: 12px 20px 25px !important;
+
+    margin: 0 !important;
+
+    background: #f5f8fc !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .flex-container > .flex-item-right {
+        width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    .sra-left-buttons-below {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .flex-container > .flex-item-right {
+        position: relative !important;
+
+        top: auto !important;
+        right: auto !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 10px 0 !important;
+
+        border-radius: 12px !important;
+    }
+
+    .sra-left-buttons-below {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .sra-left-buttons-below {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* =========================================================
+   SRA MAIN HOME
+   ========================================================= */
+
+.sra-main-home {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   RENDERED HOME CONTENT
+   ========================================================= */
+
+.sra-render-body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HERO QUICK LINKS
+   POSITIONED OVER HERO
+   ========================================================= */
+
+.sra-hero-quick-links {
+    position: absolute !important;
+
+    top: 25px;
+    right: 25px;
+
+    width: 250px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 10px;
+
+    padding: 14px !important;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.18);
+
+    z-index: 50;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   QUICK LINK FORMS
+   ========================================================= */
+
+.sra-hero-quick-links form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   QUICK LINK BUTTONS
+   ========================================================= */
+
+.sra-hero-quick-links .Masterbutton {
+
+    width: 100% !important;
+
+    min-height: 48px;
+
+    padding: 10px 15px;
+
+    border: 1px solid #195c78;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8e1e39,
+            #28637d
+        );
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.sra-hero-quick-links .Masterbutton:hover {
+
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #a32142,
+            #1d708d
+        );
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.18);
+}
+/* =========================================================
+   MAIN HOME WRAPPER
+   ========================================================= */
+
+.sra-main-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   HOME CONTENT / HERO
+   ========================================================= */
+
+.sra-home-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   FULL WIDTH HERO
+   ========================================================= */
+
+.sra-home-content .container-fluid-slide-minister {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Bootstrap row should not restrict hero */
+
+.sra-home-content .container-fluid-slide-minister .row {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* Hero column */
+
+.sra-home-content .container-fluid-slide-minister
+.col-12.col-md-8 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* Carousel */
+
+.sra-home-content #carouselExample {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+/* Hero image */
+
+.sra-home-modern .carousel-item img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+
+/* =========================================================
+   RIGHT QUICK BUTTONS
+   ========================================================= */
+
+.sra-main-wrapper > .flex-item-right {
+    position: absolute;
+
+    top: 25px;
+    right: 25px;
+
+    width: 235px;
+    max-width: 235px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 10px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15);
+
+    z-index: 50;
+}
+
+
+/* Right button forms */
+
+.sra-main-wrapper > .flex-item-right form {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* Right buttons */
+
+.sra-main-wrapper > .flex-item-right .Masterbutton {
+    width: 100% !important;
+    min-height: 48px;
+
+    padding: 10px 14px;
+
+    border: 1px solid #275f7a;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #92233d,
+        #28647d
+    );
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover */
+
+.sra-main-wrapper > .flex-item-right .Masterbutton:hover {
+    transform: translateX(-3px);
+
+    background: linear-gradient(
+        90deg,
+        #a82a48,
+        #347892
+    );
+
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.18);
+}
+/* =========================================
+   SRA HERO + RIGHT QUICK BUTTONS
+   ========================================= */
+
+.sra-main-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Home / Hero area */
+.sra-home-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+}
+
+/* =========================================
+   HERO WRAPPER
+   ========================================= */
+
+.sra-main-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* HERO */
+.sra-home-content {
+    width: 100% !important;
+    position: relative !important;
+}
+/* =========================================
+   RIGHT QUICK BUTTON PANEL
+   ========================================= */
+
+.sra-main-wrapper .hero-quick-panel {
+    position: absolute !important;
+    top: 12px !important;
+    right: 15px !important;
+
+    width: 245px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+
+    padding: 8px !important;
+
+    background: rgba(255, 255, 255, 0.97) !important;
+    border-radius: 16px !important;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.20) !important;
+
+    z-index: 1000 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* FORM */
+.sra-main-wrapper .hero-quick-panel form {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* =========================================
+   BUTTON
+   ========================================= */
+
+.sra-main-wrapper .hero-quick-button {
+    width: 100% !important;
+
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+
+    padding: 3px 7px !important;
+
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    border: none !important;
+    border-radius: 9px !important;
+
+    background: linear-gradient(
+        135deg,
+        #8e1d3d 0%,
+        #293f70 55%,
+        #2d6575 100%
+    ) !important;
+
+    /* FORCE WHITE */
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.05 !important;
+
+    overflow: hidden !important;
+
+    cursor: pointer !important;
+}
+
+
+/* =========================================
+   ICON
+   ========================================= */
+
+.sra-main-wrapper .quick-icon {
+    flex: 0 0 25px !important;
+
+    width: 25px !important;
+    height: 25px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin-right: 6px !important;
+
+    border-radius: 50% !important;
+
+    background: #ffffff !important;
+
+    color: #e51c4b !important;
+    -webkit-text-fill-color: #e51c4b !important;
+
+    font-size: 12px !important;
+}
+
+
+/* =========================================
+   TEXT
+   ========================================= */
+
+.sra-main-wrapper .quick-text {
+    flex: 1 !important;
+    min-width: 0 !important;
+
+    /* THIS FIXES YOUR DARK TEXT */
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 11px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.05 !important;
+
+    text-align: left !important;
+
+    white-space: normal !important;
+
+    overflow: hidden !important;
+
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+}
+
+
+/* =========================================
+   ARROW
+   ========================================= */
+
+.sra-main-wrapper .quick-arrow {
+    flex: 0 0 14px !important;
+
+    width: 14px !important;
+
+    margin-left: 3px !important;
+
+    color: #ff174f !important;
+    -webkit-text-fill-color: #ff174f !important;
+
+    font-size: 18px !important;
+    font-weight: bold !important;
+
+    text-align: center !important;
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.sra-main-wrapper .hero-quick-button:hover {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    transform: translateX(-2px) !important;
+}
+
+.sra-main-wrapper .hero-quick-button:hover .quick-text {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}

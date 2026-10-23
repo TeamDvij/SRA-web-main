@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Master7";
+﻿//Mater7.cshtml
+@{
+    ViewBag.Title = "Home";
+    //Layout = @Session["Layout"].ToString();
 }
 <!DOCTYPE html>
 <meta charset="UTF-8">
@@ -20,6 +22,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Trio+Devnagari&display=swap" rel="stylesheet">
     <link href="~/Content/webcss/Navbar.css" rel="stylesheet" />
     <link href="~/Content/webcss/sra-header.css" rel="stylesheet" />
+    <link href="~/Content/Web/css/sra-home-modern.css" rel="stylesheet" />
+    <link href="~/Content/Web/css/sra-footer.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -177,8 +181,9 @@
             </ul>
         </div>
     </div>
-    <header class="header">
-        <div class="header-container">
+<header class="header sra-main-header">
+    <div class="sra-header-bg"></div>
+            <div class="header-container">
             <a href="@Url.Content("~/Mr")">
                 <img src="~/Content/images/SRA-Logo.jpg" alt="Left Logo" class="logo1">
             </a>
@@ -206,25 +211,135 @@
                             <a style="color:white;" href="@Url.Content("~/Mr/Yojana")#targetSection"><b>@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा योजना" : "SRA Schemes")</b></a>
                         </li>
 
-                        <li class="dropdown">
-                            <a href="@Url.Content("#")#targetSection">
-                                @(Session["Lang"].ToString() == "mr" ? "आमच्या विषयी" : "About")
-                                <span>▼</span>
-                            </a>
-                            <div class="dropdown-menu ">
-                                <a href="@Url.Content("~/Mr/PradhikarnachiMahiti")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची माहिती" : "SRA Information") </a>
-                                <a href="@Url.Content(@Session["Sudharit_Akrutibandh"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "सुधारित आकृतिबंध" : "Improved Contours") </a>
-                                <a href="@Url.Content("~/Mr/PradhikaranachaAarakhada")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची संरचना" : "SRA Structure") </a>
-                                <a href="@Url.Content(@Session["mahiti_pustika"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "योजनेची माहिती पुस्तिका" : "Booklet & Scheme") </a>
-                                <a href="@Url.Content("~/Mr/AmcheNetrutva")#targetSection">@(Session["Lang"].ToString() == "mr" ? "आपले नेतृत्व" : "Our Leadership") </a>
-                                <a href="@Url.Content("~/Mr/SakshamSadasya")#targetSection">@(Session["Lang"].ToString() == "mr" ? "प्राधिकरण समिती" : "Authority Committee") </a>
-                                <a href="@Url.Content("#")#targetSection">@(Session["Lang"].ToString() == "mr" ? "वार्षिक लेखा अहवाल" : "Annual Audit Report") </a>
-                                <a href="@Url.Content(@Session["listed_institutions"].ToString())" target="_blank">@(Session["Lang"].ToString() == "mr" ? "सूचिबध्द संस्था" : "Listed Institutions") </a>
-                            </div>
-                        </li>
+                       <li class="dropdown">
 
-                        @*<li><a class="link-3" href="@Url.Content("~/Mr/Yojana")">@(Session["Lang"].ToString() == "mr" ? "योजना" : "Project")</a></li>*@
-                        <li><a class="link-3" href="@Url.Content("~/Mr/Paripatrak")#targetSection">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा परिपत्रके" : "SRA Circulars")</a></li>
+    <a href="javascript:void(0);" class="link-3">
+        @(Session["Lang"].ToString() == "mr" ? "आमच्या विषयी" : "About")
+        <span>▼</span>
+    </a>
+
+    <div class="dropdown-menu">
+
+        <a href="@Url.Action("PradhikarnachiMahiti", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "प्राधिकरणाची माहिती"
+                : "SRA Information")
+        </a>
+
+<a href="@Url.Content(Session["Sudharit_Akrutibandh"] == null ? "#" : Session["Sudharit_Akrutibandh"].ToString())"           target="_blank">
+            @(Session["Lang"].ToString() == "mr"
+                ? "सुधारित आकृतिबंध"
+                : "Improved Contours")
+        </a>
+
+        <a href="@Url.Action("PradhikaranachaAarakhada", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "प्राधिकरणाची संरचना"
+                : "SRA Structure")
+        </a>
+
+        <a href="@Url.Content(Session["mahiti_pustika"] == null ? "#" : Session["mahiti_pustika"].ToString())"
+           target="_blank">
+            @(Session["Lang"].ToString() == "mr"
+                ? "योजनेची माहिती पुस्तिका"
+                : "Booklet & Scheme")
+        </a>
+
+        <a href="@Url.Action("AmcheNetrutva", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "आपले नेतृत्व"
+                : "Our Leadership")
+        </a>
+
+        <a href="@Url.Action("SakshamSadasya", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "प्राधिकरण समिती"
+                : "Authority Committee")
+        </a>
+
+        <a href="javascript:void(0);">
+            @(Session["Lang"].ToString() == "mr"
+                ? "वार्षिक लेखा अहवाल"
+                : "Annual Audit Report")
+        </a>
+
+       <a href="@Url.Content(Session["listed_institutions"] == null ? "#" : Session["listed_institutions"].ToString())"
+   target="_blank">
+    @(Session["Lang"].ToString() == "mr"
+        ? "सूचिबध्द संस्था"
+        : "Listed Institutions")
+</a>
+
+    </div>
+</li>
+
+<!-- YOJANA DROPDOWN -->
+<li class="dropdown yojana-dropdown">
+    <a href="#" class="link-3" onclick="return false;">
+        @(Session["Lang"].ToString() == "mr" ? "योजना" : "Yojana")
+        <span>▼</span>
+    </a>
+
+    <div class="dropdown-menu">
+
+        <!-- 1. Rehabilitation 3C -->
+        <a href="@Url.Action("SRA3C", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "पुनर्वसन क्षेत्र आदेश (३क)"
+                : "Rehabilitation (3C) Orders")
+        </a>
+
+        <!-- 2. Eligibility List -->
+        <a href="@Url.Action("PatrataYadi", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "झोपडीधारकांची पात्रता यादी"
+                : "Eligibility List")
+        </a>
+
+        <!-- 3. Project Approval -->
+        <a href="@Url.Action("SR4", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "योजना मंजुरी 14.6.12 (1)"
+                : "Project Approval")
+        </a>
+
+        <!-- 4. Eradication 3D -->
+        <a href="@Url.Action("SRA3D", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "निर्मूलन आदेश (३ड)"
+                : "Eradication (3D) Orders")
+        </a>
+
+        <!-- 5. Building Permission -->
+        <a href="@Url.Action("BuildingPermission", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "बांधकाम परवानगी प्रमाणपत्रे"
+                : "Building Permission Certificates")
+        </a>
+
+        <!-- 6. Housing Societies -->
+        <a href="@Url.Action("Society", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "गृहनिर्माण संस्थांची यादी"
+                : "List Of Housing Societies")
+        </a>
+
+        <!-- 7. Occupancy -->
+        <a href="@Url.Action("Occupancy", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "भोगवटा प्रमाणपत्रे"
+                : "Occupancy Certificates")
+        </a>
+
+        <!-- 8. Lottery -->
+        <a href="@Url.Action("Lottery", "Mr")#targetSection">
+            @(Session["Lang"].ToString() == "mr"
+                ? "लॉटरी पद्धतीने सदनिका वितरण"
+                : "Allotment of Flats by Lottery")
+        </a>
+
+    </div>
+</li>                        <li><a class="link-3" href="@Url.Content("~/Mr/Paripatrak")#targetSection">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा परिपत्रके" : "SRA Circulars")</a></li>
                         <li><a href="@Url.Content("~/Mr/ShasanNirnay")">@(Session["Lang"].ToString() == "mr" ? "शासन निर्णय" : "Government Resolution") </a></li>
 
                         <li class="dropdown">
@@ -265,72 +380,305 @@
     </header>
 
     @*  <%--Marquee Tag ends here--%>*@
-    <div class="flex-container">
-        <div class="flex-item-left">
-            @*<button class="Masterbutton" onclick="window.location.href='@Url.Action("Home", "Mr")'" style="vertical-align:middle">@(Session["Lang"].ToString() == "mr" ? "मुख्यपृष्ठ" : "Home") </button>*@
-            <form action='@Url.Action("Niyamavali", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" class="Masterbutton">
-                    @(Session["Lang"].ToString() == "mr" ? "झो.पु.प्रा. नियमावली" : "SRA Rules")
-                </button>
-            </form>
-            <form action='@Url.Action("WorkAreaMap", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("WorkAreaMap", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "कार्यक्षेत्राचा नकाशा" : "MAP of Work Area")</button>
-            </form>
-            <button class="Masterbutton" onclick="window.open('@Url.Content(Session["yojanecheTappe"].ToString())', '_blank')">
-                @(Session["Lang"].ToString() == "mr" ? "झो.पु.प्रा.योजनेचे टप्पे" : "SRA Stages of Plan")
-            </button>
+    <!-- =========================================================
+     MAIN HOME / HERO AREA
+     ========================================================= -->
 
-            <form action='@Url.Action("VividhNamune", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("VividhNamune", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "विहित निकष / नमुने / कार्यपद्धती" : "Download Forms")</button>
-            </form>
-            <form action='@Url.Action("SlumList", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SlumList", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "झोपडपट्ट्यांची यादी" : "Slum List")</button>
-            </form>
-            @*<form action='@Url.Action("Yojana", "Mr")#targetSection' method="get" style="display:inline;">
-                    <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Yojana", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा योजना" : "SRA Schemes") </button>
-                </form>*@
-            @*<button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("JahirPrakatan", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "जाहीर प्रकटने" : "Public Disclosures")</button>*@
-            <form action='@Url.Action("VikasakList", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("VikasakList", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "नोंदणीकृत विकसकांची यादी" : "Registered Developer List")</button>
-            </form>
-            <form action='@Url.Action("Darpatrak", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Darpatrak", "Mr")'">
-                    @(Session["Lang"].ToString() == "mr" ? "दरपत्रके / ई-निविदा" : "Quotations / e-Tenders")
-                    <img src="~/Content/webcss/new_gif.gif" style="height: 35px; " />
-                </button>
-            </form>
-            <form action='@Url.Content("https://rts.srapune.gov.in/CP/Login")' target="_blank" method="get" style="display:inline;">
-                <button class="Masterbutton">@(Session["Lang"].ToString() == "mr" ? "RTS झोपूप्रा लॉगिन" : "RTS SRA Login")</button>
-            </form>
-        </div>
+<div class="sra-main-wrapper">
+
+    <div class="sra-home-content">
         @RenderBody()
-        <div class="flex-item-right ">
-            <form action='@Url.Action("SRA3C", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SRA3C", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "पुनर्वसन क्षेत्र आदेश (३क)" : "Rehabilitation (3C) Orders")</button>
-            </form>
-            <form action='@Url.Action("PatrataYadi", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("PatrataYadi", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची पात्रता यादी" : "Eligibility List of Slum Holders (Appendix II)")</button>
-            </form>
-            <form action='@Url.Action("SR4", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SR4", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "योजना मंजुरी 14.6.12 (1)" : "Project Approval")</button>
-            </form>
-            <form action='@Url.Action("SRA3D", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("SRA3D", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "निर्मूलन आदेश (३ड)" : "Eradication (3D) Orders")</button>
-            </form>
-            <form action='@Url.Action("BuildingPermission", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("BuildingPermission", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "बांधकाम परवानगी प्रमाणपत्रे" : "Building Permission Certificates")</button>
-            </form>
-            <form action='@Url.Action("Society", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Society", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "गृहनिर्माण संस्थांची यादी" : "List Of Housing Societies")</button>
-            </form>
-            <form action='@Url.Action("Occupancy", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Occupancy", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "भोगवटा प्रमाणपत्रे" : "Occupancy Certificates")</button>
-            </form>
-            <form action='@Url.Action("Lottery", "Mr")#targetSection' method="get" style="display:inline;">
-                <button type="submit" class="Masterbutton" onclick="window.location.href='@Url.Action("Lottery", "Mr")'">@(Session["Lang"].ToString() == "mr" ? "लॉटरी पद्धतीने सदनिका वितरण" : "Allotment of Flats by Lottery")</button>
-            </form>
-        </div>
+
+        <!-- RIGHT QUICK BUTTONS -->
+    <!-- RIGHT QUICK BUTTONS -->
+@* <aside class="flex-item-right hero-quick-panel">
+
+    <form action='@Url.Action("SRA3C", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">⌕</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "पुनर्वसन क्षेत्र आदेश (३क)"
+                    : "Rehabilitation (3C) Orders")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+    <form action='@Url.Action("PatrataYadi", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">▤</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "झोपडीधारकांची पात्रता यादी"
+                    : "Eligibility List")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+    <form action='@Url.Action("SR4", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">⚙</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "योजना मंजुरी 14.6.12 (1)"
+                    : "Project Approval")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+    <form action='@Url.Action("SRA3D", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">⌂</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "निर्मूलन आदेश (३ड)"
+                    : "Eradication (3D) Orders")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+    <form action='@Url.Action("BuildingPermission", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">!</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "बांधकाम परवानगी प्रमाणपत्रे"
+                    : "Building Permission Certificates")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+    <form action='@Url.Action("Society", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">▤</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "गृहनिर्माण संस्थांची यादी"
+                    : "List Of Housing Societies")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+    <!-- 7. Occupancy -->
+    <form action='@Url.Action("Occupancy", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">▤</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "भोगवटा प्रमाणपत्रे"
+                    : "Occupancy Certificates")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+    <!-- 8. Lottery -->
+    <form action='@Url.Action("Lottery", "Mr")#targetSection' method="get">
+        <button type="submit" class="hero-quick-button">
+            <span class="quick-icon">⌑</span>
+            <span class="quick-text">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "लॉटरी पद्धतीने सदनिका वितरण"
+                    : "Allotment of Flats by Lottery")
+            </span>
+            <span class="quick-arrow">›</span>
+        </button>
+    </form>
+
+</aside> *@
     </div>
+
+</div>
+
+<div class="sra-left-buttons-below">
+
+
+    <!-- 1. SRA Rules -->
+    <div class="sra-feature-card">
+        <form action='@Url.Action("Niyamavali", "Mr")#targetSection' method="get">
+            <button type="submit" class="Masterbutton sra-feature-button">
+
+                <span class="sra-feature-icon">
+                    🏢
+                </span>
+
+                <span class="sra-feature-title">
+                    @(Session["Lang"].ToString() == "mr"
+                        ? "झो.पु.प्रा. नियमावली"
+                        : "SRA Rules")
+                </span>
+
+                <span class="sra-feature-arrow">→</span>
+
+            </button>
+        </form>
+    </div>
+
+
+    <!-- 2. Work Area Map -->
+    <div class="sra-feature-card">
+        <form action='@Url.Action("WorkAreaMap", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+
+                <span class="sra-feature-icon">
+                    👥
+                </span>
+
+                <span class="sra-feature-title">
+                    @(Session["Lang"].ToString() == "mr"
+                        ? "कार्यक्षेत्राचा नकाशा"
+                        : "MAP of Work Area")
+                </span>
+ 
+                <span class="sra-feature-arrow">→</span>
+
+            </button>
+        </form>
+    </div>
+
+
+    <!-- 3. SRA Stages -->
+    <div class="sra-feature-card">
+        <button type="button"
+                class="sra-feature-button"
+                onclick="window.open('@Url.Content(Session["yojanecheTappe"].ToString())','_blank')">
+
+            <span class="sra-feature-icon">
+                📄
+            </span>
+
+            <span class="sra-feature-title">
+                @(Session["Lang"].ToString() == "mr"
+                    ? "झो.पु.प्रा.योजनेचे टप्पे"
+                    : "SRA Stages of Plan")
+            </span>
+
+            <span class="sra-feature-arrow">→</span>
+
+        </button>
+    </div>
+
+
+    <!-- 4. Download Forms -->
+    <div class="sra-feature-card">
+        <form action='@Url.Action("VividhNamune", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+
+                <span class="sra-feature-icon">
+                    📋
+                </span>
+
+                <span class="sra-feature-title">
+                    @(Session["Lang"].ToString() == "mr"
+                        ? "विहित निकष / नमुने / कार्यपद्धती"
+                        : "Download Forms")
+                </span>
+
+                <span class="sra-feature-arrow">→</span>
+
+            </button>
+        </form>
+    </div>
+
+
+    <!-- 5. Slum List -->
+    <div class="sra-feature-card">
+        <form action='@Url.Action("SlumList", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+
+                <span class="sra-feature-icon">
+                    👥
+                </span>
+
+                <span class="sra-feature-title">
+                    @(Session["Lang"].ToString() == "mr"
+                        ? "झोपडपट्ट्यांची यादी"
+                        : "Slum List")
+                </span>
+
+                <span class="sra-feature-arrow">→</span>
+
+            </button>
+        </form>
+    </div>
+
+
+    <!-- 6. Registered Developer List -->
+    <div class="sra-feature-card">
+        <form action='@Url.Action("VikasakList", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+
+                <span class="sra-feature-icon">
+                    👤
+                </span>
+
+                <span class="sra-feature-title">
+                    @(Session["Lang"].ToString() == "mr"
+                        ? "नोंदणीकृत विकसकांची यादी"
+                        : "Registered Developer List")
+                </span>
+
+                <span class="sra-feature-arrow">→</span>
+
+            </button>
+        </form>
+    </div>
+
+
+    <!-- 7. Quotations / e-Tenders -->
+    <div class="sra-feature-card">
+        <form action='@Url.Action("Darpatrak", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+
+                <span class="sra-feature-icon">
+                    📢
+                </span>
+
+                <span class="sra-feature-title">
+                    @(Session["Lang"].ToString() == "mr"
+                        ? "दरपत्रके / ई-निविदा"
+                        : "Quotations / e-Tenders")
+                </span>
+
+                <span class="sra-feature-arrow">→</span>
+
+            </button>
+        </form>
+    </div>
+
+
+    <!-- 8. RTS Login -->
+    <div class="sra-feature-card">
+        <form action='@Url.Content("https://rts.srapune.gov.in/CP/Login")'
+              target="_blank"
+              method="get">
+
+            <button type="submit" class="sra-feature-button">
+
+                <span class="sra-feature-icon">
+                    💻
+                </span>
+
+                <span class="sra-feature-title">
+                    @(Session["Lang"].ToString() == "mr"
+                        ? "RTS झोपूप्रा लॉगिन"
+                        : "RTS SRA Login")
+                </span>
+
+                <span class="sra-feature-arrow">→</span>
+
+            </button>
+        </form>
+    </div>
+
+</div>
+@RenderSection("Leadership", required: false)
     <!-- 🔼 गोल Top बटण -->
     <button onclick="topFunction()" id="topBtn" title="वर जा">↑</button>
     @*<div>
