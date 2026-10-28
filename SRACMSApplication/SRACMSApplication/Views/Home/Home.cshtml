@@ -46,11 +46,11 @@
         <div class="col-12" style="padding:0px;">
                <div class="card ">
                 <div class="team teamback">
-                    <div class="d-flex flex-wrap justify-content-center" style="gap:20px;">
+                    <div class="d-flex flex-wrap justify-content-center home-ministers" style="gap:20px;">
                         <!-- Minister 1 -->
-                        <div class="text-center">
+                        <div class="text-center home-minister-card">
                             <div class="ih-item">
-                                <div class="img">
+                                <div class="img home-minister-photo">
                                     <img src="@Url.Content(@Model.minister1_Photo)" alt="img" class="minister-img img-fluid">
                                 </div>
                             </div>
@@ -63,9 +63,9 @@
                         </div>
 
                         <!-- Minister 2 -->
-                        <div class="text-center">
+                        <div class="text-center home-minister-card">
                             <div class="ih-item">
-                                <div class="img">
+                                <div class="img home-minister-photo">
                                     <img src="@Url.Content(@Model.minister2_Photo)" alt="img" class="minister-img img-fluid">
                                 </div>
                             </div>
@@ -78,9 +78,9 @@
                         </div>
 
                         <!-- Minister 3 -->
-                        <div class="text-center">
+                        <div class="text-center home-minister-card">
                             <div class="ih-item">
-                                <div class="img">
+                                <div class="img home-minister-photo">
                                     <img src="@Url.Content(@Model.minister3_Photo)" alt="img" class="minister-img img-fluid">
                                 </div>
                             </div>
@@ -93,9 +93,9 @@
                         </div>
 
                         <!-- Minister 4 -->
-                        <div class="text-center">
+                        <div class="text-center home-minister-card">
                             <div class="ih-item gap-3">
-                                <div class="img">
+                                <div class="img home-minister-photo">
                                     <img src="@Url.Content(@Model.minister4_Photo)" alt="img" class="minister-img img-fluid">
                                 </div>
                             </div>
@@ -114,6 +114,87 @@
 
 
 
+
+<style>
+    .container-fluid-slide-minister,
+    .container-fluid-slide-minister .team.teamback,
+    .container-fluid-slide-minister .home-ministers {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .home-ministers {
+        align-items: flex-start;
+        gap: 12px !important;
+        padding: 20px 12px 24px;
+    }
+
+    .home-ministers .home-minister-card {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: center;
+        min-width: 150px;
+        padding: 4px 8px;
+    }
+
+    .home-minister-card .ih-item {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .home-minister-card .home-minister-photo {
+        display: flex;
+        width: 120px;
+        height: 120px;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .home-minister-card img.minister-img {
+        display: block;
+        width: 110px;
+        height: 116px;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: center bottom;
+    }
+
+    .home-minister-card .team-bottom {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .home-minister-card .team-bottom h7 {
+        display: flex;
+        min-height: 2.8em;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 4px 0;
+        line-height: 1.35;
+    }
+
+    .home-minister-card .team-bottom p {
+        min-height: 2.6em;
+        margin: 4px 0 0;
+        line-height: 1.35;
+    }
+
+    @@media (max-width: 575.98px) {
+        .home-ministers {
+            gap: 8px !important;
+            padding: 16px 6px 20px;
+        }
+
+        .home-ministers .home-minister-card {
+            flex-basis: 145px;
+            min-width: 135px;
+        }
+    }
+</style>
 
 <style>
     .titleNews {
