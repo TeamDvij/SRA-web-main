@@ -958,122 +958,124 @@
     </div>
 
     <!-- नवीनतम end-->
-    @*आमची गॅलरी start *@
-    <div class="flex" style="border-bottom:2px solid #c2048a;background-color:aliceblue;">
-        <div class="container w-100 my-4">
-            <div class="bg-white p-4 rounded">
+    @*आमची गॅलरी start: view-only presentation; existing data, lightbox and destinations retained. *@
+    <section class="sra-gallery-section" aria-labelledby="sra-gallery-title">
+        <div class="sra-gallery-shell">
+            <header class="sra-gallery-heading">
+                <span class="sra-gallery-eyebrow">SRA PUNE</span>
+                <h2 id="sra-gallery-title">आमची गॅलरी</h2>
+                <p>आमच्या कार्याची झलक — छायाचित्रे, व्हिडिओ आणि प्रसिद्धी पत्रके</p>
+            </header>
 
-                <h3 class="fs-4 pt-2">आमची गॅलरी</h3>
-
-                <div class="flex">
-
-                    <!-- PHOTO CARD -->
-                    <div class="col-md-4 ">
-                        <div class="card h-100" style="border:2px solid #c2048a;">
-                            <div class="card-body d-flex flex-column">
-
-                                <div class="photo-grid">
-                                    @if (ViewBag.PhotoGalleryList_mr != null)
-                                    {
-                                        for (int j = 0; j < ViewBag.PhotoGalleryList_mr.Count; j++)
+            <div class="sra-gallery-grid">
+                <article class="sra-gallery-card">
+                    <div class="sra-gallery-media">
+                        <span class="sra-gallery-badge"><i class="fa fa-camera" aria-hidden="true"></i> छायाचित्रे</span>
+                        <div class="sra-gallery-items card-body p-0" data-sra-gallery="photos">
+                            @if (ViewBag.PhotoGalleryList_mr != null)
+                            {
+                                if (ViewBag.PhotoGalleryList_mr.Count > 0)
+                                {
+                                    var firstPhoto = ViewBag.PhotoGalleryList_mr[0];
+                                    var firstPhotoUrl = Url.Content(firstPhoto.doc_location + firstPhoto.doc_name);
+                                    <div class="sra-gallery-featured">
+                                        <a class="lightbox-item sra-gallery-featured-link" href="@firstPhotoUrl" data-title="Image 1">
+                                            <img class="sra-gallery-featured-image" src="@firstPhotoUrl" alt="छायाचित्र 1" loading="lazy">
+                                        </a>
+                                    </div>
+                                    <div class="sra-gallery-thumbnails" aria-label="छायाचित्र निवडा">
+                                        @for (int j = 0; j < ViewBag.PhotoGalleryList_mr.Count; j++)
                                         {
-                                            <div class="img-wrap">
-                                                <a class="lightbox-item" href="@Url.Content(ViewBag.PhotoGalleryList_mr[j].doc_location + ViewBag.PhotoGalleryList_mr[j].doc_name)" data-title="Image @(j + 1)">
-                                                    <img src="@Url.Content(ViewBag.PhotoGalleryList_mr[j].doc_location + ViewBag.PhotoGalleryList_mr[j].doc_name)"
-                                                         class="gallery-img img-fluid"
-                                                         alt="Image @(j + 1)">
-                                                </a>
-                                            </div>
+                                            var photoUrl = Url.Content(ViewBag.PhotoGalleryList_mr[j].doc_location + ViewBag.PhotoGalleryList_mr[j].doc_name);
+                                            <a class="lightbox-item sra-gallery-thumb @(j == 0 ? "is-active" : "")" href="@photoUrl" data-preview-src="@photoUrl" data-title="Image @(j + 1)" aria-label="छायाचित्र @(j + 1) पहा">
+                                                <img src="@photoUrl" alt="" loading="lazy">
+                                            </a>
                                         }
-                                    }
-                                </div>
-
-                                <button class="btn-gallery mt-auto align-self-center" onclick="location.href='@Url.Action("Gallery", "Mr")#targetSection'">
-                                    छायाचित्र दालन
-                                    <span class="material-icons">arrow_forward</span>
-                                </button>
-
-                            </div>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
+                    <div class="sra-gallery-card-copy">
+                        <div><h3>छायाचित्र दालन</h3><p>प्राधिकरणाच्या कामांची छायाचित्रे येथे पहा.</p></div>
+                        <a class="sra-gallery-arrow" href="@Url.Action("Gallery", "Mr")#targetSection" aria-label="छायाचित्र दालन पहा"><span class="material-icons">arrow_forward</span></a>
+                    </div>
+                </article>
 
-                    <!-- VIDEO CARD -->
-                    <div class=" col-md-4 md-4 ">
-                        <div class="card h-100" style="border:2px solid #c2048a;">
-                            <div class="card-body flex-column">
-                                <div class="photo-grid">
-                                    @if (ViewBag.VideoGalleryList_mr != null)
-                                    {
-                                        for (int j = 0; j < ViewBag.VideoGalleryList_mr.Count; j++)
+                <article class="sra-gallery-card">
+                    <div class="sra-gallery-media">
+                        <span class="sra-gallery-badge"><i class="fa fa-play-circle" aria-hidden="true"></i> व्हिडिओ</span>
+                        <div class="sra-gallery-items card-body p-0" data-sra-gallery="videos">
+                            @if (ViewBag.VideoGalleryList_mr != null)
+                            {
+                                if (ViewBag.VideoGalleryList_mr.Count > 0)
+                                {
+                                    var firstVideoUrl = Url.Content(ViewBag.VideoGalleryList_mr[0].doc_location + ViewBag.VideoGalleryList_mr[0].doc_name);
+                                    <div class="sra-gallery-featured">
+                                        <a class="lightbox-item sra-gallery-featured-link" href="@firstVideoUrl" data-title="Video 1">
+                                            <video class="sra-gallery-featured-video" data-video="@firstVideoUrl" preload="metadata" controlsList="nodownload" disablePictureInPicture oncontextmenu="return false;" muted playsinline>
+                                                <source src="@firstVideoUrl" type="video/mp4">
+                                            </video>
+                                            <span class="sra-gallery-featured-play" aria-hidden="true"><i class="fa fa-play-circle"></i></span>
+                                        </a>
+                                    </div>
+                                    <div class="sra-gallery-thumbnails" aria-label="व्हिडिओ निवडा">
+                                        @for (int j = 0; j < ViewBag.VideoGalleryList_mr.Count; j++)
                                         {
-                                            <div class="lightbox-item img-wrap text-decoration-none">
-                                             <video class="gallery-img img-fluid "
-                                                       data-video="@Url.Content(ViewBag.VideoGalleryList_mr[j].doc_location + ViewBag.VideoGalleryList_mr[j].doc_name)"
-                                                       preload="metadata"
-                                                       controlsList="nodownload"
-                                                       disablePictureInPicture
-                                                       oncontextmenu="return false;"
-                                                       muted>
-                                                    <source src="@Url.Content(ViewBag.VideoGalleryList_mr[j].doc_location + ViewBag.VideoGalleryList_mr[j].doc_name)" type="video/mp4">
-                                                </video>
-                                                <!-- Optional play icon -->
-                                                <span class="play-icon">
-                                                    <i class="fa fa-play-circle fs-1"></i>
-                                                </span>
-                                            </div>
+                                            var videoUrl = Url.Content(ViewBag.VideoGalleryList_mr[j].doc_location + ViewBag.VideoGalleryList_mr[j].doc_name);
+                                            <button type="button" class="sra-gallery-thumb sra-gallery-video-thumb @(j == 0 ? "is-active" : "")" data-preview-src="@videoUrl" data-title="Video @(j + 1)" aria-label="व्हिडिओ @(j + 1) निवडा">
+                                                <video src="@videoUrl" preload="metadata" muted playsinline></video><span class="sra-gallery-thumb-play" aria-hidden="true"><i class="fa fa-play-circle"></i></span>
+                                            </button>
                                         }
-                                    }
-
-                                </div>
-                                <button class="btn-gallery mt-auto align-self-center" onclick="location.href='@Url.Action("GalleryVideo", "Mr")#targetSection'">
-                                    व्हिडिओ
-                                    <span class="material-icons">arrow_forward</span>
-                                </button>
-                            </div>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
-                    <div id="videoLightbox" class="video-lightbox">
-                        <span class="close-btn fs-1" id="closeVideo">&times;</span>
-
-                        <video id="popupVideo"
-                               controls
-                               controlsList="nodownload"
-                               disablePictureInPicture
-                               oncontextmenu="return false"
-                               autoplay></video>
+                    <div class="sra-gallery-card-copy">
+                        <div><h3>व्हिडिओ दालन</h3><p>प्राधिकरणाचे उपक्रम आणि कार्यक्रमांचे व्हिडिओ पहा.</p></div>
+                        <a class="sra-gallery-arrow" href="@Url.Action("GalleryVideo", "Mr")#targetSection" aria-label="व्हिडिओ दालन पहा"><span class="material-icons">arrow_forward</span></a>
                     </div>
+                </article>
 
-
-                    <!-- NEWS PRESS CARD -->
-                    <div class="col-md-4">
-                        <div class="card h-100" style="border:2px solid #c2048a;">
-                            <div class="card-body flex-column">
-                                <div class="photo-grid">
-                                    @if (ViewBag.NewsGalleryList_mr != null)
-                                    {
-                                        for (int j = 0; j < ViewBag.NewsGalleryList_mr.Count; j++)
+                <article class="sra-gallery-card">
+                    <div class="sra-gallery-media">
+                        <span class="sra-gallery-badge sra-gallery-badge-news"><i class="fa fa-newspaper-o" aria-hidden="true"></i> प्रसिद्धी</span>
+                        <div class="sra-gallery-items card-body p-0" data-sra-gallery="press">
+                            @if (ViewBag.NewsGalleryList_mr != null)
+                            {
+                                if (ViewBag.NewsGalleryList_mr.Count > 0)
+                                {
+                                    var firstPressUrl = Url.Content(ViewBag.NewsGalleryList_mr[0].doc_location + ViewBag.NewsGalleryList_mr[0].doc_name);
+                                    <div class="sra-gallery-featured">
+                                        <a class="lightbox-item sra-gallery-featured-link" href="@firstPressUrl" data-title="Press 1">
+                                            <img class="sra-gallery-featured-image" src="@firstPressUrl" alt="प्रसिद्धी पत्रक 1" loading="lazy">
+                                        </a>
+                                    </div>
+                                    <div class="sra-gallery-thumbnails" aria-label="प्रसिद्धी पत्रक निवडा">
+                                        @for (int j = 0; j < ViewBag.NewsGalleryList_mr.Count; j++)
                                         {
-                                            <div class="img-wrap">
-                                                <a class="lightbox-item" href="@Url.Content(ViewBag.NewsGalleryList_mr[j].doc_location + ViewBag.NewsGalleryList_mr[j].doc_name)" data-title="Press @(j + 1)">
-                                                    <img src="@Url.Content(ViewBag.NewsGalleryList_mr[j].doc_location + ViewBag.NewsGalleryList_mr[j].doc_name)"
-                                                         class="gallery-img img-fluid"
-                                                         alt="Press Article">
-                                                </a>
-                                            </div>
+                                            var pressUrl = Url.Content(ViewBag.NewsGalleryList_mr[j].doc_location + ViewBag.NewsGalleryList_mr[j].doc_name);
+                                            <a class="lightbox-item sra-gallery-thumb @(j == 0 ? "is-active" : "")" href="@pressUrl" data-preview-src="@pressUrl" data-title="Press @(j + 1)" aria-label="प्रसिद्धी पत्रक @(j + 1) पहा">
+                                                <img src="@pressUrl" alt="" loading="lazy">
+                                            </a>
                                         }
-                                    }
-                                </div>
-                                <button class="btn-gallery mt-auto align-self-center" onclick="location.href='@Url.Action("GalleryNews", "Mr")#targetSection'">
-                                    प्रसिद्धी पत्रक
-                                    <span class="material-icons">arrow_forward</span>
-                                </button>
-                            </div>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
-
-                </div>
+                    <div class="sra-gallery-card-copy">
+                        <div><h3>प्रसिद्धी पत्रके</h3><p>बातम्या आणि प्रसिद्धी पत्रके येथे वाचा.</p></div>
+                        <a class="sra-gallery-arrow" href="@Url.Action("GalleryNews", "Mr")#targetSection" aria-label="प्रसिद्धी पत्रके पहा"><span class="material-icons">arrow_forward</span></a>
+                    </div>
+                </article>
             </div>
         </div>
+    </section>
+    <div id="videoLightbox" class="video-lightbox">
+        <span class="close-btn fs-1" id="closeVideo">&times;</span>
+        <video id="popupVideo" controls controlsList="nodownload" disablePictureInPicture oncontextmenu="return false" autoplay></video>
     </div>
     <!-- Custom Zoom/Pan Lightbox Modal Overlay -->
     <div id="customImageModal" class="custom-zoom-modal">
@@ -1515,6 +1517,237 @@
     /* You can also apply the font to specific elements */
     h3, p, .table th, .table td {
         font-family: 'Trio Devnagari', sans-serif;
+    }
+
+    /* Homepage gallery cards: presentation only; existing gallery sources and actions are preserved. */
+    .sra-gallery-section {
+        padding: clamp(32px, 5vw, 68px) 0;
+        background: radial-gradient(circle at 5% 0%, rgba(255, 126, 66, .10), transparent 24%),
+                    radial-gradient(circle at 96% 12%, rgba(38, 111, 197, .10), transparent 25%), #f1f7ff;
+        border-bottom: 1px solid #dce8f5;
+    }
+
+    .sra-gallery-shell {
+        width: min(1440px, calc(100% - 40px));
+        margin: 0 auto;
+    }
+
+    .sra-gallery-heading {
+        margin: 0 auto 30px;
+        text-align: center;
+    }
+
+    .sra-gallery-eyebrow {
+        display: inline-block;
+        margin-bottom: 7px;
+        color: #ec6a32;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .18em;
+    }
+
+    .sra-gallery-heading h2 {
+        margin: 0;
+        color: #102c55;
+        font-size: clamp(30px, 4vw, 48px);
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    .sra-gallery-heading p {
+        margin: 8px 0 0;
+        color: #68778c;
+        font-size: clamp(15px, 1.7vw, 19px);
+    }
+
+    .sra-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+        gap: clamp(16px, 2vw, 26px);
+    }
+
+    .sra-gallery-card {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid rgba(26, 61, 105, .08);
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 12px 32px rgba(35, 67, 107, .11);
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .sra-gallery-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 38px rgba(35, 67, 107, .16);
+    }
+
+    .sra-gallery-media {
+        position: relative;
+        padding: 16px 16px 0;
+        background: linear-gradient(145deg, #f7fbff, #e9f1fa);
+    }
+
+    .sra-gallery-badge {
+        position: absolute;
+        z-index: 2;
+        top: 26px;
+        left: 26px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, .95);
+        color: #e65d2b;
+        font-size: 15px;
+        font-weight: 700;
+        box-shadow: 0 4px 14px rgba(13, 38, 74, .12);
+    }
+
+    .sra-gallery-badge-news { color: #17447f; }
+
+    .sra-gallery-items {
+        display: grid;
+        grid-template-rows: minmax(180px, 1fr) auto;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .sra-gallery-featured {
+        position: relative;
+        min-width: 0;
+        height: clamp(190px, 21vw, 280px);
+        overflow: hidden;
+        border-radius: 12px;
+        background: #dce6f1;
+    }
+
+    .sra-gallery-featured-link,
+    .sra-gallery-featured-image,
+    .sra-gallery-featured-video {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .sra-gallery-featured-image,
+    .sra-gallery-featured-video {
+        object-fit: cover;
+    }
+
+    .sra-gallery-featured-play {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 58px;
+        text-shadow: 0 3px 14px rgba(0, 0, 0, .55);
+        pointer-events: none;
+    }
+
+    .sra-gallery-thumbnails {
+        display: grid;
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 2px 1px 4px;
+        scrollbar-width: thin;
+    }
+
+    .sra-gallery-thumb {
+        position: relative;
+        display: block;
+        min-width: 0;
+        height: clamp(64px, 7vw, 92px);
+        overflow: hidden;
+        padding: 0;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        background: #dce6f1;
+        cursor: pointer;
+    }
+
+    .sra-gallery-thumb img,
+    .sra-gallery-thumb video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .sra-gallery-thumb.is-active {
+        border-color: #f06a32;
+        box-shadow: 0 0 0 2px rgba(240, 106, 50, .16);
+    }
+
+    .sra-gallery-thumb-play {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 26px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, .6);
+        pointer-events: none;
+    }
+
+    .sra-gallery-card-copy {
+        display: flex;
+        min-height: 116px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 18px 20px 20px;
+    }
+
+    .sra-gallery-card-copy h3 {
+        margin: 0 0 5px;
+        color: #102c55;
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    .sra-gallery-card-copy p {
+        margin: 0;
+        color: #6b7788;
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    .sra-gallery-arrow {
+        display: inline-flex;
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #ed6a32;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 6px 16px rgba(237, 106, 50, .25);
+        transition: transform .2s ease, background .2s ease;
+    }
+
+    .sra-gallery-card:nth-child(2) .sra-gallery-arrow { background: #174a94; }
+    .sra-gallery-arrow:hover { color: #fff; background: #d95622; transform: translateX(2px); }
+
+    @@media (max-width: 900px) {
+        .sra-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @@media (max-width: 600px) {
+        .sra-gallery-shell { width: min(100% - 28px, 460px); }
+        .sra-gallery-heading { margin-bottom: 22px; }
+        .sra-gallery-grid { grid-template-columns: 1fr; gap: 18px; }
+        .sra-gallery-media { padding: 12px 12px 0; }
+        .sra-gallery-badge { top: 20px; left: 20px; padding: 7px 12px; font-size: 14px; }
+        .sra-gallery-card-copy { min-height: 100px; padding: 14px 16px 16px; }
+        .sra-gallery-card-copy h3 { font-size: 20px; }
+        .sra-gallery-arrow { width: 44px; height: 44px; flex-basis: 44px; }
     }
 </style>
 
@@ -2655,9 +2888,50 @@
             showItemAtIndex(currentIndex + direction);
         }
 
+        function selectGalleryPreview(container, item) {
+            if (!container || !item) return;
+            container.querySelectorAll(".sra-gallery-thumb").forEach(function (thumb) {
+                thumb.classList.toggle("is-active", thumb === item);
+            });
+
+            const featuredLink = container.querySelector(".sra-gallery-featured-link");
+            const previewUrl = item.getAttribute("data-preview-src");
+            if (!featuredLink || !previewUrl) return;
+
+            featuredLink.href = previewUrl;
+            featuredLink.dataset.title = item.dataset.title || "Gallery preview";
+
+            const featuredImage = featuredLink.querySelector(".sra-gallery-featured-image");
+            if (featuredImage) {
+                const thumbnailImage = item.querySelector("img");
+                featuredImage.src = previewUrl;
+                featuredImage.alt = thumbnailImage && thumbnailImage.alt ? thumbnailImage.alt : "Gallery preview";
+            }
+
+            const featuredVideo = featuredLink.querySelector(".sra-gallery-featured-video");
+            if (featuredVideo) {
+                featuredVideo.pause();
+                featuredVideo.src = previewUrl;
+                featuredVideo.dataset.video = previewUrl;
+                featuredVideo.load();
+            }
+        }
+
+        document.querySelectorAll(".sra-gallery-video-thumb").forEach(function (thumb) {
+            thumb.addEventListener("click", function () {
+                selectGalleryPreview(thumb.closest("[data-sra-gallery]"), thumb);
+            });
+        });
+
         // Open custom modal on lightbox-item click (Scoped by closest container card/grid)
         document.querySelectorAll(".lightbox-item").forEach(function (item) {
             item.addEventListener("click", function (e) {
+                if (item.classList.contains("sra-gallery-thumb")) {
+                    e.preventDefault();
+                    selectGalleryPreview(item.closest("[data-sra-gallery]"), item);
+                    return;
+                }
+
                 e.preventDefault();
 
                 // Find the parent card body or photo-grid so we ONLY loop items within this specific section

@@ -733,73 +733,79 @@ namespace SRACMSApplication.Controllers
             }
             else
             {
+                // This list is not submitted with the form. Keep it available on
+                // every validation or upload error so the view can be re-rendered.
+                model.lstContentType = db.mst_single_image_pdf.Where(x => x.active_status == "A").ToList();
                 try
                 {
-                    string filename = "";
-                    string extension = "";
+                    var obj = db.mst_single_image_pdf.SingleOrDefault(x => x.id == model.id);
+                    if (obj == null)
+                    {
+                        ViewBag.Message = "The selected record could not be found. Please select the minister again.";
+                        return View(model);
+                    }
 
-                    if (postedFile != null)
+                    string newFileName = null;
+                    string newFilePath = null;
+                    string oldFilePath = null;
+                    if (postedFile != null && postedFile.ContentLength > 0)
                     {
-                        filename = System.IO.Path.GetFileNameWithoutExtension(postedFile.FileName);
-                        string[] slipttext = filename.Split('.');
-                        if (slipttext.Count() > 1)
+                        string extension = System.IO.Path.GetExtension(postedFile.FileName);
+                        if (string.IsNullOrEmpty(extension) ||
+                            !(extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                              extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                              extension.Equals(".pdf", StringComparison.OrdinalIgnoreCase)))
                         {
-                            ViewBag.fileExtensionMessage = "Invalid file!";
+                            ViewBag.fileExtensionMessage = "Please select a jpg, jpeg, or pdf file.";
                             return View(model);
                         }
-                        extension = System.IO.Path.GetExtension(postedFile.FileName);
-                        filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                        if (extension == ".pdf" && model.file_type != "p")
+                        if ((extension.Equals(".pdf", StringComparison.OrdinalIgnoreCase) && model.file_type != "p") ||
+                            ((extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase) || extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)) && model.file_type != "i"))
                         {
-                                ViewBag.fileExtensionMessage = "Please select pdf file";
-                                return View(model);
-                        }
-                        else if ((extension == ".jpg" || extension == ".jpeg") && model.file_type != "i")
-                        {
-                                ViewBag.fileExtensionMessage = "Please select jpg/jpeg file";
-                                return View(model);
-                        }
-                    }
-                    mst_single_image_pdf obj = null;
-                    if (model.id != 0)
-                    {
-                        obj = db.mst_single_image_pdf.SingleOrDefault(x => x.id == model.id);
-                        if (obj == null)
-                        {
+                            ViewBag.fileExtensionMessage = model.file_type == "p" ? "Please select pdf file" : "Please select jpg/jpeg file";
                             return View(model);
                         }
-                        else
-                        {
-                            obj.updated_by = Convert.ToInt32(Session["UserID"]);
-                            obj.updated_date = DateTime.Today;
-                            if (obj.updated_count == null)
-                                obj.updated_count = 1;
-                            else
-                                obj.updated_count += 1;
-                            obj.file_type = model.file_type;
-                            obj.content_type = model.content_type;
-                            obj.title = model.title1;
-                            obj.title_eng = model.title_eng;
-                            //Delete Existing File
-                            if (obj.doc_name != "" && filename != "")
-                            {
-                                string file_name = System.IO.Path.Combine(Server.MapPath(obj.doc_location), obj.doc_name);
-                                FileInfo file = new FileInfo(file_name);
-                                if (file.Exists)
-                                    file.Delete(); //Delete file at particular location
-                            }
-                            if (filename != "")
-                            {
-                                obj.doc_name = filename;
-                                filename = System.IO.Path.Combine(Server.MapPath(obj.doc_location), filename);
-                                postedFile.SaveAs(filename); //Save file at particular location
-                            }
-                            obj.active_status = "A";
-                            db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
-                            db.SaveChanges();
-                            ViewBag.Message = "Record Submitted Successfully!";
-                                }
+
+                        string uploadDirectory = Server.MapPath(obj.doc_location);
+                        if (string.IsNullOrWhiteSpace(uploadDirectory))
+                            throw new InvalidOperationException("The upload folder is not configured for this content type.");
+                        Directory.CreateDirectory(uploadDirectory);
+                        string baseName = System.IO.Path.GetFileNameWithoutExtension(postedFile.FileName);
+                        foreach (char invalidChar in System.IO.Path.GetInvalidFileNameChars())
+                            baseName = baseName.Replace(invalidChar, '_');
+                        newFileName = baseName + DateTime.Now.ToString("yymmssfff") + extension.ToLowerInvariant();
+                        newFilePath = System.IO.Path.Combine(uploadDirectory, newFileName);
+                        if (!string.IsNullOrEmpty(obj.doc_name))
+                            oldFilePath = System.IO.Path.Combine(uploadDirectory, System.IO.Path.GetFileName(obj.doc_name));
                     }
+
+                    obj.updated_by = Convert.ToInt32(Session["UserID"]);
+                    obj.updated_date = DateTime.Today;
+                    obj.updated_count = (obj.updated_count ?? 0) + 1;
+                    obj.file_type = model.file_type;
+                    obj.content_type = model.content_type;
+                    obj.title = model.title1;
+                    obj.title_eng = model.title_eng;
+                    if (newFileName != null)
+                    {
+                        postedFile.SaveAs(newFilePath);
+                        obj.doc_name = newFileName;
+                    }
+                    obj.active_status = "A";
+                    db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    if (newFileName != null && !string.IsNullOrEmpty(oldFilePath) && System.IO.File.Exists(oldFilePath))
+                    {
+                        try
+                        {
+                            System.IO.File.Delete(oldFilePath);
+                        }
+                        catch (Exception cleanupException)
+                        {
+                            System.Diagnostics.Trace.TraceError("Minister image saved, but old image cleanup failed: {0}", cleanupException);
+                        }
+                    }
+                    ViewBag.Message = "Record Submitted Successfully!";
                     List<mst_single_image_pdf> lstobj = db.mst_single_image_pdf.Where(x => x.active_status == "A").ToList();
                     model.lstContentType = lstobj;
                     if (obj != null)
@@ -814,9 +820,11 @@ namespace SRACMSApplication.Controllers
                     }
                     return View(model);
                 }
-                catch (Exception)
+                catch (Exception uploadException)
                 {
                     ViewBag.Message = "Something went wrong";
+                    System.Diagnostics.Trace.TraceError("Single image/pdf upload failed: {0}", uploadException);
+                    model.lstContentType = db.mst_single_image_pdf.Where(x => x.active_status == "A").ToList();
                     return View(model);
                 }
             }
@@ -1431,6 +1439,15 @@ namespace SRACMSApplication.Controllers
         }
 
         //Gallery
+        private static List<SelectListItem> GetGalleryTypeOptions()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Photo Gallery", Value = "P" },
+                new SelectListItem { Text = "Video Gallery", Value = "V" },
+                new SelectListItem { Text = "News", Value = "N" }
+            };
+        }
 
         public ActionResult cp_gallery()
         {
@@ -1491,41 +1508,21 @@ namespace SRACMSApplication.Controllers
             }
             else
             {
+                // This list is view data and is not posted by the browser. Populate
+                // it before processing files so every error return can render safely.
+                model.photo_video_List = GetGalleryTypeOptions();
                 try
                 {
                     string filename = "";
                     string extension = "";
-                    foreach (HttpPostedFileBase file in postedFile)
+                    foreach (HttpPostedFileBase file in (postedFile ?? new HttpPostedFileBase[0]))
                     {
                         //Checking file is available to save.  
                         if (file != null)
                         {
                             filename = System.IO.Path.GetFileNameWithoutExtension(file.FileName);
-                            string[] slipttext = filename.Split('.');
-                            if (slipttext.Count() > 1)
-                            {
-                                ViewBag.fileExtensionMessage = "Invalid file!";
-                                return View(model);
-                            }
                             extension = System.IO.Path.GetExtension(file.FileName);
                             filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                            List<SelectListItem> lst2 = new List<SelectListItem>();
-                            lst2.Add(new SelectListItem
-                            {
-                                Text = "Photo Gallery",
-                                Value = "P"
-                            });
-                            lst2.Add(new SelectListItem
-                            {
-                                Text = "Video Gallery",
-                                Value = "V"
-                            });
-                            lst2.Add(new SelectListItem
-                            {
-                                Text = "News",
-                                Value = "N"
-                            });
-                            model.photo_video_List = lst2;
                             if ((model.photo_video=="P" || model.photo_video == "N") && extension.ToString().ToUpper() != ".JPG" && extension.ToString().ToUpper() != ".JPEG")
                             {
                                 ViewBag.fileExtensionMessage = "Please select jpeg/jpg file";
@@ -1538,7 +1535,7 @@ namespace SRACMSApplication.Controllers
                             }
                         }
                     }
-                            foreach (HttpPostedFileBase file in postedFile)
+                    foreach (HttpPostedFileBase file in (postedFile ?? new HttpPostedFileBase[0]))
                     {
                         //Checking file is available to save.  only for photo and news
                         if (file != null)
@@ -1547,15 +1544,19 @@ namespace SRACMSApplication.Controllers
                             extension = System.IO.Path.GetExtension(file.FileName);
                             filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
                             var InputFileName = Path.GetFileName(filename);
-                            var ServerSavePath = "";
+                            var uploadDirectory = "";
                             if (model.photo_video == "P")
-                                 ServerSavePath = Path.Combine(Server.MapPath("~/Content/images/Gallery/") + InputFileName);
+                                 uploadDirectory = Server.MapPath("~/Content/images/Gallery/");
                             else if (model.photo_video == "N")
-                                 ServerSavePath = Path.Combine(Server.MapPath("~/Content/News/") + InputFileName);
+                                 uploadDirectory = Server.MapPath("~/Content/News/");
                             else if (model.photo_video == "V")
-                                ServerSavePath = Path.Combine(Server.MapPath("~/Content/Videos/") + InputFileName);
+                                uploadDirectory = Server.MapPath("~/Content/Videos/");
 
-                            //Save file to server folder  
+                            if (string.IsNullOrWhiteSpace(uploadDirectory))
+                                throw new InvalidOperationException("The upload folder is not configured for the selected gallery type.");
+                            Directory.CreateDirectory(uploadDirectory);
+                            var ServerSavePath = Path.Combine(uploadDirectory, InputFileName);
+                            // Save the file to the selected gallery folder.
                             file.SaveAs(ServerSavePath);
 
                             galary obj = new galary();
@@ -1577,29 +1578,15 @@ namespace SRACMSApplication.Controllers
                             db.SaveChanges();
                         }
                     }
-                    ViewBag.Message = postedFile.Count().ToString() + " files uploaded successfully.";
-                    List<SelectListItem> lst1 = new List<SelectListItem>();
-                    lst1.Add(new SelectListItem
-                    {
-                        Text = "Photo Gallery",
-                        Value = "P"
-                    });
-                    lst1.Add(new SelectListItem
-                    {
-                        Text = "Video Gallery",
-                        Value = "V"
-                    });
-                    lst1.Add(new SelectListItem
-                    {
-                        Text = "News",
-                        Value = "N"
-                    });
-                    model.photo_video_List = lst1;
+                    ViewBag.Message = (postedFile ?? new HttpPostedFileBase[0]).Count(x => x != null && x.ContentLength > 0).ToString() + " files uploaded successfully.";
+                    model.photo_video_List = GetGalleryTypeOptions();
                     return View(model);
                 }
                 catch (Exception ex)
                 {
                     ViewBag.Message = "Something went wrong"+ex.Message;
+                    System.Diagnostics.Trace.TraceError("Gallery upload failed: {0}", ex);
+                    model.photo_video_List = GetGalleryTypeOptions();
                     return View(model);
                 }
             }
