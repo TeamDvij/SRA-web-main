@@ -206,7 +206,7 @@
                     <ul id="nav-list">
                         @*<li><a class="link-3" href="@Url.Content("~/Mr")#targetSection"><i class="fa fa-home" style="color: #dc3545;"></i>@(Session["Lang"].ToString() == "mr" ? " मुख्यपृष्ठ" : " Home")</a></li>*@
                         <li><a class="link-3" href="@Url.Content("~/Mr")"><i class="fa fa-home" style="font-size:20px; color: #dc3545;"></i></a></li>
-                        <li style="background-color: tomato; border-radius: 12px; ">
+                        <li class="sra-nav-scheme" style="background-color: tomato; border-radius: 12px; ">
                             <a style="color:white;" href="@Url.Content("~/Mr/Yojana")#targetSection"><b>@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा योजना" : "SRA Schemes")</b></a>
                         </li>
 
@@ -366,7 +366,7 @@
                             </div>
                         </li>
                         <li><a class="link-3" href="@Url.Content("~/Mr/Contact")#targetSection">@(Session["Lang"].ToString() == "mr" ? "संपर्क" : "Contact") </a></li>
-                        <li style="background-color: tomato; border-radius: 12px; ">
+                        <li class="sra-nav-scheme"style="background-color: tomato; border-radius: 12px; ">
                             @*<a style="color:white;" href="https://rts.srapune.gov.in/" target="_blank"><b>@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Services under Public Service Rights Act")</b></a>*@
                             <a style="color:white;" href="https://aaplesarkar.mahaonline.gov.in/en" target="_blank"><b>@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Services under Public Service Rights Act")</b></a>
                         </li>

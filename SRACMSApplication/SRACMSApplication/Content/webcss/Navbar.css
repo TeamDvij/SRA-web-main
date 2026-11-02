@@ -55,6 +55,16 @@ nav {
             color: white;
         }
 
+/* Match the SRA scheme navigation hover/focus state to the dark blue button. */
+nav ul li.sra-nav-scheme > a:hover,
+nav ul li.sra-nav-scheme > a:focus,
+nav ul li.sra-nav-scheme > a:focus-visible {
+    background: #004274 !important;
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
     .navbar ul {
         list-style: none;
         display: flex;

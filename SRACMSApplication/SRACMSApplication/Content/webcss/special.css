@@ -91,7 +91,7 @@
     .rts-button:hover {
         transform: scale(1.05);
         animation: none; /* stop pulsing on hover */
-        background-color: #e5533d;
+        background-color: #004274;
         color: white;
     }
 
@@ -112,7 +112,7 @@
         .rts-button:hover {
             transform: scale(1.05);
             animation: none; /* stop pulsing on hover */
-            background-color: #e5533d;
+            background-color: #004274;
             color: white;
         }
 
@@ -133,7 +133,7 @@
             .rts-button:hover {
                 transform: scale(1.05);
                 animation: none; /* stop pulsing on hover */
-                background-color: #e5533d;
+                background-color: #004274;
                 color: white;
             }
     }
