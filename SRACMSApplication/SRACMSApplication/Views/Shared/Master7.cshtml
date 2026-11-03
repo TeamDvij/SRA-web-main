@@ -143,6 +143,7 @@
                     <a href="@Url.Content(@Session["nagarikachi_sanad"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "नागरिकांची सनद" : "Citizens' Charter")</a>
                     <a href="@Url.Content(@Session["loksevaHakka"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "लोकसेवा हक्क अधिनियम अंतर्गत सेवा" : "Services under Public Service Rights Act")</a>
                     <a href="@Url.Content(@Session["slum_act"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा अधिनियम" : "SRA Act") </a>
+                    <a href="@Url.Content("~/Content/Documents/GRAS_Payment_Steps_v3.pdf")" target="_blank" rel="noopener noreferrer">@(Session["Lang"].ToString() == "mr" ? "शासकीय जमा लेखांकन प्रणाली" : "Government Receipt Accounting System")</a>
                     <a href="@Url.Content("~/Mr/FAQ")#targetSection">@(Session["Lang"].ToString() == "mr" ? "शंका समाधान (FAQ)" : "FAQ") </a>
                 </ul>
             </li>
@@ -186,15 +187,16 @@
             <a href="@Url.Content("~/Mr")">
                 <img src="~/Content/images/SRA-Logo.jpg" alt="Left Logo" class="logo1">
             </a>
-            <div>
-                <a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn cta-button">
-                    झोपुप्रा योजना
-                </a>
-            </div>
-            <div>
-                <a href="https://rts.srapune.gov.in/" class="btn rts-button">
-                    Online RTS सेवा
-                </a>
+            <div class="mobile-action-row">
+                <div>
+                    <a href="@Url.Content("~/Mr/Yojana")#targetSection" class="btn cta-button">झोपुप्रा योजना</a>
+                </div>
+                <div>
+                    <a href="https://rts.srapune.gov.in/" class="btn rts-button">Online RTS सेवा</a>
+                </div>
+                <div>
+                    <a href="https://gras.mahakosh.gov.in/echallan/" class="btn rts-button" target="_blank" rel="noopener noreferrer" title="शासकीय जमा लेखांकन प्रणालीद्वारे चलन भरणा" aria-label="GRAS - शासकीय जमा लेखांकन प्रणालीद्वारे चलन भरणा">GRAS</a>
+                </div>
             </div>
             <div class="brand-name">
                 <h4 class="fs-3" style="color: #dc3545; font-weight: bold;">झोपडपट्टी पुनर्वसन प्राधिकरण, पुणे व पिंपरी चिंचवड क्षेत्र, पुणे</h4>
@@ -352,6 +354,7 @@
                                 <a href="@Url.Content(@Session["nagarikachi_sanad"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "नागरिकांची सनद" : "Citizens' Charter")</a>
                                 <a href="@Url.Content(@Session["loksevaHakka"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "लोकसेवा हक्क अधिनियम अंतर्गत सेवा" : "Services under Public Service Rights Act")</a>
                                 <a href="@Url.Content(@Session["slum_act"].ToString())#targetSection" class="marathi_font" target="_blank">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा अधिनियम" : "SRA Act") </a>
+                                <a href="@Url.Content("~/Content/Documents/GRAS_Payment_Steps_v3.pdf")" target="_blank" rel="noopener noreferrer">@(Session["Lang"].ToString() == "mr" ? "शासकीय जमा लेखांकन प्रणाली" : "Government Receipt Accounting System")</a>
                                 <a href="@Url.Content("~/Mr/FAQ")#targetSection">@(Session["Lang"].ToString() == "mr" ? "शंका समाधान (FAQ)" : "FAQ") </a>
                             </div>
                         </li>
@@ -370,6 +373,7 @@
                             @*<a style="color:white;" href="https://rts.srapune.gov.in/" target="_blank"><b>@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Services under Public Service Rights Act")</b></a>*@
                             <a style="color:white;" href="https://aaplesarkar.mahaonline.gov.in/en" target="_blank"><b>@(Session["Lang"].ToString() == "mr" ? "Online RTS सेवा" : "Services under Public Service Rights Act")</b></a>
                         </li>
+                         <li class="sra-nav-scheme" style="background-color: tomato; border-radius: 12px;"><a class="gras-button" style="color: #fff !important;" href="https://gras.mahakosh.gov.in/echallan/" target="_blank" rel="noopener noreferrer" title="शासकीय जमा लेखांकन प्रणालीद्वारे चलन भरणा" aria-label="GRAS - शासकीय जमा लेखांकन प्रणालीद्वारे चलन भरणा"><b style="color: #fff !important;">GRAS</b></a></li>
                     </ul>
                 </nav>
             </div>
@@ -1394,6 +1398,47 @@
 </footer>
 
 <style>
+    @@media (max-width: 780px) {
+        .header-container .brand-name h4,
+        .header-container .brand-name h6 {
+            text-align: left !important;
+        }
+
+        .header-container {
+            grid-template-columns: 54px minmax(0, 1fr) 42px !important;
+            row-gap: 8px !important;
+        }
+
+        .header-container > .mobile-action-row {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            grid-column: 1 / -1 !important;
+            grid-row: 2 !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            gap: 4px !important;
+        }
+
+        .header-container > .mobile-action-row > div {
+            flex: 1 1 0 !important;
+            width: 0 !important;
+            min-width: 0 !important;
+        }
+
+        .header-container > .mobile-action-row .btn {
+            display: flex !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            padding: 5px 1px !important;
+            justify-content: center;
+            white-space: nowrap;
+            box-sizing: border-box;
+            font-size: clamp(8px, 2.5vw, 11px) !important;
+        }
+    }
+
     /* Footer presentation only; existing links, values and actions are unchanged. */
     .sra-footer-logos {
         position: relative;
@@ -1458,7 +1503,7 @@
     }
 
     .sra-footer-meta {
-        justify-content: space-between !important;
+        justify-content: flex-start !important;
         margin-top: 14px;
         padding: 9px 14px;
         border: 1px solid rgba(57, 193, 255, .65);
@@ -1481,7 +1526,7 @@
     }
 
     .sra-footer-meta .copyright {
-        flex: 1 1 360px;
+        flex: 0 1 auto;
     }
 
     @@media (max-width: 767.98px) {

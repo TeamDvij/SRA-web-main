@@ -243,6 +243,69 @@
     background: #fff;
 }
 
+/* GRAS payment link and its Marathi hover/focus label. */
+.header .navbar .gras-nav-item > .gras-button,
+.mobile-menu > li > .gras-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 58px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: tomato;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.header-container .mobile-gras-button-wrap > .gras-button:hover,
+.header-container .mobile-gras-button-wrap > .gras-button:focus-visible,
+.header .navbar .gras-nav-item > .gras-button:hover,
+.header .navbar .gras-nav-item > .gras-button:focus-visible {
+    background: #004274;
+    color: #fff;
+}
+
+.header .navbar .gras-nav-item > .gras-button,
+.header .navbar .gras-nav-item > .gras-button b,
+.header .navbar .gras-nav-item > .gras-button:visited,
+.header .navbar .gras-nav-item > .gras-button:hover b,
+.header .navbar .gras-nav-item > .gras-button:focus-visible b {
+    color: #fff !important;
+}
+
+.gras-button::after {
+    position: absolute;
+    z-index: 1300;
+    top: calc(100% + 8px);
+    left: 50%;
+    width: max-content;
+    max-width: min(300px, calc(100vw - 32px));
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #eeeff2;
+    color: #fff;
+    content: attr(title);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.45;
+    white-space: normal;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -3px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+    pointer-events: none;
+}
+
+.gras-button:hover::after,
+.gras-button:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
 @media (min-width: 781px) {
     .header-container > div:not(.brand-name) {
         display: none;
@@ -304,6 +367,44 @@
 
     .mobile-menu {
         margin: 0;
+        padding: 4px 0;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 8px 18px rgb(243, 241, 241);
+    }
+
+    .mobile-menu > li {
+        display: block;
+        width: 100%;
+    }
+
+    .mobile-menu > li > a {
+        display: block;
+        min-height: 44px;
+        padding: 12px 16px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .mobile-menu .submenu {
+        padding-left: 0;
+        background: rgb(240, 237, 237);
+    }
+
+    .mobile-menu .submenu a {
+        padding: 11px 28px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .mobile-menu .gras-button {
+        width: calc(100% - 24px);
+        margin: 6px 12px;
+        text-align: center;
+    }
+
+    .mobile-menu .gras-button::after {
+        top: auto;
+        bottom: calc(100% + 6px);
     }
 }
 
@@ -354,4 +455,73 @@
         margin-bottom: 0;
         font-size: 11px !important;
     }
+
+    .topnav > div:first-child > span {
+        max-width: 38vw;
+    }
+
+    .topnav form#openSearch input {
+        width: min(90px, 22vw);
+    }
+}
+
+/* Keep the three primary actions together in one compact row on phones. */
+@media (max-width: 780px) {
+    .header-container {
+        display: grid;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        grid-template-columns: 54px minmax(0, 1fr) 42px !important;
+        grid-template-rows: auto auto;
+        column-gap: 0;
+        row-gap: 8px;
+    }
+
+    .header-container > a {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .header-container .brand-name {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: center;
+    }
+
+    .header-container > img.logo2 {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .header-container > .mobile-action-row {
+        grid-column: 1 / -1 !important;
+        grid-row: 2 !important;
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        gap: 4px;
+    }
+
+    .header-container > .mobile-action-row > div {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .header-container > .mobile-action-row .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100% !important;
+        min-width: 0;
+        min-height: 34px;
+        margin: 0 !important;
+        padding: 5px 2px;
+        border-radius: 10px;
+        font-size: clamp(9px, 2.8vw, 12px);
+        line-height: 1.15;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+
 }
