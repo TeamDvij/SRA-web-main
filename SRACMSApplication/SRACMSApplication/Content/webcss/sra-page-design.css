@@ -1,0 +1,204 @@
+/* Shared presentation for content pages rendered inside Master7. */
+.sra-main-wrapper .sramain:not(.authority-info):not(.authority-structure):not(.authority-leadership):not(.authority-committee) {
+    box-sizing: border-box;
+    margin: 14px 16px 24px;
+    padding: 22px 24px 28px;
+    border: 1px solid #e5eaf1;
+    border-radius: 14px;
+    background: #f5f7fb;
+    box-shadow: 0 8px 24px rgba(24, 48, 84, .08);
+}
+
+.sra-main-wrapper .sramain:not(.authority-info):not(.authority-structure):not(.authority-leadership):not(.authority-committee) > .row {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0 28px 28px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.sra-main-wrapper .sramain:not(.authority-info):not(.authority-structure):not(.authority-leadership):not(.authority-committee) h3.fs-5 {
+    position: relative;
+    margin: 0 -28px 24px !important;
+    padding: 18px 24px 18px 30px !important;
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(110deg, #123f73, #1768a6) !important;
+    color: #fff !important;
+    font-family: 'TrioDevanagari', sans-serif;
+    font-size: 1.35rem !important;
+    font-weight: 700;
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(20, 75, 127, .18);
+}
+
+.sra-main-wrapper .sramain:not(.authority-info):not(.authority-structure):not(.authority-leadership):not(.authority-committee) h3.fs-5::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    left: 0;
+    width: 5px;
+    border-radius: 0 4px 4px 0;
+    background: #f2b544;
+}
+
+.sra-main-wrapper .sramain .subheader {
+    margin: 12px 0 10px !important;
+    padding: 11px 14px !important;
+    border-left: 4px solid #e5a52e;
+    border-radius: 0 7px 7px 0;
+    background: #f0f5fb !important;
+    color: #164f83 !important;
+    font-family: 'TrioDevanagari', sans-serif;
+    font-weight: 700;
+}
+
+.sra-main-wrapper .sramain table {
+    border-color: #e2e8f0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    color: #344357;
+    background: #fff;
+}
+
+.sra-main-wrapper .sramain table th {
+    padding: 12px;
+    border-color: #dbe5ef;
+    background: #164f83;
+    color: #fff;
+    font-weight: 700;
+}
+
+.sra-main-wrapper .sramain table td {
+    padding: 10px 12px;
+    border-color: #e2e8f0;
+}
+
+.sra-main-wrapper .sramain table tbody tr:nth-child(even) {
+    background: #f7f9fc;
+}
+
+.sra-main-wrapper .sramain .tab {
+    margin: 0 0 16px !important;
+    padding: 6px;
+    border: 1px solid #dce5ef;
+    border-radius: 9px 9px 0 0;
+    background: #f0f5fb;
+}
+
+.sra-main-wrapper .sramain .tab button {
+    border-radius: 6px;
+    color: #164f83;
+    font-weight: 600;
+}
+
+.sra-main-wrapper .sramain .tab button.active,
+.sra-main-wrapper .sramain .tab button:hover {
+    background: #164f83;
+    color: #fff;
+}
+
+.sra-main-wrapper .sramain .tabcontent {
+    border: 1px solid #e2e8f0;
+    border-radius: 0 0 9px 9px;
+    background: #fff;
+}
+
+/* A few older certificate pages use a plain width-based wrapper instead of sramain. */
+.sra-main-wrapper .sra-home-content > div[style*="width:70%"]:not(.sramain),
+.sra-main-wrapper .sra-home-content > #targetSection.container {
+    box-sizing: border-box;
+    width: calc(100% - 32px) !important;
+    max-width: none;
+    margin: 14px 16px 24px !important;
+    padding: 22px 24px 28px !important;
+    border: 1px solid #e5eaf1;
+    border-radius: 14px;
+    background: #f5f7fb;
+    box-shadow: 0 8px 24px rgba(24, 48, 84, .08);
+}
+
+.sra-main-wrapper .sra-home-content > div[style*="width:70%"]:not(.sramain) > .row,
+.sra-main-wrapper .sra-home-content > #targetSection.container > .row {
+    margin: 0;
+    padding: 0 28px 28px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.sra-main-wrapper .sra-home-content > div[style*="width:70%"]:not(.sramain) h3,
+.sra-main-wrapper .sra-home-content > #targetSection.container h3 {
+    position: relative;
+    margin: 0 -28px 24px !important;
+    padding: 18px 24px 18px 30px !important;
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(110deg, #123f73, #1768a6) !important;
+    color: #fff !important;
+    font-family: 'TrioDevanagari', sans-serif;
+    font-size: 1.35rem !important;
+    font-weight: 700;
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(20, 75, 127, .18);
+}
+
+.sra-main-wrapper .sra-home-content > div[style*="width:70%"]:not(.sramain) h3::before,
+.sra-main-wrapper .sra-home-content > #targetSection.container h3::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    left: 0;
+    width: 5px;
+    border-radius: 0 4px 4px 0;
+    background: #f2b544;
+}
+
+@media (max-width: 767px) {
+    .sra-main-wrapper .sramain:not(.authority-info):not(.authority-structure):not(.authority-leadership):not(.authority-committee) {
+        margin: 10px 8px 18px;
+        padding: 12px;
+    }
+
+    .sra-main-wrapper .sramain:not(.authority-info):not(.authority-structure):not(.authority-leadership):not(.authority-committee) > .row {
+        padding: 0 14px 20px;
+    }
+
+    .sra-main-wrapper .sramain:not(.authority-info):not(.authority-structure):not(.authority-leadership):not(.authority-committee) h3.fs-5 {
+        margin: 0 -14px 18px !important;
+        padding: 15px 18px 15px 24px !important;
+        font-size: 1.15rem !important;
+    }
+
+    .sra-main-wrapper .sramain .tab {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .sra-main-wrapper .sramain .tab button {
+        float: none;
+        flex: 0 0 auto;
+    }
+
+    .sra-main-wrapper .sra-home-content > div[style*="width:70%"]:not(.sramain),
+    .sra-main-wrapper .sra-home-content > #targetSection.container {
+        width: calc(100% - 16px) !important;
+        margin: 10px 8px 18px !important;
+        padding: 12px !important;
+    }
+
+    .sra-main-wrapper .sra-home-content > div[style*="width:70%"]:not(.sramain) > .row,
+    .sra-main-wrapper .sra-home-content > #targetSection.container > .row {
+        padding: 0 14px 20px;
+    }
+
+    .sra-main-wrapper .sra-home-content > div[style*="width:70%"]:not(.sramain) h3,
+    .sra-main-wrapper .sra-home-content > #targetSection.container h3 {
+        margin: 0 -14px 18px !important;
+        padding: 15px 18px 15px 24px !important;
+        font-size: 1.15rem !important;
+    }
+}

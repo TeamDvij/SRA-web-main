@@ -2319,3 +2319,58 @@
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
 }
+
+/* A visible light segment rotates clockwise around each home shortcut card. */
+@keyframes sra-card-border-clockwise {
+    to { transform: rotate(360deg); }
+}
+
+.sra-left-buttons-below .sra-feature-card {
+    position: relative;
+    isolation: isolate;
+}
+
+.sra-left-buttons-below .sra-feature-card::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    z-index: 0;
+    border-radius: inherit;
+    background: conic-gradient(
+        transparent 0deg 275deg,
+        #55a2ff 294deg,
+        #ef4776 320deg,
+        #ffcf68 338deg,
+        transparent 360deg
+    );
+    pointer-events: none;
+    animation: sra-card-border-clockwise 3.2s linear infinite;
+}
+
+.sra-left-buttons-below .sra-feature-card::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    z-index: 1;
+    border-radius: 6px;
+    background: #fff;
+    pointer-events: none;
+}
+
+.sra-left-buttons-below .sra-feature-card form {
+    position: relative;
+    z-index: 2;
+}
+
+.sra-left-buttons-below .sra-feature-card > .sra-feature-button {
+    position: relative;
+    z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sra-left-buttons-below .sra-feature-card::before {
+        animation: none;
+        inset: 0;
+        background: linear-gradient(110deg, #55a2ff, #ef4776, #ffcf68);
+    }
+}
