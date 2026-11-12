@@ -394,6 +394,15 @@
         padding: 11px 28px;
         line-height: 1.4;
         overflow-wrap: anywhere;
+        color: #173b65 !important;
+        font-weight: 600;
+        border-bottom: 1px solid #d8e0e9;
+    }
+
+    .mobile-menu .submenu a:hover,
+    .mobile-menu .submenu a:focus {
+        background: #e3edf7;
+        color: #0e2f52 !important;
     }
 
     .mobile-menu .gras-button {
