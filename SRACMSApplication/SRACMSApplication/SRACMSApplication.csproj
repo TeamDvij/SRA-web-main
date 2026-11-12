@@ -2197,6 +2197,7 @@
     <Content Include="Content\webcss\static\CSS\main.dae5e9b6.css" />
     <Content Include="Content\webcss\static\JS\main.2b1a0489.js" />
     <Content Include="Content\webcss\responsive.css" />
+    <Content Include="Content\webcss\sra-page-design.css" />
     <Content Include="Content\webcss\tabs.css" />
     <Content Include="Content\webcss\tabs_old_16012026.css" />
     <Content Include="Content\webcss\Template7.css" />

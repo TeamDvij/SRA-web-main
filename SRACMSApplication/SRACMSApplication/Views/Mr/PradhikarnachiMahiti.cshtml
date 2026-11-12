@@ -5,25 +5,118 @@
     //Layout = "~/Views/Shared/Master7.cshtml";
 }
 <style>
-    .scrollable-div {
-        height: 635px; /* Fixed height */
-        overflow-y: scroll; /* Enables vertical scrolling */
-        /*border: 1px solid #ccc;*/ /* Optional, for better visibility */
-        /*padding: 10px;*/
-
+    .authority-info {
+        height: 635px;
+        overflow-y: auto;
+        padding: 22px 24px 30px;
+        border: 1px solid #e5eaf1;
+        border-radius: 14px;
+        background: #f5f7fb;
+        box-shadow: 0 8px 24px rgba(24, 48, 84, .08);
+        scrollbar-color: #b7c5d8 transparent;
     }
-    .b{
-        color:antiquewhite;
+
+    .authority-info > .row {
+        margin: 0;
+        padding: 0 28px 28px;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .authority-info .authority-info-title {
+        position: relative;
+        margin: 0 -28px 24px;
+        padding: 18px 24px 18px 30px !important;
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(110deg, #123f73, #1768a6) !important;
+        color: #fff;
+        font-family: 'TrioDevanagari', sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: .01em;
+        box-shadow: 0 4px 12px rgba(20, 75, 127, .18);
+    }
+
+    .authority-info .authority-info-title::before {
+        content: "";
+        position: absolute;
+        top: 18px;
+        bottom: 18px;
+        left: 0;
+        width: 5px;
+        border-radius: 0 4px 4px 0;
+        background: #f2b544;
+    }
+
+    .authority-info .authority-info-content {
+        padding: 4px 8px 12px;
+    }
+
+    .authority-info .authority-info-content p.fs-5 {
+        margin: 0 0 18px !important;
+        color: #344357;
+        font-family: 'TrioDevanagari', sans-serif;
+        font-size: 1.06rem !important;
+        line-height: 1.95 !important;
+        text-align: justify;
+    }
+
+    .authority-info .authority-info-content p.fs-5 span.d-block {
+        line-height: 1.95 !important;
+    }
+
+    .authority-info .authority-info-content p[style*="color:#004d99"] {
+        margin: 30px 0 12px !important;
+        padding: 10px 14px 10px 16px;
+        border-left: 4px solid #e5a52e;
+        border-radius: 0 7px 7px 0;
+        background: #f0f5fb;
+        color: #164f83 !important;
+        font-family: 'TrioDevanagari', sans-serif;
+        font-size: 1.12rem !important;
+        line-height: 1.6;
+    }
+
+    .authority-info .authority-info-content .table-responsive {
+        overflow-x: auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .authority-info .authority-info-content table {
+        width: 100%;
+        margin-bottom: 0;
+        color: #344357;
+        background: #fff;
+    }
+
+    .authority-info .authority-info-content th {
+        padding: 12px;
+        background: #eaf1f8;
+        color: #164f83;
+    }
+
+    .authority-info .authority-info-content td {
+        padding: 10px 12px;
+        border-top: 1px solid #e8edf3;
+    }
+
+    @@media (max-width: 767px) {
+        .authority-info { height: 635px; padding: 12px; }
+        .authority-info > .row { padding: 0 14px 20px; }
+        .authority-info .authority-info-title { margin: 0 -14px 18px; padding: 15px 18px 15px 24px !important; font-size: 1.15rem; }
+        .authority-info .authority-info-content { padding: 0; }
+        .authority-info .authority-info-content p.fs-5 { font-size: 1rem !important; line-height: 1.8 !important; }
     }
 </style>
-<div class="sramain scrollable-div" id="targetSection">
+<div class="sramain authority-info" id="targetSection">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+            <h3 class="fs-5 authority-info-title">
                 @(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची माहिती" : "SRA Information")
             </h3>
         </div>
-        <div class="col-12" style="padding: 25px;">
+        <div class="col-12 authority-info-content">
 
             <p class="mb-3 fs-5 text-start">
                 <span class="d-block" style="font-family: 'TrioDevanagari'; line-height: 40px;" &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;>

@@ -4,15 +4,80 @@
     ViewBag.Title = "PradhikaranachaAarakhada";
     Layout = "~/Views/Shared/Master7.cshtml";
 }
+<style>
+    .authority-structure {
+        padding: 22px 24px 30px;
+        border: 1px solid #e5eaf1;
+        border-radius: 14px;
+        background: #f5f7fb;
+        box-shadow: 0 8px 24px rgba(24, 48, 84, .08);
+    }
 
-<div class="sramain" id="targetSection">
+    .authority-structure > .row {
+        margin: 0;
+        padding: 0 28px 28px;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .authority-structure .authority-structure-title {
+        position: relative;
+        margin: 0 -28px 24px;
+        padding: 18px 24px 18px 30px !important;
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(110deg, #123f73, #1768a6) !important;
+        color: #fff;
+        font-family: 'TrioDevanagari', sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(20, 75, 127, .18);
+    }
+
+    .authority-structure .authority-structure-title::before {
+        content: "";
+        position: absolute;
+        top: 18px;
+        bottom: 18px;
+        left: 0;
+        width: 5px;
+        border-radius: 0 4px 4px 0;
+        background: #f2b544;
+    }
+
+    .authority-structure .authority-structure-content {
+        padding: 4px 8px 12px;
+        text-align: center;
+    }
+
+    .authority-structure .gallery-item {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        box-shadow: 0 5px 18px rgba(24, 48, 84, .10);
+    }
+
+    .authority-structure .modal { z-index: 1100; }
+
+    @@media (max-width: 767px) {
+        .authority-structure { padding: 12px; }
+        .authority-structure > .row { padding: 0 14px 20px; }
+        .authority-structure .authority-structure-title { margin: 0 -14px 18px; padding: 15px 18px 15px 24px !important; font-size: 1.15rem; }
+        .authority-structure .authority-structure-content { padding: 0; }
+    }
+</style>
+
+<div class="sramain authority-structure" id="targetSection">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+            <h3 class="fs-5 authority-structure-title">
                 @(Session["Lang"].ToString() == "mr" ? "प्राधिकरणाची संरचना" : "SRA Structure")
             </h3>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 authority-structure-content">
             <img src="@Url.Content(@Model.aarakhada)" alt="Image 1" class="gallery-item">
 
             <div id="modal" class="modal">

@@ -5,34 +5,44 @@
     //Layout = "~/Views/Shared/Master7.cshtml";
 }
 <style>
-    .scrollable-div {
-       
-        height: 635px; /* Fixed height */
-        overflow-y: scroll; /* Enables vertical scrolling */
-        /*border: 1px solid #ccc;*/ /* Optional, for better visibility */
-        /*padding: 10px;*/
-    }
-    .td ,.tr{
-        font-size:
+    .authority-committee { height: 635px; overflow-y: auto; padding: 22px 24px 30px; border: 1px solid #e5eaf1; border-radius: 14px; background: #f5f7fb; box-shadow: 0 8px 24px rgba(24, 48, 84, .08); scrollbar-color: #b7c5d8 transparent; }
+    .authority-committee > .row { margin: 0; padding: 0 28px 28px; border-radius: 10px; background: #fff; }
+    .authority-committee .authority-page-title { position: relative; margin: 0 -28px 24px; padding: 18px 24px 18px 30px !important; border-radius: 10px 10px 0 0; background: linear-gradient(110deg, #123f73, #1768a6) !important; color: #fff; font-family: 'TrioDevanagari', sans-serif; font-size: 1.35rem; font-weight: 700; box-shadow: 0 4px 12px rgba(20, 75, 127, .18); }
+    .authority-committee .authority-page-title::before { content: ""; position: absolute; top: 18px; bottom: 18px; left: 0; width: 5px; border-radius: 0 4px 4px 0; background: #f2b544; }
+    .authority-committee .authority-page-content { padding: 4px 8px 12px !important; }
+    .authority-committee .authority-copy { margin: 0 0 18px !important; color: #344357; font-family: 'TrioDevanagari', sans-serif; font-size: 1.06rem !important; line-height: 1.95 !important; text-align: justify; }
+    .authority-committee .authority-copy span { line-height: inherit; }
+    .authority-committee .authority-table-title { margin: 30px 0 14px !important; padding: 10px 14px 10px 16px; border-left: 4px solid #e5a52e; border-radius: 0 7px 7px 0; background: #f0f5fb; color: #164f83 !important; font-family: 'TrioDevanagari', sans-serif; font-size: 1.12rem !important; line-height: 1.6 !important; }
+    .authority-committee .table-responsive { margin-top: 0 !important; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; }
+    .authority-committee table { width: 100%; margin: 0; color: #344357; background: #fff; }
+    .authority-committee td { padding: 12px; border-bottom: 1px solid #e8edf3; vertical-align: middle; line-height: 1.7; }
+    .authority-committee tr:last-child td { border-bottom: 0; }
+    .authority-committee tbody tr:nth-child(even) { background: #f7f9fc; }
+    @@media (max-width: 767px) {
+        .authority-committee { height: 635px; padding: 12px; }
+        .authority-committee > .row { padding: 0 14px 20px; }
+        .authority-committee .authority-page-title { margin: 0 -14px 18px; padding: 15px 18px 15px 24px !important; font-size: 1.15rem; }
+        .authority-committee .authority-page-content { padding: 0 !important; }
+        .authority-committee .authority-copy { font-size: 1rem !important; line-height: 1.8 !important; }
     }
 </style>
-<div class="sramain scrollable-div" id="targetSection">
+<div class="sramain authority-committee" id="targetSection">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+            <h3 class="fs-5 authority-page-title">
                 @(Session["Lang"].ToString() == "mr" ? "प्राधिकरण समिती" : "SakshamSadasya")
             </h3>
         </div>
-        <div class="col-12" style="padding: 25px;">
+        <div class="col-12 authority-page-content">
 
-            <p class="mb-3 fs-5 text-start" style="line-height: 40px;">
+            <p class="mb-3 fs-5 text-start authority-copy" style="line-height: 40px;">
                 <span class="d-block" style="text-align:justify;">
                     @*महाराष्ट्र शासनाने, महाराष्ट्र झोपडपट्टी क्षेत्र (सुधारणा, निर्मूलन व पुनर्विकास) अधिनियम, <b>1971</b> मध्ये दुरुस्ती केली व अध्यक्ष, मुख्य कार्यकारी अधिकारी व इतर सदस्यांचा समावेश असलेले झोपडपट्टी पुनर्वसन प्राधिकरण स्थापन करण्याची तरतूद करण्यात आली. <b>दि.16 डिसेंबर ,1995</b> च्या शासकीय अधिसूचने अन्वये झोपडपट्टी पुनर्वसन प्राधिकरणाची स्थापना झाली व ते <b>दि.25 डिसेंबर,1995</b> पासून कार्यान्वित झाले.*@
                     झोपडपट्टी पुनर्वसन प्राधिकरण, पुणे व पिंपरी चिंचवड, पुणे ची स्थापना <b>दि. ३० जून २००५.</b> सुरुवातीस मनपा आयुक्त पुणे यांचेकडे मु.का.अ. झोपुप्रा पदाचा अतिरिक्त कार्यभार होता, सन २०१६ पासून स्वतंत्र मुख्य कार्यकारी अधिकारी कार्यरत.
                 </span>
             </p>
 
-            <p class="mb-3 fs-5 text-start" style="line-height: 40px;">
+            <p class="mb-3 fs-5 text-start authority-copy" style="line-height: 40px;">
                 <span class="d-block">
                     @*मा. मुख्यमंत्री, महाराष्ट्र राज्य हे सदर प्राधिकरणाचे पदसिध्द अध्यक्ष असून भारतीय प्रशासन सेवेतील अतिकालीत वेतनश्रेणीतील अधिकारी पूर्णवेळ मुख्य कार्यकारी अधिकारी आहेत. इतर सदस्यांमध्ये मंत्री, राज्य विधीमंडळातील निर्वाचित सदस्य, शासनाच्या विविध खात्यांचे सचिव, बांधकाम, नियोजन, सामाजिकसेवा, वास्तूशास्त्र इ. क्षेत्रातील काही तज्ञांचा अशासकीय सदस्यांमध्ये समावेश आहे. झोपडपट्टी पुनर्वसन प्राधिकरणाचे सध्याचे सदस्य*@
                     सुरुवातीस समितीच्या रचनेमध्ये अध्यक्ष - मा. पालकमंत्री, मनपा क्षेत्रातील सर्व मा. खासदार / मा. आमदार, मा. महापौर, PMC / PCMC , मा. आयुक्त PMC / PCMC असे सदस्य होते. महाराष्ट्र प्रादेशिक व नगररचना, अधिनियम १९६६ चे कलम २ (१९) (ब) अन्वये प्राधिकरण कार्यक्षेत्राकरिता नियोजन प्राधिकरण म्हणून घोषीत.
@@ -41,7 +51,7 @@
 
             
 
-            <p class="mb-3 fs-4 text-start" style="color: #004d99; line-height: 40px;"><b> झोपडपट्टी पुनर्वसन प्राधिकरणाचे सध्याचे सदस्य:</b></p>
+            <p class="mb-3 fs-4 text-start authority-table-title" style="color: #004d99; line-height: 40px;"><b> झोपडपट्टी पुनर्वसन प्राधिकरणाचे सध्याचे सदस्य:</b></p>
             <div class="table-responsive" style="margin-top:-30px;">
                 <table id="datatable">
                     <tbody>

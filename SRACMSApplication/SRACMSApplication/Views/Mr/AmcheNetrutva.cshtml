@@ -4,14 +4,39 @@
     //Layout = "~/Views/Shared/Master7.cshtml";
     Layout = @Session["Layout"].ToString();
 }
+<style>
+    .authority-leadership { padding: 22px 24px 30px; border: 1px solid #e5eaf1; border-radius: 14px; background: #f5f7fb; box-shadow: 0 8px 24px rgba(24, 48, 84, .08); }
+    .authority-leadership > .row { margin: 0; padding: 0 28px 28px; border-radius: 10px; background: #fff; }
+    .authority-leadership .authority-page-title { position: relative; margin: 0 -28px 24px; padding: 18px 24px 18px 30px !important; border-radius: 10px 10px 0 0; background: linear-gradient(110deg, #123f73, #1768a6) !important; color: #fff; font-family: 'TrioDevanagari', sans-serif; font-size: 1.35rem; font-weight: 700; box-shadow: 0 4px 12px rgba(20, 75, 127, .18); }
+    .authority-leadership .authority-page-title::before { content: ""; position: absolute; top: 18px; bottom: 18px; left: 0; width: 5px; border-radius: 0 4px 4px 0; background: #f2b544; }
+    .authority-leadership .authority-page-content { padding: 0 8px; }
+    .authority-leadership .table-container { width: 100%; margin: 0; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; }
+    .authority-leadership table { width: 100%; margin: 0; border-collapse: separate; border-spacing: 0; color: #344357; background: #fff; }
+    .authority-leadership td { padding: 18px 16px; border-bottom: 1px solid #e8edf3; vertical-align: middle; line-height: 1.75; }
+    .authority-leadership tr:last-child td { border-bottom: 0; }
+    .authority-leadership td:first-child { width: 16%; text-align: center; }
+    .authority-leadership td:first-child img { max-width: 110px; max-height: 130px; object-fit: cover; border: 1px solid #e2e8f0; border-radius: 8px; background: #f5f7fb; }
+    .authority-leadership td:nth-child(2) { width: 34%; color: #164f83; }
+    .authority-leadership td:nth-child(2) p { margin: 0; line-height: 1.8; }
+    .authority-leadership td:nth-child(3) { width: 50%; color: #526174; }
+    .authority-leadership td:nth-child(3) p { margin: 0 0 5px; }
+    .authority-leadership a { color: #1768a6; }
+    @@media (max-width: 767px) {
+        .authority-leadership { padding: 12px; }
+        .authority-leadership > .row { padding: 0 14px 20px; }
+        .authority-leadership .authority-page-title { margin: 0 -14px 18px; padding: 15px 18px 15px 24px !important; font-size: 1.15rem; }
+        .authority-leadership .authority-page-content { padding: 0; }
+        .authority-leadership td { padding: 12px 10px; min-width: 130px; }
+    }
+</style>
 
-<div class="sramain" id="targetSection">
+<div class="sramain authority-leadership" id="targetSection">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="fs-5" style="background-color: antiquewhite; padding:10px;">
+            <h3 class="fs-5 authority-page-title">
                 @(Session["Lang"].ToString() == "mr" ? "आपले नेतृत्व" : "Our Leadership")
             </h3>
-            <div class="col-md-12 table-container">
+            <div class="col-md-12 table-container authority-page-content">
                 <table id="datatable" cellspacing="0">
                     <tbody>
                         @foreach (var item in Model.AmacheNetrutvaList.Select((x, i) => new { Data = x, Index = i + 1 }))
