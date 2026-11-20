@@ -154,12 +154,55 @@
     }
 
     .home-ministers .home-minister-card {
+        position: relative;
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
         align-items: center;
         min-width: 150px;
         padding: 4px 8px;
+        border: 1px solid rgba(21, 67, 112, .08);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 5px 16px rgba(23, 53, 83, .08);
+        animation: minister-card-enter .65s ease both;
+        transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .home-ministers .home-minister-card:nth-child(2) { animation-delay: .08s; }
+    .home-ministers .home-minister-card:nth-child(3) { animation-delay: .16s; }
+    .home-ministers .home-minister-card:nth-child(4) { animation-delay: .24s; }
+    .home-ministers .home-minister-card:nth-child(5) { animation-delay: .32s; }
+
+    .home-ministers .home-minister-card:hover {
+        z-index: 1;
+        transform: translateY(-6px);
+        border-color: rgba(23, 104, 166, .28);
+        box-shadow: 0 14px 28px rgba(23, 53, 83, .16);
+    }
+
+    .home-minister-card img.minister-img {
+        transition: transform .35s ease;
+    }
+
+    .home-minister-card:hover img.minister-img {
+        transform: scale(1.04);
+    }
+
+    @@keyframes minister-card-enter {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @@media (prefers-reduced-motion: reduce) {
+        .home-ministers .home-minister-card {
+            animation: none;
+            transition: none;
+        }
+
+        .home-minister-card img.minister-img {
+            transition: none;
+        }
     }
 
     .home-minister-card .ih-item {

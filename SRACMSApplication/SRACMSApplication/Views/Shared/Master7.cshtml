@@ -275,73 +275,7 @@
     </div>
 </li>
 
-<!-- YOJANA DROPDOWN -->
-<li class="dropdown yojana-dropdown">
-    <a href="#" class="link-3" onclick="return false;">
-        @(Session["Lang"].ToString() == "mr" ? "योजना" : "Yojana")
-        <span>▼</span>
-    </a>
-
-    <div class="dropdown-menu">
-
-        <!-- 1. Rehabilitation 3C -->
-        <a href="@Url.Action("SRA3C", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "पुनर्वसन क्षेत्र आदेश (३क)"
-                : "Rehabilitation (3C) Orders")
-        </a>
-
-        <!-- 2. Eligibility List -->
-        <a href="@Url.Action("PatrataYadi", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "झोपडीधारकांची पात्रता यादी"
-                : "Eligibility List")
-        </a>
-
-        <!-- 3. Project Approval -->
-        <a href="@Url.Action("SR4", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "योजना मंजुरी 14.6.12 (1)"
-                : "Project Approval")
-        </a>
-
-        <!-- 4. Eradication 3D -->
-        <a href="@Url.Action("SRA3D", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "निर्मूलन आदेश (३ड)"
-                : "Eradication (3D) Orders")
-        </a>
-
-        <!-- 5. Building Permission -->
-        <a href="@Url.Action("BuildingPermission", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "बांधकाम परवानगी प्रमाणपत्रे"
-                : "Building Permission Certificates")
-        </a>
-
-        <!-- 6. Housing Societies -->
-        <a href="@Url.Action("Society", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "गृहनिर्माण संस्थांची यादी"
-                : "List Of Housing Societies")
-        </a>
-
-        <!-- 7. Occupancy -->
-        <a href="@Url.Action("Occupancy", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "भोगवटा प्रमाणपत्रे"
-                : "Occupancy Certificates")
-        </a>
-
-        <!-- 8. Lottery -->
-        <a href="@Url.Action("Lottery", "Mr")#targetSection">
-            @(Session["Lang"].ToString() == "mr"
-                ? "लॉटरी पद्धतीने सदनिका वितरण"
-                : "Allotment of Flats by Lottery")
-        </a>
-
-    </div>
-</li>                        <li><a class="link-3" href="@Url.Content("~/Mr/Paripatrak")#targetSection">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा परिपत्रके" : "SRA Circulars")</a></li>
+                        <li><a class="link-3" href="@Url.Content("~/Mr/Paripatrak")#targetSection">@(Session["Lang"].ToString() == "mr" ? "झोपुप्रा परिपत्रके" : "SRA Circulars")</a></li>
                         <li><a href="@Url.Content("~/Mr/ShasanNirnay")">@(Session["Lang"].ToString() == "mr" ? "शासन निर्णय" : "Government Resolution") </a></li>
 
                         <li class="dropdown">
@@ -677,6 +611,87 @@
 
                 <span class="sra-feature-arrow">→</span>
 
+            </button>
+        </form>
+    </div>
+
+    <!-- Yojana links moved from the navbar into matching feature cards -->
+    <div class="sra-feature-card">
+        <form action='@Url.Action("SRA3C", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">🏘️</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "पुनर्वसन क्षेत्र आदेश (३क)" : "Rehabilitation (3C) Orders")</span>
+                <span class="sra-feature-arrow">→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="sra-feature-card">
+        <form action='@Url.Action("PatrataYadi", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">📋</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "झोपडीधारकांची पात्रता यादी" : "Eligibility List")</span>
+                <span class="sra-feature-arrow">→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="sra-feature-card">
+        <form action='@Url.Action("SR4", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">✅</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "योजना मंजुरी 14.6.12 (1)" : "Project Approval")</span>
+                <span class="sra-feature-arrow">→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="sra-feature-card">
+        <form action='@Url.Action("SRA3D", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">🏗️</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "निर्मूलन आदेश (३ड)" : "Eradication (3D) Orders")</span>
+                <span class="sra-feature-arrow">→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="sra-feature-card">
+        <form action='@Url.Action("BuildingPermission", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">📝</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "बांधकाम परवानगी प्रमाणपत्रे" : "Building Permission Certificates")</span>
+                <span class="sra-feature-arrow">→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="sra-feature-card">
+        <form action='@Url.Action("Society", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">👥</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "गृहनिर्माण संस्थांची यादी" : "List Of Housing Societies")</span>
+                <span class="sra-feature-arrow">→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="sra-feature-card">
+        <form action='@Url.Action("Occupancy", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">🏠</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "भोगवटा प्रमाणपत्रे" : "Occupancy Certificates")</span>
+                <span class="sra-feature-arrow">→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="sra-feature-card">
+        <form action='@Url.Action("Lottery", "Mr")#targetSection' method="get">
+            <button type="submit" class="sra-feature-button">
+                <span class="sra-feature-icon">🎟️</span>
+                <span class="sra-feature-title">@(Session["Lang"].ToString() == "mr" ? "लॉटरी पद्धतीने सदनिका वितरण" : "Allotment of Flats by Lottery")</span>
+                <span class="sra-feature-arrow">→</span>
             </button>
         </form>
     </div>
@@ -1093,10 +1108,14 @@
     </div>
 
     @*SOCIAL MEDIA LINKS आमच्याशी संपर्क साधा START  *@
-    <div style=" border-bottom:2px solid #c2048a;">
-        <div class="custom-follow-container" style="border-bottom:solid 2px aliceblue; ">
+    <div class="sra-community-section">
+        <div class="custom-follow-container">
             <div class="custom-follow-box">
-                <h6 class="custom-follow-title fs-4" tabindex="0">सोशल मीडिया</h6>
+                <span class="sra-social-mark" aria-hidden="true"><i class="fas fa-bullhorn"></i></span>
+                <div class="sra-social-copy">
+                    <h6 class="custom-follow-title" tabindex="0">सोशल मीडिया</h6>
+                    <p>SRA पुणे व पिंपरी-चिंचवड यांच्या अधिकृत सोशल मीडिया चॅनलशी जोडलेले रहा.</p>
+                </div>
                 <div class="custom-social-stack">
 
                     <!-- WhatsApp -->
@@ -1104,6 +1123,7 @@
                         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.472 14.382c-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.15-.173.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.887 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.383z" />
                         </svg>
+                        <span>WhatsApp</span><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
 
                     <!-- Facebook -->
@@ -1111,6 +1131,7 @@
                         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z" />
                         </svg>
+                        <span>Facebook</span><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
 
                     <!-- Instagram -->
@@ -1118,6 +1139,7 @@
                         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
                         </svg>
+                        <span>Instagram</span><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
 
                     <!-- YouTube -->
@@ -1125,6 +1147,7 @@
                         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z" />
                         </svg>
+                        <span>YouTube</span><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
 
                 </div>
@@ -1136,25 +1159,46 @@
 
     @*Govt Logos Start from here*@
     <div class="slider-container sra-footer-logos">
+        <div class="sra-footer-links-heading">
+            <span class="sra-footer-heading-rule"></span>
+            <span class="sra-footer-heading-icon"><i class="fas fa-link" aria-hidden="true"></i></span>
+            <div class="sra-footer-heading-copy">
+                <h2>महत्त्वाचे दुवे</h2>
+                <p>नागरिकांसाठी उपयुक्त शासकीय संकेतस्थळे व सेवा</p>
+            </div>
+            <span class="sra-footer-heading-rule"></span>
+        </div>
         <!-- Slider Wrapper -->
         <div class="slider-wrapper" id="sliderWrapper">
-            <a href="https://www.maharashtra.gov.in" target="_blank" onclick="return sitevisit();">
-                <img src="@Url.Content("~/Content/Web/images/logo_MH.png")" class="img-responsive hvr-push" alt="Maharashtra Govt." title="Maharashtra Govt. : External website that opens in a new window" style="width: 80px; height: auto;" />
+            <a class="sra-footer-logo-card" href="https://www.maharashtra.gov.in" target="_blank" onclick="return sitevisit();">
+                <span class="sra-footer-card-logo"><img src="@Url.Content("~/Content/Web/images/logo_MH.png")" class="img-responsive hvr-push" alt="Maharashtra Govt." title="Maharashtra Govt. : External website that opens in a new window" /></span>
+                <strong>@(Session["Lang"].ToString() == "mr" ? "महाराष्ट्र शासन" : "Government of Maharashtra")</strong>
+                <span class="sra-footer-card-visit">संकेतस्थळास भेट द्या <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </a>
-            <a href="https://pmc.gov.in" target="_blank" onclick="return sitevisit();">
-                <img src="@Url.Content("~/Content/Web/images/Pune_Municpal_Corporation_logo.png")" class="img-responsive hvr-push" alt="Pune Municipal Corporation" title="Pune Municipal Corporation: External website that opens in a new window" style="width: 90px; height: auto;" />
+            <a class="sra-footer-logo-card" href="https://pmc.gov.in" target="_blank" onclick="return sitevisit();">
+                <span class="sra-footer-card-logo"><img src="@Url.Content("~/Content/Web/images/Pune_Municpal_Corporation_logo.png")" class="img-responsive hvr-push" alt="Pune Municipal Corporation" title="Pune Municipal Corporation: External website that opens in a new window" /></span>
+                <strong>@(Session["Lang"].ToString() == "mr" ? "पुणे महानगरपालिका" : "Pune Municipal Corporation")</strong>
+                <span class="sra-footer-card-visit">संकेतस्थळास भेट द्या <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </a>
-            <a href="https://grievances.maharashtra.gov.in/admin/mr/users/login" target="_blank" onclick="return sitevisit();">
-                <img src="@Url.Content("~/Content/images/aaple-sarkar.png")" class="img-responsive hvr-push" alt="Aaple Sarker" title="Aaple Sarker : External website that opens in a new window" style="width: auto; height: auto;" />
+            <a class="sra-footer-logo-card" href="https://grievances.maharashtra.gov.in/admin/mr/users/login" target="_blank" onclick="return sitevisit();">
+                <span class="sra-footer-card-logo"><img src="@Url.Content("~/Content/images/aaple-sarkar.png")" class="img-responsive hvr-push" alt="Aaple Sarker" title="Aaple Sarker : External website that opens in a new window" /></span>
+                <strong>आपले सरकार</strong>
+                <span class="sra-footer-card-visit">संकेतस्थळास भेट द्या <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </a>
-            <a href="http://www.igrmaharashtra.gov.in/eASR/eASRCommon.aspx?hDistName=Pune" target="_blank" onclick="return sitevisit();">
-                <img src="@Url.Content("~/Content/Web/images/igr.png")" class="img-responsive hvr-push" alt="IGR" title="IGR : External website that opens in a new window" style="width: 90px; height: auto;" />
+            <a class="sra-footer-logo-card" href="http://www.igrmaharashtra.gov.in/eASR/eASRCommon.aspx?hDistName=Pune" target="_blank" onclick="return sitevisit();">
+                <span class="sra-footer-card-logo"><img src="@Url.Content("~/Content/Web/images/igr.png")" class="img-responsive hvr-push" alt="IGR" title="IGR : External website that opens in a new window" /></span>
+                <strong>IGR Maharashtra</strong>
+                <span class="sra-footer-card-visit">संकेतस्थळास भेट द्या <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </a>
-            <a href="https://www.pcmcindia.gov.in" target="_blank" onclick="return sitevisit();">
-                <img src="@Url.Content("~/Content/Web/images/logo-pcmc.png")" class="img-responsive hvr-push" alt="Pimpri Chinchwad Municipal Corporation" title="Pimpri Chinchwad Municipal Corporation: External website that opens in a new window" style="width: 110px; height: auto;" />
+            <a class="sra-footer-logo-card" href="https://www.pcmcindia.gov.in" target="_blank" onclick="return sitevisit();">
+                <span class="sra-footer-card-logo"><img src="@Url.Content("~/Content/Web/images/logo-pcmc.png")" class="img-responsive hvr-push" alt="Pimpri Chinchwad Municipal Corporation" title="Pimpri Chinchwad Municipal Corporation: External website that opens in a new window" /></span>
+                <strong>@(Session["Lang"].ToString() == "mr" ? "पिंपरी चिंचवड महानगरपालिका" : "Pimpri Chinchwad Municipal Corporation")</strong>
+                <span class="sra-footer-card-visit">संकेतस्थळास भेट द्या <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </a>
-            <a href="https://www.mhada.gov.in/en" target="_blank" onclick="return sitevisit();">
-                <img src="@Url.Content("~/Content/Web/images/MHADA.jpg")" class="img-responsive hvr-push" alt="Maharashtra Housing and Area Development Authority" title="Maharashtra Housing and Area Development Authority: External website that opens in a new window" style="width: auto; height: auto;" />
+            <a class="sra-footer-logo-card" href="https://www.mhada.gov.in/en" target="_blank" onclick="return sitevisit();">
+                <span class="sra-footer-card-logo"><img src="@Url.Content("~/Content/Web/images/MHADA.jpg")" class="img-responsive hvr-push" alt="Maharashtra Housing and Area Development Authority" title="Maharashtra Housing and Area Development Authority: External website that opens in a new window" /></span>
+                <strong>म्हाडा (MHADA)</strong>
+                <span class="sra-footer-card-visit">संकेतस्थळास भेट द्या <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </a>
         </div>
     </div>
@@ -1438,12 +1482,314 @@
     }
 
     /* Footer presentation only; existing links, values and actions are unchanged. */
+    .sra-community-section {
+        padding: 28px clamp(16px, 3.5vw, 56px) 30px;
+        background: radial-gradient(ellipse at 50% 100%, rgba(235, 243, 252, .95), transparent 65%), linear-gradient(180deg, #f3f8ff, #fff 68%);
+    }
+
+    .sra-community-section .custom-follow-container {
+        max-width: 1480px;
+        margin: 0 auto 30px;
+        padding: 0;
+        border: 0;
+        font-family: inherit;
+    }
+
+    .sra-community-section .custom-follow-box {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: clamp(18px, 3vw, 42px);
+        min-height: 104px;
+        padding: 18px clamp(22px, 3vw, 44px);
+        border: 1px solid rgba(255, 255, 255, .35);
+        border-radius: 26px;
+        background: linear-gradient(110deg, #1767a9, #06457f 55%, #0b4d87);
+        box-shadow: 0 12px 28px rgba(19, 69, 117, .2);
+    }
+
+    .sra-social-mark {
+        position: absolute;
+        top: 50%;
+        left: clamp(18px, 2vw, 32px);
+        display: grid;
+        width: 64px;
+        height: 64px;
+        place-items: center;
+        border: 2px solid rgba(255, 255, 255, .5);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .14);
+        color: #fff;
+        font-size: 31px;
+        transform: translateY(-50%) rotate(-7deg);
+    }
+
+    .sra-social-copy {
+        flex: 1 1 42%;
+        min-width: 250px;
+        padding: 0 clamp(16px, 2vw, 32px) 0 74px;
+        border-right: 1px solid rgba(255, 255, 255, .5);
+        color: #fff;
+    }
+
+    .sra-community-section .custom-follow-title {
+        margin: 0 0 5px;
+        color: #fff;
+        font-size: clamp(21px, 2vw, 30px);
+        font-weight: 700;
+    }
+
+    .sra-social-copy p {
+        margin: 0;
+        color: rgba(255, 255, 255, .9);
+        font-size: clamp(12px, 1vw, 15px);
+        line-height: 1.6;
+    }
+
+    .sra-community-section .custom-social-stack {
+        flex: 1 1 58%;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: clamp(8px, 1.1vw, 16px);
+    }
+
+    .sra-community-section .custom-social-link {
+        display: inline-flex;
+        flex: 0 1 auto;
+        gap: 9px;
+        width: auto;
+        min-width: 0;
+        height: 46px;
+        padding: 0 15px;
+        border: 1px solid rgba(25, 68, 117, .08);
+        border-radius: 999px;
+        background: #fff;
+        color: #142e4d;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, .13);
+        animation: none;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    .sra-community-section .custom-social-link svg {
+        width: 21px;
+        height: 21px;
+        flex: 0 0 21px;
+    }
+
+    .sra-community-section .custom-social-link[aria-label="Whatsapp"] svg { color: #25b765; }
+    .sra-community-section .custom-social-link[aria-label="Facebook"] svg { color: #1877f2; }
+    .sra-community-section .custom-social-link[aria-label="Instagram"] svg { color: #e44072; }
+    .sra-community-section .custom-social-link[aria-label="Youtube"] svg { color: #f00; }
+
+    .sra-community-section .custom-social-link > i {
+        margin-left: 1px;
+        font-size: 11px;
+    }
+
+    .sra-community-section .custom-social-link:hover {
+        transform: translateY(-3px);
+        color: #0c4c82;
+        box-shadow: 0 9px 18px rgba(0, 0, 0, .18);
+    }
+
+    @@media (max-width: 1100px) {
+        .sra-community-section .custom-follow-box { gap: 20px; }
+        .sra-community-section .custom-social-stack { gap: 8px; }
+        .sra-community-section .custom-social-link { padding: 0 10px; }
+    }
+
+    @@media (max-width: 700px) {
+        .sra-community-section { padding: 20px 14px 24px; }
+        .sra-community-section .custom-follow-box { flex-direction: column; align-items: stretch; padding: 20px; border-radius: 20px; }
+        .sra-social-mark { position: static; width: 48px; height: 48px; margin: 0 auto; font-size: 23px; transform: rotate(-7deg); }
+        .sra-social-copy { min-width: 0; padding: 0 0 14px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.4); text-align: center; }
+        .sra-community-section .custom-social-stack { flex-wrap: wrap; justify-content: center; }
+        .sra-community-section .custom-social-link { height: 40px; font-size: 12px; }
+    }
+
+    @@media (prefers-reduced-motion: reduce) {
+        .sra-community-section .custom-social-link { transition: none; }
+    }
+
     .sra-footer-logos {
         position: relative;
         overflow: hidden;
-        padding: 14px 4%;
-        border-top: 2px solid #ec1677;
+        padding: 24px 4% 22px;
+        background: radial-gradient(ellipse at 50% 100%, rgba(228, 239, 252, .9), transparent 66%), linear-gradient(180deg, #f3f8ff, #fff 76%);
+    }
+
+    .sra-footer-links-heading {
+        display: grid;
+        grid-template-columns: minmax(30px, 1fr) 50px minmax(30px, 1fr);
+        grid-template-rows: 50px auto;
+        align-items: center;
+        gap: 12px;
+        width: min(100%, 1120px);
+        margin: 0 auto 20px;
+        text-align: center;
+    }
+
+    .sra-footer-heading-rule {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #d5a449);
+    }
+
+    .sra-footer-heading-rule:last-child {
+        grid-column: 3;
+        grid-row: 1;
+        background: linear-gradient(90deg, #d5a449, transparent);
+    }
+
+    .sra-footer-heading-icon {
+        display: grid;
+        grid-column: 2;
+        grid-row: 1;
+        width: 48px;
+        height: 48px;
+        place-items: center;
+        border-radius: 14px;
+        background: #fff4dc;
+        color: #b47720;
+        font-size: 22px;
+        box-shadow: 0 5px 13px rgba(117, 84, 25, .12);
+    }
+
+    .sra-footer-heading-copy {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .sra-footer-heading-copy h2 {
+        margin: 0;
+        color: #0d3564;
+        font-size: clamp(28px, 3vw, 38px) !important;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .sra-footer-heading-copy p {
+        margin: 7px 0 0;
+        color: #69717b;
+        font-size: clamp(16px, 1.4vw, 20px) !important;
+    }
+
+    .sra-footer-logos .slider-wrapper {
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .sra-footer-logos .sra-footer-logo-card {
+        display: flex;
+        flex: 0 0 calc(16.6667% - 12px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 7px;
+        min-width: 0;
+        min-height: 172px;
+        margin-right: 12px;
+        padding: 12px 10px 10px;
+        border: 1px solid #e4e9f0;
+        border-bottom: 5px solid #1473a8;
+        border-radius: 17px;
         background: #fff;
+        color: #12325b;
+        box-shadow: 0 6px 16px rgba(18, 49, 83, .09);
+        text-align: center;
+        text-decoration: none;
+        transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .sra-footer-logos .sra-footer-logo-card:nth-child(6n + 1) { border-bottom-color: #168953; }
+    .sra-footer-logos .sra-footer-logo-card:nth-child(6n + 2) { border-bottom-color: #a31834; }
+    .sra-footer-logos .sra-footer-logo-card:nth-child(6n + 3) { border-bottom-color: #e28618; }
+    .sra-footer-logos .sra-footer-logo-card:nth-child(6n + 4) { border-bottom-color: #1473a8; }
+    .sra-footer-logos .sra-footer-logo-card:nth-child(6n + 5) { border-bottom-color: #d79c10; }
+    .sra-footer-logos .sra-footer-logo-card:nth-child(6n) { border-bottom-color: #7336a6; }
+
+    .sra-footer-logos .sra-footer-logo-card:hover,
+    .sra-footer-logos .sra-footer-logo-card:focus-visible {
+        transform: translateY(-4px);
+        color: #12325b;
+        box-shadow: 0 12px 22px rgba(18, 49, 83, .15);
+        text-decoration: none;
+    }
+
+    .sra-footer-card-logo {
+        display: flex;
+        width: 100%;
+        height: 76px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sra-footer-logos .sra-footer-card-logo img {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 150px;
+        max-height: 76px;
+        margin: 0 auto;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .sra-footer-logo-card strong {
+        display: flex;
+        min-height: 34px;
+        align-items: center;
+        justify-content: center;
+        color: inherit;
+        font-size: clamp(11px, 1vw, 15px);
+        line-height: 1.25;
+    }
+
+    .sra-footer-card-visit {
+        display: inline-flex;
+        width: 100%;
+        min-height: 32px;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 5px 7px;
+        border-radius: 999px;
+        background: #edf4f8;
+        color: #24364b;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    @@media (max-width: 1100px) {
+        .sra-footer-logos .sra-footer-logo-card { flex-basis: calc(33.3333% - 12px); }
+    }
+
+    @@media (max-width: 700px) {
+        .sra-footer-logos { padding: 14px 12px; }
+        .sra-footer-logos .sra-footer-logo-card { flex-basis: calc(50% - 12px); min-height: 166px; }
+        .sra-footer-card-visit { font-size: 10px; }
+    }
+
+    @@media (max-width: 700px) {
+        .sra-footer-logos { padding: 20px 12px 18px; }
+        .sra-footer-links-heading { grid-template-columns: minmax(18px, 1fr) 42px minmax(18px, 1fr); grid-template-rows: 42px auto; gap: 8px; }
+        .sra-footer-heading-icon { width: 40px; height: 40px; font-size: 18px; }
+        .sra-footer-heading-copy h2 { font-size: clamp(24px, 6vw, 30px) !important; }
+        .sra-footer-heading-copy p { font-size: clamp(14px, 3.6vw, 17px) !important; }
+    }
+
+    @@media (min-width: 701px) {
+        .sra-community-section { padding-bottom: 0; }
+        .sra-community-section .custom-follow-container { margin-bottom: 0; }
+        .sra-footer-links-heading { margin-bottom: 36px; }
     }
 
     .sra-site-footer {
@@ -1817,7 +2163,7 @@
         isAnimating = true;
         currentIndex++;
 
-        const slideWidth = originalSlides[0].offsetWidth;
+        const slideWidth = originalSlides[0].offsetWidth + (parseFloat(getComputedStyle(originalSlides[0]).marginRight) || 0);
         const totalWidth = slideWidth * slideCount;
 
         sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
