@@ -321,7 +321,6 @@
     background: #f7faff;
 }
 
-
 /* Individual card */
 .sra-left-buttons-below .sra-feature-card {
     width: 100%;
@@ -2373,4 +2372,56 @@
         inset: 0;
         background: linear-gradient(110deg, #55a2ff, #ef4776, #ffcf68);
     }
+}
+
+/* Yojana section divider between the two groups of eight cards. */
+.sra-left-buttons-below .sra-feature-section-heading {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 2px 0 8px;
+    color: #173b65;
+}
+
+.sra-left-buttons-below .sra-feature-divider-line {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+}
+
+.sra-left-buttons-below .sra-feature-divider-line::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: #d6aa50;
+    content: "";
+}
+
+.sra-left-buttons-below .sra-feature-divider-icon {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    background: #fff4dc;
+    box-shadow: 0 3px 12px rgba(112, 79, 20, 0.12);
+    color: #bd780e;
+    font-size: 22px;
+}
+
+.sra-left-buttons-below .sra-feature-divider-title {
+    display: block;
+    color: #173b65;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
 }
