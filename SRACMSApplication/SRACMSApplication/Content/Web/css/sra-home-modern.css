@@ -798,9 +798,11 @@
 
     color: #10285c !important;
 
-    font-size: 12px !important;
+    font-family: 'Tiro Devanagari Sanskrit', serif !important;
 
-    font-weight: 700 !important;
+    font-size: 16px !important;
+
+    font-weight: 400 !important;
 
     line-height: 1.25 !important;
 
@@ -925,7 +927,7 @@
     }
 
     .sra-left-buttons-below .sra-feature-title {
-        font-size: 11px !important;
+        font-size: 16px !important;
     }
 }
 /* =========================================================
@@ -2419,9 +2421,16 @@
 
 .sra-left-buttons-below .sra-feature-divider-title {
     display: block;
-    color: #173b65;
-    font-size: 36px;
+    color: #0d3564;
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: clamp(28px, 3vw, 38px) !important;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.2;
     text-align: center;
+}
+
+@media (max-width: 700px) {
+    .sra-left-buttons-below .sra-feature-divider-title {
+        font-size: clamp(24px, 6vw, 30px) !important;
+    }
 }
