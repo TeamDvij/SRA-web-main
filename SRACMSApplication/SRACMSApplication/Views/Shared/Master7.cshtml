@@ -992,10 +992,15 @@
                 <span class="sra-gallery-eyebrow">SRA PUNE</span>
                 <h2 id="sra-gallery-title">आमची गॅलरी</h2>
                 <p>आमच्या कार्याची झलक — छायाचित्रे, व्हिडिओ आणि प्रसिद्धी पत्रके</p>
+                <span class="sra-gallery-heading-accent" aria-hidden="true"></span>
             </header>
 
             <div class="sra-gallery-grid">
                 <article class="sra-gallery-card">
+                    <div class="sra-gallery-card-heading sra-gallery-card-heading-photo">
+                        <span class="sra-gallery-category-icon"><i class="fa fa-building"></i></span>
+                        <div><h3>विभागीय कार्यालय भेट</h3><p>सामाजिक व प्रशासकीय घडामोडींची झलक</p></div>
+                    </div>
                     <div class="sra-gallery-media">
                         <div class="sra-gallery-items card-body p-0" data-sra-gallery="photos">
                             @if (ViewBag.PhotoGalleryList_mr != null)
@@ -1023,12 +1028,16 @@
                         </div>
                     </div>
                     <div class="sra-gallery-card-copy">
-                        <div><h3>छायाचित्र दालन</h3><p>प्राधिकरणाच्या कामांची छायाचित्रे येथे पहा.</p></div>
-                        <a class="sra-gallery-arrow" href="@Url.Action("Gallery", "Mr")#targetSection" aria-label="छायाचित्र दालन पहा"><span class="material-icons">arrow_forward</span></a>
+                        <div class="sra-gallery-copy-text"><h3><i class="fa fa-map-marker" aria-hidden="true"></i> छायाचित्र दालन</h3><p><i class="fa fa-info-circle" aria-hidden="true"></i> प्राधिकरणाच्या कामांची छायाचित्रे येथे पहा.</p></div>
+                        <a class="sra-gallery-arrow" href="@Url.Action("Gallery", "Mr")#targetSection" aria-label="छायाचित्र दालन पहा"><span>अधिक वाचा</span><span class="material-icons">chevron_right</span></a>
                     </div>
                 </article>
 
                 <article class="sra-gallery-card">
+                    <div class="sra-gallery-card-heading sra-gallery-card-heading-video">
+                        <span class="sra-gallery-category-icon"><i class="fa fa-users"></i></span>
+                        <div><h3>व्हिडिओ दौरा</h3><p>प्राधिकरणाच्या उपक्रमांची एक झलक</p></div>
+                    </div>
                     <div class="sra-gallery-media">
                         <div class="sra-gallery-items card-body p-0" data-sra-gallery="videos">
                             @if (ViewBag.VideoGalleryList_mr != null)
@@ -1058,12 +1067,16 @@
                         </div>
                     </div>
                     <div class="sra-gallery-card-copy">
-                        <div><h3>व्हिडिओ दालन</h3><p>प्राधिकरणाचे उपक्रम आणि कार्यक्रमांचे व्हिडिओ पहा.</p></div>
-                        <a class="sra-gallery-arrow" href="@Url.Action("GalleryVideo", "Mr")#targetSection" aria-label="व्हिडिओ दालन पहा"><span class="material-icons">arrow_forward</span></a>
+                        <div class="sra-gallery-copy-text"><h3><i class="fa fa-map-marker" aria-hidden="true"></i> व्हिडिओ दालन</h3><p><i class="fa fa-info-circle" aria-hidden="true"></i> प्राधिकरणाचे उपक्रम आणि कार्यक्रमांचे व्हिडिओ पहा.</p></div>
+                        <a class="sra-gallery-arrow" href="@Url.Action("GalleryVideo", "Mr")#targetSection" aria-label="व्हिडिओ दालन पहा"><span>अधिक वाचा</span><span class="material-icons">chevron_right</span></a>
                     </div>
                 </article>
 
                 <article class="sra-gallery-card">
+                    <div class="sra-gallery-card-heading sra-gallery-card-heading-press">
+                        <span class="sra-gallery-category-icon"><i class="fa fa-newspaper"></i></span>
+                        <div><h3>पत्रकार परिषद व प्रसिद्धी पत्रक</h3><p>प्राधिकरणाच्या योजनांची माहिती</p></div>
+                    </div>
                     <div class="sra-gallery-media">
                         <div class="sra-gallery-items card-body p-0" data-sra-gallery="press">
                             @if (ViewBag.NewsGalleryList_mr != null)
@@ -1073,7 +1086,7 @@
                                     var firstPressUrl = Url.Content(ViewBag.NewsGalleryList_mr[0].doc_location + ViewBag.NewsGalleryList_mr[0].doc_name);
                                     <div class="sra-gallery-featured">
                                         <a class="lightbox-item sra-gallery-featured-link" href="@firstPressUrl" data-title="Press 1">
-                                            <img class="sra-gallery-featured-image" src="@firstPressUrl" alt="प्रसिद्धी पत्रक 1" loading="lazy">
+                                            <img class="sra-gallery-featured-image" src="@firstPressUrl" alt="" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="sra-gallery-thumbnails" aria-label="प्रसिद्धी पत्रक निवडा">
@@ -1090,8 +1103,8 @@
                         </div>
                     </div>
                     <div class="sra-gallery-card-copy">
-                        <div><h3>प्रसिद्धी पत्रके</h3><p>बातम्या आणि प्रसिद्धी पत्रके येथे वाचा.</p></div>
-                        <a class="sra-gallery-arrow" href="@Url.Action("GalleryNews", "Mr")#targetSection" aria-label="प्रसिद्धी पत्रके पहा"><span class="material-icons">arrow_forward</span></a>
+                        <div class="sra-gallery-copy-text"><h3><i class="fa fa-map-marker" aria-hidden="true"></i> प्रसिद्धी पत्रके</h3><p><i class="fa fa-info-circle" aria-hidden="true"></i> बातम्या आणि प्रसिद्धी पत्रके येथे वाचा.</p></div>
+                        <a class="sra-gallery-arrow" href="@Url.Action("GalleryNews", "Mr")#targetSection" aria-label="प्रसिद्धी पत्रके पहा"><span>अधिक वाचा</span><span class="material-icons">chevron_right</span></a>
                     </div>
                 </article>
             </div>
@@ -1936,24 +1949,28 @@
     .sra-gallery-eyebrow {
         display: inline-block;
         margin-bottom: 7px;
-        color: #ec6a32;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: .18em;
+        color: #d71920;
+        font-family: Arial, sans-serif;
+        font-size: clamp(30px, 4vw, 40px);
+        font-weight: 800;
+        letter-spacing: .14em;
     }
 
     .sra-gallery-heading h2 {
         margin: 0;
-        color: #102c55;
-        font-size: clamp(30px, 4vw, 48px);
-        font-weight: 800;
+        color: #102b55;
+        font-family: "Nirmala UI", "Mangal", sans-serif;
+        font-size: clamp(42px, 5vw, 54px);
+        font-weight: 900;
         line-height: 1.2;
     }
 
     .sra-gallery-heading p {
         margin: 8px 0 0;
-        color: #68778c;
-        font-size: clamp(15px, 1.7vw, 19px);
+        color: #173b65;
+        font-family: "Nirmala UI", "Mangal", sans-serif;
+        font-size: clamp(20px, 2.5vw, 24px);
+        font-weight: 500;
     }
 
     .sra-gallery-grid {
@@ -2131,6 +2148,110 @@
     .sra-gallery-card:nth-child(2) .sra-gallery-arrow { background: #174a94; }
     .sra-gallery-arrow:hover { color: #fff; background: #d95622; transform: translateX(2px); }
 
+    .sra-gallery-section {
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 8% 8%, rgba(236, 106, 50, .08), transparent 25%),
+                    radial-gradient(circle at 92% 8%, rgba(23, 74, 148, .10), transparent 28%),
+                    linear-gradient(135deg, #f6f9ff 0%, #eaf2fd 100%);
+    }
+
+    .sra-gallery-heading { margin-bottom: 34px; }
+
+    .sra-gallery-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .sra-gallery-eyebrow::before,
+    .sra-gallery-eyebrow::after {
+        width: clamp(70px, 14vw, 150px);
+        height: 2px;
+        background: #174a94;
+        content: "";
+    }
+
+    .sra-gallery-heading-accent {
+        display: block;
+        width: 72px;
+        height: 4px;
+        margin: 12px auto 0;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #e6333d 0 58%, #174a94 58% 100%);
+    }
+
+    .sra-gallery-card {
+        display: flex;
+        flex-direction: column;
+        border-radius: 24px;
+        box-shadow: 0 14px 32px rgba(24, 57, 99, .14);
+    }
+
+    .sra-gallery-card-heading {
+        display: flex;
+        min-height: 78px;
+        align-items: center;
+        gap: 13px;
+        padding: 12px 18px;
+        color: #fff;
+    }
+
+    .sra-gallery-card-heading-photo { background: linear-gradient(110deg, #0d3266, #0878b7); }
+    .sra-gallery-card-heading-video { background: linear-gradient(110deg, #a9101b, #e73537); }
+    .sra-gallery-card-heading-press { background: linear-gradient(110deg, #123b76, #136eab); }
+
+    .sra-gallery-category-icon {
+        display: grid;
+        width: 50px;
+        height: 50px;
+        flex: 0 0 50px;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .96);
+        color: #16477e;
+        font-size: 22px;
+    }
+
+    .sra-gallery-card-heading-video .sra-gallery-category-icon { color: #bd202a; }
+
+    .sra-gallery-card-heading h3 {
+        margin: 0 0 3px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1.25;
+    }
+
+    .sra-gallery-card-heading p {
+        margin: 0;
+        color: rgba(255, 255, 255, .88);
+        font-size: 13px;
+        line-height: 1.35;
+    }
+
+    .sra-gallery-media {
+        flex: 1 1 auto;
+        padding: 14px 14px 10px;
+        background: #f1f6fd;
+    }
+
+    .sra-gallery-featured { height: clamp(190px, 18vw, 250px); }
+
+    .sra-gallery-card-copy {
+        min-height: 112px;
+        padding: 16px 20px;
+    }
+
+    @@media (max-width: 600px) {
+        .sra-gallery-eyebrow::before,
+        .sra-gallery-eyebrow::after { width: 28px; }
+        .sra-gallery-card-heading { min-height: 70px; padding: 10px 13px; }
+        .sra-gallery-category-icon { width: 44px; height: 44px; flex-basis: 44px; font-size: 19px; }
+        .sra-gallery-card-heading h3 { font-size: 16px; }
+        .sra-gallery-card-heading p { font-size: 12px; }
+    }
+
     @@media (max-width: 900px) {
         .sra-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -2144,6 +2265,71 @@
         .sra-gallery-card-copy { min-height: 100px; padding: 14px 16px 16px; }
         .sra-gallery-card-copy h3 { font-size: 20px; }
         .sra-gallery-arrow { width: 44px; height: 44px; flex-basis: 44px; }
+    }
+
+    .sra-gallery-card { border-bottom: 6px solid #8dbbe7; }
+    .sra-gallery-card:nth-child(2) { border-bottom-color: #c51f2a; }
+
+    .sra-gallery-card-copy {
+        min-height: 108px;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+    }
+
+    .sra-gallery-copy-text { min-width: 0; flex: 1 1 auto; }
+
+    .sra-gallery-copy-text h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 4px;
+        color: #102c55;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .sra-gallery-copy-text h3 i { color: #174a94; font-size: 17px; }
+    .sra-gallery-card:nth-child(2) .sra-gallery-copy-text h3 i { color: #c51f2a; }
+
+    .sra-gallery-copy-text p {
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        color: #6b7788;
+    }
+
+    .sra-gallery-copy-text p i {
+        margin-top: 3px;
+        color: #9aaec9;
+        font-size: 13px;
+    }
+
+    .sra-gallery-arrow {
+        width: auto;
+        height: 40px;
+        flex: 0 0 auto;
+        gap: 7px;
+        padding: 0 13px;
+        border: 1px solid #738bb0;
+        border-radius: 999px;
+        background: #fff;
+        color: #173b70;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        box-shadow: none;
+    }
+
+    .sra-gallery-arrow:hover { border-color: #c51f2a; background: #c51f2a; color: #fff; }
+    .sra-gallery-card:nth-child(2) .sra-gallery-arrow { border-color: #738bb0; background: #fff; color: #173b70; }
+    .sra-gallery-card:nth-child(2) .sra-gallery-arrow:hover { border-color: #c51f2a; background: #c51f2a; color: #fff; }
+
+    @@media (max-width: 600px) {
+        .sra-gallery-card-copy { min-height: 100px; gap: 10px; padding: 14px 16px; }
+        .sra-gallery-copy-text h3 { font-size: 16px; }
+        .sra-gallery-copy-text p { font-size: 13px; }
+        .sra-gallery-arrow { width: auto; height: 38px; flex-basis: auto; gap: 4px; padding: 0 10px; font-size: 12px; }
     }
 </style>
 
