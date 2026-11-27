@@ -1,4 +1,17 @@
 /* Header and navigation layout */
+.sra-sticky-header-shell {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1300;
+}
+
+body {
+    padding-top: var(--sra-sticky-header-height, 200px);
+}
+
 .topnav {
     position: relative;
     z-index: 1100;

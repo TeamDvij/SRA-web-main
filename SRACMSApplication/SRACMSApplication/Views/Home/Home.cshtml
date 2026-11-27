@@ -1,4 +1,4 @@
-﻿    @model SRACMSApplication.Models.homeModel
+    @model SRACMSApplication.Models.homeModel
 @{
     ViewBag.Title = "Home";
     Layout = @Session["Layout"].ToString();
@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8">
             <div class="home-banner-stage">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExample" class="carousel slide home-banner-carousel" data-bs-ride="carousel">
                 <!-- Indicators -->
                 <div class="carousel-indicators">
                     @for (int i = 0; i < Model.banner_List.Count; i++)
@@ -41,30 +41,26 @@
             </div>
             <div class="home-banner-ministers-overlay" id="homeBannerMinistersOverlay" aria-label="@(Session["Lang"].ToString() == "mr" ? "माननीय मंत्रीमंडळ" : "Honourable Ministers")">
                 <div class="home-banner-ministers-panel">
-                    <div class="home-banner-ministers-heading">
-                        <span>SRA PUNE</span>
-                        <h2>@(Session["Lang"].ToString() == "mr" ? "माननीय मंत्रीमंडळ" : "Honourable Ministers")</h2>
-                    </div>
                     <div class="home-banner-minister-list">
                         <div class="home-banner-minister-item">
                             <div class="home-banner-minister-photo"><img src="@Url.Content(Model.minister1_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister1_Name : Model.minister1_Name_eng)"></div>
-                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister1_Name : Model.minister1_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? "मा. मुख्यमंत्री" : "Hon. Chief Minister")</span></div>
+                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister1_Name : Model.minister1_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;") : Html.Raw("Hon. Chief Minister"))</span></div>
                         </div>
                         <div class="home-banner-minister-item">
                             <div class="home-banner-minister-photo"><img src="@Url.Content(Model.minister2_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister2_Name : Model.minister2_Name_eng)"></div>
-                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister2_Name : Model.minister2_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? "मा. उपमुख्यमंत्री तथा गृहनिर्माण मंत्री" : "Hon. Deputy Chief Minister and Housing Minister")</span></div>
+                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister2_Name : Model.minister2_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x909;&#x92A;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;&#x20;&#x924;&#x925;&#x93E;&#x20;&#x917;&#x943;&#x939;&#x928;&#x93F;&#x930;&#x94D;&#x92E;&#x93E;&#x923;&#x20;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;") : Html.Raw("Hon. Deputy Chief Minister and Housing Minister"))</span></div>
                         </div>
                         <div class="home-banner-minister-item">
                             <div class="home-banner-minister-photo"><img src="@Url.Content(Model.minister3_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister3_Name : Model.minister3_Name_eng)"></div>
-                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister3_Name : Model.minister3_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? "मा. उपमुख्यमंत्री" : "Hon. Deputy Chief Minister")</span></div>
+                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister3_Name : Model.minister3_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x909;&#x92A;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;") : Html.Raw("Hon. Deputy Chief Minister"))</span></div>
                         </div>
                         <div class="home-banner-minister-item">
                             <div class="home-banner-minister-photo"><img src="@Url.Content(Model.minister4_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister4_Name : Model.minister4_Name_eng)"></div>
-                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister4_Name : Model.minister4_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? "मा. राज्यमंत्री गृहनिर्माण" : "Hon. Minister of State, Housing")</span></div>
+                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.minister4_Name : Model.minister4_Name_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x930;&#x93E;&#x91C;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;&#x20;&#x917;&#x943;&#x939;&#x928;&#x93F;&#x930;&#x94D;&#x92E;&#x93E;&#x923;") : Html.Raw("Hon. Minister of State, Housing"))</span></div>
                         </div>
                         <div class="home-banner-minister-item">
                             <div class="home-banner-minister-photo"><img src="@Url.Content(Model.ceoPhoto)" alt="@(Session["Lang"].ToString() == "mr" ? Model.ceoName : Model.ceoName_eng)"></div>
-                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.ceoName : Model.ceoName_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? "मा. मुख्य कार्यकारी अधिकारी" : "Hon. Chief Executive Officer")</span></div>
+                            <div class="home-banner-minister-details"><strong>@(Session["Lang"].ToString() == "mr" ? Model.ceoName : Model.ceoName_eng)</strong><span>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x20;&#x915;&#x93E;&#x930;&#x94D;&#x92F;&#x915;&#x93E;&#x930;&#x940;&#x20;&#x905;&#x927;&#x93F;&#x915;&#x93E;&#x930;&#x940;") : Html.Raw("Hon. Chief Executive Officer"))</span></div>
                         </div>
                     </div>
                 </div>
@@ -73,74 +69,36 @@
         </div>
     </div>
 
-    <!-- Ministers Section (Single Horizontal Row) -->
-    <div class="row justify-content-center " ">
-        <div class="col-12" style="padding:0px;">
-               <div class="card ">
-                <div class="team teamback">
-                    <div class="d-flex flex-wrap justify-content-center home-ministers" style="gap:20px;">
-                        <!-- Minister 1 -->
-                        <div class="text-center home-minister-card">
-                            <div class="ih-item">
-                                <div class="img home-minister-photo">
-                                    <img src="@Url.Content(@Model.minister1_Photo)" alt="img" class="minister-img img-fluid">
-                                </div>
-                            </div>
-                            <div class="team-bottom">
-                                <h7>@(Session["Lang"].ToString() == "mr" ? @Model.minister1_Name : @Model.minister1_Name_eng)</h7>
-                                <p class="fw-bold text-danger">
-                                    @(Session["Lang"].ToString() == "mr" ? "माननीय मुख्यमंत्री" : "Hon. Chief Minister")
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Minister 2 -->
-                        <div class="text-center home-minister-card">
-                            <div class="ih-item">
-                                <div class="img home-minister-photo">
-                                    <img src="@Url.Content(@Model.minister2_Photo)" alt="img" class="minister-img img-fluid">
-                                </div>
-                            </div>
-                            <div class="team-bottom">
-                                <h7>@(Session["Lang"].ToString() == "mr" ? @Model.minister2_Name : @Model.minister2_Name_eng)</h7>
-                                <p class="fw-bold text-danger">
-                                    @(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री तथा माननीय गृहनिर्माण मंत्री" : "Hon. Deputy Chief Minister and Hon. Housing Minister")
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Minister 3 -->
-                        <div class="text-center home-minister-card">
-                            <div class="ih-item">
-                                <div class="img home-minister-photo">
-                                    <img src="@Url.Content(@Model.minister3_Photo)" alt="img" class="minister-img img-fluid">
-                                </div>
-                            </div>
-                            <div class="team-bottom">
-                                <h7>@(Session["Lang"].ToString() == "mr" ? @Model.minister3_Name : @Model.minister3_Name_eng)</h7>
-                                <p class="fw-bold text-danger">
-                                    @(Session["Lang"].ToString() == "mr" ? "माननीय उपमुख्यमंत्री" : "Hon. Deputy Chief Minister")
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Minister 4 -->
-                        <div class="text-center home-minister-card">
-                            <div class="ih-item gap-3">
-                                <div class="img home-minister-photo">
-                                    <img src="@Url.Content(@Model.minister4_Photo)" alt="img" class="minister-img img-fluid">
-                                </div>
-                            </div>
-                            <div class="team-bottom">
-                                <h7>@(Session["Lang"].ToString() == "mr" ? @Model.minister4_Name : @Model.minister4_Name_eng)</h7>
-                                <p class="fw-bold text-danger">मा. राज्यमंत्री गृहनिर्माण</p>
-                            </div>
-                        </div>
-                    </div> <!-- End of flex container -->
+    <!-- Scroll section: repeat the minister portraits below the banner. -->
+    <div class="row justify-content-center">
+        <div class="col-12 px-0">
+            <div class="team teamback">
+                <div class="home-ministers">
+                    <div class="text-center home-minister-card">
+                        <div class="home-minister-photo"><img src="@Url.Content(Model.minister1_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister1_Name : Model.minister1_Name_eng)" class="minister-img img-fluid"></div>
+                        <div class="team-bottom"><h7>@(Session["Lang"].ToString() == "mr" ? Model.minister1_Name : Model.minister1_Name_eng)</h7><p>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;") : Html.Raw("Hon. Chief Minister"))</p></div>
+                    </div>
+                    <div class="text-center home-minister-card">
+                        <div class="home-minister-photo"><img src="@Url.Content(Model.minister2_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister2_Name : Model.minister2_Name_eng)" class="minister-img img-fluid"></div>
+                        <div class="team-bottom"><h7>@(Session["Lang"].ToString() == "mr" ? Model.minister2_Name : Model.minister2_Name_eng)</h7><p>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x909;&#x92A;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;&#x20;&#x924;&#x925;&#x93E;&#x20;&#x917;&#x943;&#x939;&#x928;&#x93F;&#x930;&#x94D;&#x92E;&#x93E;&#x923;&#x20;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;") : Html.Raw("Hon. Deputy Chief Minister and Housing Minister"))</p></div>
+                    </div>
+                    <div class="text-center home-minister-card">
+                        <div class="home-minister-photo"><img src="@Url.Content(Model.minister3_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister3_Name : Model.minister3_Name_eng)" class="minister-img img-fluid"></div>
+                        <div class="team-bottom"><h7>@(Session["Lang"].ToString() == "mr" ? Model.minister3_Name : Model.minister3_Name_eng)</h7><p>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x909;&#x92A;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;") : Html.Raw("Hon. Deputy Chief Minister"))</p></div>
+                    </div>
+                    <div class="text-center home-minister-card">
+                        <div class="home-minister-photo"><img src="@Url.Content(Model.minister4_Photo)" alt="@(Session["Lang"].ToString() == "mr" ? Model.minister4_Name : Model.minister4_Name_eng)" class="minister-img img-fluid"></div>
+                        <div class="team-bottom"><h7>@(Session["Lang"].ToString() == "mr" ? Model.minister4_Name : Model.minister4_Name_eng)</h7><p>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x930;&#x93E;&#x91C;&#x94D;&#x92F;&#x92E;&#x902;&#x924;&#x94D;&#x930;&#x940;&#x20;&#x917;&#x943;&#x939;&#x928;&#x93F;&#x930;&#x94D;&#x92E;&#x93E;&#x923;") : Html.Raw("Hon. Minister of State, Housing"))</p></div>
+                    </div>
+                    <div class="text-center home-minister-card">
+                        <div class="home-minister-photo"><img src="@Url.Content(Model.ceoPhoto)" alt="@(Session["Lang"].ToString() == "mr" ? Model.ceoName : Model.ceoName_eng)" class="minister-img img-fluid"></div>
+                        <div class="team-bottom"><h7>@(Session["Lang"].ToString() == "mr" ? Model.ceoName : Model.ceoName_eng)</h7><p>@(Session["Lang"].ToString() == "mr" ? Html.Raw("&#x92E;&#x93E;&#x2E;&#x20;&#x92E;&#x941;&#x916;&#x94D;&#x92F;&#x20;&#x915;&#x93E;&#x930;&#x94D;&#x92F;&#x915;&#x93E;&#x930;&#x940;&#x20;&#x905;&#x927;&#x93F;&#x915;&#x93E;&#x930;&#x940;") : Html.Raw("Hon. Chief Executive Officer"))</p></div>
+                    </div>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
+
 </div>
 
 
@@ -304,6 +262,66 @@
         .home-minister-card img.minister-img { width: 110px; height: 116px; }
     }
 
+    /* Plain minister portraits on the shared white section background. */
+    .container-fluid-slide-minister .team.teamback { background: #fff; }
+    .container-fluid-slide-minister .team.teamback > .home-ministers,
+    .container-fluid-slide-minister .team.teamback .home-ministers {
+        display: grid !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: start;
+        justify-content: initial;
+        gap: clamp(12px, 1.5vw, 24px);
+        padding: 18px clamp(8px, 1vw, 18px) 22px;
+        background: #fff;
+    }
+    .container-fluid-slide-minister .home-ministers .home-minister-card {
+        min-width: 0;
+        width: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        animation: none;
+        transition: none;
+    }
+    .container-fluid-slide-minister .home-minister-card .home-minister-photo {
+        width: 100%;
+        height: clamp(190px, 20vw, 280px);
+        border-radius: 0;
+        background: transparent;
+    }
+    .container-fluid-slide-minister .home-minister-card img.minister-img {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: center bottom;
+        transform: none;
+    }
+    .container-fluid-slide-minister .home-minister-card .team-bottom { margin-top: 10px; }
+    .container-fluid-slide-minister .home-minister-card .team-bottom h7 {
+        min-height: 2.5em;
+        color: #12365f;
+        font-size: clamp(14px, 1.15vw, 17px);
+        font-weight: 800;
+        line-height: 1.3;
+    }
+    .container-fluid-slide-minister .home-minister-card .team-bottom p {
+        min-height: 2.2em;
+        color: #a32134;
+        font-size: clamp(12px, .95vw, 15px);
+        font-weight: 700;
+    }
+
+    @@media (max-width: 767.98px) {
+        .container-fluid-slide-minister .team.teamback > .home-ministers,
+        .container-fluid-slide-minister .team.teamback .home-ministers { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 16px 10px 20px; }
+        .container-fluid-slide-minister .home-minister-card .home-minister-photo { height: clamp(150px, 42vw, 205px); }
+        .container-fluid-slide-minister .home-minister-card .team-bottom h7 { font-size: 14px; }
+        .container-fluid-slide-minister .home-minister-card .team-bottom p { font-size: 12px; }
+    }
+
     .home-banner-stage { position: relative; width: 100%; }
 
     .home-banner-ministers-overlay {
@@ -323,31 +341,85 @@
     }
 
     .home-banner-ministers-overlay.is-scrolled { opacity: 0; visibility: hidden; }
-    .home-banner-ministers-panel { width: min(1120px, 100%); padding: 15px 18px 17px; border: 1px solid rgba(255, 255, 255, .88); border-radius: 22px; background: rgba(255, 255, 255, .91); box-shadow: 0 14px 36px rgba(18, 52, 91, .19); }
-    .home-banner-ministers-heading { margin-bottom: 12px; text-align: center; }
-    .home-banner-ministers-heading > span { color: #d45832; font-size: 10px; font-weight: 800; letter-spacing: .22em; }
-    .home-banner-ministers-heading h2 { margin: 2px 0 0; color: #113b6a; font-size: clamp(18px, 2vw, 25px); font-weight: 800; }
-    .home-banner-minister-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-    .home-banner-minister-item { display: flex; min-width: 0; min-height: 142px; flex-direction: column; align-items: center; justify-content: flex-start; gap: 7px; padding: 10px 8px; border: 1px solid #e1eaf4; border-top: 3px solid #1b659d; border-radius: 15px; background: linear-gradient(180deg, #fff, #f7faff); text-align: center; }
-    .home-banner-minister-item:first-child { border-top-color: #c69a3a; }
-    .home-banner-minister-photo { display: flex; width: 72px; height: 78px; flex: 0 0 78px; align-items: flex-end; justify-content: center; overflow: hidden; border-radius: 12px; background: linear-gradient(145deg, #edf5fc, #fff); }
+    .home-banner-ministers-panel { width: min(1280px, 100%); padding: 18px 20px; border: 1px solid rgba(255, 255, 255, .9); border-radius: 22px; background: rgba(255, 255, 255, .96); box-shadow: 0 14px 36px rgba(18, 52, 91, .19); }
+    .home-banner-minister-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+    .home-banner-minister-item { display: flex; min-width: 0; min-height: 0; flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; text-align: center; }
+    .home-banner-minister-photo { display: flex; width: clamp(150px, 15vw, 210px); height: clamp(160px, 20vw, 250px); flex: 0 0 auto; align-items: flex-end; justify-content: center; overflow: visible; border-radius: 0; background: transparent; }
     .home-banner-minister-photo img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
     .home-banner-minister-details { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
-    .home-banner-minister-details strong { color: #12365f; font-size: clamp(12px, .95vw, 15px); font-weight: 800; line-height: 1.35; }
-    .home-banner-minister-details span { color: #a32134; font-size: clamp(10px, .8vw, 12px); font-weight: 600; line-height: 1.3; }
+    .home-banner-minister-details strong { color: #12365f; font-size: clamp(14px, 1.15vw, 17px); font-weight: 800; line-height: 1.35; }
+    .home-banner-minister-details span { color: #a32134; font-size: clamp(12px, .95vw, 15px); font-weight: 700; line-height: 1.3; }
+
+    @@media (min-width: 992px) {
+        .home-banner-stage { height: max(520px, calc(100vh - 110px)); }
+        #carouselExample.home-banner-carousel,
+        #carouselExample.home-banner-carousel .carousel-inner,
+        #carouselExample.home-banner-carousel .carousel-item,
+        #carouselExample.home-banner-carousel .carousel-item img { height: 100%; }
+        #carouselExample.home-banner-carousel .carousel-item img { width: 100%; object-fit: fill; }
+    }
 
     @@media (max-width: 575.98px) {
         .home-banner-ministers-overlay { padding: 4px; }
-        .home-banner-ministers-panel { padding: 5px; border-radius: 10px; }
-        .home-banner-ministers-heading { margin-bottom: 3px; }
-        .home-banner-ministers-heading > span { display: none; }
-        .home-banner-ministers-heading h2 { margin: 0; font-size: 11px; }
-        .home-banner-minister-list { gap: 3px; }
-        .home-banner-minister-item { min-height: 0; gap: 2px; padding: 3px 2px; border-radius: 7px; }
-        .home-banner-minister-photo { width: 42px; height: 44px; flex-basis: 44px; border-radius: 6px; }
+        .home-banner-ministers-panel { padding: 6px; border-radius: 12px; }
+        .home-banner-minister-list { gap: 2px; }
+        .home-banner-minister-item { gap: 3px; }
+        .home-banner-minister-photo { width: min(100%, 92px); height: clamp(100px, 22vw, 130px); }
         .home-banner-minister-details { gap: 1px; }
         .home-banner-minister-details strong { display: -webkit-box; overflow: hidden; font-size: 8px; line-height: 1.15; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
         .home-banner-minister-details span { display: -webkit-box; overflow: hidden; font-size: 7px; line-height: 1.1; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+    }
+
+    @@media (max-width: 767.98px) {
+        #targetSection.container-fluid-slide-minister {
+            width: calc(100% - 24px);
+            max-width: 540px;
+            margin: 14px auto !important;
+            padding: 12px;
+            overflow: visible;
+            border: 1px solid #dce4ee;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(26, 54, 86, .08);
+        }
+        #targetSection .home-banner-stage { height: auto; overflow: hidden; border-radius: 12px; }
+        #targetSection #carouselExample,
+        #targetSection #carouselExample .carousel-inner,
+        #targetSection #carouselExample .carousel-item { height: auto; }
+        #targetSection #carouselExample .carousel-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 160px;
+            object-fit: contain;
+        }
+        #targetSection .home-banner-ministers-overlay { display: none !important; }
+        #targetSection .team.teamback { padding: 0; background: #fff; }
+        #targetSection .team.teamback > .home-ministers {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px 12px;
+            padding: 26px 4px 12px;
+        }
+        #targetSection .home-minister-card .home-minister-photo { height: clamp(125px, 34vw, 170px); }
+        #targetSection .home-minister-card img.minister-img { object-fit: contain; }
+        #targetSection .home-minister-card .team-bottom { margin-top: 10px; }
+        #targetSection .home-minister-card .team-bottom h7 {
+            min-height: 2.6em;
+            font-size: clamp(15px, 4vw, 20px);
+            font-weight: 500;
+            line-height: 1.35;
+        }
+        #targetSection .home-minister-card .team-bottom p {
+            min-height: 2.4em;
+            margin: 10px 0 0;
+            font-size: clamp(13px, 3.5vw, 17px);
+            line-height: 1.4;
+        }
+        #targetSection .home-ministers > .home-minister-card:last-child {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: min(50%, 220px);
+        }
     }
 </style>
 
